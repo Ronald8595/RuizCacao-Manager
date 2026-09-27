@@ -1,0 +1,75 @@
+beforePack: ./scripts/preparar-clave.cjs
+appId: com.gruporuiz.ruizcacao-manager
+productName: RuizCacao Manager
+copyright: Copyright © 2026 Boloneitor
+directories:
+  buildResources: build
+files:
+  - '!**/.vscode/*'
+  - '!src/*'
+  - '!vendor/**'
+  - '!**/*.dump'
+  - '!**/*.dump.json'
+  - '!**/backups/**'
+  - '!**/data/**'
+  - '!**/conexion-test.json'
+  - '!**/*.log'
+  - '!**/*.jsonl'
+  - '!tests/**'
+  - '!scripts/**'
+  - '!database/**'
+  - '!docs/**'
+  - '!**/*.key'
+  - '!**/*private*.pem'
+  - '!**/pgpass.conf'
+  - '!**/*.enc'
+  - '!electron.vite.config.{js,ts,mjs,cjs}'
+  - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
+  - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
+  - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+extraResources:
+  - from: resources/security
+    to: security
+    filter:
+      - recovery-public.pem
+
+  - from: vendor/postgresql
+    to: postgresql
+    filter:
+      - '**/*'
+asarUnpack:
+  - resources/**
+win:
+  executableName: RuizCacaoManager
+  icon: build/icon.ico
+nsis:
+  deleteAppDataOnUninstall: false
+  artifactName: RuizCacaoManager-${version}-Setup.${ext}
+  shortcutName: ${productName}
+  uninstallDisplayName: ${productName}
+  createDesktopShortcut: always
+  installerIcon: build/icon.ico
+  uninstallerIcon: build/icon.ico
+  installerHeaderIcon: build/icon.ico
+mac:
+  entitlementsInherit: build/entitlements.mac.plist
+  extendInfo:
+    - NSCameraUsageDescription: Application requests access to the device's camera.
+    - NSMicrophoneUsageDescription: Application requests access to the device's microphone.
+    - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
+    - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
+  notarize: false
+dmg:
+  artifactName: ${name}-${version}.${ext}
+linux:
+  target:
+    - AppImage
+    - snap
+    - deb
+  maintainer: electronjs.org
+  category: Utility
+appImage:
+  artifactName: ${name}-${version}.${ext}
+npmRebuild: false
+electronDownload:
+  mirror: https://npmmirror.com/mirrors/electron/
