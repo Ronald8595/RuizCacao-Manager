@@ -8,6 +8,7 @@ const invocar = <T>(canal: string, ...args: unknown[]): Promise<Respuesta<T>> =>
   }))
 // Custom APIs for renderer
 const datos: ApiPersistencia = {
+  historialStock: (...args) => invocar('datos:historialStock', ...args),
   anularOperacion: (...args) => invocar('datos:anularOperacion', ...args),
   cambiarPassword: (...args) => invocar('datos:cambiarPassword', ...args),
   crearUsuario: (...args) => invocar('datos:crearUsuario', ...args),

@@ -124,6 +124,9 @@ export interface EstadoAcceso {
 }
 export type Respuesta<T> = { ok: true; valor: T } | { ok: false; error: string }
 export interface ApiPersistencia {
+  historialStock: (
+    filtro: import('./historialStock').FiltroHistorialStock
+  ) => Promise<Respuesta<import('./historialStock').PaginaHistorialStock>>
   anularOperacion: (
     solicitud: string,
     tipo: 'compra' | 'venta',

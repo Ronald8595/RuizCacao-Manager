@@ -222,10 +222,10 @@ async function main() {
     })
     db = crear()
     await db.iniciar()
-    await test('v6→v7 conserva datos, hashes, stock, fechas y comprobantes sin tablas nuevas', async () => {
+    await test('v6→v7→v8 conserva datos, hashes, stock, fechas y comprobantes sin tablas nuevas', async () => {
       assert.equal(
         (await sql.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v,
-        7
+        8
       )
       assert.equal(
         (

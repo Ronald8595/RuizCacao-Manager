@@ -1,9 +1,12 @@
 import { ErrorNegocio } from '../../shared/errorNegocio'
+import { consultarHistorialStock } from './historial-stock'
+import type { FiltroHistorialStock, PaginaHistorialStock } from '../../shared/historialStock'
 import { migracionTres } from './migracion-tres'
 import { migracionCuatro } from './migracion-cuatro'
 import { migracionCinco } from './migracion-cinco'
 import { migracionSeis } from './migracion-seis'
-import { migracionSiete, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-siete'
+import { migracionSiete } from './migracion-siete'
+import { migracionOcho, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-ocho'
 import { aplicarAnulacion } from '../../shared/anulaciones'
 import { nuevaSolicitud, tokenSolicitud, verificarAutorizacion, clavePublica } from './recuperacion'
 import { traducirError } from './errores'
@@ -195,6 +198,10 @@ export class BaseLocal {
       if ((version.rows[0]?.version ?? 0) < 7) {
         await db.query(migracionSiete)
         await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(7)')
+      }
+      if ((version.rows[0]?.version ?? 0) < 8) {
+        await db.query(migracionOcho)
+        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(8)')
       }
       const interrumpidas = await db.query(
         'SELECT id FROM ruizcacao.sesiones WHERE cerrada_en IS NULL'
@@ -710,6 +717,14 @@ export class BaseLocal {
   async cargar(): Promise<EstadoAplicacion> {
     this.exigirSesion()
     return this.transaccion((db) => this.estado(db))
+  }
+
+  async historialStock(filtro: FiltroHistorialStock): Promise<PaginaHistorialStock> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarHistorialStock(db, filtro)
+    })
   }
 
   async registrarStockInicial(input: StockInicialInput): Promise<EstadoAplicacion> {

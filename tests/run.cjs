@@ -34,6 +34,11 @@ async function main() {
     const archivo = join(carpeta, 'conexion-test.json')
     await fs.writeFile(archivo, JSON.stringify(config), { mode: 0o600 })
     const suites = [
+      'migracion-v8.cjs',
+      'paginacion-stock-validacion.cjs',
+      'paginacion-stock.cjs',
+      'benchmark-dataset.cjs',
+      'proyeccion-entidades.cjs',
       'novedades.cjs',
       'anulaciones-dominio.cjs',
       'anulaciones-v7.cjs',

@@ -1,0 +1,16 @@
+{
+  "fecha": "2026-09-30T18:06:46.934Z",
+  "typecheck": 0,
+  "lint": 0,
+  "advertenciasLint": 899,
+  "dbTest": 0,
+  "dbSql": 0,
+  "benchmarkSmall": 0,
+  "benchmarkCompleto": 0,
+  "benchmarkComparacionABBA": 0,
+  "diffCheck": 0,
+  "historicosIntactos": true,
+  "esquema": 8,
+  "tablas": 25,
+  "revisionVisual": "pendiente"
+}
