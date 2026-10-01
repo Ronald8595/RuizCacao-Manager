@@ -38,7 +38,7 @@ async function main() {
       backup = new Respaldos(config, process.env.RCM_TEST_BIN, carpeta)
     servicio = new BaseLocal(config, { respaldos: backup })
     await servicio.iniciar()
-    assert.equal((await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v, 7)
+    assert.equal((await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v, 9)
     assert.equal(
       (await db.query('SELECT installation_id FROM ruizcacao.instalacion')).rows[0].installation_id,
       instalacion

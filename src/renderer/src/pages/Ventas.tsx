@@ -1,3 +1,4 @@
+import { useHistorialOperaciones } from '../hooks/useHistorialOperaciones'
 import AnularOperacion from '../components/AnularOperacion'
 import DetalleOperacion from '../components/DetalleOperacion'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
@@ -237,10 +238,7 @@ function Ventas(): React.JSX.Element {
 
   async function confirmarGuardarVenta(): Promise<void> {
     if (estadoJornada !== 'activa') {
-      notificar(
-        'advertencia',
-        'No se puede realizar venta hasta iniciar o reabrir la jornada.'
-      )
+      notificar('advertencia', 'No se puede realizar venta hasta iniciar o reabrir la jornada.')
       return
     }
     // Segunda barrera de seguridad: aunque la venta haya sido validada en la
@@ -306,24 +304,18 @@ function Ventas(): React.JSX.Element {
   }
 
   const hayVentas = ventas.length > 0
-  const terminoBusqueda = busqueda.trim().toLocaleLowerCase('es')
-  const ventasFiltradas = ventas.filter((venta) => {
-    if (filtroDesde && venta.fechaVenta < filtroDesde) return false
-    if (filtroHasta && venta.fechaVenta > filtroHasta) return false
-    if (!terminoBusqueda) return true
-    const cliente = clientes.find((c) => c.id === venta.clienteId)
-    return (
-      venta.fechaVenta.toLocaleLowerCase('es').includes(terminoBusqueda) ||
-      (cliente?.nombreRazonSocial ?? '').toLocaleLowerCase('es').includes(terminoBusqueda)
-    )
-  })
+  const historial = useHistorialOperaciones(
+    'ventas',
+    { desde: filtroDesde, hasta: filtroHasta, busqueda },
+    ventas
+  )
+  const ventasFiltradas = historial.filas
 
   // Sin jornada activa no se pueden generar ventas nuevas (ver control de
   // jornada en el módulo de Inicio). Consultas, historial, etc. siguen
   // disponibles siempre: esta página solo bloquea "Nueva venta".
   const jornadaBloqueaVenta = estadoJornada !== 'activa'
-  const mensajeJornadaBloqueada =
-    'No se puede realizar venta hasta iniciar o reabrir la jornada.'
+  const mensajeJornadaBloqueada = 'No se puede realizar venta hasta iniciar o reabrir la jornada.'
 
   return (
     <section className="flex min-h-0 flex-1 flex-col overflow-y-auto p-4 sm:p-6 lg:p-7">
@@ -410,7 +402,22 @@ function Ventas(): React.JSX.Element {
         </div>
       )}
 
-      {!hayVentas ? (
+      {historial.cargando ? (
+        <p role="status" className="py-6 text-sm text-[#5b635e]">
+          Cargando historial...
+        </p>
+      ) : historial.error ? (
+        <div role="alert" className="py-6 text-sm text-[#9d3029]">
+          {historial.error}
+          <button
+            type="button"
+            onClick={historial.reintentar}
+            className="ml-3 rounded-lg border px-3 py-2"
+          >
+            Reintentar
+          </button>
+        </div>
+      ) : !hayVentas ? (
         <EmptyState
           icon={ShoppingCart}
           title="Todavía no hay ventas registradas"
@@ -419,108 +426,133 @@ function Ventas(): React.JSX.Element {
           cuenta por cobrar del cliente."
         />
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
-          <table className="w-full min-w-[1020px] text-left text-[13px]">
-            <thead>
-              <tr className="border-b border-[#e2e7e2] bg-[#fafbfa] text-[11px] font-bold uppercase tracking-wide text-[#8a938d]">
-                <th className="px-4 py-3">Factura</th>
-                <th className="px-4 py-3">Fecha</th>
-                <th className="px-4 py-3">Cliente</th>
-                <th className="px-4 py-3">Producto</th>
-                <th className="px-4 py-3">Peso (qq)</th>
-                <th className="px-4 py-3">Total</th>
-                <th className="px-4 py-3">Estado de cobro</th>
-                <th className="px-4 py-3">Usuario</th>
-                <th className="px-4 py-3 text-right">Comprobante</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ventasFiltradas.map((v) => {
-                const cliente = clientes.find((c) => c.id === v.clienteId)
-                const cuenta = cuentas.find((c) => c.ventaId === v.id)
-                const estadoCobro = cuenta
-                  ? cuenta.montoPagado >= cuenta.montoTotal
-                    ? 'Pagado'
-                    : cuenta.montoPagado > 0
-                      ? 'Parcial'
-                      : 'Pendiente'
-                  : v.estadoCobro
-                return (
-                  <tr
-                    key={v.id}
-                    className="border-b border-[#eef1ee] last:border-0 hover:bg-[#fafbfa]"
-                  >
-                    <td className="px-4 py-3 font-medium text-[#2d332f]">
-                      N.º {v.numeroFactura} del día
-                    </td>
-                    <td className="px-4 py-3 text-[#5b635e]">{v.fechaVenta}</td>
-                    <td className="px-4 py-3 text-[#5b635e]">
-                      {cliente?.nombreRazonSocial ?? '—'}
-                    </td>
-                    <td className="px-4 py-3 text-[#5b635e]">{v.producto}</td>
-                    <td className="px-4 py-3 text-[#5b635e]">{v.pesoBruto}</td>
-                    <td className="px-4 py-3 font-semibold text-[#2d332f]">
-                      ${formatoMoneda(v.totalVenta)}
-                    </td>
-                    <td className="px-4 py-3">
-                      <span
-                        className={[
-                          'rounded-full px-2.5 py-1 text-[11px] font-semibold',
-                          v.estado === 'anulada'
-                            ? 'bg-[#fdf1f0] text-[#dc5c52]'
-                            : estadoCobro === 'Pagado'
-                              ? 'bg-[#e7f2ea] text-[#176b3a]'
-                              : estadoCobro === 'Parcial'
-                                ? 'bg-[#fff0c9] text-[#9c7a1f]'
-                                : 'bg-[#fdf1f0] text-[#dc5c52]'
-                        ].join(' ')}
-                      >
-                        {v.estado === 'anulada' ? 'Anulada' : estadoCobro}
-                      </span>
-                    </td>
-                    <td className="px-4 py-3 text-[#5b635e]">
-                      {v.usuarioNombre ?? 'Sistema anterior'}
-                    </td>
-                    <td className="px-4 py-3 text-right">
-                      <button
-                        type="button"
-                        onClick={() => setDetalle(v)}
-                        className="mr-2 rounded-lg border px-2 py-1 text-xs"
-                      >
-                        Ver
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setVentaAnular(v)}
-                        disabled={v.estado === 'anulada' || estadoJornada !== 'activa'}
-                        className="mr-2 rounded-lg border px-2 py-1 text-xs text-[#b23a32] disabled:opacity-35"
-                      >
-                        Anular venta
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => void generarPdf(v)}
-                        disabled={generandoPdf}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-[#dbe4dc] px-2.5 py-1.5 text-[11px] font-semibold text-[#176b3a] hover:bg-[#f2f8f3] disabled:opacity-50"
-                        title={`Generar comprobante N.º ${formatearNumeroComprobante(v.numeroComprobante)}`}
-                      >
-                        <FileDown size={14} />
-                        PDF
-                      </button>
+        <>
+          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+            <table className="w-full min-w-[1020px] text-left text-[13px]">
+              <thead>
+                <tr className="border-b border-[#e2e7e2] bg-[#fafbfa] text-[11px] font-bold uppercase tracking-wide text-[#8a938d]">
+                  <th className="px-4 py-3">Factura</th>
+                  <th className="px-4 py-3">Fecha</th>
+                  <th className="px-4 py-3">Cliente</th>
+                  <th className="px-4 py-3">Producto</th>
+                  <th className="px-4 py-3">Peso (qq)</th>
+                  <th className="px-4 py-3">Total</th>
+                  <th className="px-4 py-3">Estado de cobro</th>
+                  <th className="px-4 py-3">Usuario</th>
+                  <th className="px-4 py-3 text-right">Comprobante</th>
+                </tr>
+              </thead>
+              <tbody>
+                {ventasFiltradas.map((v) => {
+                  const cliente = clientes.find((c) => c.id === v.clienteId)
+                  const cuenta = cuentas.find((c) => c.ventaId === v.id)
+                  const estadoCobro = cuenta
+                    ? cuenta.montoPagado >= cuenta.montoTotal
+                      ? 'Pagado'
+                      : cuenta.montoPagado > 0
+                        ? 'Parcial'
+                        : 'Pendiente'
+                    : v.estadoCobro
+                  return (
+                    <tr
+                      key={v.id}
+                      className="border-b border-[#eef1ee] last:border-0 hover:bg-[#fafbfa]"
+                    >
+                      <td className="px-4 py-3 font-medium text-[#2d332f]">
+                        N.º {v.numeroFactura} del día
+                      </td>
+                      <td className="px-4 py-3 text-[#5b635e]">{v.fechaVenta}</td>
+                      <td className="px-4 py-3 text-[#5b635e]">
+                        {cliente?.nombreRazonSocial ?? '—'}
+                      </td>
+                      <td className="px-4 py-3 text-[#5b635e]">{v.producto}</td>
+                      <td className="px-4 py-3 text-[#5b635e]">{v.pesoBruto}</td>
+                      <td className="px-4 py-3 font-semibold text-[#2d332f]">
+                        ${formatoMoneda(v.totalVenta)}
+                      </td>
+                      <td className="px-4 py-3">
+                        <span
+                          className={[
+                            'rounded-full px-2.5 py-1 text-[11px] font-semibold',
+                            v.estado === 'anulada'
+                              ? 'bg-[#fdf1f0] text-[#dc5c52]'
+                              : estadoCobro === 'Pagado'
+                                ? 'bg-[#e7f2ea] text-[#176b3a]'
+                                : estadoCobro === 'Parcial'
+                                  ? 'bg-[#fff0c9] text-[#9c7a1f]'
+                                  : 'bg-[#fdf1f0] text-[#dc5c52]'
+                          ].join(' ')}
+                        >
+                          {v.estado === 'anulada' ? 'Anulada' : estadoCobro}
+                        </span>
+                      </td>
+                      <td className="px-4 py-3 text-[#5b635e]">
+                        {v.usuarioNombre ?? 'Sistema anterior'}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <button
+                          type="button"
+                          onClick={() => setDetalle(v)}
+                          className="mr-2 rounded-lg border px-2 py-1 text-xs"
+                        >
+                          Ver
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setVentaAnular(v)}
+                          disabled={v.estado === 'anulada' || estadoJornada !== 'activa'}
+                          className="mr-2 rounded-lg border px-2 py-1 text-xs text-[#b23a32] disabled:opacity-35"
+                        >
+                          Anular venta
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => void generarPdf(v)}
+                          disabled={generandoPdf}
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-[#dbe4dc] px-2.5 py-1.5 text-[11px] font-semibold text-[#176b3a] hover:bg-[#f2f8f3] disabled:opacity-50"
+                          title={`Generar comprobante N.º ${formatearNumeroComprobante(v.numeroComprobante)}`}
+                        >
+                          <FileDown size={14} />
+                          PDF
+                        </button>
+                      </td>
+                    </tr>
+                  )
+                })}
+                {ventasFiltradas.length === 0 && (
+                  <tr>
+                    <td colSpan={8} className="px-4 py-6 text-center text-[#8a938d]">
+                      No hay ventas que coincidan con la búsqueda.
                     </td>
                   </tr>
-                )
-              })}
-              {ventasFiltradas.length === 0 && (
-                <tr>
-                  <td colSpan={8} className="px-4 py-6 text-center text-[#8a938d]">
-                    No hay ventas que coincidan con la búsqueda.
-                  </td>
-                </tr>
-              )}
-            </tbody>
-          </table>
-        </div>
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="mt-4 flex items-center justify-between text-[12px]">
+            <span>
+              {historial.filas.length} registros en esta página · Página {historial.numero}
+            </span>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                disabled={!historial.hayAnterior || historial.cargando}
+                onClick={historial.anterior}
+                className="rounded-lg border px-3 py-2 disabled:opacity-40"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                disabled={!historial.haySiguiente || historial.cargando}
+                onClick={historial.siguiente}
+                className="rounded-lg border px-3 py-2 disabled:opacity-40"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </>
       )}
 
       {modalAbierto && (

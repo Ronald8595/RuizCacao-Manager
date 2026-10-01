@@ -1,9 +1,19 @@
+import { consultarHistorialCompras, consultarHistorialVentas } from './historial-operaciones'
+import type {
+  FiltroHistorialOperaciones,
+  PaginaCompras,
+  PaginaVentas
+} from '../../shared/historialOperaciones'
 import { ErrorNegocio } from '../../shared/errorNegocio'
+import { consultarHistorialStock } from './historial-stock'
+import type { FiltroHistorialStock, PaginaHistorialStock } from '../../shared/historialStock'
 import { migracionTres } from './migracion-tres'
 import { migracionCuatro } from './migracion-cuatro'
 import { migracionCinco } from './migracion-cinco'
 import { migracionSeis } from './migracion-seis'
-import { migracionSiete, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-siete'
+import { migracionSiete } from './migracion-siete'
+import { migracionOcho } from './migracion-ocho'
+import { migracionNueve, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-nueve'
 import { aplicarAnulacion } from '../../shared/anulaciones'
 import { nuevaSolicitud, tokenSolicitud, verificarAutorizacion, clavePublica } from './recuperacion'
 import { traducirError } from './errores'
@@ -195,6 +205,14 @@ export class BaseLocal {
       if ((version.rows[0]?.version ?? 0) < 7) {
         await db.query(migracionSiete)
         await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(7)')
+      }
+      if ((version.rows[0]?.version ?? 0) < 8) {
+        await db.query(migracionOcho)
+        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(8)')
+      }
+      if ((version.rows[0]?.version ?? 0) < 9) {
+        await db.query(migracionNueve)
+        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(9)')
       }
       const interrumpidas = await db.query(
         'SELECT id FROM ruizcacao.sesiones WHERE cerrada_en IS NULL'
@@ -712,6 +730,28 @@ export class BaseLocal {
     return this.transaccion((db) => this.estado(db))
   }
 
+  async historialCompras(filtro: FiltroHistorialOperaciones): Promise<PaginaCompras> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarHistorialCompras(db, filtro)
+    })
+  }
+  async historialVentas(filtro: FiltroHistorialOperaciones): Promise<PaginaVentas> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarHistorialVentas(db, filtro)
+    })
+  }
+  async historialStock(filtro: FiltroHistorialStock): Promise<PaginaHistorialStock> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarHistorialStock(db, filtro)
+    })
+  }
+
   async registrarStockInicial(input: StockInicialInput): Promise<EstadoAplicacion> {
     const usuario = this.exigirUsuario()
     this.exigirAdministrador()
@@ -820,6 +860,7 @@ export class BaseLocal {
     for (const key of Object.keys(tablas)) {
       const registros = despues[key as keyof typeof tablas] as { id: string | number }[]
       const originales = antes[key as keyof typeof tablas] as { id: string | number }[]
+      const presentes = new Set(registros.map((registro) => registro.id))
       const anteriores = new Map(originales.map((r) => [String(r.id), JSON.stringify(r)]))
       for (const registro of registros) {
         const esNuevo = !anteriores.has(String(registro.id))
@@ -845,7 +886,7 @@ export class BaseLocal {
         await guardarRegistro(db, key as Entidad, registro)
       }
       for (const registro of originales) {
-        if (!registros.some((r) => r.id === registro.id)) {
+        if (!presentes.has(registro.id)) {
           if (key !== 'gastos') throw new ErrorNegocio('Este registro no se puede eliminar.')
           await this.auditoria(db, 'gasto_eliminado', registro)
           await db.query(`DELETE FROM ruizcacao.${tablas[key as Entidad]} WHERE id=$1`, [

@@ -1,0 +1,132 @@
+{
+  "fecha": "2026-10-01T19:55:10.335Z",
+  "antes": {
+    "base": "ruizcacao_manager",
+    "version": 8,
+    "tablas": 25
+  },
+  "despues": {
+    "base": "ruizcacao_manager",
+    "version": 9,
+    "tablas": 25
+  },
+  "respaldo": {
+    "archivo": "C:\\Users\\LENOVO\\AppData\\Roaming\\RuizCacao Manager\\backups\\pre_migracion_2026-10-01T19-54-58-762Z_9b52ed94-4ad6-4e00-98a6-0f85d7434e4d.dump",
+    "sha256": "237ea0eef847dcfc30d57e9f7cacff3d204f015ebf6234d034e3ae1c2cee2fe2",
+    "tamano": 3089150,
+    "version": 8,
+    "verificado": true
+  },
+  "datosConservados": true,
+  "huellas": {
+    "administrador": {
+      "filas": 1,
+      "hash": "99bf24cdcf8642e4866eface796cb000"
+    },
+    "auditoria": {
+      "filas": 145,
+      "hash": "39e0531e2ab1018d7bca3fbda3ff79b9"
+    },
+    "clientes": {
+      "filas": 1004,
+      "hash": "2c1f43e6719a3438a7002ca47df76d88"
+    },
+    "compras": {
+      "filas": 10014,
+      "hash": "a8015ba567ae2d33f9fd5122a5be4772"
+    },
+    "configuracion": {
+      "filas": 1,
+      "hash": "0e661f38e445b4e063b4f7dbbc79bb6a"
+    },
+    "control_recuperacion": {
+      "filas": 1,
+      "hash": "28dce05ee844defe12909515458e5bc9"
+    },
+    "cuentas": {
+      "filas": 25021,
+      "hash": "3188369f35350d34c89c057d0a3a180c"
+    },
+    "empleados": {
+      "filas": 3,
+      "hash": "ba30362ee58199b6b0432961cb0cf58f"
+    },
+    "eventos_jornada": {
+      "filas": 45,
+      "hash": "243521c2d1183f3d8236f6530367ffa8"
+    },
+    "existencias": {
+      "filas": 3,
+      "hash": "6b3d4e6d49664b775f2efc8b8e54c11c"
+    },
+    "gastos": {
+      "filas": 13019,
+      "hash": "a93bd6f7528fbcbf3ce5e448f320a4a4"
+    },
+    "instalacion": {
+      "filas": 1,
+      "hash": "d140090c149048709b58008c035cc20d"
+    },
+    "jornadas": {
+      "filas": 5,
+      "hash": "789d6263dab848bb1969ca8e55e100c8"
+    },
+    "movimientos_cuenta": {
+      "filas": 16695,
+      "hash": "4481de40fdab300be28f7268e7b7f740"
+    },
+    "movimientos_stock": {
+      "filas": 25450,
+      "hash": "e35b243cd405715a03f2310987b69d01"
+    },
+    "notificaciones": {
+      "filas": 86,
+      "hash": "2f7ce6cc1997400e3cbb5de329fc7658"
+    },
+    "operaciones": {
+      "filas": 61,
+      "hash": "431197cd435b16ded05f8127b4f69bbd"
+    },
+    "productos": {
+      "filas": 3,
+      "hash": "0122346374f1ac840cc01b23de78cdbe"
+    },
+    "proveedores": {
+      "filas": 506,
+      "hash": "0ec467946f61edfc260084efe5f036d1"
+    },
+    "sesiones": {
+      "filas": 67,
+      "hash": "4e512555f14dfdc8c416a39c132c9418"
+    },
+    "solicitudes_recuperacion": {
+      "filas": 11,
+      "hash": "1491227993018e647cee54d6308f7304"
+    },
+    "usuarios": {
+      "filas": 2,
+      "hash": "e8412a49f725954b2a4f7f240b93d436"
+    },
+    "ventas": {
+      "filas": 15007,
+      "hash": "6f83d72a9bf71751ef2890c9dfcbd4f5"
+    }
+  },
+  "indices": [
+    {
+      "indexname": "compras_orden_id",
+      "indexdef": "CREATE INDEX compras_orden_id ON ruizcacao.compras USING btree (orden DESC, id DESC)",
+      "bytes": "876544"
+    },
+    {
+      "indexname": "movimientos_stock_orden_id",
+      "indexdef": "CREATE INDEX movimientos_stock_orden_id ON ruizcacao.movimientos_stock USING btree (orden DESC, id DESC)",
+      "bytes": "4292608"
+    },
+    {
+      "indexname": "ventas_orden_id",
+      "indexdef": "CREATE INDEX ventas_orden_id ON ruizcacao.ventas USING btree (orden DESC, id DESC)",
+      "bytes": "1302528"
+    }
+  ]
+}

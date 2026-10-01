@@ -1,0 +1,1256 @@
+{
+  "fecha": "2026-10-01T21:35:32.863Z",
+  "etiqueta": "antes",
+  "main": [
+    {
+      "estadoMs": 716.7101,
+      "datosMs": 710.9766,
+      "leerEntidadesMs": 696.2442000000001,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 7.436699999999973,
+          "filas": 1004
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 4.242400000000032,
+          "filas": 506
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 2.8625000000000114,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 43.190999999999974,
+          "filas": 10014
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 68.10320000000002,
+          "filas": 15007
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 122.70190000000002,
+          "filas": 25021
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 67.93360000000007,
+          "filas": 16695
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 96.61180000000002,
+          "filas": 25450
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 64.67340000000013,
+          "filas": 13019
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 1.7618000000002212,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 1.0083999999999378,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 3.430900000000065,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE NOT leida OR id IN (SELECT id FROM ruizcacao.notificaciones ORDER BY fecha DESC LIMIT 200) ORDER BY fecha DESC",
+          "ms": 2.0879999999999654,
+          "filas": 86
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 1.1604999999999563,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 1.9611999999999625,
+          "filas": 2
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.2499000000000251,
+          "filas": 1
+        }
+      ],
+      "serializacionJsonMs": 168.50379999999996,
+      "bytesEstado": 65358083,
+      "bytesSnapshot": 65339124,
+      "dominioMs": 207.52570000000014,
+      "guardarSinCambiosCpuMs": 10251.562
+    },
+    {
+      "estadoMs": 753.8896999999997,
+      "datosMs": 752.6275999999998,
+      "leerEntidadesMs": 751.1307000000015,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 2.844699999999648,
+          "filas": 1004
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 1.3722999999990861,
+          "filas": 506
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.3536000000003696,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 52.34310000000005,
+          "filas": 10014
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 67.0088999999989,
+          "filas": 15007
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 170.65890000000036,
+          "filas": 25021
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 88.78309999999874,
+          "filas": 16695
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 118.40500000000065,
+          "filas": 25450
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 63.92079999999987,
+          "filas": 13019
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.48110000000087894,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.23019999999996799,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.4860000000007858,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE NOT leida OR id IN (SELECT id FROM ruizcacao.notificaciones ORDER BY fecha DESC LIMIT 200) ORDER BY fecha DESC",
+          "ms": 0.5603999999984808,
+          "filas": 86
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.19539999999869906,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.2231999999985419,
+          "filas": 2
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.183100000000195,
+          "filas": 1
+        }
+      ],
+      "serializacionJsonMs": 174.00820000000022,
+      "bytesEstado": 65358083,
+      "bytesSnapshot": 65339124,
+      "dominioMs": 197.5632000000005,
+      "guardarSinCambiosCpuMs": 10945.1121
+    },
+    {
+      "estadoMs": 724.3366000000024,
+      "datosMs": 722.6923999999999,
+      "leerEntidadesMs": 721.1928999999982,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 3.1887000000024273,
+          "filas": 1004
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 1.5131000000001222,
+          "filas": 506
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.36230000000068685,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 37.980399999996735,
+          "filas": 10014
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 64.21849999999904,
+          "filas": 15007
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 159.3068999999996,
+          "filas": 25021
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 67.21759999999995,
+          "filas": 16695
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 125.69959999999992,
+          "filas": 25450
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 62.48240000000078,
+          "filas": 13019
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.4877999999989697,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.2510000000002037,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.44840000000112923,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE NOT leida OR id IN (SELECT id FROM ruizcacao.notificaciones ORDER BY fecha DESC LIMIT 200) ORDER BY fecha DESC",
+          "ms": 0.5502999999989697,
+          "filas": 86
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.5244000000020606,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.24320000000079744,
+          "filas": 2
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.21960000000035507,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_compra,o.fecha::text,o.fecha_hora_registro,o.proveedor_id,o.proveedor_nombre,o.producto,o.cantidad_qq,o.precio_compra_qq,o.impuesto_porcentaje,o.subtotal,o.monto_impuesto,o.total,o.monto_pagado_inicial,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.comprobante,o.observacion,o.usuario_id,o.usuario_nombre FROM ruizcacao.compras o WHERE o.fecha>=$1::date AND o.fecha<=$2::date ORDER BY o.orden DESC,o.id DESC LIMIT $3",
+          "ms": 5.822599999999511,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_compra,o.fecha::text,o.fecha_hora_registro,o.proveedor_id,o.proveedor_nombre,o.producto,o.cantidad_qq,o.precio_compra_qq,o.impuesto_porcentaje,o.subtotal,o.monto_impuesto,o.total,o.monto_pagado_inicial,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.comprobante,o.observacion,o.usuario_id,o.usuario_nombre FROM ruizcacao.compras o WHERE o.fecha>=$1::date AND o.fecha<=$2::date ORDER BY o.orden DESC,o.id DESC LIMIT $3",
+          "ms": 1.873700000003737,
+          "filas": 0
+        },
+        {
+          "sql": "COMMIT",
+          "ms": 0.5966000000044005,
+          "filas": null
+        }
+      ],
+      "serializacionJsonMs": 179.65220000000045,
+      "bytesEstado": 65358083,
+      "bytesSnapshot": 65339124,
+      "dominioMs": 199.09939999999915,
+      "guardarSinCambiosCpuMs": 11402.416599999997
+    }
+  ],
+  "base": {
+    "base": "ruizcacao_manager",
+    "version": 9
+  },
+  "huellaSnapshot": "cb3a4f31b0a317db09a4d13c32d0dd9c9851baf302faf668347ecc413954a3bb",
+  "postgresql": [
+    {
+      "tabla": "clientes",
+      "servidorMs": 0.409,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 86.1,
+          "Total Cost": 88.61,
+          "Plan Rows": 1004,
+          "Plan Width": 279,
+          "Actual Startup Time": 0.317,
+          "Actual Total Time": 0.343,
+          "Actual Rows": 1004,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "orden DESC"
+          ],
+          "Sort Method": "quicksort",
+          "Sort Space Used": 204,
+          "Sort Space Type": "Memory",
+          "Shared Hit Blocks": 26,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "clientes",
+              "Alias": "clientes",
+              "Startup Cost": 0,
+              "Total Cost": 36.04,
+              "Plan Rows": 1004,
+              "Plan Width": 279,
+              "Actual Startup Time": 0.008,
+              "Actual Total Time": 0.118,
+              "Actual Rows": 1004,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 26,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.062,
+        "Triggers": [],
+        "Execution Time": 0.409
+      }
+    },
+    {
+      "tabla": "proveedores",
+      "servidorMs": 0.207,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 40.79,
+          "Total Cost": 42.05,
+          "Plan Rows": 506,
+          "Plan Width": 250,
+          "Actual Startup Time": 0.154,
+          "Actual Total Time": 0.169,
+          "Actual Rows": 506,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "orden DESC"
+          ],
+          "Sort Method": "quicksort",
+          "Sort Space Used": 110,
+          "Sort Space Type": "Memory",
+          "Shared Hit Blocks": 13,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "proveedores",
+              "Alias": "proveedores",
+              "Startup Cost": 0,
+              "Total Cost": 18.06,
+              "Plan Rows": 506,
+              "Plan Width": 250,
+              "Actual Startup Time": 0.011,
+              "Actual Total Time": 0.073,
+              "Actual Rows": 506,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 13,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.055,
+        "Triggers": [],
+        "Execution Time": 0.207
+      }
+    },
+    {
+      "tabla": "empleados",
+      "servidorMs": 0.02,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 30.08,
+          "Total Cost": 31.03,
+          "Plan Rows": 380,
+          "Plan Width": 177,
+          "Actual Startup Time": 0.011,
+          "Actual Total Time": 0.011,
+          "Actual Rows": 3,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "orden DESC"
+          ],
+          "Sort Method": "quicksort",
+          "Sort Space Used": 25,
+          "Sort Space Type": "Memory",
+          "Shared Hit Blocks": 1,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "empleados",
+              "Alias": "empleados",
+              "Startup Cost": 0,
+              "Total Cost": 13.8,
+              "Plan Rows": 380,
+              "Plan Width": 177,
+              "Actual Startup Time": 0.005,
+              "Actual Total Time": 0.006,
+              "Actual Rows": 3,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 1,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 1,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.047,
+        "Triggers": [],
+        "Execution Time": 0.02
+      }
+    },
+    {
+      "tabla": "compras",
+      "servidorMs": 2.852,
+      "plan": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "compras_orden_id",
+          "Relation Name": "compras",
+          "Alias": "compras",
+          "Startup Cost": 0.29,
+          "Total Cost": 1789.62,
+          "Plan Rows": 10014,
+          "Plan Width": 455,
+          "Actual Startup Time": 0.011,
+          "Actual Total Time": 2.432,
+          "Actual Rows": 10014,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Index Searches": 1,
+          "Shared Hit Blocks": 630,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.047,
+        "Triggers": [],
+        "Execution Time": 2.852
+      }
+    },
+    {
+      "tabla": "ventas",
+      "servidorMs": 4.01,
+      "plan": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "ventas_orden_id",
+          "Relation Name": "ventas",
+          "Alias": "ventas",
+          "Startup Cost": 0.29,
+          "Total Cost": 2442.51,
+          "Plan Rows": 15007,
+          "Plan Width": 402,
+          "Actual Startup Time": 0.007,
+          "Actual Total Time": 3.326,
+          "Actual Rows": 15007,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Index Searches": 1,
+          "Shared Hit Blocks": 841,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.061,
+        "Triggers": [],
+        "Execution Time": 4.01
+      }
+    },
+    {
+      "tabla": "cuentas",
+      "servidorMs": 44.942,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 9465.6,
+          "Total Cost": 9528.15,
+          "Plan Rows": 25021,
+          "Plan Width": 563,
+          "Actual Startup Time": 20.719,
+          "Actual Total Time": 27.73,
+          "Actual Rows": 25021,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "orden DESC"
+          ],
+          "Sort Method": "external merge",
+          "Sort Space Used": 7680,
+          "Sort Space Type": "Disk",
+          "Shared Hit Blocks": 1056,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 960,
+          "Temp Written Blocks": 962,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "cuentas",
+              "Alias": "cuentas",
+              "Startup Cost": 0,
+              "Total Cost": 1306.21,
+              "Plan Rows": 25021,
+              "Plan Width": 563,
+              "Actual Startup Time": 0.007,
+              "Actual Total Time": 4.048,
+              "Actual Rows": 25021,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 1056,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.052,
+        "Triggers": [],
+        "Execution Time": 44.942
+      }
+    },
+    {
+      "tabla": "movimientos_cuenta",
+      "servidorMs": 61.994,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 4973.86,
+          "Total Cost": 5015.6,
+          "Plan Rows": 16695,
+          "Plan Width": 375,
+          "Actual Startup Time": 41.279,
+          "Actual Total Time": 47.437,
+          "Actual Rows": 16695,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "orden DESC"
+          ],
+          "Sort Method": "external merge",
+          "Sort Space Used": 5592,
+          "Sort Space Type": "Disk",
+          "Shared Hit Blocks": 780,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 699,
+          "Temp Written Blocks": 700,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "movimientos_cuenta",
+              "Alias": "movimientos_cuenta",
+              "Startup Cost": 0,
+              "Total Cost": 946.95,
+              "Plan Rows": 16695,
+              "Plan Width": 375,
+              "Actual Startup Time": 0.01,
+              "Actual Total Time": 7.041,
+              "Actual Rows": 16695,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 780,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.06,
+        "Triggers": [],
+        "Execution Time": 61.994
+      }
+    },
+    {
+      "tabla": "movimientos_stock",
+      "servidorMs": 14.384,
+      "plan": {
+        "Plan": {
+          "Node Type": "Index Scan",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Scan Direction": "Forward",
+          "Index Name": "movimientos_stock_orden_id",
+          "Relation Name": "movimientos_stock",
+          "Alias": "movimientos_stock",
+          "Startup Cost": 0.41,
+          "Total Cost": 5363.54,
+          "Plan Rows": 25450,
+          "Plan Width": 696,
+          "Actual Startup Time": 0.014,
+          "Actual Total Time": 11.877,
+          "Actual Rows": 25450,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Index Searches": 1,
+          "Shared Hit Blocks": 1769,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.077,
+        "Triggers": [],
+        "Execution Time": 14.384
+      }
+    },
+    {
+      "tabla": "gastos",
+      "servidorMs": 59.061,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 4901.93,
+          "Total Cost": 4934.48,
+          "Plan Rows": 13019,
+          "Plan Width": 524,
+          "Actual Startup Time": 36.103,
+          "Actual Total Time": 43.375,
+          "Actual Rows": 13019,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "orden DESC"
+          ],
+          "Sort Method": "external merge",
+          "Sort Space Used": 5928,
+          "Sort Space Type": "Disk",
+          "Shared Hit Blocks": 809,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 741,
+          "Temp Written Blocks": 742,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "gastos",
+              "Alias": "gastos",
+              "Startup Cost": 0,
+              "Total Cost": 939.19,
+              "Plan Rows": 13019,
+              "Plan Width": 524,
+              "Actual Startup Time": 0.01,
+              "Actual Total Time": 5.883,
+              "Actual Rows": 13019,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 809,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.062,
+        "Triggers": [],
+        "Execution Time": 59.061
+      }
+    },
+    {
+      "tabla": "notificaciones",
+      "servidorMs": 0.114,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 9.79,
+          "Total Cost": 9.89,
+          "Plan Rows": 40,
+          "Plan Width": 111,
+          "Actual Startup Time": 0.085,
+          "Actual Total Time": 0.088,
+          "Actual Rows": 86,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "notificaciones.fecha DESC"
+          ],
+          "Sort Method": "quicksort",
+          "Sort Space Used": 36,
+          "Sort Space Type": "Memory",
+          "Shared Hit Blocks": 4,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "notificaciones",
+              "Alias": "notificaciones",
+              "Startup Cost": 5.73,
+              "Total Cost": 8.73,
+              "Plan Rows": 40,
+              "Plan Width": 111,
+              "Actual Startup Time": 0.051,
+              "Actual Total Time": 0.066,
+              "Actual Rows": 86,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Filter": "((NOT leida) OR (ANY (id = (hashed SubPlan 1).col1)))",
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 4,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Limit",
+                  "Parent Relationship": "SubPlan",
+                  "Subplan Name": "SubPlan 1",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Startup Cost": 5.33,
+                  "Total Cost": 5.53,
+                  "Plan Rows": 80,
+                  "Plan Width": 24,
+                  "Actual Startup Time": 0.022,
+                  "Actual Total Time": 0.028,
+                  "Actual Rows": 86,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Shared Hit Blocks": 2,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Sort",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Startup Cost": 5.33,
+                      "Total Cost": 5.53,
+                      "Plan Rows": 80,
+                      "Plan Width": 24,
+                      "Actual Startup Time": 0.022,
+                      "Actual Total Time": 0.024,
+                      "Actual Rows": 86,
+                      "Actual Loops": 1,
+                      "Disabled": false,
+                      "Sort Key": [
+                        "notificaciones_1.fecha DESC"
+                      ],
+                      "Sort Method": "quicksort",
+                      "Sort Space Used": 31,
+                      "Sort Space Type": "Memory",
+                      "Shared Hit Blocks": 2,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0,
+                      "Plans": [
+                        {
+                          "Node Type": "Seq Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Relation Name": "notificaciones",
+                          "Alias": "notificaciones_1",
+                          "Startup Cost": 0,
+                          "Total Cost": 2.8,
+                          "Plan Rows": 80,
+                          "Plan Width": 24,
+                          "Actual Startup Time": 0.003,
+                          "Actual Total Time": 0.009,
+                          "Actual Rows": 86,
+                          "Actual Loops": 1,
+                          "Disabled": false,
+                          "Shared Hit Blocks": 2,
+                          "Shared Read Blocks": 0,
+                          "Shared Dirtied Blocks": 0,
+                          "Shared Written Blocks": 0,
+                          "Local Hit Blocks": 0,
+                          "Local Read Blocks": 0,
+                          "Local Dirtied Blocks": 0,
+                          "Local Written Blocks": 0,
+                          "Temp Read Blocks": 0,
+                          "Temp Written Blocks": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.141,
+        "Triggers": [],
+        "Execution Time": 0.114
+      }
+    },
+    {
+      "tabla": "usuarios",
+      "servidorMs": 0.026,
+      "plan": {
+        "Plan": {
+          "Node Type": "Sort",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 37.38,
+          "Total Cost": 38.58,
+          "Plan Rows": 480,
+          "Plan Width": 122,
+          "Actual Startup Time": 0.016,
+          "Actual Total Time": 0.017,
+          "Actual Rows": 2,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Sort Key": [
+            "principal DESC",
+            "(lower(nombre))"
+          ],
+          "Sort Method": "quicksort",
+          "Sort Space Used": 25,
+          "Sort Space Type": "Memory",
+          "Shared Hit Blocks": 1,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Seq Scan",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Relation Name": "usuarios",
+              "Alias": "usuarios",
+              "Startup Cost": 0,
+              "Total Cost": 16,
+              "Plan Rows": 480,
+              "Plan Width": 122,
+              "Actual Startup Time": 0.01,
+              "Actual Total Time": 0.011,
+              "Actual Rows": 2,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Shared Hit Blocks": 1,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.048,
+        "Triggers": [],
+        "Execution Time": 0.026
+      }
+    }
+  ],
+  "conteos": {
+    "empleados": 3,
+    "clientes": 1004,
+    "proveedores": 506,
+    "compras": 10014,
+    "ventas": 15007,
+    "cuentas": 25021,
+    "movimientosCuenta": 16695,
+    "movimientosStock": 25450,
+    "gastos": 13019
+  },
+  "renderer": {
+    "ipcRoundtripMs": [
+      571.0999999940395,
+      519.7000000029802,
+      525.5
+    ],
+    "crearDominioMs": [
+      154.5,
+      149.59999999403954,
+      187.70000000298023
+    ],
+    "proveedorMs": 152,
+    "pantallas": [
+      {
+        "pantalla": "compras",
+        "renderCommitMs": 97.79999999701977,
+        "layoutMs": 12.700000002980232,
+        "hastaFrameMs": 112,
+        "filas": 0
+      },
+      {
+        "pantalla": "compras",
+        "renderCommitMs": 116.09999999403954,
+        "layoutMs": 0.6000000089406967,
+        "hastaFrameMs": 1000.7999999970198,
+        "filas": 0
+      },
+      {
+        "pantalla": "compras",
+        "renderCommitMs": 67.79999999701977,
+        "layoutMs": 0.6000000089406967,
+        "hastaFrameMs": 999.9000000059605,
+        "filas": 0
+      },
+      {
+        "pantalla": "cuentas",
+        "renderCommitMs": 1291.1000000089407,
+        "layoutMs": 1896.9000000059605,
+        "hastaFrameMs": 4032.7999999970198,
+        "filas": 16252
+      },
+      {
+        "pantalla": "cuentas",
+        "renderCommitMs": 1313,
+        "layoutMs": 2154.2000000029802,
+        "hastaFrameMs": 4052.0999999940395,
+        "filas": 16252
+      },
+      {
+        "pantalla": "cuentas",
+        "renderCommitMs": 1252.5999999940395,
+        "layoutMs": 1530.9000000059605,
+        "hastaFrameMs": 4017.7000000029802,
+        "filas": 16252
+      }
+    ]
+  },
+  "nota": "Base actual en solo lectura; guardar CPU usa db stub, sin escrituras. IPC real de EstadoAplicacion cacheado en canal exclusivo del arnés, sin cola/autenticación de producción. Componentes reales React/DOM en ventana oculta, CSS mínimo; mide render/commit/layout y siguiente frame, no revisión visual de la app."
+}

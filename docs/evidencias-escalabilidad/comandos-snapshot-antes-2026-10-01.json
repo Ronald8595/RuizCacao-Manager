@@ -1,0 +1,262 @@
+{
+  "fecha": "2026-10-01T21:31:04.313Z",
+  "etiqueta": "antes",
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-comandos-snapshot-eJqTw2",
+  "muestras": [
+    {
+      "comando": "registrarCompra",
+      "totalMs": 14751.273200000003,
+      "etapas": {
+        "datos": [
+          627.2629000000015,
+          660.2526999999973
+        ],
+        "guardar": [
+          13223.674599999998
+        ],
+        "estado": [
+          661.7441000000035
+        ]
+      },
+      "bytesRespuesta": 65361998,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1004,
+        "proveedores": 506,
+        "compras": 10015,
+        "ventas": 15007,
+        "cuentas": 25022,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25451,
+        "gastos": 13020
+      }
+    },
+    {
+      "comando": "registrarCompra",
+      "totalMs": 14471.141100000008,
+      "etapas": {
+        "datos": [
+          626.5148000000045,
+          673.7234999999928
+        ],
+        "guardar": [
+          12967.743699999999
+        ],
+        "estado": [
+          674.9255000000121
+        ]
+      },
+      "bytesRespuesta": 65361998,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1004,
+        "proveedores": 506,
+        "compras": 10015,
+        "ventas": 15007,
+        "cuentas": 25022,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25451,
+        "gastos": 13020
+      }
+    },
+    {
+      "comando": "registrarCompra",
+      "totalMs": 12115.144799999995,
+      "etapas": {
+        "datos": [
+          643.0761000000057,
+          711.2161000000051
+        ],
+        "guardar": [
+          10554.481799999994
+        ],
+        "estado": [
+          712.5106000000087
+        ]
+      },
+      "bytesRespuesta": 65361998,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1004,
+        "proveedores": 506,
+        "compras": 10015,
+        "ventas": 15007,
+        "cuentas": 25022,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25451,
+        "gastos": 13020
+      }
+    },
+    {
+      "comando": "registrarVenta",
+      "totalMs": 12902.86050000001,
+      "etapas": {
+        "datos": [
+          667.852899999998,
+          742.8027000000002
+        ],
+        "guardar": [
+          11274.698499999999
+        ],
+        "estado": [
+          745.7289000000019
+        ]
+      },
+      "bytesRespuesta": 65360743,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1004,
+        "proveedores": 506,
+        "compras": 10014,
+        "ventas": 15008,
+        "cuentas": 25022,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25451,
+        "gastos": 13019
+      }
+    },
+    {
+      "comando": "registrarVenta",
+      "totalMs": 16107.396099999998,
+      "etapas": {
+        "datos": [
+          644.1910999999964,
+          718.6453000000038
+        ],
+        "guardar": [
+          14542.150200000004
+        ],
+        "estado": [
+          719.9784999999974
+        ]
+      },
+      "bytesRespuesta": 65360743,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1004,
+        "proveedores": 506,
+        "compras": 10014,
+        "ventas": 15008,
+        "cuentas": 25022,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25451,
+        "gastos": 13019
+      }
+    },
+    {
+      "comando": "registrarVenta",
+      "totalMs": 13698.257800000007,
+      "etapas": {
+        "datos": [
+          646.031799999997,
+          741.0736000000034
+        ],
+        "guardar": [
+          12083.010900000008
+        ],
+        "estado": [
+          742.3475000000035
+        ]
+      },
+      "bytesRespuesta": 65360743,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1004,
+        "proveedores": 506,
+        "compras": 10014,
+        "ventas": 15008,
+        "cuentas": 25022,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25451,
+        "gastos": 13019
+      }
+    },
+    {
+      "comando": "crearCliente",
+      "totalMs": 14895.550300000003,
+      "etapas": {
+        "datos": [
+          668.2845000000088,
+          781.6596999999892
+        ],
+        "guardar": [
+          13209.724600000016
+        ],
+        "estado": [
+          783.1192000000156
+        ]
+      },
+      "bytesRespuesta": 65358987,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1005,
+        "proveedores": 506,
+        "compras": 10014,
+        "ventas": 15007,
+        "cuentas": 25021,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25450,
+        "gastos": 13019
+      }
+    },
+    {
+      "comando": "crearCliente",
+      "totalMs": 14422.117299999984,
+      "etapas": {
+        "datos": [
+          718.4408000000112,
+          792.8136999999988
+        ],
+        "guardar": [
+          12670.519899999985
+        ],
+        "estado": [
+          794.2619999999879
+        ]
+      },
+      "bytesRespuesta": 65358987,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1005,
+        "proveedores": 506,
+        "compras": 10014,
+        "ventas": 15007,
+        "cuentas": 25021,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25450,
+        "gastos": 13019
+      }
+    },
+    {
+      "comando": "crearCliente",
+      "totalMs": 15124.54210000002,
+      "etapas": {
+        "datos": [
+          709.0514000000258,
+          803.2038000000175
+        ],
+        "guardar": [
+          13356.830799999996
+        ],
+        "estado": [
+          804.5964999999851
+        ]
+      },
+      "bytesRespuesta": 65358987,
+      "conteos": {
+        "empleados": 3,
+        "clientes": 1005,
+        "proveedores": 506,
+        "compras": 10014,
+        "ventas": 15007,
+        "cuentas": 25021,
+        "movimientosCuenta": 16695,
+        "movimientosStock": 25450,
+        "gastos": 13019
+      }
+    }
+  ],
+  "sha256Dump": "37069d584613268fa88caf9c202c2bff2d12db751b4a0814f050a1958420c015",
+  "directorioVerificado": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-comandos-snapshot-eJqTw2/motor/data",
+  "nota": "Copia efímera del volumen actual, sin seed. Comandos reales revertidos en la copia; incluye leer datos previo y estado posterior, dominio y guardar; estado incluye su datos. No sumar etapas anidadas. Dump/usuario/jornada de preparación fuera de tiempos. Base original solo pg_dump."
+}

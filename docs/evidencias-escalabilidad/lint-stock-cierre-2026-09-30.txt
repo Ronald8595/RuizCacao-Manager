@@ -1,0 +1,2 @@
+npm run lint: código 0; 0 errores, 899 advertencias existentes.
+Nueva prueba migracion-v8.cjs: eslint --quiet código 0 tras lectura secuencial.

@@ -4,7 +4,7 @@ const { load, root } = require('../tests/loader.cjs')
 const { esquema, migracionUno } = load(path.join(root, 'src/main/database/schema.ts'))
 const { sqlNormalizacion } = load(path.join(root, 'src/main/database/relacional.ts'))
 function exportar(ruta, contenido) {
-  if (fs.existsSync(ruta) && /00[1-6]-/.test(path.basename(ruta))) {
+  if (fs.existsSync(ruta) && /00[1-8]-/.test(path.basename(ruta))) {
     if (fs.readFileSync(ruta, 'utf8') !== contenido)
       throw Error('La migración histórica cambió: no se sobrescribió.')
     return
@@ -55,6 +55,18 @@ exportar(
 const { migracionSiete } = load(path.join(root, 'src/main/database/migracion-siete.ts'))
 exportar(
   path.join(carpeta, '007-anulaciones.sql'),
-  '-- Migración 7: anulaciones, operaciones inmutables y devoluciones con fecha propia.\n' +
-    migracionSiete
+  '-- Migración 7: anulaciones y operaciones confirmadas inmutables.\n' + migracionSiete
+)
+
+const { migracionOcho } = load(path.join(root, 'src/main/database/migracion-ocho.ts'))
+exportar(
+  path.join(carpeta, '008-rendimiento-paginacion.sql'),
+  '-- Migración 8: índice de orden y desempate para historial Stock paginado.\n' + migracionOcho
+)
+
+const { migracionNueve } = load(path.join(root, 'src/main/database/migracion-nueve.ts'))
+exportar(
+  path.join(carpeta, '009-rendimiento-paginacion-compras-ventas.sql'),
+  '-- Migración 9: índices medidos para historiales paginados de Compras y Ventas.\n' +
+    migracionNueve
 )
