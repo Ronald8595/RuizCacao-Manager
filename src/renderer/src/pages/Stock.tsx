@@ -9,7 +9,6 @@ import { FACTORES_CONVERSION, PRODUCTOS, useAppData } from '../store/AppDataCont
 import { useNotificacion } from '../store/NotificacionContext'
 import { rangoDiaActual } from '../utils/reportes'
 import { useFiltroDiaActual } from '../hooks/useFechaActual'
-import { useHistorialStock } from '../hooks/useHistorialStock'
 import type { MovimientoStock, Producto } from '../types'
 
 function hoyISO(): string {
@@ -765,10 +764,7 @@ export default function Stock(): React.JSX.Element {
     setDesde: setFechaDesde,
     setHasta: setFechaHasta
   } = useFiltroDiaActual()
-  const historial = useHistorialStock(
-    { desde: fechaDesde, hasta: fechaHasta, producto, busqueda },
-    movimientosStock
-  )
+  const [pagina, setPagina] = useState(1)
 
   const conversionesPendientes = useMemo(
     () =>
@@ -777,6 +773,22 @@ export default function Stock(): React.JSX.Element {
       ),
     [movimientosStock]
   )
+
+  const filtrados = useMemo(() => {
+    const texto = busqueda.trim().toLowerCase()
+    return movimientosStock.filter(
+      (m) =>
+        (producto === 'Todos' || m.producto === producto) &&
+        (!fechaDesde || m.fecha >= fechaDesde) &&
+        (!fechaHasta || m.fecha <= fechaHasta) &&
+        [m.fecha, m.producto, m.proveedorNombre, m.observacion].some((v) =>
+          (v ?? '').toLowerCase().includes(texto)
+        )
+    )
+  }, [movimientosStock, producto, busqueda, fechaDesde, fechaHasta])
+
+  const paginas = Math.max(1, Math.ceil(filtrados.length / 15))
+  const actual = Math.min(pagina, paginas)
 
   return (
     <section
@@ -915,6 +927,7 @@ export default function Stock(): React.JSX.Element {
             value={busqueda}
             onChange={(e) => {
               setBusqueda(e.target.value)
+              setPagina(1)
             }}
             placeholder="Buscar registros..."
             className="w-full py-2.5 text-[13px] outline-none"
@@ -925,6 +938,7 @@ export default function Stock(): React.JSX.Element {
           value={producto}
           onChange={(e) => {
             setProducto(e.target.value as Producto | 'Todos')
+            setPagina(1)
           }}
           className="h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none focus:border-[#16834b]"
         >
@@ -938,6 +952,7 @@ export default function Stock(): React.JSX.Element {
           value={fechaDesde}
           onChange={(e) => {
             setFechaDesde(e.target.value)
+            setPagina(1)
           }}
           className="h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none focus:border-[#16834b]"
           aria-label="Filtrar stock desde"
@@ -949,6 +964,7 @@ export default function Stock(): React.JSX.Element {
           value={fechaHasta}
           onChange={(e) => {
             setFechaHasta(e.target.value)
+            setPagina(1)
           }}
           min={fechaDesde || undefined}
           className="h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none focus:border-[#16834b]"
@@ -957,22 +973,7 @@ export default function Stock(): React.JSX.Element {
         />
       </div>
 
-      {historial.cargando ? (
-        <p role="status" className="py-6 text-sm text-[#5b635e]">
-          Cargando historial...
-        </p>
-      ) : historial.error ? (
-        <div role="alert" className="py-6 text-sm text-[#9d3029]">
-          {historial.error}
-          <button
-            type="button"
-            onClick={historial.reintentar}
-            className="ml-3 rounded-lg border px-3 py-2"
-          >
-            Reintentar
-          </button>
-        </div>
-      ) : historial.filas.length === 0 && !historial.hayAnterior ? (
+      {filtrados.length === 0 ? (
         <EmptyState
           icon={Package}
           title="No hay registros de inventario"
@@ -1000,7 +1001,7 @@ export default function Stock(): React.JSX.Element {
                 </tr>
               </thead>
               <tbody>
-                {historial.filas.map((m) => {
+                {filtrados.slice((actual - 1) * 15, actual * 15).map((m) => {
                   const esConversion = m.tipo === 'Conversión'
                   const cantidadMovimiento =
                     m.entradaQq > 0 ? m.entradaQq : m.salidaQq > 0 ? -m.salidaQq : 0
@@ -1078,21 +1079,21 @@ export default function Stock(): React.JSX.Element {
 
           <div className="mt-4 flex items-center justify-between text-[12px]">
             <span>
-              {historial.filas.length} registros en esta página · Página {historial.numero}
+              {filtrados.length} registros · Página {actual} de {paginas}
             </span>
             <div className="flex gap-2">
               <button
                 type="button"
-                disabled={!historial.hayAnterior || historial.cargando}
-                onClick={historial.anterior}
+                disabled={actual <= 1}
+                onClick={() => setPagina(actual - 1)}
                 className="rounded-lg border px-3 py-2 disabled:opacity-40"
               >
                 Anterior
               </button>
               <button
                 type="button"
-                disabled={!historial.haySiguiente || historial.cargando}
-                onClick={historial.siguiente}
+                disabled={actual >= paginas}
+                onClick={() => setPagina(actual + 1)}
                 className="rounded-lg border px-3 py-2 disabled:opacity-40"
               >
                 Siguiente

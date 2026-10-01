@@ -36,7 +36,7 @@ import type {
   Venta
 } from '../renderer/src/types'
 
-import type { Comando, Snapshot } from './persistencia'
+import type { Snapshot } from './persistencia'
 export const PRODUCTOS: Producto[] = ['Cacao en Baba', 'Cacao Seco', 'Maracuyá']
 
 // Opciones fijas del ComboBox de factor de conversión (baba -> seco), tal
@@ -274,65 +274,6 @@ function horaActual(): string {
 function memo<T>(fn: () => T, deps?: unknown[]): T {
   void deps
   return fn()
-}
-/** Vista React sin comandos mutables ni copia profunda. Los comandos siguen ejecutándose en Main. */
-export function crearLecturaDominio(
-  initial: Snapshot
-): Omit<AppDataContextValue, Comando | 'iniciarJornada' | 'finalizarJornada'> {
-  const j = initial.jornada
-  const jornadaHoy: RegistroJornada =
-    j.estado === 'activa' || j.estado === 'interrumpida' || j.fecha === fechaHoy()
-      ? j
-      : { estado: 'no_iniciada', fecha: fechaHoy(), horaInicio: null, horaFin: null }
-  const porProveedor = new Map<string, number>(),
-    aFavor = new Map<string, number>()
-  for (const c of initial.cuentas) {
-    if (c.estado === 'anulado') continue
-    const saldo = saldoDeCuenta(c)
-    if (c.categoria === 'compra' && typeof c.proveedorId === 'string')
-      porProveedor.set(c.proveedorId, (porProveedor.get(c.proveedorId) ?? 0) + Math.max(0, saldo))
-    if (c.categoria !== 'compra' && typeof c.clienteId === 'string' && saldo < 0)
-      aFavor.set(c.clienteId, (aFavor.get(c.clienteId) ?? 0) + Math.abs(saldo))
-  }
-  const fecha = jornadaHoy.estado === 'activa' ? jornadaHoy.fecha : fechaHoy()
-  return {
-    empleados: initial.empleados,
-    empleadosActivos: initial.empleados.filter((e) => e.estado),
-    clientes: initial.clientes,
-    clientesActivos: initial.clientes.filter((c) => c.estado),
-    proveedores: initial.proveedores,
-    proveedoresActivos: initial.proveedores.filter((p) => p.estado),
-    compras: initial.compras,
-    ventas: initial.ventas,
-    cuentas: initial.cuentas,
-    movimientosCuenta: initial.movimientosCuenta,
-    movimientosStock: initial.movimientosStock,
-    gastos: initial.gastos,
-    stock: initial.stock,
-    costoUnitarioPromedio: initial.costoUnitarioPromedio,
-    ultimoFactorUsado: initial.ultimoFactorUsado,
-    estadoJornada: jornadaHoy.estado,
-    fechaJornadaActiva: ['activa', 'interrumpida'].includes(jornadaHoy.estado)
-      ? jornadaHoy.fecha
-      : null,
-    horaInicioJornada: jornadaHoy.horaInicio,
-    horaFinJornada: jornadaHoy.horaFin,
-    saldoPendienteProveedor: (id) => redondear(porProveedor.get(id) ?? 0),
-    saldoAFavorDeCliente: (id) => redondear(aFavor.get(id) ?? 0),
-    proximoNumeroFactura:
-      initial.ventas.reduce(
-        (max, v) => (v.fechaVenta === fecha ? Math.max(max, v.numeroFactura) : max),
-        0
-      ) + 1,
-    proximoNumeroComprobante:
-      Math.max(
-        initial.ventas.reduce((max, v) => Math.max(max, v.numeroComprobante ?? 0), 0),
-        initial.movimientosCuenta.reduce(
-          (max, m) => Math.max(max, Number(m.numeroComprobante ?? 0)),
-          0
-        )
-      ) + 1
-  }
 }
 export function crearDominio(initial: Snapshot): {
   value: AppDataContextValue
