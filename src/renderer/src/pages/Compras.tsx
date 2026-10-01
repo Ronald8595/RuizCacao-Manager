@@ -1,4 +1,3 @@
-import { useHistorialOperaciones } from '../hooks/useHistorialOperaciones'
 import AnularOperacion from '../components/AnularOperacion'
 import DetalleOperacion from '../components/DetalleOperacion'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
@@ -529,14 +528,15 @@ export default function Compras(): React.JSX.Element {
     setHasta: setFiltroHasta
   } = useFiltroDiaActual()
   const { notificar } = useNotificacion()
-  const historial = useHistorialOperaciones(
-    'compras',
-    { desde: filtroDesde, hasta: filtroHasta, busqueda },
-    compras
-  )
-  const comprasFiltradas = historial.filas
+  const termino = busqueda.trim().toLocaleLowerCase('es')
+  const comprasFiltradas = compras.filter((compra) => {
+    if (filtroDesde && compra.fecha < filtroDesde) return false
+    if (filtroHasta && compra.fecha > filtroHasta) return false
+    return !termino || compra.proveedorNombre.toLocaleLowerCase('es').includes(termino)
+  })
   const jornadaBloqueaCompra = estadoJornada !== 'activa'
-  const mensajeJornadaBloqueada = 'No se puede realizar compra hasta iniciar o reabrir la jornada.'
+  const mensajeJornadaBloqueada =
+    'No se puede realizar compra hasta iniciar o reabrir la jornada.'
 
   return (
     <section className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-7">
@@ -595,22 +595,7 @@ export default function Compras(): React.JSX.Element {
           />
         </div>
       )}
-      {historial.cargando ? (
-        <p role="status" className="py-6 text-sm text-[#5b635e]">
-          Cargando historial...
-        </p>
-      ) : historial.error ? (
-        <div role="alert" className="py-6 text-sm text-[#9d3029]">
-          {historial.error}
-          <button
-            type="button"
-            onClick={historial.reintentar}
-            className="ml-3 rounded-lg border px-3 py-2"
-          >
-            Reintentar
-          </button>
-        </div>
-      ) : compras.length === 0 ? (
+      {compras.length === 0 ? (
         <EmptyState
           icon={ShoppingBasket}
           title="Todavía no hay compras"
@@ -716,29 +701,6 @@ export default function Compras(): React.JSX.Element {
                 )}
               </tbody>
             </table>
-          </div>
-          <div className="mt-4 flex items-center justify-between text-[12px]">
-            <span>
-              {historial.filas.length} registros en esta página · Página {historial.numero}
-            </span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                disabled={!historial.hayAnterior || historial.cargando}
-                onClick={historial.anterior}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={!historial.haySiguiente || historial.cargando}
-                onClick={historial.siguiente}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Siguiente
-              </button>
-            </div>
           </div>
         </>
       )}

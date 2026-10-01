@@ -1,5 +1,4 @@
-import { useCallback, useMemo, useState } from 'react'
-import { indexarPrimero } from '../utils/indices'
+import { useState } from 'react'
 import Compras from './Compras'
 import Ventas from './Ventas'
 import DetalleCuenta from '../components/DetalleCuenta'
@@ -12,30 +11,20 @@ export default function CompraVenta(): React.JSX.Element {
   const [busqueda, setBusqueda] = useState('')
   const [detalle, setDetalle] = useState<string | null>(null)
   const { cuentas, clientes } = useAppData()
-  const clientesPorId = useMemo(() => indexarPrimero(clientes, (c) => c.id), [clientes])
-  const nombre = useCallback(
-    (c: (typeof cuentas)[number]): string =>
-      c.categoria === 'compra'
-        ? (c.proveedorNombre ?? 'Proveedor')
-        : (clientesPorId.get(c.clienteId ?? '')?.nombreRazonSocial ?? 'Cliente'),
-    [clientesPorId]
+  const nombre = (c: (typeof cuentas)[number]): string =>
+    c.categoria === 'compra'
+      ? (c.proveedorNombre ?? 'Proveedor')
+      : (clientes.find((x) => x.id === c.clienteId)?.nombreRazonSocial ?? 'Cliente')
+  const filas = cuentas.filter(
+    (c) =>
+      c.origen !== 'manual' &&
+      (tipo === 'todos' || c.categoria === tipo) &&
+      (estado === 'todos' || c.estado === estado) &&
+      (nombre(c) + ' ' + c.fecha + ' ' + (c.numeroCompra ?? c.numeroFactura))
+        .toLowerCase()
+        .includes(busqueda.toLowerCase())
   )
-  const filas = useMemo(
-    () =>
-      vista !== 'historial'
-        ? []
-        : cuentas.filter(
-            (c) =>
-              c.origen !== 'manual' &&
-              (tipo === 'todos' || c.categoria === tipo) &&
-              (estado === 'todos' || c.estado === estado) &&
-              (nombre(c) + ' ' + c.fecha + ' ' + (c.numeroCompra ?? c.numeroFactura))
-                .toLowerCase()
-                .includes(busqueda.toLowerCase())
-          ),
-    [vista, cuentas, nombre, tipo, estado, busqueda]
-  )
-  const seleccion = detalle ? cuentas.find((c) => c.id === detalle) : undefined
+  const seleccion = cuentas.find((c) => c.id === detalle)
   return (
     <div className="flex min-h-0 flex-1 flex-col">
       <nav aria-label="Compra y venta" className="flex gap-2 px-6 pt-4">

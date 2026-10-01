@@ -86,11 +86,7 @@ export type Entidad = keyof typeof entidades
 
 export async function leerEntidades(db: PoolClient, resultado: Snapshot): Promise<void> {
   for (const [key, entidad] of Object.entries(entidades)) {
-    // El DTO no consume orden ni actualizado_en. El orden de lectura se conserva.
-    const columnas = ['id', ...entidad.campos.map((campo) => campo.columna)].join(',')
-    const { rows } = await db.query(
-      `SELECT ${columnas} FROM ruizcacao.${entidad.tabla} ORDER BY orden DESC`
-    )
+    const { rows } = await db.query(`SELECT * FROM ruizcacao.${entidad.tabla} ORDER BY orden DESC`)
     const registros = rows.map((row) => {
       const dto: Record<string, unknown> = { id: key === 'empleados' ? Number(row.id) : row.id }
       for (const campo of entidad.campos) {

@@ -1,1 +1,0 @@
-npm run lint: código 0; 0 errores, 899 advertencias preexistentes.

@@ -1,14 +1,24 @@
-import { useFilasVisibles } from '../hooks/useFilasVisibles'
-import { indexarPrimero } from '../utils/indices'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
-import { useCallback, useMemo, useState, type FormEvent } from 'react'
-import { Wallet, Plus, X, AlertTriangle, ArrowLeft, HandCoins, Ban } from 'lucide-react'
+import { useMemo, useState, type FormEvent } from 'react'
+import {
+  Wallet,
+  Plus,
+  X,
+  AlertTriangle,
+  ArrowLeft,
+  HandCoins,
+  Ban
+} from 'lucide-react'
 import DetalleCuenta from '../components/DetalleCuenta'
 import PageHeader from '../components/PageHeader'
 import EmptyState from '../components/EmptyState'
 import { FormField, inputClass } from '../components/FormField'
 import { useNotificacion } from '../store/NotificacionContext'
-import { useAppData, saldoDeCuenta, tipoSaldoDeCuenta } from '../store/AppDataContext'
+import {
+  useAppData,
+  saldoDeCuenta,
+  tipoSaldoDeCuenta
+} from '../store/AppDataContext'
 import { formatoMoneda, formatoFecha, rangoDiaActual } from '../utils/reportes'
 import { construirComprobantePagoHtml, formatearNumeroComprobante } from '../utils/comprobantePdf'
 import type { Cuenta, EstadoCuenta, MetodoPago, TipoMovimientoCuenta } from '../types'
@@ -59,8 +69,7 @@ function insigniaEstado(cuenta: Cuenta): { texto: string; clases: string } {
   const tipo = tipoSaldoDeCuenta(cuenta)
   if (tipo === 'a_favor') return { texto: 'A favor', clases: 'bg-[#eaf1fb] text-[#2b5f9e]' }
   if (tipo === 'cerrado') return { texto: 'Cerrado', clases: 'bg-[#e7f2ea] text-[#176b3a]' }
-  if (cuenta.estado === 'parcial')
-    return { texto: 'Parcial', clases: 'bg-[#fff6e0] text-[#9c7a1f]' }
+  if (cuenta.estado === 'parcial') return { texto: 'Parcial', clases: 'bg-[#fff6e0] text-[#9c7a1f]' }
   return { texto: 'Pendiente', clases: 'bg-[#fdf1f0] text-[#dc5c52]' }
 }
 
@@ -85,13 +94,7 @@ interface AbonoModalProps {
   onCancelar: () => void
 }
 
-function AbonoModal({
-  cuenta,
-  nombreCliente,
-  comprobantesVenta,
-  onGuardar,
-  onCancelar
-}: AbonoModalProps): React.JSX.Element {
+function AbonoModal({ cuenta, nombreCliente, comprobantesVenta, onGuardar, onCancelar }: AbonoModalProps): React.JSX.Element {
   const [fecha, setFecha] = useState(hoyISO())
   const [monto, setMonto] = useState('')
   const [metodoPago, setMetodoPago] = useState<MetodoPago>('Efectivo')
@@ -100,9 +103,7 @@ function AbonoModal({
   const [tipo, setTipo] = useState<TipoMovimientoCuenta>('Abono')
   const [observacion, setObservacion] = useState('')
   const [comprobante, setComprobante] = useState(
-    cuenta.categoria === 'venta'
-      ? (comprobantesVenta.find((item) => item.asociado)?.valor ?? '')
-      : ''
+    cuenta.categoria === 'venta' ? comprobantesVenta.find((item) => item.asociado)?.valor ?? '' : ''
   )
   const [comprobanteComboAbierto, setComprobanteComboAbierto] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -121,56 +122,49 @@ function AbonoModal({
   )
 
   async function handleSubmit(e: FormEvent): Promise<void> {
-    try {
-      e.preventDefault()
-      setError(null)
+ try {
 
-      if (montoNum <= 0) {
-        setError('El monto debe ser mayor a 0.')
-        return
-      }
-      if (cuenta.categoria === 'compra' && montoNum > saldoActual) {
-        setError('El pago no puede superar el saldo pendiente.')
-        return
-      }
-      if (!observacion.trim()) {
-        setError('La observación es obligatoria: explica el contexto del movimiento.')
-        return
-      }
-      if (metodoPago === 'Pago Mixto') {
-        const suma = Math.round((efectivoNum + transferenciaNum) * 100) / 100
-        if (suma !== montoNum) {
-          setError(
-            `En pago mixto, efectivo + transferencia debe sumar exactamente el monto ($${formatoMoneda(montoNum)}). Ahora suma $${formatoMoneda(suma)}.`
-          )
-          return
-        }
-      }
+    e.preventDefault()
+    setError(null)
 
-      await onGuardar({
-        fecha,
-        monto: montoNum,
-        metodoPago,
-        montoEfectivo: metodoPago === 'Pago Mixto' ? efectivoNum : undefined,
-        montoTransferencia: metodoPago === 'Pago Mixto' ? transferenciaNum : undefined,
-        tipo,
-        observacion: observacion.trim(),
-        comprobante: comprobante.trim() || undefined
-      })
-    } catch {
+    if (montoNum <= 0) {
+      setError('El monto debe ser mayor a 0.')
       return
     }
-  }
+    if (cuenta.categoria === 'compra' && montoNum > saldoActual) { setError('El pago no puede superar el saldo pendiente.'); return }
+    if (!observacion.trim()) {
+      setError('La observación es obligatoria: explica el contexto del movimiento.')
+      return
+    }
+    if (metodoPago === 'Pago Mixto') {
+      const suma = Math.round((efectivoNum + transferenciaNum) * 100) / 100
+      if (suma !== montoNum) {
+        setError(
+          `En pago mixto, efectivo + transferencia debe sumar exactamente el monto ($${formatoMoneda(montoNum)}). Ahora suma $${formatoMoneda(suma)}.`
+        )
+        return
+      }
+    }
+
+    await onGuardar({
+      fecha,
+      monto: montoNum,
+      metodoPago,
+      montoEfectivo: metodoPago === 'Pago Mixto' ? efectivoNum : undefined,
+      montoTransferencia: metodoPago === 'Pago Mixto' ? transferenciaNum : undefined,
+      tipo,
+      observacion: observacion.trim(),
+      comprobante: comprobante.trim() || undefined
+    })
+  
+ } catch { return }
+}
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
       <div className="max-h-[90vh] w-full max-w-[560px] overflow-y-auto rounded-2xl bg-white p-6 shadow-xl">
         <div className="mb-1 flex items-center justify-between">
-          <h2 className="text-[16px] font-bold text-[#272c29]">
-            {cuenta.categoria === 'compra'
-              ? 'Registrar pago a proveedor'
-              : 'Registrar abono / ajuste'}
-          </h2>
+          <h2 className="text-[16px] font-bold text-[#272c29]">{cuenta.categoria === 'compra' ? 'Registrar pago a proveedor' : 'Registrar abono / ajuste'}</h2>
           <button
             type="button"
             onClick={onCancelar}
@@ -182,12 +176,8 @@ function AbonoModal({
         </div>
         <p className="mb-5 text-[12px] text-[#8a938d]">
           {nombreCliente}
-          {cuenta.categoria === 'compra'
-            ? ` · Compra N.º ${cuenta.numeroCompra} del día`
-            : cuenta.numeroFactura
-              ? ` · Venta N.º ${cuenta.numeroFactura} del día`
-              : ' · Cuenta manual'}{' '}
-          · Saldo actual: ${formatoMoneda(saldoActual)}
+          {cuenta.categoria === 'compra' ? ` · Compra N.º ${cuenta.numeroCompra} del día` : cuenta.numeroFactura ? ` · Venta N.º ${cuenta.numeroFactura} del día` : ' · Cuenta manual'} ·
+          Saldo actual: ${formatoMoneda(saldoActual)}
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -221,13 +211,11 @@ function AbonoModal({
                 onChange={(e) => setTipo(e.target.value as TipoMovimientoCuenta)}
                 className={inputClass(false)}
               >
-                {(cuenta.categoria === 'compra' ? (['Abono'] as const) : TIPOS_MOVIMIENTO).map(
-                  (t) => (
-                    <option key={t} value={t}>
-                      {t}
-                    </option>
-                  )
-                )}
+                {(cuenta.categoria === 'compra' ? (['Abono'] as const) : TIPOS_MOVIMIENTO).map((t) => (
+                  <option key={t} value={t}>
+                    {t}
+                  </option>
+                ))}
               </select>
             </FormField>
             <FormField label="Método de pago" obligatorio>
@@ -398,11 +386,7 @@ interface CuentaManualModalProps {
   onCancelar: () => void
 }
 
-function CuentaManualModal({
-  clientes,
-  onGuardar,
-  onCancelar
-}: CuentaManualModalProps): React.JSX.Element {
+function CuentaManualModal({ clientes, onGuardar, onCancelar }: CuentaManualModalProps): React.JSX.Element {
   const [clienteId, setClienteId] = useState(clientes[0]?.id ?? '')
   const [tipo, setTipo] = useState<'Saldo a favor' | 'Deuda manual'>('Saldo a favor')
   const [fecha, setFecha] = useState(hoyISO())
@@ -412,33 +396,33 @@ function CuentaManualModal({
   const [error, setError] = useState<string | null>(null)
 
   async function handleSubmit(e: FormEvent): Promise<void> {
-    try {
-      e.preventDefault()
-      setError(null)
-      if (!clienteId) {
-        setError('Selecciona un cliente.')
-        return
-      }
-      if (num(monto) <= 0) {
-        setError('El monto debe ser mayor a 0.')
-        return
-      }
-      if (!observacion.trim()) {
-        setError('La observación es obligatoria para justificar una cuenta manual.')
-        return
-      }
-      await onGuardar({
-        clienteId,
-        tipo,
-        fecha,
-        monto: num(monto),
-        observacion: observacion.trim(),
-        comprobante: comprobante.trim() || undefined
-      })
-    } catch {
+ try {
+
+    e.preventDefault()
+    setError(null)
+    if (!clienteId) {
+      setError('Selecciona un cliente.')
       return
     }
-  }
+    if (num(monto) <= 0) {
+      setError('El monto debe ser mayor a 0.')
+      return
+    }
+    if (!observacion.trim()) {
+      setError('La observación es obligatoria para justificar una cuenta manual.')
+      return
+    }
+    await onGuardar({
+      clienteId,
+      tipo,
+      fecha,
+      monto: num(monto),
+      observacion: observacion.trim(),
+      comprobante: comprobante.trim() || undefined
+    })
+  
+ } catch { return }
+}
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
@@ -586,19 +570,11 @@ function Cuentas(): React.JSX.Element {
   const [clienteDetalle, setClienteDetalle] = useState<string | null>(null)
   const { notificar } = useNotificacion()
 
-  const clientesPorId = useMemo(() => indexarPrimero(clientes, (c) => c.id), [clientes])
-  const ventasPorId = useMemo(() => indexarPrimero(ventas, (v) => v.id), [ventas])
-  const nombreCliente = useCallback(
-    (clienteId: string): string =>
-      clientesPorId.get(clienteId)?.nombreRazonSocial ?? 'Cliente eliminado',
-    [clientesPorId]
-  )
-
-  function nombreTitular(c: Cuenta): string {
-    return c.categoria === 'compra'
-      ? (c.proveedorNombre ?? 'Proveedor')
-      : nombreCliente(c.clienteId)
+  function nombreCliente(clienteId: string): string {
+    return clientes.find((c) => c.id === clienteId)?.nombreRazonSocial ?? 'Cliente eliminado'
   }
+
+  function nombreTitular(c: Cuenta): string { return c.categoria === 'compra' ? c.proveedorNombre ?? 'Proveedor' : nombreCliente(c.clienteId) }
 
   const cuentasFiltradas = useMemo(() => {
     const termino = busqueda.trim().toLowerCase()
@@ -606,10 +582,8 @@ function Cuentas(): React.JSX.Element {
       if (categoria !== 'todas' && c.categoria !== categoria) return false
       const tipoSaldo = tipoSaldoDeCuenta(c)
 
-      if (filtroEstado === 'abiertas' && (c.estado === 'cerrado' || c.estado === 'anulado'))
-        return false
-      if (filtroEstado === 'a_favor' && !(tipoSaldo === 'a_favor' && c.estado !== 'anulado'))
-        return false
+      if (filtroEstado === 'abiertas' && (c.estado === 'cerrado' || c.estado === 'anulado')) return false
+      if (filtroEstado === 'a_favor' && !(tipoSaldo === 'a_favor' && c.estado !== 'anulado')) return false
       if (
         filtroEstado !== 'todas' &&
         filtroEstado !== 'abiertas' &&
@@ -622,12 +596,9 @@ function Cuentas(): React.JSX.Element {
       if (filtroHasta && c.fecha > filtroHasta) return false
 
       if (termino) {
-        const titular =
-          c.categoria === 'compra'
-            ? (c.proveedorNombre ?? 'Proveedor')
-            : (clientesPorId.get(c.clienteId ?? '')?.nombreRazonSocial ?? 'Cliente eliminado')
+        const titular = c.categoria === 'compra' ? c.proveedorNombre ?? 'Proveedor' : clientes.find(cliente => cliente.id === c.clienteId)?.nombreRazonSocial ?? 'Cliente eliminado'
         const coincideCliente = titular.toLowerCase().includes(termino)
-        const venta = c.ventaId ? ventasPorId.get(c.ventaId) : null
+        const venta = c.ventaId ? ventas.find((item) => item.id === c.ventaId) : null
         const numeroComprobante = venta ? formatearNumeroComprobante(venta.numeroComprobante) : ''
         const coincideOperacion = String(c.numeroCompra ?? c.numeroFactura ?? '').includes(termino)
         const coincideComprobante = numeroComprobante.includes(termino)
@@ -635,24 +606,7 @@ function Cuentas(): React.JSX.Element {
       }
       return true
     })
-  }, [
-    cuentas,
-    clientesPorId,
-    ventasPorId,
-    busqueda,
-    filtroEstado,
-    filtroDesde,
-    filtroHasta,
-    categoria
-  ])
-
-  const {
-    contenedor,
-    inicio: inicioVisible,
-    fin: finVisible,
-    antes: espacioAntes,
-    despues: espacioDespues
-  } = useFilasVisibles(cuentasFiltradas, !clienteDetalle)
+  }, [cuentas, clientes, ventas, busqueda, filtroEstado, filtroDesde, filtroHasta, categoria])
 
   // Tarjetas de resumen: se calculan sobre TODAS las cuentas vigentes, no
   // sobre las filtradas, porque representan la situación global del negocio.
@@ -703,7 +657,7 @@ function Cuentas(): React.JSX.Element {
         asociado: venta.id === cuentaAbono.ventaId
       }))
     return opciones.sort((a, b) => Number(Boolean(b.asociado)) - Number(Boolean(a.asociado)))
-  }, [cuentaAbono, ventas, nombreCliente])
+  }, [cuentaAbono, ventas, clientes])
 
   async function guardarAbono(datos: Parameters<AbonoModalProps['onGuardar']>[0]): Promise<void> {
     if (!cuentaAbono) return
@@ -717,10 +671,7 @@ function Cuentas(): React.JSX.Element {
         generarComprobante: cuentaProcesada.categoria === 'venta'
       })
     } catch (cause) {
-      notificar(
-        'error',
-        cause instanceof ErrorNegocio ? cause.message : 'No se pudo registrar el movimiento.'
-      )
+      notificar('error', cause instanceof ErrorNegocio ? cause.message : 'No se pudo registrar el movimiento.')
       return
     }
 
@@ -728,13 +679,12 @@ function Cuentas(): React.JSX.Element {
 
     if (cuentaProcesada.categoria === 'venta' && resultado.movimiento?.numeroComprobante) {
       const venta = cuentaProcesada.ventaId
-        ? (ventas.find((item) => item.id === cuentaProcesada.ventaId) ?? null)
+        ? ventas.find((item) => item.id === cuentaProcesada.ventaId) ?? null
         : null
       const cliente = clientes.find((item) => item.id === cuentaProcesada.clienteId) ?? null
       const cuentaActualizada: Cuenta = {
         ...cuentaProcesada,
-        montoPagado:
-          Math.round((cuentaProcesada.montoPagado + resultado.movimiento.monto) * 100) / 100,
+        montoPagado: Math.round((cuentaProcesada.montoPagado + resultado.movimiento.monto) * 100) / 100,
         estado: resultado.saldo <= 0 ? 'cerrado' : 'parcial',
         fechaUltimoMovimiento: resultado.movimiento.fechaHoraRegistro
       }
@@ -747,11 +697,10 @@ function Cuentas(): React.JSX.Element {
             venta,
             cliente
           )
-          const nombreClienteArchivo =
-            (cliente?.nombreRazonSocial ?? 'Cliente')
-              .trim()
-              .replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ_-]+/g, '_')
-              .replace(/^_+|_+$/g, '') || 'Cliente'
+          const nombreClienteArchivo = (cliente?.nombreRazonSocial ?? 'Cliente')
+            .trim()
+            .replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ_-]+/g, '_')
+            .replace(/^_+|_+$/g, '') || 'Cliente'
           const nombreArchivo = `Comprobante_Pago_${resultado.movimiento.numeroComprobante}_${nombreClienteArchivo}`
           const pdf = await window.api.generarComprobantePDF(html, nombreArchivo)
           if (!pdf.canceled) {
@@ -771,10 +720,7 @@ function Cuentas(): React.JSX.Element {
           return
         }
       } else {
-        notificar(
-          'advertencia',
-          'El pago quedó registrado, pero la generación de PDF no está disponible en esta ejecución.'
-        )
+        notificar('advertencia', 'El pago quedó registrado, pero la generación de PDF no está disponible en esta ejecución.')
         return
       }
     }
@@ -790,17 +736,17 @@ function Cuentas(): React.JSX.Element {
   }
 
   async function confirmarAnulacion(): Promise<void> {
-    try {
-      if (!cuentaAnular || !motivoAnulacion.trim() || !confirmoError) return
-      await anularCuenta(cuentaAnular.id, motivoAnulacion.trim())
-      setCuentaAnular(null)
-      setMotivoAnulacion('')
-      setConfirmoError(false)
-      notificar('exito', 'Cuenta anulada. Se conserva en el historial.')
-    } catch {
-      return
-    }
-  }
+ try {
+
+    if (!cuentaAnular || !motivoAnulacion.trim() || !confirmoError) return
+    await anularCuenta(cuentaAnular.id, motivoAnulacion.trim())
+    setCuentaAnular(null)
+    setMotivoAnulacion('')
+    setConfirmoError(false)
+    notificar('exito', 'Cuenta anulada. Se conserva en el historial.')
+  
+ } catch { return }
+}
 
   // ============================================================
   // Render
@@ -876,11 +822,7 @@ function Cuentas(): React.JSX.Element {
                 detalle.abiertas.map((c) => (
                   <tr key={c.id} className="border-b border-[#eef1ee] last:border-0">
                     <td className="px-4 py-3 text-[#5b635e]">
-                      {c.categoria === 'compra'
-                        ? `Compra N.º ${c.numeroCompra} del día`
-                        : c.numeroFactura
-                          ? `Venta N.º ${c.numeroFactura} del día`
-                          : 'Manual'}
+                      {c.categoria === 'compra' ? `Compra N.º ${c.numeroCompra} del día` : c.numeroFactura ? `Venta N.º ${c.numeroFactura} del día` : 'Manual'}
                     </td>
                     <td className="px-4 py-3 text-[#5b635e]">{formatoFecha(c.fecha)}</td>
                     <td className="px-4 py-3 text-[#5b635e]">${formatoMoneda(c.montoTotal)}</td>
@@ -928,9 +870,7 @@ function Cuentas(): React.JSX.Element {
                     </td>
                     <td className="px-4 py-3 text-[#5b635e]">{m.metodoPago}</td>
                     <td className="px-4 py-3 text-[#8a938d]">{m.observacion}</td>
-                    <td className="px-4 py-3 text-[#5b635e]">
-                      {m.usuarioNombre ?? 'Sistema anterior'}
-                    </td>
+                    <td className="px-4 py-3 text-[#5b635e]">{m.usuarioNombre ?? 'Sistema anterior'}</td>
                     <td className="px-4 py-3 text-[#8a938d]">{m.comprobante ?? '—'}</td>
                   </tr>
                 ))
@@ -959,26 +899,7 @@ function Cuentas(): React.JSX.Element {
         }
       />
 
-      <div className="mb-4 flex gap-2">
-        {[
-          ['todas', 'Todas'],
-          ['venta', 'Ventas · por cobrar'],
-          ['compra', 'Compras · por pagar']
-        ].map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            aria-pressed={categoria === id}
-            onClick={() => setCategoria(id)}
-            className={
-              'rounded-xl px-4 py-2 text-sm ' +
-              (categoria === id ? 'bg-[#e7f4eb] text-[#16834b]' : 'bg-white')
-            }
-          >
-            {label}
-          </button>
-        ))}
-      </div>
+      <div className="mb-4 flex gap-2">{[['todas','Todas'],['venta','Ventas · por cobrar'],['compra','Compras · por pagar']].map(([id,label]) => <button key={id} type="button" aria-pressed={categoria === id} onClick={() => setCategoria(id)} className={'rounded-xl px-4 py-2 text-sm '+(categoria === id ? 'bg-[#e7f4eb] text-[#16834b]' : 'bg-white')}>{label}</button>)}</div>
       <div className="mb-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
         <div className="rounded-2xl border border-[#e2e7e2] bg-white p-4">
           <p className="text-[11px] text-[#8a938d]">Total por cobrar a clientes</p>
@@ -1045,21 +966,8 @@ function Cuentas(): React.JSX.Element {
             />
           </div>
 
-          <p className="mb-2 text-xs text-[#69716b]">
-            {cuentasFiltradas.length} cuentas coinciden · Desplázate para verlas
-          </p>
-          <div
-            ref={contenedor}
-            tabIndex={0}
-            role="region"
-            aria-label="Listado de cuentas"
-            style={{ maxHeight: '65vh', overflow: 'auto' }}
-            className="rounded-2xl border border-[#e2e7e2] bg-white"
-          >
-            <table
-              aria-rowcount={cuentasFiltradas.length + 1}
-              className="w-full min-w-[1100px] text-left text-[13px]"
-            >
+          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+            <table className="w-full min-w-[860px] text-left text-[13px]">
               <thead>
                 <tr className="border-b border-[#e2e7e2] bg-[#fafbfa] text-[11px] font-bold uppercase tracking-wide text-[#8a938d]">
                   <th className="px-4 py-3">Tipo</th>
@@ -1080,117 +988,83 @@ function Cuentas(): React.JSX.Element {
                     </td>
                   </tr>
                 ) : (
-                  <>
-                    {espacioAntes > 0 && (
-                      <tr aria-hidden="true">
-                        <td colSpan={8} style={{ height: espacioAntes, padding: 0 }} />
-                      </tr>
-                    )}
-                    {cuentasFiltradas.slice(inicioVisible, finVisible).map((c, indice) => {
-                      const saldo = saldoDeCuenta(c)
-                      const insignia = insigniaEstado(c)
-                      const puedeAbonar = c.estado !== 'anulado' && saldo > 0
-                      return (
-                        <tr
-                          key={c.id}
-                          data-cuenta-id={c.id}
-                          aria-rowindex={inicioVisible + indice + 2}
-                          style={{ height: 56 }}
-                          className="border-b border-[#eef1ee] last:border-0 hover:bg-[#fafbfa] [&>td]:whitespace-nowrap"
-                        >
-                          <td className="px-4 py-3">
-                            <span
-                              className={[
-                                'rounded-full px-2.5 py-1 text-[11px] font-semibold',
-                                c.categoria === 'compra'
-                                  ? 'bg-[#fff6e0] text-[#9c7a1f]'
-                                  : 'bg-[#e7f2ea] text-[#176b3a]'
-                              ].join(' ')}
-                            >
-                              {c.categoria === 'compra' ? 'Proveedor' : 'Cliente'}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <button
-                              type="button"
-                              onClick={() =>
-                                c.categoria === 'compra'
-                                  ? setDetalleCompra(c)
-                                  : setClienteDetalle(c.clienteId)
-                              }
-                              className="font-medium text-[#16834b] hover:underline"
-                            >
-                              {nombreTitular(c)}
-                            </button>
-                          </td>
-                          <td className="px-4 py-3 text-[#5b635e]">
-                            {c.categoria === 'compra'
-                              ? `Compra N.º ${c.numeroCompra} del día`
-                              : c.numeroFactura
-                                ? `Venta N.º ${c.numeroFactura} del día`
-                                : 'Manual'}
-                          </td>
-                          <td className="px-4 py-3 text-[#5b635e]">
-                            ${formatoMoneda(c.montoTotal)}
-                          </td>
-                          <td className="px-4 py-3 text-[#5b635e]">
-                            ${formatoMoneda(c.montoPagado)}
-                          </td>
-                          <td
+                  cuentasFiltradas.map((c) => {
+                    const saldo = saldoDeCuenta(c)
+                    const insignia = insigniaEstado(c)
+                    const puedeAbonar = c.estado !== 'anulado' && saldo > 0
+                    return (
+                      <tr key={c.id} className="border-b border-[#eef1ee] last:border-0 hover:bg-[#fafbfa]">
+                        <td className="px-4 py-3">
+                          <span
                             className={[
-                              'px-4 py-3 font-semibold',
-                              saldo > 0
-                                ? 'text-[#dc5c52]'
-                                : saldo < 0
-                                  ? 'text-[#2b5f9e]'
-                                  : 'text-[#16834b]'
+                              'rounded-full px-2.5 py-1 text-[11px] font-semibold',
+                              c.categoria === 'compra'
+                                ? 'bg-[#fff6e0] text-[#9c7a1f]'
+                                : 'bg-[#e7f2ea] text-[#176b3a]'
                             ].join(' ')}
                           >
-                            ${formatoMoneda(saldo)}
-                          </td>
-                          <td className="px-4 py-3">
-                            <span
-                              className={[
-                                'rounded-full px-2.5 py-1 text-[11px] font-semibold',
-                                insignia.clases
-                              ].join(' ')}
-                            >
-                              {insignia.texto}
-                            </span>
-                          </td>
-                          <td className="px-4 py-3">
-                            <div className="flex items-center justify-end gap-1">
-                              {puedeAbonar && (
-                                <button
-                                  type="button"
-                                  title="Registrar abono"
-                                  onClick={() => setCuentaAbono(c)}
-                                  className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8a938d] hover:bg-[#f0f4f0] hover:text-[#16834b]"
-                                >
-                                  <HandCoins size={15} />
-                                </button>
-                              )}
-                              {c.origen === 'manual' && c.estado !== 'anulado' && (
-                                <button
-                                  type="button"
-                                  title="Anular cuenta"
-                                  onClick={() => setCuentaAnular(c)}
-                                  className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8a938d] hover:bg-[#fdf1f0] hover:text-[#dc5c52]"
-                                >
-                                  <Ban size={15} />
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                      )
-                    })}
-                    {espacioDespues > 0 && (
-                      <tr aria-hidden="true">
-                        <td colSpan={8} style={{ height: espacioDespues, padding: 0 }} />
+                            {c.categoria === 'compra' ? 'Proveedor' : 'Cliente'}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <button
+                            type="button"
+                            onClick={() => c.categoria === 'compra' ? setDetalleCompra(c) : setClienteDetalle(c.clienteId)}
+                            className="font-medium text-[#16834b] hover:underline"
+                          >
+                            {nombreTitular(c)}
+                          </button>
+                        </td>
+                        <td className="px-4 py-3 text-[#5b635e]">
+                          {c.categoria === 'compra' ? `Compra N.º ${c.numeroCompra} del día` : c.numeroFactura ? `Venta N.º ${c.numeroFactura} del día` : 'Manual'}
+                        </td>
+                        <td className="px-4 py-3 text-[#5b635e]">${formatoMoneda(c.montoTotal)}</td>
+                        <td className="px-4 py-3 text-[#5b635e]">${formatoMoneda(c.montoPagado)}</td>
+                        <td
+                          className={[
+                            'px-4 py-3 font-semibold',
+                            saldo > 0 ? 'text-[#dc5c52]' : saldo < 0 ? 'text-[#2b5f9e]' : 'text-[#16834b]'
+                          ].join(' ')}
+                        >
+                          ${formatoMoneda(saldo)}
+                        </td>
+                        <td className="px-4 py-3">
+                          <span
+                            className={[
+                              'rounded-full px-2.5 py-1 text-[11px] font-semibold',
+                              insignia.clases
+                            ].join(' ')}
+                          >
+                            {insignia.texto}
+                          </span>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center justify-end gap-1">
+                            {puedeAbonar && (
+                              <button
+                                type="button"
+                                title="Registrar abono"
+                                onClick={() => setCuentaAbono(c)}
+                                className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8a938d] hover:bg-[#f0f4f0] hover:text-[#16834b]"
+                              >
+                                <HandCoins size={15} />
+                              </button>
+                            )}
+                            {c.origen === 'manual' && c.estado !== 'anulado' && (
+                              <button
+                                type="button"
+                                title="Anular cuenta"
+                                onClick={() => setCuentaAnular(c)}
+                                className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8a938d] hover:bg-[#fdf1f0] hover:text-[#dc5c52]"
+                              >
+                                <Ban size={15} />
+                              </button>
+                            )}
+                          </div>
+                        </td>
                       </tr>
-                    )}
-                  </>
+                    )
+                  })
                 )}
               </tbody>
             </table>
@@ -1198,9 +1072,7 @@ function Cuentas(): React.JSX.Element {
         </>
       )}
 
-      {detalleCompra && (
-        <DetalleCuenta cuenta={detalleCompra} onCerrar={() => setDetalleCompra(null)} />
-      )}
+      {detalleCompra && <DetalleCuenta cuenta={detalleCompra} onCerrar={() => setDetalleCompra(null)} />}
       {cuentaAbono && (
         <AbonoModal
           cuenta={cuentaAbono}
@@ -1215,14 +1087,14 @@ function Cuentas(): React.JSX.Element {
         <CuentaManualModal
           clientes={clientesActivos.map((c) => ({ id: c.id, nombre: c.nombreRazonSocial }))}
           onGuardar={async (datos) => {
-            try {
-              await crearCuentaManual(datos)
-              setModalManual(false)
-              notificar('exito', 'Cuenta manual creada con éxito.')
-            } catch {
-              return
-            }
-          }}
+ try {
+
+            await crearCuentaManual(datos)
+            setModalManual(false)
+            notificar('exito', 'Cuenta manual creada con éxito.')
+          
+ } catch { return }
+}}
           onCancelar={() => setModalManual(false)}
         />
       )}

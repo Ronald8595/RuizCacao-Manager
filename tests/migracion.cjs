@@ -105,7 +105,7 @@ async function main() {
     )
     assert.equal(
       (await db.query('SELECT max(version) AS version FROM ruizcacao.migraciones')).rows[0].version,
-      9
+      7
     )
     assert.equal(
       Number(
@@ -124,7 +124,7 @@ async function main() {
     await servicio.iniciar()
     assert.equal((await db.query('SELECT count(*)::int AS n FROM ruizcacao.compras')).rows[0].n, 1)
     console.log(
-      'OK: migración 1→9 con compra, cuenta, gasto, inventario y efectivo conservados; sin documentos de negocio; migración idempotente.'
+      'OK: migración 1→7 con compra, cuenta, gasto, inventario y efectivo conservados; sin documentos de negocio; migración idempotente.'
     )
   } finally {
     if (servicio) await servicio.cerrar().catch(() => servicio.desconectar())
