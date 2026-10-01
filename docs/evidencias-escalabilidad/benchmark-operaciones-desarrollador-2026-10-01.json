@@ -1,0 +1,1323 @@
+{
+  "fecha": "2026-10-01T19:41:27.981Z",
+  "estado": {
+    "base": "ruizcacao_manager",
+    "version": 8,
+    "tablas": 25
+  },
+  "resultados": [
+    {
+      "modulo": "compras",
+      "caso": "primera",
+      "filtro": {},
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_compra,o.fecha::text,o.fecha_hora_registro,o.proveedor_id,o.proveedor_nombre,o.producto,o.cantidad_qq,o.precio_compra_qq,o.impuesto_porcentaje,o.subtotal,o.monto_impuesto,o.total,o.monto_pagado_inicial,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.comprobante,o.observacion,o.usuario_id,o.usuario_nombre FROM ruizcacao.compras o ORDER BY o.orden DESC,o.id DESC LIMIT $1",
+      "params": [
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 923.56,
+          "Total Cost": 923.6,
+          "Plan Rows": 16,
+          "Plan Width": 483,
+          "Actual Startup Time": 5.995,
+          "Actual Total Time": 5.997,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 523,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 923.56,
+              "Total Cost": 948.6,
+              "Plan Rows": 10014,
+              "Plan Width": 483,
+              "Actual Startup Time": 5.993,
+              "Actual Total Time": 5.994,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 40,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 523,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "compras",
+                  "Alias": "o",
+                  "Startup Cost": 0,
+                  "Total Cost": 673.21,
+                  "Plan Rows": 10014,
+                  "Plan Width": 483,
+                  "Actual Startup Time": 0.014,
+                  "Actual Total Time": 2.699,
+                  "Actual Rows": 10014,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Shared Hit Blocks": 523,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.103,
+        "Triggers": [],
+        "Execution Time": 6.032
+      },
+      "nodos": [
+        {
+          "tabla": "compras",
+          "nodo": "Seq Scan",
+          "emitidas": 10014,
+          "descartadas": 0,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        6.515299999999911,
+        7.042800000000057,
+        6.3618000000000166,
+        6.190499999999929,
+        6.282500000000027
+      ],
+      "medianaServicioMs": 6.3618000000000166,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 11130,
+      "huella": "4459ede88038d10290253efaf9108e2d59585503e5b582ee4033fed6f811e12a",
+      "anterior": {
+        "filas": 10014,
+        "ms": 66.7695,
+        "bytesJson": 9004006,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "compras",
+      "caso": "profunda",
+      "filtro": {
+        "cursor": "compras.eyJ2ZXJzaW9uIjoxLCJmaWx0cm8iOiI5YzAwZjBjMTkzZDc5N2U5Yjg4OGVjNTY2Y2ZmNjNjZjhjODdkMzkxODA4ZmExOTY1YWUyNjRlZGRkNjAxNDIwIiwidGVjaG8iOnsib3JkZW4iOiIxMDAyMCIsImlkIjoiUEVSRi0yMDNmNmE0OS01NDRlLTQ0MzUtODM1MC03N2NiMzJmZTMxNjMtY29tcHJhcy05OTk5In0sImRlc3B1ZXMiOnsib3JkZW4iOiIyMDA5IiwiaWQiOiJQRVJGLTIwM2Y2YTQ5LTU0NGUtNDQzNS04MzUwLTc3Y2IzMmZlMzE2My1jb21wcmFzLTE5ODgifX0"
+      },
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_compra,o.fecha::text,o.fecha_hora_registro,o.proveedor_id,o.proveedor_nombre,o.producto,o.cantidad_qq,o.precio_compra_qq,o.impuesto_porcentaje,o.subtotal,o.monto_impuesto,o.total,o.monto_pagado_inicial,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.comprobante,o.observacion,o.usuario_id,o.usuario_nombre FROM ruizcacao.compras o WHERE (o.orden,o.id)<=($1::bigint,$2::text) AND (o.orden,o.id)<($3::bigint,$4::text) ORDER BY o.orden DESC,o.id DESC LIMIT $5",
+      "params": [
+        "10020",
+        "PERF-203f6a49-544e-4435-8350-77cb32fe3163-compras-9999",
+        "2009",
+        "PERF-203f6a49-544e-4435-8350-77cb32fe3163-compras-1988",
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 783.34,
+          "Total Cost": 783.38,
+          "Plan Rows": 16,
+          "Plan Width": 483,
+          "Actual Startup Time": 3.069,
+          "Actual Total Time": 3.071,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 523,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 783.34,
+              "Total Cost": 788.35,
+              "Plan Rows": 2002,
+              "Plan Width": 483,
+              "Actual Startup Time": 3.067,
+              "Actual Total Time": 3.069,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 40,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 523,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "compras",
+                  "Alias": "o",
+                  "Startup Cost": 0,
+                  "Total Cost": 733.29,
+                  "Plan Rows": 2002,
+                  "Plan Width": 483,
+                  "Actual Startup Time": 0.009,
+                  "Actual Total Time": 1.912,
+                  "Actual Rows": 2002,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Filter": "((ROW(orden, id) <= ROW('10020'::bigint, 'PERF-203f6a49-544e-4435-8350-77cb32fe3163-compras-9999'::text)) AND (ROW(orden, id) < ROW('2009'::bigint, 'PERF-203f6a49-544e-4435-8350-77cb32fe3163-compras-1988'::text)))",
+                  "Rows Removed by Filter": 8012,
+                  "Shared Hit Blocks": 523,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.084,
+        "Triggers": [],
+        "Execution Time": 3.106
+      },
+      "nodos": [
+        {
+          "tabla": "compras",
+          "nodo": "Seq Scan",
+          "emitidas": 2002,
+          "descartadas": 8012,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        3.7271999999999252,
+        3.7557999999999083,
+        4.095899999999915,
+        3.3383999999999787,
+        3.5704999999999245
+      ],
+      "medianaServicioMs": 3.7271999999999252,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 11346,
+      "huella": "bbb4a1ba760a2b38a17dae58d5bb458b063bfbdd2be2093bbe257c94f9615fb8",
+      "anterior": {
+        "filas": 10014,
+        "ms": 66.7695,
+        "bytesJson": 9004006,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "compras",
+      "caso": "fecha",
+      "filtro": {
+        "desde": "2026-06-01",
+        "hasta": "2026-06-30"
+      },
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_compra,o.fecha::text,o.fecha_hora_registro,o.proveedor_id,o.proveedor_nombre,o.producto,o.cantidad_qq,o.precio_compra_qq,o.impuesto_porcentaje,o.subtotal,o.monto_impuesto,o.total,o.monto_pagado_inicial,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.comprobante,o.observacion,o.usuario_id,o.usuario_nombre FROM ruizcacao.compras o WHERE o.fecha>=$1::date AND o.fecha<=$2::date ORDER BY o.orden DESC,o.id DESC LIMIT $3",
+      "params": [
+        "2026-06-01",
+        "2026-06-30",
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 606.16,
+          "Total Cost": 606.2,
+          "Plan Rows": 16,
+          "Plan Width": 483,
+          "Actual Startup Time": 0.805,
+          "Actual Total Time": 0.807,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 101,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 606.16,
+              "Total Cost": 609,
+              "Plan Rows": 1138,
+              "Plan Width": 483,
+              "Actual Startup Time": 0.804,
+              "Actual Total Time": 0.805,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 41,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 101,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Bitmap Heap Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "compras",
+                  "Alias": "o",
+                  "Startup Cost": 31.95,
+                  "Total Cost": 577.71,
+                  "Plan Rows": 1138,
+                  "Plan Width": 483,
+                  "Actual Startup Time": 0.057,
+                  "Actual Total Time": 0.424,
+                  "Actual Rows": 1110,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Recheck Cond": "((fecha >= '2026-06-01'::date) AND (fecha <= '2026-06-30'::date))",
+                  "Rows Removed by Index Recheck": 0,
+                  "Exact Heap Blocks": 95,
+                  "Lossy Heap Blocks": 0,
+                  "Shared Hit Blocks": 101,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Bitmap Index Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Index Name": "compra_numero_diario",
+                      "Startup Cost": 0,
+                      "Total Cost": 31.67,
+                      "Plan Rows": 1138,
+                      "Plan Width": 0,
+                      "Actual Startup Time": 0.038,
+                      "Actual Total Time": 0.038,
+                      "Actual Rows": 1110,
+                      "Actual Loops": 1,
+                      "Disabled": false,
+                      "Index Cond": "((fecha >= '2026-06-01'::date) AND (fecha <= '2026-06-30'::date))",
+                      "Index Searches": 1,
+                      "Shared Hit Blocks": 6,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 11,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.109,
+        "Triggers": [],
+        "Execution Time": 0.834
+      },
+      "nodos": [
+        {
+          "tabla": "compras",
+          "nodo": "Bitmap Heap Scan",
+          "emitidas": 1110,
+          "descartadas": 0,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        1.6280000000000427,
+        1.6363000000000056,
+        1.8162999999999556,
+        1.7240000000000464,
+        1.6781000000000859
+      ],
+      "medianaServicioMs": 1.6781000000000859,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 11329,
+      "huella": "c158a8a337c53a96f77ab63f72ba8a6652d87505858aea74ae0294cbbea04aac",
+      "anterior": {
+        "filas": 10014,
+        "ms": 66.7695,
+        "bytesJson": 9004006,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "compras",
+      "caso": "titular",
+      "filtro": {
+        "busqueda": "Peña Ñandú 17"
+      },
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_compra,o.fecha::text,o.fecha_hora_registro,o.proveedor_id,o.proveedor_nombre,o.producto,o.cantidad_qq,o.precio_compra_qq,o.impuesto_porcentaje,o.subtotal,o.monto_impuesto,o.total,o.monto_pagado_inicial,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.comprobante,o.observacion,o.usuario_id,o.usuario_nombre FROM ruizcacao.compras o WHERE (strpos(lower(coalesce(o.proveedor_nombre,'') COLLATE \"und-x-icu\"),$1)>0) ORDER BY o.orden DESC,o.id DESC LIMIT $2",
+      "params": [
+        "peña ñandú 17",
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 798.39,
+          "Total Cost": 798.43,
+          "Plan Rows": 16,
+          "Plan Width": 483,
+          "Actual Startup Time": 20.432,
+          "Actual Total Time": 20.434,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 525,
+          "Shared Read Blocks": 2,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 798.39,
+              "Total Cost": 806.73,
+              "Plan Rows": 3338,
+              "Plan Width": 483,
+              "Actual Startup Time": 20.43,
+              "Actual Total Time": 20.43,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 41,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 525,
+              "Shared Read Blocks": 2,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "compras",
+                  "Alias": "o",
+                  "Startup Cost": 0,
+                  "Total Cost": 714.94,
+                  "Plan Rows": 3338,
+                  "Plan Width": 483,
+                  "Actual Startup Time": 14.074,
+                  "Actual Total Time": 20.314,
+                  "Actual Rows": 220,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Filter": "(strpos(lower((COALESCE(proveedor_nombre, ''::text))::text), 'peña ñandú 17'::text) > 0)",
+                  "Rows Removed by Filter": 9794,
+                  "Shared Hit Blocks": 525,
+                  "Shared Read Blocks": 2,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.071,
+        "Triggers": [],
+        "Execution Time": 20.459
+      },
+      "nodos": [
+        {
+          "tabla": "compras",
+          "nodo": "Seq Scan",
+          "emitidas": 220,
+          "descartadas": 9794,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        6.911999999999921,
+        8.928099999999972,
+        7.106599999999958,
+        8.984199999999987,
+        7.380699999999933
+      ],
+      "medianaServicioMs": 7.380699999999933,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 11106,
+      "huella": "0e52af21fbdb0b85a6ce3dfc9c7ba07cd932ebee374ebf877b04796faa6316e8",
+      "anterior": {
+        "filas": 10014,
+        "ms": 66.7695,
+        "bytesJson": 9004006,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "ventas",
+      "caso": "primera",
+      "filtro": {},
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_factura,o.numero_comprobante,o.subtotal,o.monto_impuesto,o.total,o.saldo_pendiente,o.estado_cobro,o.fecha_venta::text,o.fecha_hora_registro,o.cliente_id,o.producto,o.cantidad_qq,o.precio_unitario,o.impuesto_porcentaje,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.monto_recibido,o.numero_lote,o.observaciones,o.usuario_id,o.usuario_nombre FROM ruizcacao.ventas o ORDER BY o.orden DESC,o.id DESC LIMIT $1",
+      "params": [
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 1283.28,
+          "Total Cost": 1283.32,
+          "Plan Rows": 16,
+          "Plan Width": 430,
+          "Actual Startup Time": 11.327,
+          "Actual Total Time": 11.329,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 683,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 1283.28,
+              "Total Cost": 1320.8,
+              "Plan Rows": 15007,
+              "Plan Width": 430,
+              "Actual Startup Time": 11.325,
+              "Actual Total Time": 11.326,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 41,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 683,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "ventas",
+                  "Alias": "o",
+                  "Startup Cost": 0,
+                  "Total Cost": 908.1,
+                  "Plan Rows": 15007,
+                  "Plan Width": 430,
+                  "Actual Startup Time": 0.012,
+                  "Actual Total Time": 4.976,
+                  "Actual Rows": 15007,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Shared Hit Blocks": 683,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.087,
+        "Triggers": [],
+        "Execution Time": 11.356
+      },
+      "nodos": [
+        {
+          "tabla": "ventas",
+          "nodo": "Seq Scan",
+          "emitidas": 15007,
+          "descartadas": 0,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        10.722000000000094,
+        10.713500000000067,
+        11.192600000000084,
+        9.912399999999934,
+        11.088899999999967
+      ],
+      "medianaServicioMs": 10.722000000000094,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 10806,
+      "huella": "04e9ce641147a875bd70f1d8b1d52cac43f4a4ca4936d927401b440d70daeae0",
+      "anterior": {
+        "filas": 15007,
+        "ms": 82.8945,
+        "bytesJson": 13149532,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "ventas",
+      "caso": "profunda",
+      "filtro": {
+        "cursor": "ventas.eyJ2ZXJzaW9uIjoxLCJmaWx0cm8iOiI5YzAwZjBjMTkzZDc5N2U5Yjg4OGVjNTY2Y2ZmNjNjZjhjODdkMzkxODA4ZmExOTY1YWUyNjRlZGRkNjAxNDIwIiwidGVjaG8iOnsib3JkZW4iOiIxNTAxMiIsImlkIjoiUEVSRi0yMDNmNmE0OS01NDRlLTQ0MzUtODM1MC03N2NiMzJmZTMxNjMtdmVudGFzLTE0OTk5In0sImRlc3B1ZXMiOnsib3JkZW4iOiIzMDA3IiwiaWQiOiJQRVJGLTIwM2Y2YTQ5LTU0NGUtNDQzNS04MzUwLTc3Y2IzMmZlMzE2My12ZW50YXMtMjk5NCJ9fQ"
+      },
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_factura,o.numero_comprobante,o.subtotal,o.monto_impuesto,o.total,o.saldo_pendiente,o.estado_cobro,o.fecha_venta::text,o.fecha_hora_registro,o.cliente_id,o.producto,o.cantidad_qq,o.precio_unitario,o.impuesto_porcentaje,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.monto_recibido,o.numero_lote,o.observaciones,o.usuario_id,o.usuario_nombre FROM ruizcacao.ventas o WHERE (o.orden,o.id)<=($1::bigint,$2::text) AND (o.orden,o.id)<($3::bigint,$4::text) ORDER BY o.orden DESC,o.id DESC LIMIT $5",
+      "params": [
+        "15012",
+        "PERF-203f6a49-544e-4435-8350-77cb32fe3163-ventas-14999",
+        "3007",
+        "PERF-203f6a49-544e-4435-8350-77cb32fe3163-ventas-2994",
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 1073.14,
+          "Total Cost": 1073.18,
+          "Plan Rows": 16,
+          "Plan Width": 430,
+          "Actual Startup Time": 3.387,
+          "Actual Total Time": 3.39,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 683,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 1073.14,
+              "Total Cost": 1080.64,
+              "Plan Rows": 3000,
+              "Plan Width": 430,
+              "Actual Startup Time": 3.386,
+              "Actual Total Time": 3.388,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 41,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 683,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Seq Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "ventas",
+                  "Alias": "o",
+                  "Startup Cost": 0,
+                  "Total Cost": 998.14,
+                  "Plan Rows": 3000,
+                  "Plan Width": 430,
+                  "Actual Startup Time": 0.01,
+                  "Actual Total Time": 2.353,
+                  "Actual Rows": 3001,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Filter": "((ROW(orden, id) <= ROW('15012'::bigint, 'PERF-203f6a49-544e-4435-8350-77cb32fe3163-ventas-14999'::text)) AND (ROW(orden, id) < ROW('3007'::bigint, 'PERF-203f6a49-544e-4435-8350-77cb32fe3163-ventas-2994'::text)))",
+                  "Rows Removed by Filter": 12006,
+                  "Shared Hit Blocks": 683,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.084,
+        "Triggers": [],
+        "Execution Time": 3.417
+      },
+      "nodos": [
+        {
+          "tabla": "ventas",
+          "nodo": "Seq Scan",
+          "emitidas": 3001,
+          "descartadas": 12006,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        5.99350000000004,
+        5.6570999999999,
+        4.0929000000001,
+        3.8809000000001106,
+        5.37720000000013
+      ],
+      "medianaServicioMs": 5.37720000000013,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 10765,
+      "huella": "1c85869e9d49a0934c334ae9c31a71b12ac43a25c7155bb7751805e41499529b",
+      "anterior": {
+        "filas": 15007,
+        "ms": 82.8945,
+        "bytesJson": 13149532,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "ventas",
+      "caso": "fecha",
+      "filtro": {
+        "desde": "2026-06-01",
+        "hasta": "2026-06-30"
+      },
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_factura,o.numero_comprobante,o.subtotal,o.monto_impuesto,o.total,o.saldo_pendiente,o.estado_cobro,o.fecha_venta::text,o.fecha_hora_registro,o.cliente_id,o.producto,o.cantidad_qq,o.precio_unitario,o.impuesto_porcentaje,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.monto_recibido,o.numero_lote,o.observaciones,o.usuario_id,o.usuario_nombre FROM ruizcacao.ventas o WHERE o.fecha_venta>=$1::date AND o.fecha_venta<=$2::date ORDER BY o.orden DESC,o.id DESC LIMIT $3",
+      "params": [
+        "2026-06-01",
+        "2026-06-30",
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 802.67,
+          "Total Cost": 802.71,
+          "Plan Rows": 16,
+          "Plan Width": 430,
+          "Actual Startup Time": 1.219,
+          "Actual Total Time": 1.221,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 134,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 802.67,
+              "Total Cost": 806.8,
+              "Plan Rows": 1654,
+              "Plan Width": 430,
+              "Actual Startup Time": 1.219,
+              "Actual Total Time": 1.219,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "orden DESC",
+                "id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 41,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 134,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Bitmap Heap Scan",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Relation Name": "ventas",
+                  "Alias": "o",
+                  "Startup Cost": 45.24,
+                  "Total Cost": 761.32,
+                  "Plan Rows": 1654,
+                  "Plan Width": 430,
+                  "Actual Startup Time": 0.111,
+                  "Actual Total Time": 0.645,
+                  "Actual Rows": 1650,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Recheck Cond": "((fecha_venta >= '2026-06-01'::date) AND (fecha_venta <= '2026-06-30'::date))",
+                  "Rows Removed by Index Recheck": 0,
+                  "Exact Heap Blocks": 125,
+                  "Lossy Heap Blocks": 0,
+                  "Shared Hit Blocks": 134,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Bitmap Index Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Index Name": "venta_numero_diario",
+                      "Startup Cost": 0,
+                      "Total Cost": 44.82,
+                      "Plan Rows": 1654,
+                      "Plan Width": 0,
+                      "Actual Startup Time": 0.09,
+                      "Actual Total Time": 0.09,
+                      "Actual Rows": 1650,
+                      "Actual Loops": 1,
+                      "Disabled": false,
+                      "Index Cond": "((fecha_venta >= '2026-06-01'::date) AND (fecha_venta <= '2026-06-30'::date))",
+                      "Index Searches": 1,
+                      "Shared Hit Blocks": 9,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 0,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 0.098,
+        "Triggers": [],
+        "Execution Time": 1.244
+      },
+      "nodos": [
+        {
+          "tabla": "ventas",
+          "nodo": "Bitmap Heap Scan",
+          "emitidas": 1650,
+          "descartadas": 0,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        1.7455999999999676,
+        2.600200000000086,
+        3.8493000000000848,
+        2.804600000000164,
+        1.824500000000171
+      ],
+      "medianaServicioMs": 2.600200000000086,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 11028,
+      "huella": "5721e51cff43bc2834093a5f1e4d64b937231cbe0aa8e23956d8cb106d0f1be0",
+      "anterior": {
+        "filas": 15007,
+        "ms": 82.8945,
+        "bytesJson": 13149532,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    },
+    {
+      "modulo": "ventas",
+      "caso": "titular",
+      "filtro": {
+        "busqueda": "Muñoz Álvarez 17"
+      },
+      "sql": "SELECT o.id,o.orden,o.estado,o.anulada_en,o.anulada_por_usuario_id,o.anulada_por_nombre,o.motivo_anulacion,o.numero_factura,o.numero_comprobante,o.subtotal,o.monto_impuesto,o.total,o.saldo_pendiente,o.estado_cobro,o.fecha_venta::text,o.fecha_hora_registro,o.cliente_id,o.producto,o.cantidad_qq,o.precio_unitario,o.impuesto_porcentaje,o.metodo_pago,o.monto_efectivo,o.monto_transferencia,o.monto_recibido,o.numero_lote,o.observaciones,o.usuario_id,o.usuario_nombre FROM ruizcacao.ventas o LEFT JOIN ruizcacao.clientes c ON c.id=o.cliente_id WHERE (strpos(lower(coalesce(o.fecha_venta::text,'') COLLATE \"und-x-icu\"),$1)>0 OR strpos(lower(coalesce(c.nombre_razon_social,'') COLLATE \"und-x-icu\"),$1)>0) ORDER BY o.orden DESC,o.id DESC LIMIT $2",
+      "params": [
+        "muñoz álvarez 17",
+        16
+      ],
+      "plan": {
+        "Plan": {
+          "Node Type": "Limit",
+          "Parallel Aware": false,
+          "Async Capable": false,
+          "Startup Cost": 1171.63,
+          "Total Cost": 1171.67,
+          "Plan Rows": 16,
+          "Plan Width": 430,
+          "Actual Startup Time": 28.228,
+          "Actual Total Time": 28.232,
+          "Actual Rows": 16,
+          "Actual Loops": 1,
+          "Disabled": false,
+          "Shared Hit Blocks": 709,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0,
+          "Plans": [
+            {
+              "Node Type": "Sort",
+              "Parent Relationship": "Outer",
+              "Parallel Aware": false,
+              "Async Capable": false,
+              "Startup Cost": 1171.63,
+              "Total Cost": 1192.47,
+              "Plan Rows": 8337,
+              "Plan Width": 430,
+              "Actual Startup Time": 28.226,
+              "Actual Total Time": 28.229,
+              "Actual Rows": 16,
+              "Actual Loops": 1,
+              "Disabled": false,
+              "Sort Key": [
+                "o.orden DESC",
+                "o.id DESC"
+              ],
+              "Sort Method": "top-N heapsort",
+              "Sort Space Used": 41,
+              "Sort Space Type": "Memory",
+              "Shared Hit Blocks": 709,
+              "Shared Read Blocks": 0,
+              "Shared Dirtied Blocks": 0,
+              "Shared Written Blocks": 0,
+              "Local Hit Blocks": 0,
+              "Local Read Blocks": 0,
+              "Local Dirtied Blocks": 0,
+              "Local Written Blocks": 0,
+              "Temp Read Blocks": 0,
+              "Temp Written Blocks": 0,
+              "Plans": [
+                {
+                  "Node Type": "Hash Join",
+                  "Parent Relationship": "Outer",
+                  "Parallel Aware": false,
+                  "Async Capable": false,
+                  "Join Type": "Left",
+                  "Startup Cost": 48.59,
+                  "Total Cost": 963.21,
+                  "Plan Rows": 8337,
+                  "Plan Width": 430,
+                  "Actual Startup Time": 0.371,
+                  "Actual Total Time": 28.08,
+                  "Actual Rows": 165,
+                  "Actual Loops": 1,
+                  "Disabled": false,
+                  "Inner Unique": true,
+                  "Hash Cond": "(o.cliente_id = c.id)",
+                  "Filter": "((strpos(lower((COALESCE((o.fecha_venta)::text, ''::text))::text), 'muñoz álvarez 17'::text) > 0) OR (strpos(lower((COALESCE(c.nombre_razon_social, ''::text))::text), 'muñoz álvarez 17'::text) > 0))",
+                  "Rows Removed by Filter": 14842,
+                  "Shared Hit Blocks": 709,
+                  "Shared Read Blocks": 0,
+                  "Shared Dirtied Blocks": 0,
+                  "Shared Written Blocks": 0,
+                  "Local Hit Blocks": 0,
+                  "Local Read Blocks": 0,
+                  "Local Dirtied Blocks": 0,
+                  "Local Written Blocks": 0,
+                  "Temp Read Blocks": 0,
+                  "Temp Written Blocks": 0,
+                  "Plans": [
+                    {
+                      "Node Type": "Seq Scan",
+                      "Parent Relationship": "Outer",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Relation Name": "ventas",
+                      "Alias": "o",
+                      "Startup Cost": 0,
+                      "Total Cost": 833.07,
+                      "Plan Rows": 15007,
+                      "Plan Width": 402,
+                      "Actual Startup Time": 0.016,
+                      "Actual Total Time": 5.187,
+                      "Actual Rows": 15007,
+                      "Actual Loops": 1,
+                      "Disabled": false,
+                      "Shared Hit Blocks": 683,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0
+                    },
+                    {
+                      "Node Type": "Hash",
+                      "Parent Relationship": "Inner",
+                      "Parallel Aware": false,
+                      "Async Capable": false,
+                      "Startup Cost": 36.04,
+                      "Total Cost": 36.04,
+                      "Plan Rows": 1004,
+                      "Plan Width": 123,
+                      "Actual Startup Time": 0.308,
+                      "Actual Total Time": 0.309,
+                      "Actual Rows": 1004,
+                      "Actual Loops": 1,
+                      "Disabled": false,
+                      "Hash Buckets": 1024,
+                      "Original Hash Buckets": 1024,
+                      "Hash Batches": 1,
+                      "Original Hash Batches": 1,
+                      "Peak Memory Usage": 162,
+                      "Shared Hit Blocks": 26,
+                      "Shared Read Blocks": 0,
+                      "Shared Dirtied Blocks": 0,
+                      "Shared Written Blocks": 0,
+                      "Local Hit Blocks": 0,
+                      "Local Read Blocks": 0,
+                      "Local Dirtied Blocks": 0,
+                      "Local Written Blocks": 0,
+                      "Temp Read Blocks": 0,
+                      "Temp Written Blocks": 0,
+                      "Plans": [
+                        {
+                          "Node Type": "Seq Scan",
+                          "Parent Relationship": "Outer",
+                          "Parallel Aware": false,
+                          "Async Capable": false,
+                          "Relation Name": "clientes",
+                          "Alias": "c",
+                          "Startup Cost": 0,
+                          "Total Cost": 36.04,
+                          "Plan Rows": 1004,
+                          "Plan Width": 123,
+                          "Actual Startup Time": 0.005,
+                          "Actual Total Time": 0.159,
+                          "Actual Rows": 1004,
+                          "Actual Loops": 1,
+                          "Disabled": false,
+                          "Shared Hit Blocks": 26,
+                          "Shared Read Blocks": 0,
+                          "Shared Dirtied Blocks": 0,
+                          "Shared Written Blocks": 0,
+                          "Local Hit Blocks": 0,
+                          "Local Read Blocks": 0,
+                          "Local Dirtied Blocks": 0,
+                          "Local Written Blocks": 0,
+                          "Temp Read Blocks": 0,
+                          "Temp Written Blocks": 0
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "Planning": {
+          "Shared Hit Blocks": 79,
+          "Shared Read Blocks": 0,
+          "Shared Dirtied Blocks": 0,
+          "Shared Written Blocks": 0,
+          "Local Hit Blocks": 0,
+          "Local Read Blocks": 0,
+          "Local Dirtied Blocks": 0,
+          "Local Written Blocks": 0,
+          "Temp Read Blocks": 0,
+          "Temp Written Blocks": 0
+        },
+        "Planning Time": 4.314,
+        "Triggers": [],
+        "Execution Time": 28.449
+      },
+      "nodos": [
+        {
+          "tabla": "ventas",
+          "nodo": "Seq Scan",
+          "emitidas": 15007,
+          "descartadas": 0,
+          "vueltas": 1
+        },
+        {
+          "tabla": "clientes",
+          "nodo": "Seq Scan",
+          "emitidas": 1004,
+          "descartadas": 0,
+          "vueltas": 1
+        }
+      ],
+      "muestrasServicioMs": [
+        29.074899999999843,
+        22.069500000000062,
+        30.15989999999988,
+        21.28390000000013,
+        19.392299999999977
+      ],
+      "medianaServicioMs": 22.069500000000062,
+      "filasRenderer": 15,
+      "bytesRespuestaJson": 10816,
+      "huella": "73a99426f3116b3e39fc5c3238fcaa8c0ff877545baf025883347153dec637fa",
+      "anterior": {
+        "filas": 15007,
+        "ms": 82.8945,
+        "bytesJson": 13149532,
+        "nota": "Una muestra lectura completa SQL; no incluye filtro React, IPC ni render."
+      }
+    }
+  ],
+  "nota": "Lectura de base local del desarrollador autorizada. Cinco muestras calientes; tiempos no incluyen IPC/render."
+}

@@ -1,4 +1,4 @@
-// Prueba v7->v8 solo en clúster efímero verificado por el runner.
+// Prueba v8->v9 exclusivamente en clúster efímero verificado.
 const assert = require('node:assert/strict')
 const fs = require('node:fs/promises')
 const path = require('node:path')
@@ -18,11 +18,11 @@ async function main() {
   assert.equal(config.user, 'ruizcacao_bootstrap')
   const admin = new Client(config)
   await admin.connect()
-  const nombre = 'rcm_v8_' + randomUUID().replaceAll('-', '')
+  const nombre = 'rcm_v9_' + randomUUID().replaceAll('-', '')
   let creada = false,
     sql,
     servicio
-  const files = (await fs.readdir(root + '/database')).filter((f) => /^00[1-7]-/.test(f)).sort()
+  const files = (await fs.readdir(root + '/database')).filter((f) => /^00[1-8]-/.test(f)).sort()
   const hashes = async () =>
     Object.fromEntries(
       await Promise.all(
@@ -35,11 +35,6 @@ async function main() {
       )
     )
   const historicos = await hashes()
-  assert.deepEqual(
-    historicos,
-    require('../docs/evidencias-escalabilidad/benchmark-stock-small-2026-09-30.json')
-      .hashesHistoricos
-  )
   try {
     const real = (await admin.query('SHOW data_directory')).rows[0].data_directory
     assert.equal(
@@ -52,7 +47,7 @@ async function main() {
     sql = new Client(connection)
     await sql.connect()
     await sql.query('BEGIN')
-    for (let v = 1; v <= 7; v++) {
+    for (let v = 1; v <= 8; v++) {
       await sql.query(await fs.readFile(root + '/database/' + files[v - 1], 'utf8'))
       await sql.query('INSERT INTO ruizcacao.migraciones(version) VALUES($1)', [v])
     }
@@ -81,9 +76,9 @@ async function main() {
         producto,
         cantidad
       ])
-    const clave = 'Prueba-v8-conservacion-2026!'
+    const clave = 'Prueba-v9-conservacion-2026!'
     await sql.query(
-      "INSERT INTO ruizcacao.usuarios(id,nombre,password_hash,rol,activo,principal) VALUES($1,'Prueba v8',$2,'administrador',true,true)",
+      "INSERT INTO ruizcacao.usuarios(id,nombre,password_hash,rol,activo,principal) VALUES($1,'Prueba v9',$2,'administrador',true,true)",
       [randomUUID(), await hashSecreto(clave)]
     )
     await sql.query('INSERT INTO ruizcacao.instalacion(id,installation_id) VALUES(1,$1)', [
@@ -110,38 +105,50 @@ async function main() {
     const version = async () =>
       (await sql.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v
     const indice = async () =>
-      (await sql.query("SELECT to_regclass('ruizcacao.movimientos_stock_orden_id') t")).rows[0].t
-    assert.equal(await version(), 7)
+      (await sql.query("SELECT to_regclass('ruizcacao.compras_orden_id') t")).rows[0].t
+    assert.equal(await version(), 8)
     assert.equal(await indice(), null)
+    assert.equal(
+      (await sql.query("SELECT to_regclass('ruizcacao.ventas_orden_id') t")).rows[0].t,
+      null
+    )
     servicio = new BaseLocal(connection, {
       respaldos: {
         crear: async () => {
-          throw Error('Fallo simulado respaldo v8')
+          throw Error('Fallo simulado respaldo v9')
         }
       }
     })
-    await assert.rejects(servicio.iniciar(), /Fallo simulado respaldo v8/)
+    await assert.rejects(servicio.iniciar(), /Fallo simulado respaldo v9/)
     await servicio.desconectar()
     servicio = null
-    assert.equal(await version(), 7)
+    assert.equal(await version(), 8)
     assert.equal(await indice(), null)
+    assert.equal(
+      (await sql.query("SELECT to_regclass('ruizcacao.ventas_orden_id') t")).rows[0].t,
+      null
+    )
     assert.deepEqual(await snapshot(), antes)
-    console.log('OK v8 respaldo fallido impide actualización y conserva todos los datos')
-    const respaldos = new Respaldos(connection, process.env.RCM_TEST_BIN, path.join(carpeta, 'v8'))
+    console.log('OK v9 respaldo fallido impide actualización y conserva todos los datos')
+    const respaldos = new Respaldos(connection, process.env.RCM_TEST_BIN, path.join(carpeta, 'v9'))
     // Fallar DESPUÉS de CREATE INDEX permite comprobar rollback de índice y versión.
-    await sql.query(`CREATE FUNCTION ruizcacao.fallar_version_ocho() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW.version=8 THEN RAISE EXCEPTION 'Fallo simulado version ocho'; END IF; RETURN NEW; END $$;
-      CREATE TRIGGER fallo_v8 BEFORE INSERT ON ruizcacao.migraciones FOR EACH ROW EXECUTE FUNCTION ruizcacao.fallar_version_ocho()`)
+    await sql.query(`CREATE FUNCTION ruizcacao.fallar_version_nueve() RETURNS trigger LANGUAGE plpgsql AS $$ BEGIN IF NEW.version=9 THEN RAISE EXCEPTION 'Fallo simulado version nueve'; END IF; RETURN NEW; END $$;
+      CREATE TRIGGER fallo_v9 BEFORE INSERT ON ruizcacao.migraciones FOR EACH ROW EXECUTE FUNCTION ruizcacao.fallar_version_nueve()`)
     servicio = new BaseLocal(connection, { respaldos })
-    await assert.rejects(servicio.iniciar(), /Fallo simulado version ocho/)
+    await assert.rejects(servicio.iniciar(), /Fallo simulado version nueve/)
     await servicio.desconectar()
     servicio = null
-    assert.equal(await version(), 7)
+    assert.equal(await version(), 8)
     assert.equal(await indice(), null)
+    assert.equal(
+      (await sql.query("SELECT to_regclass('ruizcacao.ventas_orden_id') t")).rows[0].t,
+      null
+    )
     assert.deepEqual(await snapshot(), antes)
     await sql.query(
-      'DROP TRIGGER fallo_v8 ON ruizcacao.migraciones; DROP FUNCTION ruizcacao.fallar_version_ocho()'
+      'DROP TRIGGER fallo_v9 ON ruizcacao.migraciones; DROP FUNCTION ruizcacao.fallar_version_nueve()'
     )
-    console.log('OK v8 fallo posterior a CREATE INDEX revierte índice y versión')
+    console.log('OK v9 fallo posterior a CREATE INDEX revierte índice y versión')
     const indicesAntes = (
       await sql.query(
         "SELECT indexname,indexdef FROM pg_indexes WHERE schemaname='ruizcacao' ORDER BY indexname"
@@ -150,7 +157,7 @@ async function main() {
     servicio = new BaseLocal(connection, { respaldos })
     await servicio.iniciar()
     assert.equal(await version(), 9)
-    assert.equal(await indice(), 'ruizcacao.movimientos_stock_orden_id')
+    assert.equal(await indice(), 'ruizcacao.compras_orden_id')
     assert.deepEqual(await snapshot(), antes)
     assert.deepEqual(
       (
@@ -166,22 +173,22 @@ async function main() {
       )
     ).rows
     assert.deepEqual(
-      indicesDespues.filter(
-        (r) =>
-          !['movimientos_stock_orden_id', 'compras_orden_id', 'ventas_orden_id'].includes(
-            r.indexname
-          )
-      ),
+      indicesDespues.filter((r) => !['compras_orden_id', 'ventas_orden_id'].includes(r.indexname)),
       indicesAntes
     )
     assert.match(
-      indicesDespues.find((r) => r.indexname === 'movimientos_stock_orden_id').indexdef,
+      indicesDespues.find((r) => r.indexname === 'compras_orden_id').indexdef,
       /\(orden DESC, id DESC\)$/
     )
-    const { migracionOcho } = load(root + '/src/main/database/migracion-ocho.ts')
+    assert.match(
+      indicesDespues.find((r) => r.indexname === 'ventas_orden_id').indexdef,
+      /\(orden DESC, id DESC\)$/
+    )
+    const { migracionNueve } = load(root + '/src/main/database/migracion-nueve.ts')
     assert.equal(
-      await fs.readFile(root + '/database/008-rendimiento-paginacion.sql', 'utf8'),
-      '-- Migración 8: índice de orden y desempate para historial Stock paginado.\n' + migracionOcho
+      await fs.readFile(root + '/database/009-rendimiento-paginacion-compras-ventas.sql', 'utf8'),
+      '-- Migración 9: índices medidos para historiales paginados de Compras y Ventas.\n' +
+        migracionNueve
     )
     assert.deepEqual(await hashes(), historicos)
     const manifests = await Promise.all(
@@ -190,18 +197,18 @@ async function main() {
         .map((f) => verificarRespaldo(path.join(respaldos.carpeta, f.slice(0, -5))))
     )
     assert.ok(manifests.length >= 1)
-    assert.ok(manifests.every((m) => m.tipo === 'pre_migracion' && m.esquema_version === 7))
+    assert.ok(manifests.every((m) => m.tipo === 'pre_migracion' && m.esquema_version === 8))
     console.log(
-      'OK v7->v8->v9: 25 tablas, datos y hashes intactos, un único índice, SQL exportado y respaldo v7 verificado'
+      'OK v8->v9: 25 tablas, datos y hashes intactos, dos índices, SQL exportado y respaldo v8 verificado'
     )
-    await servicio.login('Prueba v8', clave)
+    await servicio.login('Prueba v9', clave)
     const pagina = await servicio.historialStock({})
     assert.equal(pagina.filas.length, 15)
     await servicio.cerrar()
     servicio = null
     servicio = new BaseLocal(connection)
-    await servicio.iniciar() // v8 no pide otro respaldo ni duplica índice/migración.
-    await servicio.login('Prueba v8', clave)
+    await servicio.iniciar() // v9 no pide otro respaldo ni duplica índice/migración.
+    await servicio.login('Prueba v9', clave)
     assert.deepEqual(await servicio.historialStock({}), pagina)
     assert.deepEqual(
       (await sql.query('SELECT version FROM ruizcacao.migraciones ORDER BY version')).rows.map(
@@ -209,7 +216,7 @@ async function main() {
       ),
       [1, 2, 3, 4, 5, 6, 7, 8, 9]
     )
-    console.log('OK v8 reinicio idempotente conserva credenciales e historial paginado')
+    console.log('OK v9 reinicio idempotente conserva credenciales e historial paginado')
   } finally {
     if (servicio) await servicio.desconectar()
     if (sql) await sql.end()

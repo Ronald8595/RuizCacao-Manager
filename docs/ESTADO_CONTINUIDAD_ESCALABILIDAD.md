@@ -1,95 +1,55 @@
-# Estado de continuidad - Escalabilidad PostgreSQL
+# Estado de continuidad — Escalabilidad PostgreSQL
 
-## Fecha y hora de corte
-30/9/26, 13:02:47 (America/Guayaquil).
-Versión base: 1.1.2; objetivo futuro 1.2.0, package.json sin cambio de versión.
-Rama Git: feature/escalabilidad-postgresql.
-Commit base: 584d7c21cd6274381666c83378aa3b051175fb7d.
-Etapa actual: cierre técnico de Etapa 1, piloto Stock.
-Estado: COMPLETADA técnicamente; pruebas y benchmarks finales v8 código 0. Revisión visual interactiva pendiente (checklist preparado).
+Corte 2026-10-01T22:04:20.065Z (2026-10-01, America/Guayaquil). Rama feature/escalabilidad-postgresql. Aplicación 1.1.2, objetivo futuro1.2.0. Commit base bebcda3fb708576c47e5abc5f40914bedbe0f13f. Todo el trabajo de Etapas2/3 sigue sin commit; conservarlo. Sin push/tag/instalador/dependencias nuevas.
 
-## Qué existía antes de esta sesión
-Proyección explícita SQL y benchmarks anteriores; piloto Stock paginado SQL con filtros fecha/producto/texto, LIMIT 16/15 visibles y cursor compuesto. Snapshot global completo conservado. Pruebas y pequeño v7 habían pasado. No existía 008 ni índice de orden. Todos los cambios locales estaban sin commit; conservarlos. .eslintcache ya aparecía eliminado al iniciar este cierre.
+## Estado actual
 
-## Qué se modificó en esta sesión
-Se midió completo v7, se probó candidato en clúster aislado con rondas ABBA y se aceptó tras beneficio claro. Se implementó 008 exclusivamente con índice movimientos_stock_orden_id y migración transaccional respaldada en BaseLocal. Se incorporó prueba v8 y se actualizaron solo expectativas de versión final de pruebas anteriores (sin alterar reglas). Se adaptó benchmark para esquema 8 y modo experimental aislado; no se cambió SQL funcional del historial ni UI en este cierre.
-Último cambio realizado: cierre de informe, evidencia completa v8, resumen JSON de verificaciones y comprobación final de históricos.
-Último archivo modificado: docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md.
+Etapa1 Stock cerrada técnica/visualmente según usuario. Etapa2 SQL keyset Compras/Ventas, seed local y009 completa técnicamente; informes anteriores se conservan. Etapa3 medición/optimización de pausa al ingresar Compra/Venta y Cuentas COMPLETA técnicamente; tests finales código0. Revisión visual de la app completa pendiente. [Informe Etapa3](Informe_Etapa_03_Optimizacion_Snapshot_IPC.md) contiene método, antes/después, límites, archivos y checklist.
 
-## Archivos modificados
-En este cierre: src/main/database/base.ts; scripts/exportar-esquema.cjs; scripts/benchmark-postgres.cjs; scripts/benchmark-paginacion-stock.cjs; tests/run.cjs; tests/anulaciones-v7.cjs; tests/migracion.cjs; tests/migracion-v2.cjs; tests/migracion-v3.cjs; tests/migracion-v5.cjs; tests/migracion-v6.cjs; este documento. Pruebas antiguas solo esperan 8 como versión final en lugar de 7; rollback histórico 2/6 sigue intacto.
-Cambios previos conservados: package.json, relacional.ts, IPC/preload/persistencia, Stock.tsx, hooks/tipos/servicio/pruebas paginación y dataset. Consultar git status --short para conjunto exacto. No atribuir todo el diff acumulado a esta sesión.
+Esquema actual de código/suite/base local:9, 25 tablas. Migraciones001–009 intactas durante Etapa3. No010, no seed nuevo ni paginación PostgreSQL Cuentas/Gastos. Snapshot global COMPLETO.
 
-## Archivos nuevos
-src/main/database/migracion-ocho.ts; database/008-rendimiento-paginacion.sql; tests/migracion-v8.cjs; scripts/benchmark-indice-stock.cjs; docs/Informe_Etapa_01_Paginacion_Reduccion_Carga.md.
-Evidencia nueva en docs/evidencias-escalabilidad: benchmark-stock-completo-sin-indice-2026-09-30.json, benchmark-stock-indice-comparacion-2026-09-30.json, benchmark-stock-small-v8-2026-09-30.json, typecheck-stock-cierre-2026-09-30.txt, lint-stock-cierre-2026-09-30.txt, db-test-stock-cierre-2026-09-30.txt. Completo final guardado: benchmark-stock-completo-v8-2026-09-30.json. Resumen de códigos: verificaciones-stock-cierre-2026-09-30.json.
+## Base de desarrollo y datos conservados
 
-## Módulo actualmente paginado
-Solo Stock. Tabla conserva columnas/botones Anterior/Siguiente, carga/error/reintento, muestra 15 filas y número de página; no calcula total global del historial. Hook reinicia al cambiar filtros o referencia de movimientosStock del Snapshot y descarta respuestas obsoletas.
-Flujo separado: PostgreSQL -> consultarHistorialStock -> BaseLocal.historialStock -> IPC con cola y control de origen existentes -> preload tipado -> useHistorialStock -> tabla.
-Flujo global intacto: leerEntidades -> BaseLocal.estado -> IPC/preload -> AppDataContext -> crearDominio. Mantiene todas las filas para reglas/stock/cuentas/reportes. El piloto NO reduce carga inicial global ni lecturas de ejecutar/guardar.
+ruizcacao_manager en127.0.0.1:5432, esquema ruizcacao, configuración cifrada userData/postgres.enc. Etapa3 solo lee la base original mediante transacciones READ ONLY o pg_dump. No llama iniciar/login/jornada/ejecutar allí; no modifica registros/sesiones/jornadas/avisos. Comandos de medición se ejecutan con ROLLBACK en copias efímeras verificadas del dump actual.
 
-## Consulta SQL implementada
-SELECT columnas explícitas FROM ruizcacao.movimientos_stock WHERE filtros parametrizados ORDER BY orden DESC,id DESC LIMIT 16. Fechas >=/<=, producto =; texto literal con strpos(lower(coalesce(columna,'') COLLATE "und-x-icu"),texto)>0 sobre fecha/producto/proveedor_nombre/observacion. %/_ no son comodines. Máximo 16 devueltas, 15 visibles y una detecta siguiente. Nada de SQL/credenciales en Renderer.
+Lote existente PERF-203f6a49-544e-4435-8350-77cb32fe3163-. Totales siguen: clientes1.004/proveedores506/empleados3/compras10.014/ventas15.007/cuentas25.021/movimientosCuenta16.695/movimientosStock25.450/gastos13.019. Huella Snapshot completa antes=después: cb3a4f31b0a317db09a4d13c32d0dd9c9851baf302faf668347ecc413954a3bb. Snapshot65.339.124 bytes JSON; estado65.358.083; tamaños íntegros idénticos.
 
-## Tipo de cursor/paginación utilizado
-Keyset orden BIGINT como string + id; techo de primera página, última fila visible y hash de filtros en cursor base64url validado. Siguiente con (orden,id)<posicion y <=techo. Evita desplazamiento por inserciones nuevas superiores al techo; no congela cambios a registros antiguos entre páginas. OFFSET solo se usa en benchmark para localizar posición sintética mitad, fuera de tiempos medidos.
+NO ejecutar db:seed:performance al continuar: agrega OTRO lote y no es una comprobación. Datos sintéticos no se entregan al cliente. Respaldos de Etapa2 verificados y conservados:
 
-## Índices creados o descartados y motivo
-Aceptado: movimientos_stock_orden_id ON movimientos_stock(orden DESC,id DESC). Catálogo inicial Stock solo PK(id) y producto/fecha, no redundantes. Decisión posterior a benchmark completo, no intuición.
-ABBA sin/con/con/sin: primera servicio 26,7710–27,1657 ms -> 0,4972–0,5250; profunda 17,4816–18,3193 -> 0,5794–0,6368. SQL primera 28,972/30,425 -> 0,045/0,063 ms; profunda 19,450/18,929 -> 0,039/0,037. Seq Scan + Sort de 51.667 pasa a Index Scan + Limit de 16 para ambas. SQL/parámetros/respuestas idénticos comprobados con huellas SHA-256.
-Índice 2.580.480 bytes (2,46 MiB) para 51.667 filas. Lote 100 INSERT revertidos: sin 3,1709/3,1777 ms; con 3,7777/1,8707; alta variación, no afirmar porcentaje estable de escritura. WAL lote sin 33.752–37.173 -> con 46.400–46.438 bytes: coste adicional. No mide COMMIT/fsync ni comando comercial; rollback conserva filas, la secuencia avanza. Tamaño al crear no predice crecimiento/bloat.
-Producto/fecha tiempos similares; con índice nuevo examina 2.302 (16+2.286 descartadas), frente a 820 del índice existente + sort. Texto sigue examinando 31.683 con candidato; no es índice de texto. No se propone otro índice ni migración de otro módulo.
-Esquema PostgreSQL actual de código/pruebas: 8, 25 tablas. Base real no fue accedida ni migrada.
-Migración 008: SI, solo CREATE INDEX y registro versión dentro de transacción, con respaldo previo usando patrón existente. Históricos 001–007 sin cambios.
+    C:/Users/LENOVO/AppData/Roaming/RuizCacao Manager/backups/manual_2026-10-01T19-39-06-027Z_684a733b-1b8f-4107-8079-00be41a7d173.dump
+    C:/Users/LENOVO/AppData/Roaming/RuizCacao Manager/backups/pre_migracion_2026-10-01T19-54-58-762Z_9b52ed94-4ad6-4e00-98a6-0f85d7434e4d.dump
 
-## Métricas antes
-Completo v7 sin índice: primera SQL 27,452 ms/servicio 21,7161; profunda 19,849/17,945; producto-fecha 0,467/0,9608; texto 59,863/57,1099. Dataset: 5.000 clientes, 2.000 proveedores, 20.000 compras, 30.000 ventas, 50.000 cuentas, 66.666 movimientos cuenta, 51.667 Stock, 15.000 gastos, 10.000 avisos.
-ABBA usa mismo dataset/clúster en todas sus rondas y es evidencia principal de decisión. Todas las consultas devuelven 16 SQL/15 Renderer en completo, respuestas 2.144/2.013/2.014/2.071 bytes (primera/profunda/producto-fecha/texto).
+Hashes/detalles en Informe_Etapa_02_Paginacion_Compras_Ventas.md. Etapa3 no restaura ni escribe en la base original.
 
-## Métricas después
-ABBA con candidato: ver sección índices y JSON completo de comparación. Pequeño v8 definitivo código 0: 517 Stock; primera 0,3549 ms, profunda 0,4520, producto-fecha 0,4720, texto 0,7829 servicio. 16/16/10/16 filas SQL, 15/15/10/15 visibles; 2.107/1.972/1.168/2.031 bytes JSON.
-Completo v8 final código 0: primera 0.2913 ms servicio/0.032 ms SQL; profunda 0.3625/0.033; producto-fecha 0.6071/0.272; texto 41.1281/31.066. Índice en catálogo 4.579.328 bytes (4,37 MiB): se creó en base vacía y creció al sembrar; ABBA lo construyó con datos ya presentes (2,46 MiB). Ambas cifras son reales, no estimaciones idénticas. Snapshot global conserva 77.706.071 bytes. No comparar tiempos de pequeño con completo. Mediana servicio mide consultarHistorialStock con cliente pg; excluye BaseLocal.transaccion/advisory lock, cola/IPC y render. Bytes son JSON aproximado, no transporte binario PostgreSQL/IPC. EXPLAIN server y cliente son muestras diferentes, caché caliente; no garantías de latencia en producción. Planes ANALYZE/BUFFERS completos en JSON; filas por nodo/loop, no sumar padres e hijos.
+## Diagnóstico medido y solución
 
-## Pruebas ejecutadas y resultado
-- npm run typecheck: código 0, Node/Web.
-- npm run lint: código 0, 0 errores/899 advertencias existentes; archivo de resumen. ESLint específico prueba v8 final código 0.
-- npm run db:test final: código 0, Suite PostgreSQL completa, clúster ruizcacao-tests-IdeJQg. Prueba v8 pasó respaldo fallido, rollback posterior a CREATE INDEX, 25 tablas, datos/hashes intactos, un único índice añadido, equivalencia SQL exportado, respaldo real v7 y reinicio/credenciales/páginas.
-- Pruebas paginación siguen activas: fechas/producto/texto/acento/griego/literales, empates, BIGINT, navegación sin duplicados, inserción, sesión y Snapshot completo intacto.
-- npm run db:sql: código 0 final; SQL 001–007 protegidos. Primer intento detectó distinto encabezado exportador de 007, se corrigió exportador para coincidir sin editar histórico.
-- npm run db:benchmark sin índice v7: código 0, evidencia guardada.
-- npm run db:benchmark -- --evaluar-indice-stock: código 0 ABBA, evidencia guardada.
-- npm run db:benchmark -- --small final v8: código 0, evidencia guardada.
-- npm run db:benchmark completo final v8: código 0, migraciones 1–8, 25 tablas, único índice y hashes históricos intactos. Evidencia benchmark-stock-completo-v8-2026-09-30.json.
-- git diff --check: código 0. git diff --exit-code -- SQL 001–007, schema/migraciones TS históricas y package-lock.json: código 0.
+Navegar cambia componentes y reutiliza Snapshot; no provoca nueva carga completa. Cuentas antes montaba16.252 filas DOM: mediana React+layout3.188 ms. Ahora monta viewport+margen, unas17–26 filas de datos, con todas las cuentas/filtros/totales en memoria y acceso por scroll; mediana31,1 ms. No páginas ni endpoint SQL nuevo. Detalle/retorno, foco, cambio de filtros desde scroll profundo y acceso a última fila validados en Electron oculto.
 
-## Pruebas pendientes
-No quedan pruebas automatizadas obligatorias pendientes. Revisión visual interactiva pendiente con checklist en Informe_Etapa_01_Paginacion_Reduccion_Carga.md. No se inició aplicación contra datos reales ni se afirmó revisión manual.
+Compra/Venta calculaba historial de25.021 cuentas con find de clientes aun en pestaña Compras. Ahora difiere filtrado hasta abrir Historial y usa Map/memo. React/commit97,8→2,4 ms; React+layout110,5→4,8 ms. Historial combinado todavía monta todas sus filas al abrirlo; no se afirma optimización de ese DOM.
 
-## Errores o bloqueos
-Sin bloqueo de código. Primer experimento falló antes de CREATE porque rol app no puede SHOW data_directory; resuelto pasando directorio ya verificado por bootstrap y contrastándolo con ruta efímera sin aumentar permisos. Primer pequeño v8 falló al iniciar motor mientras se arrancaba suite; repetición separada código 0, causa no demostrada. Prueba v8 se ajustó para consultas secuenciales en un mismo Client pg; suite final pasó sin advertencia añadida. Entorno restringido históricamente no inicia motor; usar autorización existente para comandos aislados.
+Renderer creaba dominio mutable y clonaba todas las colecciones para exponer datos. Nueva crearLecturaDominio sin comandos comparte datos completos como lectura, deriva índices de saldo equivalentes y se memoiza por estado.datos. Provider152→9 ms; lectura~5,4 ms. Dominio mutable Main conserva clonado y reglas.
 
-## Módulos que aún cargan historiales completos
-Compras, Ventas, Cuentas, Gastos; Snapshot global incluido Stock permanece completo. BaseLocal.ejecutar y guardar no optimizados en esta sesión. No comenzar Compras hasta validar visualmente piloto y recibir alcance de siguiente etapa.
+Guardar comprobaba borrados con originales×registros.some: mediana CPU sin cambios10.945→314 ms (cortes finales). Set mantiene igualdad estricta/guardas/auditoría. En copia con guardar y SQL reales: compra14.471→3.064 ms; venta13.698→3.079; alta cliente14.896→3.137. Sigue lectura completa antes y después del comando. No devolver dominio.snapshot a ciegas: defaults/nulls/redondeo/autoría/orden/concurrencia deben resolverse antes de leer incrementos.
+
+Lectura global/IPC no reducidos: estado~~0,7–1,1s, IPC cacheado~~0,5–0,7s, JSON~0,17s. Perfil final muestra variación CPU/GC; no atribuir mejora de SQL/IPC. Cuentas/movimientos/gastos conservan sorts actuales. No nuevo índice sin comparación medida. Contrato completo65 MB impone demora residual en carga/actualización.
+
+Mediciones con React production, componentes reales/DOM/IPC, ventana oculta y CSS mínimo; excluyen Sidebar/login/cola IPC de producción. requestAnimationFrame oculto a veces1s no se usa para afirmar respuesta visual. Son mediciones de arnés, no prueba manual ni garantía de producción.
+
+## Archivos y pruebas
+
+Etapa3 modifica base.ts solo en guardar, dominio.ts vista de lectura, AppDataContext.tsx, CompraVenta.tsx, Cuentas.tsx, tests/run.cjs y documentación. Nuevos: utils indices/filasVisibles, hook useFilasVisibles, tests lectura-dominio/guardar-indices, scripts perfil-renderer/preload/medir-snapshot/medir-comandos. Lista exacta en informe; git status incluye también todo el trabajo anterior de Etapa2.
+
+- typecheck0 Node/Web; lint0, cero errores/787 advertencias heredadas (antes896).
+- db:test0, suite completa, clúster ruizcacao-tests-kHtUj5: dominio/finanzas/saldos/stock/anulaciones/reportes, auth/jornadas/recuperación, respaldos/rollback/reinicio, migraciones/paginación y dos suites nuevas.
+- Nueva lectura igual a todos los campos/derivados/saldos del dominio original en fixture pequeño/completo; entrada intacta, jornadas activas/interrumpidas/históricas y saldos negativos/manuales/anulados. Guardar conserva rechazo de borrados y tipo de ID, gasto/auditoría permitidos.
+- Rangos virtuales/Map0; Electron DOM0 con inicio/mitad/final/última cuenta, retorno detalle, foco y filtro Todas(25.021) desde profundidad.
+- Comandos en copias0 antes/después, conteos/bytesRespuesta por caso idénticos; Snapshot original/huellas iguales. No writes/seed en original.
+- git diff --check0; 001–008 SQL/TS/lockfile comparados sin diff; 009 SQL/TS conservados del trabajo previo. Hashes001–009 y códigos en verificaciones-etapa03-2026-10-01.json.
+
+Evidencia en docs/evidencias-escalabilidad: snapshot-antes-primer-corte, snapshot-antes, snapshot-despues, comandos-snapshot-antes/despues (2026-10-01.json); db-test-etapa03/lint-etapa03-2026-10-01.txt; verificaciones-etapa03-2026-10-01.json. Sin bloqueos ni verificaciones automatizadas obligatorias pendientes.
 
 ## SIGUIENTE PASO EXACTO
-Ejecutar el checklist visual de Informe_Etapa_01_Paginacion_Reduccion_Carga.md en un entorno separado de prueba autenticado; registrar resultados. No comenzar Compras ni otro módulo sin nuevo alcance. Evidencia completa v8 ya guardada y verificaciones cerradas.
 
-## Comandos exactos para continuar
-Desde C:/Users/LENOVO/Documents/VS_Proyects/RuizCacao Manager/electron-app:
+Desde C:/Users/LENOVO/Documents/VS_Proyects/RuizCacao Manager/electron-app ejecutar npm run dev e iniciar sesión existente. Entrar repetidamente en Compra/Venta y Cuentas; verificar visualmente pausa, scroll de cuentas al inicio/mitad/final, filtros desde profundidad, detalle/retorno, zoom/ancho pequeño y teclado; contrastar resumen/abonos/PDF con operación de prueba. Compras/Ventas: ampliar fechas a enero–septiembre2026; Hoy octubre no muestra lote histórico. Registrar resultados en Informe Etapa3. NO repetir seed.
 
-    git status --short
-    git branch --show-current
-    npm run typecheck
-    npm run lint
-    npm run db:test
-    npm run db:benchmark -- --small
-    npm run db:benchmark
-    npm run db:benchmark -- --evaluar-indice-stock
-    npm run db:sql
-    git diff --check
-
-Ejecutar motores de suite/benchmark uno después de otro. Modo evaluar-indice-stock solo hace DDL en clúster nuevo verificado y restaura presencia/definición original del índice al terminar. No admite conexiones externas. Copiar resultado.json, nunca credenciales.
-
-## Advertencias para no romper lo implementado
-Conservar todo el trabajo previo sin commit. No editar 001–007 ni paginar Snapshot. No cambiar compras/ventas/cuentas/gastos, reglas, anulaciones, reportes, autenticación/recuperación/jornadas ni dependencias. Sin db:qa para medir, base real, pull/commit/push/tag/instalador. No iniciar otro módulo. Producto/fecha y texto requieren vigilar filtros selectivos; índice de orden beneficia navegación, no elimina todo escaneo. El código v8 migra al iniciar una base v7 con respaldo previo; ninguna base cliente fue usada en esta sesión.
+Después cerrar visualmente esta optimización. Para demora residual de login/guardar, acordar contrato completo/revisiones y diseño de lectura incremental o modelos de pantalla. No empezar paginación de Cuentas/Gastos ni rediseñar Snapshot sin ese alcance. Mantener reglas, anulaciones, reportes, auth/recuperación/jornadas y notificaciones; no editar migraciones ni hacer commit/push/instalador.

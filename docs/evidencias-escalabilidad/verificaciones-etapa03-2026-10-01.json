@@ -1,0 +1,61 @@
+{
+  "fecha": "2026-10-01T22:02:09.654Z",
+  "esquema": 9,
+  "tablas": 25,
+  "baseOriginalSinEscrituras": true,
+  "seedEjecutado": false,
+  "snapshotIgual": true,
+  "huellaSnapshot": "cb3a4f31b0a317db09a4d13c32d0dd9c9851baf302faf668347ecc413954a3bb",
+  "conteos": {
+    "empleados": 3,
+    "clientes": 1004,
+    "proveedores": 506,
+    "compras": 10014,
+    "ventas": 15007,
+    "cuentas": 25021,
+    "movimientosCuenta": 16695,
+    "movimientosStock": 25450,
+    "gastos": 13019
+  },
+  "bytesSnapshot": 65339124,
+  "bytesEstado": 65358083,
+  "historicos": {
+    "001-base.sql": "ca081cc7d8de55e9a275c0412e7fc0953aac829574100ff1fe4e97c3c92dc795",
+    "002-relacional.sql": "db3ea22f0af0a6f1d82289901bed2c232dd89dd964b8a97beb3e1767197e3803",
+    "003-seguridad-respaldos.sql": "fbed523cce1169e1e343f66ebd051231cb636fc9eada5fbe7015f4d32787e708",
+    "004-interrupciones-umbrales.sql": "2b1af167a0e389511384475b18fb5ac43d8dddd7fe0f9498e2451c660495616a",
+    "005-multiusuario.sql": "b5119dcd85a6b65ff6d66743da0bdb1ca63295e74cfa7ec01307bc5a0ff4ac1a",
+    "006-stock-inicial.sql": "240f8829447f4194e5d204105e7c0f305a55dd5a8687f2986105d10babaaf226",
+    "007-anulaciones.sql": "c5f632ed09bbb959fbd99ef860ad17919c17ce7da282b7c8c4ad3e248ed6ca54",
+    "008-rendimiento-paginacion.sql": "17556cc20877d33ff4580e18f286a35c5c25cae92630865826853a63570b31f8",
+    "009-rendimiento-paginacion-compras-ventas.sql": "6ed5765a3084672fc5ca524d7b1c63a9500ff6045f705d0675799088ae2dba41"
+  },
+  "pruebas": {
+    "typecheck": 0,
+    "lint": 0,
+    "lintErrores": 0,
+    "lintAdvertencias": 787,
+    "dbTest": 0,
+    "gitDiffCheck": 0,
+    "lecturaDominio": 0,
+    "guardarIndices": 0,
+    "arnesRenderer": 0,
+    "comandosAntes": 0,
+    "comandosDespues": 0
+  },
+  "pantallas": [
+    {
+      "pantalla": "compras",
+      "antesMs": 110.5,
+      "despuesMs": 4.799999997019768
+    },
+    {
+      "pantalla": "cuentas",
+      "antesMs": 3188.000000014901,
+      "despuesMs": 31.099999994039536
+    }
+  ],
+  "nota": "Medianas de tres muestras; arnés React production/DOM real con CSS mínimo y Electron oculto. No representa prueba visual de app completa ni tiempos garantizados. Main/IPC no se optimizaron en lecturas/contrato.",
+  "clusterSuite": "ruizcacao-tests-kHtUj5",
+  "fechaCierre": "2026-10-01T22:04:20.065Z"
+}

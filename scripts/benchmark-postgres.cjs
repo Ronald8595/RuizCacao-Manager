@@ -223,7 +223,7 @@ async function main() {
     informe.migraciones = (
       await db.query('SELECT version FROM ruizcacao.migraciones ORDER BY version')
     ).rows.map((r) => r.version)
-    assert.deepEqual(informe.migraciones, [1, 2, 3, 4, 5, 6, 7, 8])
+    assert.deepEqual(informe.migraciones, [1, 2, 3, 4, 5, 6, 7, 8, 9])
     informe.tablas = Number(
       (
         await db.query(

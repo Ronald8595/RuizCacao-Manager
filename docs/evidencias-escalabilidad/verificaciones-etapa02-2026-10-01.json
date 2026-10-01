@@ -1,0 +1,36 @@
+{
+  "fecha": "2026-10-01T20:01:30.747Z",
+  "commitBase": "bebcda3fb708576c47e5abc5f40914bedbe0f13f",
+  "rama": "feature/escalabilidad-postgresql",
+  "comandos": {
+    "typecheck": 0,
+    "lint": 0,
+    "dbTest": 0,
+    "dbSql": 0,
+    "seedDesarrollador": 0,
+    "benchmarkABBA": 0,
+    "migracionDesarrollador": 0,
+    "validacionNavegacionDesarrollador": 0,
+    "gitDiffCheck": 0,
+    "historicosYLockfile": 0,
+    "lintSeedFinal": 0
+  },
+  "lint": {
+    "errores": 0,
+    "advertencias": 896
+  },
+  "clusterSuite": "ruizcacao-tests-fXGCfa",
+  "hashesHistoricos": {
+    "001-base.sql": "ca081cc7d8de55e9a275c0412e7fc0953aac829574100ff1fe4e97c3c92dc795",
+    "002-relacional.sql": "db3ea22f0af0a6f1d82289901bed2c232dd89dd964b8a97beb3e1767197e3803",
+    "003-seguridad-respaldos.sql": "fbed523cce1169e1e343f66ebd051231cb636fc9eada5fbe7015f4d32787e708",
+    "004-interrupciones-umbrales.sql": "2b1af167a0e389511384475b18fb5ac43d8dddd7fe0f9498e2451c660495616a",
+    "005-multiusuario.sql": "b5119dcd85a6b65ff6d66743da0bdb1ca63295e74cfa7ec01307bc5a0ff4ac1a",
+    "006-stock-inicial.sql": "240f8829447f4194e5d204105e7c0f305a55dd5a8687f2986105d10babaaf226",
+    "007-anulaciones.sql": "c5f632ed09bbb959fbd99ef860ad17919c17ce7da282b7c8c4ad3e248ed6ca54",
+    "008-rendimiento-paginacion.sql": "17556cc20877d33ff4580e18f286a35c5c25cae92630865826853a63570b31f8"
+  },
+  "esquemaFinal": 9,
+  "tablas": 25,
+  "nota": "Códigos observados durante esta sesión; git diff --check y diff histórico SQL/TS 001–008/package-lock confirmados al cierre."
+}

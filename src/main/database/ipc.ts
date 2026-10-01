@@ -5,6 +5,10 @@ import { estadoAcceso, obtenerBase } from './conexion'
 import type { ApiPersistencia, Respuesta } from '../../shared/persistencia'
 export function registrarPersistenciaIPC(ventana: BrowserWindow): void {
   const handlers = {
+    historialCompras: (...args: Parameters<ApiPersistencia['historialCompras']>) =>
+      obtenerBase().historialCompras(...args),
+    historialVentas: (...args: Parameters<ApiPersistencia['historialVentas']>) =>
+      obtenerBase().historialVentas(...args),
     historialStock: (...args: Parameters<ApiPersistencia['historialStock']>) =>
       obtenerBase().historialStock(...args),
     estado: estadoAcceso,

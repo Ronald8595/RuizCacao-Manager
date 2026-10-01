@@ -124,6 +124,12 @@ export interface EstadoAcceso {
 }
 export type Respuesta<T> = { ok: true; valor: T } | { ok: false; error: string }
 export interface ApiPersistencia {
+  historialCompras: (
+    filtro: import('./historialOperaciones').FiltroHistorialOperaciones
+  ) => Promise<Respuesta<import('./historialOperaciones').PaginaCompras>>
+  historialVentas: (
+    filtro: import('./historialOperaciones').FiltroHistorialOperaciones
+  ) => Promise<Respuesta<import('./historialOperaciones').PaginaVentas>>
   historialStock: (
     filtro: import('./historialStock').FiltroHistorialStock
   ) => Promise<Respuesta<import('./historialStock').PaginaHistorialStock>>

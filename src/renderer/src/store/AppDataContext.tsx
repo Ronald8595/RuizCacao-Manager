@@ -1,7 +1,7 @@
 import { ErrorNegocio } from '../../../shared/errorNegocio'
 /* eslint-disable react-refresh/only-export-components -- El contexto mantiene su API pública de hooks y catálogos; HMR puede recargar sus consumidores. */
 import { createContext, useContext, useMemo, useRef, useState, type ReactNode } from 'react'
-import { crearDominio, type AppDataContextValue } from '../../../shared/dominio'
+import { crearLecturaDominio, type AppDataContextValue } from '../../../shared/dominio'
 import {
   comandos,
   type Comando,
@@ -67,7 +67,7 @@ export function AppDataProvider({
   const [error, setError] = useState('')
   const ocupado = useRef(false)
   const pendiente = useRef<{ firma: string; id: string } | null>(null)
-  const dominio = useMemo(() => crearDominio(estado.datos).value, [estado])
+  const dominio = useMemo(() => crearLecturaDominio(estado.datos), [estado.datos])
   async function proteger<T>(fn: () => Promise<T>): Promise<T> {
     if (ocupado.current) throw new ErrorNegocio('Espera a que termine la operación anterior.')
     ocupado.current = true

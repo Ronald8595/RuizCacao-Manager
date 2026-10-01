@@ -66,7 +66,7 @@ async function main() {
     console.log('OK v2 fallo DDL revierte completamente la migración 3')
     servicio = new BaseLocal(c, { respaldos: backup })
     await servicio.iniciar()
-    assert.equal((await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v, 8)
+    assert.equal((await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v, 9)
     assert.equal(
       (await db.query('SELECT nombre FROM ruizcacao.proveedores')).rows[0].nombre,
       'Proveedor conservado'
@@ -106,7 +106,7 @@ async function main() {
       )
       assert.equal(
         (await restaurada.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v,
-        8
+        9
       )
     } finally {
       await restaurada.end()

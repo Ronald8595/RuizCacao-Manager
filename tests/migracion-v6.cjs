@@ -62,7 +62,7 @@ async function main() {
 
     assert.equal(
       Number((await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v),
-      8
+      9
     )
     let configStock = (
       await db.query(
