@@ -1,0 +1,95 @@
+[
+  {
+    "escenario": {
+      "nombre": "escritorio",
+      "ancho": 1440,
+      "alto": 900,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "viewport": {
+      "ancho": 1443,
+      "alto": 778
+    },
+    "pruebas": "badge, apertura, menú leído/no leído, flechas, Escape, foco, clic derecho, uno/todos, cancelación/confirmación, vacío, reapertura, async y Snapshot atrasado",
+    "llamadas": [
+      "listar",
+      "listar",
+      "marcar",
+      "eliminar",
+      "marcarTodas",
+      "listar",
+      "eliminar",
+      "listar",
+      "eliminarTodas",
+      "listar"
+    ],
+    "orden": [
+      "eliminar",
+      "eliminar"
+    ],
+    "snapshotConsultado": false
+  },
+  {
+    "escenario": {
+      "nombre": "reducida",
+      "ancho": 800,
+      "alto": 600,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "viewport": {
+      "ancho": 803,
+      "alto": 603
+    },
+    "pruebas": "badge, apertura, menú leído/no leído, flechas, Escape, foco, clic derecho, uno/todos, cancelación/confirmación, vacío, reapertura, async y Snapshot atrasado",
+    "llamadas": [
+      "listar",
+      "listar",
+      "marcar",
+      "eliminar",
+      "marcarTodas",
+      "listar",
+      "eliminar",
+      "listar",
+      "eliminarTodas",
+      "listar"
+    ],
+    "orden": [
+      "eliminar",
+      "eliminar"
+    ],
+    "snapshotConsultado": false
+  },
+  {
+    "escenario": {
+      "nombre": "zoom125",
+      "ancho": 1280,
+      "alto": 800,
+      "zoom": 1.25
+    },
+    "zoomReal": 1.25,
+    "viewport": {
+      "ancho": 1026,
+      "alto": 622
+    },
+    "pruebas": "badge, apertura, menú leído/no leído, flechas, Escape, foco, clic derecho, uno/todos, cancelación/confirmación, vacío, reapertura, async y Snapshot atrasado",
+    "llamadas": [
+      "listar",
+      "listar",
+      "marcar",
+      "eliminar",
+      "marcarTodas",
+      "listar",
+      "eliminar",
+      "listar",
+      "eliminarTodas",
+      "listar"
+    ],
+    "orden": [
+      "eliminar",
+      "eliminar"
+    ],
+    "snapshotConsultado": false
+  }
+]

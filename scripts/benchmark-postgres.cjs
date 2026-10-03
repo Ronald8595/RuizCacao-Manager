@@ -64,7 +64,7 @@ async function sembrar(db, datos, avisos) {
         [producto, cantidad]
       )
     await db.query(
-      'INSERT INTO ruizcacao.notificaciones(id,titulo,mensaje,fecha,leida,destino) SELECT id,titulo,mensaje,fecha,leida,destino FROM jsonb_populate_recordset(NULL::ruizcacao.notificaciones,$1::jsonb)',
+      'INSERT INTO ruizcacao.notificaciones(id,titulo,mensaje,fecha,leida,destino,usuario_id) SELECT n.id,n.titulo,n.mensaje,n.fecha,n.leida,n.destino,u.id FROM jsonb_populate_recordset(NULL::ruizcacao.notificaciones,$1::jsonb) n CROSS JOIN (SELECT id FROM ruizcacao.usuarios WHERE principal) u',
       [JSON.stringify(avisos)]
     )
     await db.query('COMMIT')
@@ -223,7 +223,7 @@ async function main() {
     informe.migraciones = (
       await db.query('SELECT version FROM ruizcacao.migraciones ORDER BY version')
     ).rows.map((r) => r.version)
-    assert.deepEqual(informe.migraciones, [1, 2, 3, 4, 5, 6, 7, 8, 9])
+    assert.deepEqual(informe.migraciones, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
     informe.tablas = Number(
       (
         await db.query(

@@ -19,14 +19,14 @@ export default function NovedadesVersion({
         Novedades de RuizCacao Manager {VERSION_APP}
       </h2>
       <p className="mt-3 text-sm">
-        Esta actualización incorpora anulaciones seguras de compras y ventas y mejoras para proteger
-        la información de tus operaciones.
+        Esta actualización mejora el rendimiento, la navegación y la gestión de notificaciones.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-5 text-sm">
-        <li>Las compras y ventas confirmadas ya no se editan.</li>
-        <li>Ahora puedes anular operaciones anteriores de forma segura.</li>
-        <li>Las anulaciones solicitan motivo y contraseña.</li>
-        <li>Stock, cuentas y reportes se ajustan automáticamente.</li>
+        <li>Mayor rendimiento con grandes volúmenes de información.</li>
+        <li>Paginación y navegación optimizadas en historiales, gastos y reportes.</li>
+        <li>Mejoras visuales de tablas, scroll y encabezados.</li>
+        <li>Nueva gestión de notificaciones: marcar, eliminar y limpieza automática.</li>
+        <li>Mejoras generales de estabilidad y preparación de PostgreSQL.</li>
       </ul>
       <button
         data-autofocus

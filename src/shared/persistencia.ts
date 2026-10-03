@@ -67,6 +67,10 @@ export const comandos = [
   'anularCuenta'
 ] as const
 export type Comando = (typeof comandos)[number]
+export interface Notificaciones {
+  avisos: Aviso[]
+  noLeidas: number
+}
 export interface Aviso {
   id: string
   titulo: string
@@ -124,6 +128,12 @@ export interface EstadoAcceso {
 }
 export type Respuesta<T> = { ok: true; valor: T } | { ok: false; error: string }
 export interface ApiPersistencia {
+  listarNotificaciones: () => Promise<Respuesta<Notificaciones>>
+  marcarNotificacionLeida: (id: string) => Promise<Respuesta<Notificaciones>>
+  marcarTodasNotificacionesLeidas: () => Promise<Respuesta<Notificaciones>>
+  eliminarNotificacion: (id: string) => Promise<Respuesta<Notificaciones>>
+  eliminarTodasNotificaciones: () => Promise<Respuesta<Notificaciones>>
+  limpiarNotificacionesAntiguas: () => Promise<Respuesta<Notificaciones>>
   historialCombinado: (
     filtro: import('./listados').FiltroListado
   ) => Promise<Respuesta<import('./listados').Listados['historialCombinado']>>

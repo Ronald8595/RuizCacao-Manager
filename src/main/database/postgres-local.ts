@@ -7,8 +7,22 @@ import { randomBytes } from 'node:crypto'
 import { createServer } from 'node:net'
 import { Client } from 'pg'
 import type { ConexionLocal } from '../../shared/persistencia'
+import { traducirError } from './errores'
 
 const ejecutar = promisify(execFile)
+export function faltaRuntimeWindows(error: unknown): boolean {
+  const code = (error as { code?: unknown })?.code
+  return typeof code === 'number' && Number.isSafeInteger(code) && code >>> 0 === 0xc0000135
+}
+function falloMotor(error: unknown, operacion: string): ErrorNegocio {
+  // Se excluyen argumentos, contraseñas, rutas, message y stdout/stderr del log.
+  traducirError(error, { modulo: 'postgres', operacion })
+  return new ErrorNegocio(
+    faltaRuntimeWindows(error)
+      ? 'Falta un componente de Microsoft necesario para iniciar RuizCacao Manager. Vuelve a ejecutar el instalador para completar la instalación. Si Windows solicita reiniciar, reinicia el equipo. Tus datos se conservaron.'
+      : 'No se pudo preparar el almacenamiento local. Vuelve a ejecutar el instalador o contacta con soporte. Los archivos existentes se conservaron.'
+  )
+}
 const existe = async (ruta: string): Promise<boolean> => {
   try {
     await access(ruta)
@@ -90,6 +104,25 @@ export class PostgresLocal {
     }
   }
   async iniciar(): Promise<ConexionLocal> {
+    const bin = this.opciones.binarios
+    let versionMotor: string | undefined
+    // Antes de generar credenciales o crear el directorio provisional: un motor
+    // presente puede no ser ejecutable en Windows si falta el runtime de Microsoft.
+    for (const nombre of ['postgres', 'initdb', 'pg_ctl', 'psql']) {
+      try {
+        const { stdout } = await ejecutar(join(bin, nombre + '.exe'), ['--version'], {
+          windowsHide: true,
+          timeout: 10000
+        })
+        const version = stdout.match(/PostgreSQL\) (\d+)/)?.[1]
+        if (!version) throw Object.assign(new Error(), { code: 'VERSION_MOTOR_INVALIDA' })
+        if (nombre === 'postgres') versionMotor = version
+        else if (version !== versionMotor)
+          throw Object.assign(new Error(), { code: 'VERSION_MOTOR_INCONSISTENTE' })
+      } catch (error) {
+        throw falloMotor(error, nombre + '_version')
+      }
+    }
     await mkdir(this.opciones.carpeta, { recursive: true })
     if (process.platform === 'win32') {
       // No heredar accesos de otros usuarios para credenciales y datos financieros.
@@ -133,16 +166,16 @@ export class PostgresLocal {
     }
     const c = this.credenciales!,
       data = this.ruta('data')
-    const bin = this.opciones.binarios
-    const versionMotor = (
-      await ejecutar(join(bin, 'postgres.exe'), ['--version'], { windowsHide: true })
-    ).stdout.match(/PostgreSQL\) (\d+)/)?.[1]
     if (await existe(join(data, 'PG_VERSION'))) {
       if ((await readFile(join(data, 'PG_VERSION'), 'utf8')).trim() !== versionMotor)
         throw new ErrorNegocio(
           'La versión del motor no coincide con los datos existentes. Se necesita una actualización técnica; no se modificaron los datos.'
         )
     } else {
+      if (await existe(data))
+        throw new ErrorNegocio(
+          'El almacenamiento existente necesita revisión técnica. No se sobrescribirá; contacta con soporte.'
+        )
       const provisional = this.ruta('data-inicializando'),
         pw = this.ruta('inicio.pw')
       if (await existe(provisional))
@@ -174,6 +207,8 @@ export class PostgresLocal {
           mode: 0o600
         })
         await rename(provisional, data)
+      } catch (error) {
+        throw falloMotor(error, 'inicializar_cluster')
       } finally {
         await unlink(pw).catch(() => {})
       }
@@ -186,19 +221,11 @@ export class PostgresLocal {
         // junto con windowsHide, mantiene PostgreSQL completamente en segundo plano.
         await ejecutar(
           join(bin, 'pg_ctl.exe'),
-          [
-            '-D',
-            data,
-            '-l',
-            this.ruta('postgresql.log'),
-            '-w',
-            '-t',
-            '30',
-            'start'
-          ],
+          ['-D', data, '-l', this.ruta('postgresql.log'), '-w', '-t', '30', 'start'],
           { windowsHide: true, timeout: 35000 }
         )
-      } catch {
+      } catch (error) {
+        traducirError(error, { modulo: 'postgres', operacion: 'arrancar_cluster' })
         // pg_ctl puede devolver error aunque el servidor haya alcanzado a iniciar;
         // comprobamos la conexión antes de mostrar el mensaje al usuario.
       }

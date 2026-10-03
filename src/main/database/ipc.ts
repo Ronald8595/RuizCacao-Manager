@@ -5,6 +5,12 @@ import { estadoAcceso, obtenerBase } from './conexion'
 import type { ApiPersistencia, Respuesta } from '../../shared/persistencia'
 export function registrarPersistenciaIPC(ventana: BrowserWindow): void {
   const handlers = {
+    listarNotificaciones: () => obtenerBase().listarNotificaciones(),
+    marcarNotificacionLeida: (id: string) => obtenerBase().marcarNotificacionLeida(id),
+    marcarTodasNotificacionesLeidas: () => obtenerBase().marcarTodasNotificacionesLeidas(),
+    eliminarNotificacion: (id: string) => obtenerBase().eliminarNotificacion(id),
+    eliminarTodasNotificaciones: () => obtenerBase().eliminarTodasNotificaciones(),
+    limpiarNotificacionesAntiguas: () => obtenerBase().limpiarNotificacionesAntiguas(),
     historialCombinado: (...args: Parameters<ApiPersistencia['historialCombinado']>) =>
       obtenerBase().historialCombinado(...args),
     listadoGastos: (...args: Parameters<ApiPersistencia['listadoGastos']>) =>

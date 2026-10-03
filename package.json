@@ -1,6 +1,6 @@
 {
   "name": "electron-app",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Sistema de gestión operativa y comercial de Grupo Ruiz",
   "main": "./out/main/index.js",
   "author": "Boloneitor",
@@ -31,8 +31,9 @@
     "db:qa": "electron scripts/qa-local.cjs --crear",
     "db:usuario": "electron scripts/qa-local.cjs",
     "db:qa:estado": "electron scripts/qa-local.cjs",
-    "release:preflight": "npm run prepare:recovery && npm run prepare:postgres && npm run typecheck && npm run lint && node scripts/verificar-distribucion.cjs",
-    "db:seed:performance": "electron scripts/seed-datos-rendimiento.cjs --insertar-desarrollador"
+    "release:preflight": "npm run prepare:recovery && npm run prepare:vcredist && npm run prepare:postgres && npm run typecheck && npm run lint && node scripts/verificar-distribucion.cjs",
+    "db:seed:performance": "electron scripts/seed-datos-rendimiento.cjs --insertar-desarrollador",
+    "prepare:vcredist": "node scripts/preparar-vcredist.cjs"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.2",

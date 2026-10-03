@@ -33,7 +33,7 @@ async function insertarRendimiento(
     await db.query("SET LOCAL TIME ZONE 'America/Guayaquil'")
     await db.query('SET CONSTRAINTS ALL DEFERRED')
     const version = (await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v
-    assert.ok([8, 9].includes(version))
+    assert.ok([8, 9, 10].includes(version))
     const huellas = async () => {
       const result = {}
       for (const e of Object.values(entidades))

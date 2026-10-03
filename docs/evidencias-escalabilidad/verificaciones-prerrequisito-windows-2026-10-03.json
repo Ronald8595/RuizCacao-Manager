@@ -1,0 +1,99 @@
+{
+  "fecha": "2026-10-03",
+  "rama": "feature/escalabilidad-postgresql",
+  "version": "1.2.0",
+  "esquema": 10,
+  "tablas": 25,
+  "runtime": {
+    "source": "https://aka.ms/vc14/vc_redist.x64.exe",
+    "version": "14.51.36247.0",
+    "sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+    "authenticode": "Valid",
+    "publisher": "Microsoft Corporation",
+    "architecture": "x64"
+  },
+  "codigosSalida": {
+    "typecheck": 0,
+    "lint": 0,
+    "dbTest": 0,
+    "dbSql": 0,
+    "releasePreflight": 0,
+    "nsisHarness": 0,
+    "builderSchema": 0,
+    "distribucionWindows": 0,
+    "postgresPrerrequisito": 0,
+    "eslintArchivosTarea": 0,
+    "gitDiffCheck": 0
+  },
+  "lint": {
+    "errores": 0,
+    "advertencias": 726
+  },
+  "clusterSuiteFinal": "ruizcacao-tests-gCYnb4",
+  "migracionesSinCambios": true,
+  "hashesMigraciones": [
+    {
+      "archivo": "001-base.sql",
+      "sha256": "ca081cc7d8de55e9a275c0412e7fc0953aac829574100ff1fe4e97c3c92dc795"
+    },
+    {
+      "archivo": "002-relacional.sql",
+      "sha256": "db3ea22f0af0a6f1d82289901bed2c232dd89dd964b8a97beb3e1767197e3803"
+    },
+    {
+      "archivo": "003-seguridad-respaldos.sql",
+      "sha256": "fbed523cce1169e1e343f66ebd051231cb636fc9eada5fbe7015f4d32787e708"
+    },
+    {
+      "archivo": "004-interrupciones-umbrales.sql",
+      "sha256": "2b1af167a0e389511384475b18fb5ac43d8dddd7fe0f9498e2451c660495616a"
+    },
+    {
+      "archivo": "005-multiusuario.sql",
+      "sha256": "b5119dcd85a6b65ff6d66743da0bdb1ca63295e74cfa7ec01307bc5a0ff4ac1a"
+    },
+    {
+      "archivo": "006-stock-inicial.sql",
+      "sha256": "240f8829447f4194e5d204105e7c0f305a55dd5a8687f2986105d10babaaf226"
+    },
+    {
+      "archivo": "007-anulaciones.sql",
+      "sha256": "c5f632ed09bbb959fbd99ef860ad17919c17ce7da282b7c8c4ad3e248ed6ca54"
+    },
+    {
+      "archivo": "008-rendimiento-paginacion.sql",
+      "sha256": "17556cc20877d33ff4580e18f286a35c5c25cae92630865826853a63570b31f8"
+    },
+    {
+      "archivo": "009-rendimiento-paginacion-compras-ventas.sql",
+      "sha256": "6ed5765a3084672fc5ca524d7b1c63a9500ff6045f705d0675799088ae2dba41"
+    },
+    {
+      "archivo": "010-notificaciones.sql",
+      "sha256": "66cf912f77b2b29e73a6c177f851365053d00ae59f35ec1efd77772dacb21b05"
+    },
+    {
+      "archivo": "verificacion.sql",
+      "sha256": "2baf67cd4409f6ffb2d15c1195a068a4bebe98eea2c0edd1720fede7902fc033"
+    }
+  ],
+  "postgresPaquetePreexistente": {
+    "initdb": "18.6",
+    "postgres": "18.6",
+    "pg_ctl": "18.6",
+    "psql": "18.6",
+    "codigosSalida": 0
+  },
+  "carpetaNueva": "LOCALAPPDATA/Programs/RuizCacaoManager",
+  "compatibilidadActualizacion": "appId/name/executableName conservados; código NSIS reutiliza InstallLocation registrado. Prueba real pendiente.",
+  "pendiente": [
+    "Build de aplicación 1.2.0",
+    "Instalación nueva en VM Windows limpia offline sin VC++",
+    "UAC/cancelación y reinicio real del redistribuible",
+    "Actualización real 1.1.2 -> 1.2.0"
+  ],
+  "limitaciones": "Arnés NSIS compila customInit, pero no ejecuta instalación Microsoft; ejecuta solo comparación de versiones. Binarios empaquetados probados pertenecen a dist preexistente.",
+  "buildAplicacionEjecutado": false,
+  "seedDesarrolloEjecutado": false,
+  "publicacionGitEjecutada": false
+}

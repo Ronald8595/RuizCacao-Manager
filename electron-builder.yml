@@ -1,4 +1,4 @@
-beforePack: ./scripts/preparar-clave.cjs
+beforePack: ./scripts/preparar-distribucion.cjs
 appId: com.gruporuiz.ruizcacao-manager
 productName: RuizCacao Manager
 copyright: Copyright © 2026 Boloneitor
@@ -43,6 +43,12 @@ win:
   executableName: RuizCacaoManager
   icon: build/icon.ico
 nsis:
+  include: build/installer.nsh
+  oneClick: false
+  perMachine: false
+  selectPerMachineByDefault: false
+  allowElevation: true
+  allowToChangeInstallationDirectory: false
   deleteAppDataOnUninstall: false
   artifactName: RuizCacaoManager-${version}-Setup.${ext}
   shortcutName: ${productName}

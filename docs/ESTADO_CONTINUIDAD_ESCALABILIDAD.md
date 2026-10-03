@@ -1,5 +1,25 @@
 # Estado de continuidad — Escalabilidad PostgreSQL
 
+## Prerrequisito del instalador Windows 1.2.0 — 2026-10-03
+
+Hallazgo real de VM comunicado por el usuario: PostgreSQL 18.6 incluido terminaba con -1073741515 / 0xC0000135; faltaban las DLL del runtime VC++ x64. Instalar el redistribuible oficial permitió ejecutar los cuatro binarios. El intento data-inicializando se conservó/retiró manualmente, y se obtuvo data válido PG_VERSION=18 y Crear usuario.
+
+Solución implementada: NSIS incorpora offline el redistribuible Microsoft x64 14.51.36247.0 aprobado por SHA-256/firma; verifica registro/versiones/DLL nativas, instala silenciosamente con UAC solo en el prerrequisito y espera/recomprueba antes de reemplazar una app anterior. Reinicio/cancelación/fallo detienen el reemplazo con mensaje comprensible. PostgresLocal comprueba cuatro --version antes de crear un intento y registra fallos sin rutas, contraseñas ni stdout/stderr. Se conserva todo data o intento incompleto. Identidad appId/nombre del paquete/executableName y almacenamiento intactos; asistente NSIS usa RuizCacaoManager (executableName) para nueva instalación y conserva la ruta registrada de 1.1.2.
+
+Esquema 10, 25 tablas; no hay migración nueva ni cambios en 001–010 (SHA-256 iguales). Runtime binario ignorado en vendor/vcredist; manifiesto/hook/scripts versionados. [Informe del prerrequisito](Informe_Prerequisito_Windows_v1.2.0.md) y [prueba Windows limpia](WINDOWS_LIMPIA.md). Typecheck 0; lint 0 (726 advertencias de formato/0 errores); db:test final 0 en ruizcacao-tests-gCYnb4; db:sql 0; release:preflight 0; include NSIS instalador/desinstalador 0; configuración builder 0; runtime ausente/alterado y arranque/conservación 0; diff --check 0. Binarios del paquete previo y vendor responden PostgreSQL 18.6. No build de aplicación, seed ni operaciones Git de publicación. Los apartados siguientes describen cortes anteriores.
+
+SIGUIENTE PASO EXACTO: con autorización de build, generar instalador 1.2.0 y probar offline en VM sin VC++ previo, cancelación UAC/reinicio y actualización real de 1.1.2. No declarar cerrada la validación de instalación en VM antes de repetirla con este instalador. Ejecutar db:test y release:preflight secuencialmente para evitar copiar ejecutables ocupados.
+
+## Etapa 05 — cierre técnico verificado 2026-10-03
+
+La tarea actual de gestión de notificaciones está implementada y probada. HEAD inicial dd558d86e54c0c845cc098f703e2abfeb987ccc0a, árbol limpio. Inspección terminó antes de editar. Avisos eran globales, sin propietario; migración 010 necesaria para aislamiento, mantiene 25 tablas y preserva históricos con copias independientes por usuario existente. Esquema final de código y suite 10; base local real no iniciada ni migrada. SQL/TS 001–009 y dependencias sin diff contra HEAD; hashes históricos registrados.
+
+Seis IPC compactos tipados, usuario tomado de sesión Main, UUID validados, limpieza DELETE de leídas con fecha de creación <= CURRENT_TIMESTAMP-48h al listar/inicializar/abrir. Nunca elimina no leídas ni copia ajena. Badge y panel actualizados sin Snapshot; cola ignora respuestas/errores anteriores a desmontar sesión y no restaura eliminaciones desde estado de negocio viejo. Tres puntos/clic derecho, menú según leído, teclado/foco, borrar individual sin cerrar, confirmación accesible para todas y vacío verificados.
+
+Typecheck 0; lint 0 (0 errores/727 advertencias de formato); db:test 0, clúster aislado ruizcacao-tests-zvN1Zn; db:sql 0; git diff --check 0. Nueva prueba v9→10: respaldo/fallo/rollback/preservación/25 tablas, instalación sin usuarios, seis acciones, privados ajenos, 48h exactas, idempotencia, reinicio, concurrencia y cero Snapshot. Suite completa conserva finanzas/reportes/PDF/CRUD/jornadas/auth/recuperación. Chromium oculto con CSS real y StrictMode pasa escritorio 1443×778, reducida 803×603 y zoom 1,25 / 1026×622; nueve PNG y JSON de acciones. Informes/logs/hashes en docs/evidencias-escalabilidad/*etapa05*. No db:seed:performance, seed en desarrollo, build, publicación Git ni dependencias nuevas. Fixtures de la suite solo en clúster temporal.
+
+SIGUIENTE PASO EXACTO: npm run dev desde electron-app en desarrollo, verificar respaldo pre_migracion y actualización 9→10, iniciar sesión existente y ejecutar lista humana de campana/acciones/menús/confirmación/teclado/ventana/zoom/persistencia/dos usuarios preparada en [Informe Etapa 05](Informe_Etapa_05_Notificaciones_v1.2.0.md). Registrar cierre humano antes de congelar 1.2.0. No iniciar base cliente ni seed/build/publicación. Los apartados siguientes son el corte histórico de Etapa 04 (esquema 9); no describen el esquema nuevo del código.
+
 Corte 2026-10-02, America/Guayaquil. Rama feature/escalabilidad-postgresql. Aplicación 1.1.2; objetivo futuro 1.2.0. HEAD inicial de Etapa 04: 9efb6c6 (Etapas 02/03 ya incorporadas por el usuario). Cambios de Etapa 04 sin commit. Sin pull/merge/commit/push/tag/build/seed ni dependencias nuevas.
 
 ## Estado actual

@@ -1,11 +1,11 @@
 const { writeFile, unlink } = require('node:fs/promises')
-const { randomUUID } = require('node:crypto')
 const { entorno, app, load, root } = require('./entorno-db.cjs')
 const { Pool } = require('pg'),
   { resolve, join } = require('node:path')
 const { createInterface } = require('node:readline/promises')
 const { traducirError } = load(join(root, 'src/main/database/errores.ts'))
 const { ErrorNegocio } = load(join(root, 'src/shared/errorNegocio.ts'))
+const { publicarAviso } = load(join(root, 'src/main/database/notificaciones.ts'))
 app
   .whenReady()
   .then(async () => {
@@ -20,9 +20,15 @@ app
           return
         } catch (error) {
           await pool
-            .query(
-              "INSERT INTO ruizcacao.notificaciones(id,titulo,mensaje,evento_clave,destino) VALUES($1,'Respaldo pendiente','No se pudo crear el respaldo manual. Contacta con soporte.','respaldo_manual_fallido:'||CURRENT_DATE,'inicio') ON CONFLICT(evento_clave) DO NOTHING",
-              [randomUUID()]
+            .query('SELECT CURRENT_DATE::text fecha')
+            .then((r) =>
+              publicarAviso(
+                pool,
+                'Respaldo pendiente',
+                'No se pudo crear el respaldo manual. Contacta con soporte.',
+                'respaldo_manual_fallido:' + r.rows[0].fecha,
+                'inicio'
+              )
             )
             .catch(() => {})
           await pool
@@ -91,9 +97,10 @@ app
             archivo
           ])
           await db.query('BEGIN')
-          if (version >= 3) await db.query(
-            "UPDATE ruizcacao.solicitudes_recuperacion SET estado='invalidada' WHERE estado='activa'"
-          )
+          if (version >= 3)
+            await db.query(
+              "UPDATE ruizcacao.solicitudes_recuperacion SET estado='invalidada' WHERE estado='activa'"
+            )
           await db.query(
             "INSERT INTO ruizcacao.auditoria(accion,responsable) VALUES('restauracion','Soporte')"
           )

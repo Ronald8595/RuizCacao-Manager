@@ -144,12 +144,12 @@ async function main() {
     console.log('OK v8 fallo posterior a CREATE INDEX revierte índice y versión')
     const indicesAntes = (
       await sql.query(
-        "SELECT indexname,indexdef FROM pg_indexes WHERE schemaname='ruizcacao' ORDER BY indexname"
+        "SELECT indexname,indexdef FROM pg_indexes WHERE schemaname='ruizcacao' AND indexname NOT IN ('notificaciones_evento_clave_key','notificaciones_usuario_evento_key') ORDER BY indexname"
       )
     ).rows
     servicio = new BaseLocal(connection, { respaldos })
     await servicio.iniciar()
-    assert.equal(await version(), 9)
+    assert.equal(await version(), 10)
     assert.equal(await indice(), 'ruizcacao.movimientos_stock_orden_id')
     assert.deepEqual(await snapshot(), antes)
     assert.deepEqual(
@@ -162,7 +162,7 @@ async function main() {
     )
     const indicesDespues = (
       await sql.query(
-        "SELECT indexname,indexdef FROM pg_indexes WHERE schemaname='ruizcacao' ORDER BY indexname"
+        "SELECT indexname,indexdef FROM pg_indexes WHERE schemaname='ruizcacao' AND indexname NOT IN ('notificaciones_evento_clave_key','notificaciones_usuario_evento_key') ORDER BY indexname"
       )
     ).rows
     assert.deepEqual(
@@ -207,7 +207,7 @@ async function main() {
       (await sql.query('SELECT version FROM ruizcacao.migraciones ORDER BY version')).rows.map(
         (r) => r.version
       ),
-      [1, 2, 3, 4, 5, 6, 7, 8, 9]
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     )
     console.log('OK v8 reinicio idempotente conserva credenciales e historial paginado')
   } finally {

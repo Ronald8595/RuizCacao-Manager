@@ -1,0 +1,8 @@
+{
+  "source": "https://aka.ms/vc14/vc_redist.x64.exe",
+  "architecture": "x64",
+  "version": "14.51.36247.0",
+  "sha256": "843068991daaa1f73ad9f6239bce4d0f6a07a51f18c37ea2a867e9beca71295c",
+  "verified": "2026-10-03",
+  "publisher": "Microsoft Corporation"
+}

@@ -2,6 +2,8 @@ const fs = require('node:fs'),
   path = require('node:path'),
   crypto = require('node:crypto')
 const root = path.resolve(__dirname, '..')
+const { execFileSync } = require('node:child_process')
+if (process.platform === 'win32') require('./preparar-vcredist.cjs').verificar()
 function revisar(carpeta) {
   for (const entrada of fs.readdirSync(carpeta, { withFileTypes: true })) {
     if (['node_modules', '.git', 'vendor', 'dist'].includes(entrada.name)) continue
@@ -34,6 +36,15 @@ for (const dir of ['bin', 'lib', 'share'])
 for (const exe of ['postgres', 'initdb', 'pg_ctl', 'psql', 'pg_dump', 'pg_restore'])
   if (!fs.existsSync(path.join(motor, 'bin', exe + '.exe')))
     throw Error('Falta un binario del motor: ' + exe)
+  else {
+    const version = execFileSync(path.join(motor, 'bin', exe + '.exe'), ['--version'], {
+      windowsHide: true,
+      timeout: 10000,
+      encoding: 'utf8'
+    }).trim()
+    if (!/PostgreSQL\) \d+/.test(version)) throw Error('El motor no respondió --version: ' + exe)
+    console.log(version)
+  }
 console.log(
   'Distribución preparada: bin/lib/share presentes, sin data ni claves privadas detectadas en código/recursos.'
 )

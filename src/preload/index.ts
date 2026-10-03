@@ -8,6 +8,12 @@ const invocar = <T>(canal: string, ...args: unknown[]): Promise<Respuesta<T>> =>
   }))
 // Custom APIs for renderer
 const datos: ApiPersistencia = {
+  listarNotificaciones: () => invocar('datos:listarNotificaciones'),
+  marcarNotificacionLeida: (id) => invocar('datos:marcarNotificacionLeida', id),
+  marcarTodasNotificacionesLeidas: () => invocar('datos:marcarTodasNotificacionesLeidas'),
+  eliminarNotificacion: (id) => invocar('datos:eliminarNotificacion', id),
+  eliminarTodasNotificaciones: () => invocar('datos:eliminarTodasNotificaciones'),
+  limpiarNotificacionesAntiguas: () => invocar('datos:limpiarNotificacionesAntiguas'),
   historialCombinado: (...args) => invocar('datos:historialCombinado', ...args),
   listadoGastos: (...args) => invocar('datos:listadoGastos', ...args),
   resumenGastos: (...args) => invocar('datos:resumenGastos', ...args),

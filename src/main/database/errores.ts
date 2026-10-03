@@ -35,7 +35,8 @@ export function detalleSeguro(error: unknown, contexto: ContextoError, referenci
     operacion: contexto.operacion,
     referencia,
     tipo: identificador(e?.name),
-    codigo: identificador(e?.code),
+    codigo:
+      typeof e?.code === 'number' && Number.isSafeInteger(e.code) ? e.code : identificador(e?.code),
     restriccion: identificador(e?.constraint),
     columna: identificador(e?.column),
     stack

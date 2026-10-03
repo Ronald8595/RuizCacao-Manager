@@ -1,4 +1,5 @@
 import { ErrorNegocio } from '../../../shared/errorNegocio'
+import useNotificaciones from '../hooks/useNotificaciones'
 /* eslint-disable react-refresh/only-export-components -- El contexto mantiene su API pública de hooks y catálogos; HMR puede recargar sus consumidores. */
 import { createContext, useContext, useMemo, useRef, useState, type ReactNode } from 'react'
 import { crearLecturaDominio, type AppDataContextValue } from '../../../shared/dominio'
@@ -23,7 +24,8 @@ type Acciones = {
   ) => Promise<ReturnType<AppDataContextValue[K]>>
 }
 type Contexto = Omit<AppDataContextValue, Comando | 'iniciarJornada' | 'finalizarJornada'> &
-  Acciones & {
+  Acciones &
+  ReturnType<typeof useNotificaciones> & {
     anularOperacion: (
       solicitud: string,
       tipo: 'compra' | 'venta',
@@ -41,7 +43,6 @@ type Contexto = Omit<AppDataContextValue, Comando | 'iniciarJornada' | 'finaliza
     configurarUmbralStock: (producto: string, valor: number | null) => Promise<void>
     registrarStockInicial: (input: StockInicialInput) => Promise<void>
     gestionarJornada: (accion: 'abrir' | 'cerrar' | 'reabrir', password?: string) => Promise<void>
-    leerAviso: (id: string) => Promise<void>
     cambiarPassword: (actual: string, nueva: string) => Promise<void>
     crearUsuario: (nombre: string, password: string) => Promise<void>
     cambiarEstadoUsuario: (id: string, activo: boolean) => Promise<void>
@@ -63,6 +64,7 @@ export function AppDataProvider({
   onSalir: () => void
 }): React.JSX.Element {
   const [estado, setEstado] = useState(inicial)
+  const notificaciones = useNotificaciones(estado.avisos, estado.usuarioActual?.id)
   const [guardando, setGuardando] = useState(false)
   const [error, setError] = useState('')
   const ocupado = useRef(false)
@@ -104,7 +106,7 @@ export function AppDataProvider({
       proteger(async () => {
         setEstado(desenvolver(await window.api.datos.anularOperacion(...args)))
       }),
-    avisos: estado.avisos,
+    ...notificaciones,
     administrador: estado.administrador,
     usuarioActual: estado.usuarioActual,
     usuarios: estado.usuarios,
@@ -123,13 +125,6 @@ export function AppDataProvider({
       proteger(async () =>
         setEstado(desenvolver(await window.api.datos.jornada(accion, password)))
       ),
-    leerAviso: async (id) => {
-      try {
-        setEstado(desenvolver(await window.api.datos.leerAviso(id)))
-      } catch (cause) {
-        setError(cause instanceof ErrorNegocio ? cause.message : 'No se pudo actualizar el aviso.')
-      }
-    },
     cambiarPassword: (actual, nueva) =>
       proteger(async () => {
         desenvolver(await window.api.datos.cambiarPassword(actual, nueva))

@@ -225,7 +225,7 @@ async function main() {
     await test('v6→v7→v8→v9 conserva datos, hashes, stock, fechas y comprobantes sin tablas nuevas', async () => {
       assert.equal(
         (await sql.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v,
-        9
+        10
       )
       assert.equal(
         (

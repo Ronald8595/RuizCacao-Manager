@@ -1,0 +1,39 @@
+Processing config: C:\Users\LENOVO\AppData\Local\electron-builder\Cache\nsis-3.0.4.1\nsis-3.0.4.1-w8az6\nsisconf.nsh
+Processing script file: "C:\Users\LENOVO\AppData\Local\Temp\rcm-nsis-runtime-9lU2th\prueba.nsi" (UTF8)
+
+Processed 1 file, writing output (x86-unicode):
+warning 6010: install function "SoloCompilarPrerequisito" not referenced - zeroing code (117-164) out
+
+
+Output: "C:\Users\LENOVO\AppData\Local\Temp\rcm-nsis-runtime-9lU2th\prueba.exe"
+Install: 0 pages (0 bytes), 1 section (16408 bytes), 224 instructions (6272 bytes), 405 strings (4130 bytes), 1 language table (162 bytes).
+
+Using zlib compression.
+
+EXE header size:               37888 / 39424 bytes
+Install code:                   2269 / 27300 bytes
+Install data:               18530356 / 18846556 bytes
+CRC (0xDEA177DD):                  4 / 4 bytes
+
+Total size:                 18570517 / 18913284 bytes (98.1%)
+
+1 warning:
+  6010: install function "SoloCompilarPrerequisito" not referenced - zeroing code (117-164) out
+
+Processing config: C:\Users\LENOVO\AppData\Local\electron-builder\Cache\nsis-3.0.4.1\nsis-3.0.4.1-w8az6\nsisconf.nsh
+Processing script file: "C:\Users\LENOVO\AppData\Local\Temp\rcm-nsis-runtime-9lU2th\prueba.nsi" (UTF8)
+
+Processed 1 file, writing output (x86-unicode):
+
+Output: "C:\Users\LENOVO\AppData\Local\Temp\rcm-nsis-runtime-9lU2th\prueba.exe"
+Install: 0 pages (0 bytes), 1 section (16408 bytes), 4 instructions (112 bytes), 62 strings (384 bytes), 1 language table (158 bytes).
+
+Using zlib compression.
+
+EXE header size:               37888 / 39424 bytes
+Install code:                    379 / 17390 bytes
+Install data:                      0 / 0 bytes
+CRC (0x9255BDAE):                  4 / 4 bytes
+
+Total size:                    38271 / 56818 bytes (67.3%)
+OK: include instalador/desinstalador compilado; runtime ausente/antiguo/igual/posterior comparado sin instalar VC++. Artefactos: C:\Users\LENOVO\AppData\Local\Temp\rcm-nsis-runtime-9lU2th

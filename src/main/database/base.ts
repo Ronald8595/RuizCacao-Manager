@@ -15,7 +15,15 @@ import { migracionCinco } from './migracion-cinco'
 import { migracionSeis } from './migracion-seis'
 import { migracionSiete } from './migracion-siete'
 import { migracionOcho } from './migracion-ocho'
-import { migracionNueve, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-nueve'
+import { migracionNueve } from './migracion-nueve'
+import { migracionDiez, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-diez'
+import {
+  consultarNotificaciones,
+  limpiarAvisos,
+  publicarAviso,
+  validarIdAviso
+} from './notificaciones'
+import type { Notificaciones } from '../../shared/persistencia'
 import { aplicarAnulacion } from '../../shared/anulaciones'
 import { nuevaSolicitud, tokenSolicitud, verificarAutorizacion, clavePublica } from './recuperacion'
 import { traducirError } from './errores'
@@ -216,6 +224,10 @@ export class BaseLocal {
         await db.query(migracionNueve)
         await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(9)')
       }
+      if ((version.rows[0]?.version ?? 0) < 10) {
+        await db.query(migracionDiez)
+        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(10)')
+      }
       const interrumpidas = await db.query(
         'SELECT id FROM ruizcacao.sesiones WHERE cerrada_en IS NULL'
       )
@@ -280,10 +292,7 @@ export class BaseLocal {
     clave?: string,
     destino?: string
   ): Promise<void> {
-    await db.query(
-      'INSERT INTO ruizcacao.notificaciones(id,titulo,mensaje,evento_clave,destino) VALUES($1,$2,$3,$4,$5) ON CONFLICT(evento_clave) DO NOTHING',
-      [randomUUID(), titulo, mensaje, clave ?? null, destino ?? null]
-    )
+    await publicarAviso(db, titulo, mensaje, clave, destino)
   }
   private async auditoria(db: PoolClient, accion: string, detalle: unknown = {}): Promise<void> {
     await db.query(
@@ -676,11 +685,7 @@ export class BaseLocal {
   }
   private async estado(db: PoolClient): Promise<EstadoAplicacion> {
     const datos = await this.datos(db)
-    const avisos = (
-      await db.query(
-        'SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE NOT leida OR id IN (SELECT id FROM ruizcacao.notificaciones ORDER BY fecha DESC LIMIT 200) ORDER BY fecha DESC'
-      )
-    ).rows.map((r) => ({ ...r, fecha: r.fecha.toISOString() }))
+    const avisos = this.usuarioId ? (await consultarNotificaciones(db, this.usuarioId)).avisos : []
     const umbralesStock = Object.fromEntries(
       (await db.query('SELECT nombre,umbral_stock FROM ruizcacao.productos')).rows.map((r) => [
         r.nombre,
@@ -1266,10 +1271,62 @@ export class BaseLocal {
   }
   async leerAviso(id: string): Promise<EstadoAplicacion> {
     this.exigirSesion()
+    validarIdAviso(id)
     return this.transaccion(async (db) => {
-      await db.query('UPDATE ruizcacao.notificaciones SET leida=true WHERE id=$1', [id])
+      const usuario = this.exigirUsuario()
+      await db.query(
+        'UPDATE ruizcacao.notificaciones SET leida=true WHERE id=$1 AND usuario_id=$2',
+        [id, usuario.id]
+      )
       return this.estado(db)
     })
+  }
+  private async operarNotificaciones(
+    accion: 'listar' | 'leer' | 'leerTodas' | 'eliminar' | 'eliminarTodas' | 'limpiar',
+    id?: string
+  ): Promise<Notificaciones> {
+    this.exigirSesion()
+    if (accion === 'leer' || accion === 'eliminar') validarIdAviso(id)
+    return this.transaccion(async (db) => {
+      const usuario = this.exigirUsuario()
+      if (accion === 'listar' || accion === 'limpiar') await limpiarAvisos(db, usuario.id)
+      if (accion === 'leer')
+        await db.query(
+          'UPDATE ruizcacao.notificaciones SET leida=true WHERE usuario_id=$1 AND id=$2',
+          [usuario.id, id]
+        )
+      if (accion === 'leerTodas')
+        await db.query(
+          'UPDATE ruizcacao.notificaciones SET leida=true WHERE usuario_id=$1 AND NOT leida',
+          [usuario.id]
+        )
+      if (accion === 'eliminar')
+        await db.query('DELETE FROM ruizcacao.notificaciones WHERE usuario_id=$1 AND id=$2', [
+          usuario.id,
+          id
+        ])
+      if (accion === 'eliminarTodas')
+        await db.query('DELETE FROM ruizcacao.notificaciones WHERE usuario_id=$1', [usuario.id])
+      return consultarNotificaciones(db, usuario.id)
+    })
+  }
+  listarNotificaciones(): Promise<Notificaciones> {
+    return this.operarNotificaciones('listar')
+  }
+  marcarNotificacionLeida(id: string): Promise<Notificaciones> {
+    return this.operarNotificaciones('leer', id)
+  }
+  marcarTodasNotificacionesLeidas(): Promise<Notificaciones> {
+    return this.operarNotificaciones('leerTodas')
+  }
+  eliminarNotificacion(id: string): Promise<Notificaciones> {
+    return this.operarNotificaciones('eliminar', id)
+  }
+  eliminarTodasNotificaciones(): Promise<Notificaciones> {
+    return this.operarNotificaciones('eliminarTodas')
+  }
+  limpiarNotificacionesAntiguas(): Promise<Notificaciones> {
+    return this.operarNotificaciones('limpiar')
   }
   async logout(): Promise<void> {
     const usuario = this.exigirSesion()

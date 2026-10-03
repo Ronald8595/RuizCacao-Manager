@@ -56,7 +56,7 @@ async function main() {
 
     assert.equal(
       Number((await db.query('SELECT max(version) v FROM ruizcacao.migraciones')).rows[0].v),
-      9
+      10
     )
     assert.equal((await db.query('SELECT count(*)::int n FROM ruizcacao.usuarios')).rows[0].n, 1)
     const usuario = (await db.query('SELECT nombre,rol,activo,principal FROM ruizcacao.usuarios'))
