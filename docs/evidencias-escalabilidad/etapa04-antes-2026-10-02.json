@@ -1,0 +1,95 @@
+{
+  "etiqueta": "antes",
+  "fecha": "2026-10-02T17:00:17.733Z",
+  "consultas": [],
+  "base": {
+    "nombre": "ruizcacao_manager",
+    "esquema": 9
+  },
+  "huella": "942fb1869779bd707aa4d37ea228e859f9274dcdc2f94b5e1df8f59c2e1354e7",
+  "conteos": {
+    "empleados": 3,
+    "clientes": 1004,
+    "proveedores": 506,
+    "compras": 10014,
+    "ventas": 15007,
+    "cuentas": 25021,
+    "movimientosCuenta": 16695,
+    "movimientosStock": 25450,
+    "gastos": 13019
+  },
+  "reporteAnterior": {
+    "ms": 6632.895,
+    "filas": 19691,
+    "bytes": 5023736,
+    "resumen": {
+      "desde": "2026-01-01",
+      "hasta": "2026-09-30",
+      "totalIngresos": 827674.34,
+      "totalComprasPagadas": 6306021.45,
+      "totalGastosManuales": 79699.5,
+      "totalGastos": 6385720.95,
+      "saldoPeriodo": -5558046.61
+    }
+  },
+  "historialAnterior": {
+    "ms": 5.332400000001144,
+    "filas": 25021,
+    "bytes": 14348255
+  },
+  "gastosAnterior": {
+    "ms": 3110.6916,
+    "filas": 13019,
+    "anuladas": 172,
+    "bytes": 9409323
+  },
+  "clientes": {
+    "ms": 0.30979999999908614,
+    "filas": 1000,
+    "bytes": 257543
+  },
+  "proveedores": {
+    "ms": 0.13220000000001164,
+    "filas": 500,
+    "bytes": 108716
+  },
+  "renderer": {
+    "mediciones": [
+      {
+        "pantalla": "historial",
+        "renderSincronoMs": 1396.9000000059605,
+        "renderLayoutMs": 4074.4000000059605,
+        "datosListosMs": 4473,
+        "filas": 25021
+      },
+      {
+        "pantalla": "gastos",
+        "renderSincronoMs": 15314.300000011921,
+        "renderLayoutMs": 18059.90000000596,
+        "datosListosMs": 18383.59999999404,
+        "filas": 13019
+      },
+      {
+        "pantalla": "reportes",
+        "renderSincronoMs": 30853.80000001192,
+        "renderLayoutMs": 32350.80000001192,
+        "datosListosMs": 32771.70000001788,
+        "filas": 19691
+      },
+      {
+        "pantalla": "clientes",
+        "renderSincronoMs": 3.699999988079071,
+        "renderLayoutMs": 8.900000005960464,
+        "datosListosMs": 262.90000000596046,
+        "filas": 10
+      },
+      {
+        "pantalla": "proveedores",
+        "renderSincronoMs": 37.400000005960464,
+        "renderLayoutMs": 99.5,
+        "datosListosMs": 358.40000000596046,
+        "filas": 506
+      }
+    ]
+  }
+}

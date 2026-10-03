@@ -1,3 +1,5 @@
+import Paginacion from '../components/Paginacion'
+import ContenedorTabla from '../components/ContenedorTabla'
 import { useHistorialOperaciones } from '../hooks/useHistorialOperaciones'
 import AnularOperacion from '../components/AnularOperacion'
 import DetalleOperacion from '../components/DetalleOperacion'
@@ -318,7 +320,7 @@ function Ventas(): React.JSX.Element {
   const mensajeJornadaBloqueada = 'No se puede realizar venta hasta iniciar o reabrir la jornada.'
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col overflow-y-auto p-4 sm:p-6 lg:p-7">
+    <section className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto [&>*]:shrink-0 p-4 sm:p-6 lg:p-7">
       <PageHeader
         greeting="Ventas"
         subtitle="Registro de ventas de cacao y maracuyá, con facturación."
@@ -427,7 +429,17 @@ function Ventas(): React.JSX.Element {
         />
       ) : (
         <>
-          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+          <ContenedorTabla
+            etiqueta="Historial de ventas"
+            reinicio={JSON.stringify([
+              historial.numero,
+              historial.limite,
+              busqueda,
+              filtroDesde,
+              filtroHasta
+            ])}
+            className="rounded-2xl border border-[#e2e7e2] bg-white"
+          >
             <table className="w-full min-w-[1020px] text-left text-[13px]">
               <thead>
                 <tr className="border-b border-[#e2e7e2] bg-[#fafbfa] text-[11px] font-bold uppercase tracking-wide text-[#8a938d]">
@@ -528,33 +540,11 @@ function Ventas(): React.JSX.Element {
                 )}
               </tbody>
             </table>
-          </div>
-          <div className="mt-4 flex items-center justify-between text-[12px]">
-            <span>
-              {historial.filas.length} registros en esta página · Página {historial.numero}
-            </span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                disabled={!historial.hayAnterior || historial.cargando}
-                onClick={historial.anterior}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={!historial.haySiguiente || historial.cargando}
-                onClick={historial.siguiente}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Siguiente
-              </button>
-            </div>
-          </div>
+          </ContenedorTabla>
         </>
       )}
 
+      <Paginacion {...historial} />
       {modalAbierto && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 p-4">
           <div className="max-h-[90vh] w-full max-w-[720px] overflow-y-auto rounded-2xl bg-white p-6 shadow-xl">

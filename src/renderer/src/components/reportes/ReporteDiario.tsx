@@ -1,13 +1,19 @@
-import { formatoFecha, formatoMoneda, type ResumenFinanciero } from '../../utils/reportes'
+import { formatoFecha, formatoMoneda, type FilaFinanciera } from '../../utils/reportes'
+import type { TotalesFinancieros } from '../../../../shared/listados'
+import ContenedorTabla from '../ContenedorTabla'
 export interface ReporteProps {
-  resumen: ResumenFinanciero
+  resumen: TotalesFinancieros
+  filas: FilaFinanciera[]
+  reinicio: string
 }
 export function ReporteMovimientos({
   resumen,
+  filas,
+  reinicio,
   titulo
 }: ReporteProps & { titulo: string }): React.JSX.Element {
   return (
-    <article className="rounded-2xl border border-[#e2e7e2] bg-white p-5">
+    <article className="min-w-0 shrink-0 rounded-2xl border border-[#e2e7e2] bg-white p-5">
       <p className="text-[10px] font-bold uppercase text-[#b68b2c]">
         Grupo Ruiz · RuizCacao Manager
       </p>
@@ -35,7 +41,7 @@ export function ReporteMovimientos({
           </div>
         ))}
       </div>
-      <div className="overflow-x-auto">
+      <ContenedorTabla etiqueta="Detalle financiero del periodo" reinicio={reinicio}>
         <table className="w-full min-w-[620px] text-left text-[12px]">
           <thead>
             <tr className="border-b text-[#707972]">
@@ -47,7 +53,7 @@ export function ReporteMovimientos({
             </tr>
           </thead>
           <tbody>
-            {resumen.filas.map((f) => (
+            {filas.map((f) => (
               <tr key={f.id} className="border-b border-[#eef1ee]">
                 <td className="p-2">{formatoFecha(f.fecha)}</td>
                 <td className="p-2">{f.tipo}</td>
@@ -56,7 +62,7 @@ export function ReporteMovimientos({
                 <td className="p-2">{f.monto < 0 ? '$' + formatoMoneda(-f.monto) : '—'}</td>
               </tr>
             ))}
-            {!resumen.filas.length && (
+            {!filas.length && (
               <tr>
                 <td colSpan={5} className="p-6 text-center">
                   No hay pagos ni cobros en este periodo.
@@ -65,7 +71,7 @@ export function ReporteMovimientos({
             )}
           </tbody>
         </table>
-      </div>
+      </ContenedorTabla>
     </article>
   )
 }

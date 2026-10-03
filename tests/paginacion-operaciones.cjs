@@ -102,6 +102,11 @@ async function main() {
         const ids = []
         do {
           const page = await consultar({ ...filtro, cursor })
+          assert.equal(
+            page.total,
+            esperado.length,
+            'COUNT debe compartir filtros sin cursor de avance'
+          )
           assert.ok(page.filas.length <= 15)
           for (const r of page.filas) {
             assert.ok(!('orden' in r))

@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import { Users, Plus, Search, Pencil, Trash2, ArrowUpDown } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import EmptyState from '../components/EmptyState'
+import ContenedorTabla from '../components/ContenedorTabla'
 import EmpleadoFormModal from '../components/EmpleadoFormModal'
 import ModalAccesible from '../components/ModalAccesible'
 import { useAppData } from '../store/AppDataContext'
@@ -124,7 +125,7 @@ export default function Empleados(): React.JSX.Element {
   return (
     <section
       aria-label="Módulo de gestión de empleados"
-      className="flex min-h-0 flex-1 flex-col overflow-y-auto p-4 sm:p-6 lg:p-7"
+      className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto p-4 sm:p-6 lg:p-7 [&>*]:shrink-0"
     >
       <PageHeader
         greeting="Gestión de Empleados"
@@ -183,7 +184,11 @@ export default function Empleados(): React.JSX.Element {
         />
       ) : (
         <>
-          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+          <ContenedorTabla
+            etiqueta="Lista de empleados"
+            reinicio={JSON.stringify([paginaActual, consulta, filtro, orden, ascendente])}
+            className="rounded-2xl border border-[#e2e7e2] bg-white"
+          >
             <table className="w-full min-w-[700px] text-left text-[13px]">
               <caption className="sr-only">Empleados registrados</caption>
               <thead>
@@ -255,8 +260,11 @@ export default function Empleados(): React.JSX.Element {
                 )}
               </tbody>
             </table>
-          </div>
-          <div className="mt-4 flex items-center justify-between gap-3 text-[12px] text-[#5b635e]">
+          </ContenedorTabla>
+          <nav
+            aria-label="Paginación"
+            className="mt-4 flex flex-wrap items-center justify-between gap-3 text-[12px] text-[#5b635e]"
+          >
             <span>
               15 por página · Página {paginaActual} de {paginas}
             </span>
@@ -278,7 +286,7 @@ export default function Empleados(): React.JSX.Element {
                 Siguiente
               </button>
             </div>
-          </div>
+          </nav>
         </>
       )}
       {modal && (
@@ -289,7 +297,9 @@ export default function Empleados(): React.JSX.Element {
             setModal(false)
             notificar(
               'exito',
-              editando ? 'Empleado actualizado correctamente.' : 'Empleado registrado correctamente.'
+              editando
+                ? 'Empleado actualizado correctamente.'
+                : 'Empleado registrado correctamente.'
             )
           }}
         />

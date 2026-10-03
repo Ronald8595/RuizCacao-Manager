@@ -3,7 +3,6 @@ import { entidades } from './relacional'
 import { validarFiltroStock } from './historial-stock'
 import { ErrorNegocio } from '../../shared/errorNegocio'
 import {
-  TAMANO_PAGINA_OPERACIONES,
   type FiltroHistorialOperaciones,
   type PaginaCompras,
   type PaginaVentas
@@ -11,13 +10,14 @@ import {
 type Modulo = 'compras' | 'ventas'
 export function consultaHistorialOperaciones(
   modulo: Modulo,
-  input: FiltroHistorialOperaciones
+  input: FiltroHistorialOperaciones,
+  conteo = false
 ): { sql: string; params: unknown[] } {
   if (
     !input ||
     typeof input !== 'object' ||
     Array.isArray(input) ||
-    Object.keys(input).some((k) => !['desde', 'hasta', 'busqueda', 'cursor'].includes(k))
+    Object.keys(input).some((k) => !['desde', 'hasta', 'busqueda', 'cursor', 'limite'].includes(k))
   )
     throw new ErrorNegocio('Revisa los filtros del historial.')
   if (input.cursor && (typeof input.cursor !== 'string' || !input.cursor.startsWith(modulo + '.')))
@@ -44,7 +44,7 @@ export function consultaHistorialOperaciones(
   if (f.cursor) {
     const { techo, despues } = f.cursor
     where.push(`(o.orden,o.id)<=(${p(techo.orden)}::bigint,${p(techo.id)}::text)`)
-    where.push(`(o.orden,o.id)<(${p(despues.orden)}::bigint,${p(despues.id)}::text)`)
+    if (!conteo) where.push(`(o.orden,o.id)<(${p(despues.orden)}::bigint,${p(despues.id)}::text)`)
   }
   if (f.busqueda) {
     const texto = p(f.busqueda),
@@ -61,7 +61,7 @@ export function consultaHistorialOperaciones(
     )
   }
   return {
-    sql: `SELECT ${cols.join(',')} FROM ruizcacao.${modulo} o${modulo === 'ventas' && f.busqueda ? ' LEFT JOIN ruizcacao.clientes c ON c.id=o.cliente_id' : ''}${where.length ? ' WHERE ' + where.join(' AND ') : ''} ORDER BY o.orden DESC,o.id DESC LIMIT ${p(TAMANO_PAGINA_OPERACIONES + 1)}`,
+    sql: `SELECT ${conteo ? 'count(*)::text total' : cols.join(',')} FROM ruizcacao.${modulo} o${modulo === 'ventas' && f.busqueda ? ' LEFT JOIN ruizcacao.clientes c ON c.id=o.cliente_id' : ''}${where.length ? ' WHERE ' + where.join(' AND ') : ''} ${conteo ? '' : 'ORDER BY o.orden DESC,o.id DESC LIMIT ' + p(f.limite + 1)}`,
     params
   }
 }
@@ -79,10 +79,10 @@ async function consultar(
   const techo =
     f.cursor?.techo ??
     (rows[0] ? { orden: String(rows[0].orden), id: String(rows[0].id) } : undefined)
-  const visibles = rows.slice(0, TAMANO_PAGINA_OPERACIONES),
+  const visibles = rows.slice(0, f.limite),
     last = visibles.at(-1)
   const siguiente =
-    rows.length > TAMANO_PAGINA_OPERACIONES && last && techo
+    rows.length > f.limite && last && techo
       ? modulo +
         '.' +
         Buffer.from(
@@ -105,7 +105,9 @@ async function consultar(
     }
     return dto
   })
-  return { filas, siguiente } as unknown as PaginaCompras | PaginaVentas
+  const count = consultaHistorialOperaciones(modulo, input, true)
+  const total = Number((await db.query(count.sql, count.params)).rows[0].total)
+  return { filas, siguiente, total } as unknown as PaginaCompras | PaginaVentas
 }
 export async function consultarHistorialCompras(
   db: Pick<PoolClient, 'query'>,

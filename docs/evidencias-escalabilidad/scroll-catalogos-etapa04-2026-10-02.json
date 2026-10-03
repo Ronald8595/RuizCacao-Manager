@@ -1,0 +1,158 @@
+[
+  {
+    "escenario": {
+      "nombre": "escritorio",
+      "ancho": 1440,
+      "alto": 960,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "pantalla": "clientes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieExterno": true,
+        "reinicios": true,
+        "rueda": true,
+        "pageDown": true,
+        "tabAcciones": true,
+        "editarCancelar": true,
+        "desactivarCancelar": true,
+        "alto": 362,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "empleados",
+        "filas": 15,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieExterno": true,
+        "reinicios": true,
+        "rueda": true,
+        "pageDown": true,
+        "tabAcciones": true,
+        "editarCancelar": true,
+        "desactivarCancelar": true,
+        "alto": 389,
+        "viewport": [
+          1443,
+          778
+        ]
+      }
+    ],
+    "datosSoloMemoria": true,
+    "llamadasDatos": 0,
+    "fixtureIntacta": true
+  },
+  {
+    "escenario": {
+      "nombre": "reducida",
+      "ancho": 800,
+      "alto": 600,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "pantalla": "clientes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieExterno": true,
+        "reinicios": true,
+        "rueda": true,
+        "pageDown": true,
+        "tabAcciones": true,
+        "editarCancelar": true,
+        "desactivarCancelar": true,
+        "alto": 180,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "empleados",
+        "filas": 15,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieExterno": true,
+        "reinicios": true,
+        "rueda": true,
+        "pageDown": true,
+        "tabAcciones": true,
+        "editarCancelar": true,
+        "desactivarCancelar": true,
+        "alto": 207,
+        "viewport": [
+          803,
+          603
+        ]
+      }
+    ],
+    "datosSoloMemoria": true,
+    "llamadasDatos": 0,
+    "fixtureIntacta": true
+  },
+  {
+    "escenario": {
+      "nombre": "zoom125",
+      "ancho": 1280,
+      "alto": 800,
+      "zoom": 1.25
+    },
+    "zoomReal": 1.25,
+    "validaciones": [
+      {
+        "pantalla": "clientes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieExterno": true,
+        "reinicios": true,
+        "rueda": true,
+        "pageDown": true,
+        "tabAcciones": true,
+        "editarCancelar": true,
+        "desactivarCancelar": true,
+        "alto": 208,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "empleados",
+        "filas": 15,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieExterno": true,
+        "reinicios": true,
+        "rueda": true,
+        "pageDown": true,
+        "tabAcciones": true,
+        "editarCancelar": true,
+        "desactivarCancelar": true,
+        "alto": 235,
+        "viewport": [
+          1026,
+          622
+        ]
+      }
+    ],
+    "datosSoloMemoria": true,
+    "llamadasDatos": 0,
+    "fixtureIntacta": true
+  }
+]

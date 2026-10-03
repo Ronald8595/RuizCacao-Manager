@@ -1,3 +1,5 @@
+import Paginacion from '../components/Paginacion'
+import ContenedorTabla from '../components/ContenedorTabla'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
 import { useMemo, useState, type FormEvent } from 'react'
 import { Package, Edit3, Search, X, ArrowRightLeft } from 'lucide-react'
@@ -980,7 +982,18 @@ export default function Stock(): React.JSX.Element {
         />
       ) : (
         <>
-          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+          <ContenedorTabla
+            etiqueta="Movimientos de stock"
+            reinicio={JSON.stringify([
+              historial.numero,
+              historial.limite,
+              busqueda,
+              producto,
+              fechaDesde,
+              fechaHasta
+            ])}
+            className="rounded-2xl border border-[#e2e7e2] bg-white"
+          >
             <table className="w-full min-w-[900px] text-left text-[12px]">
               <thead>
                 <tr className="border-b bg-[#fafbfa] text-[11px] uppercase text-[#5b635e]">
@@ -1074,34 +1087,11 @@ export default function Stock(): React.JSX.Element {
                 })}
               </tbody>
             </table>
-          </div>
-
-          <div className="mt-4 flex items-center justify-between text-[12px]">
-            <span>
-              {historial.filas.length} registros en esta página · Página {historial.numero}
-            </span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                disabled={!historial.hayAnterior || historial.cargando}
-                onClick={historial.anterior}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={!historial.haySiguiente || historial.cargando}
-                onClick={historial.siguiente}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Siguiente
-              </button>
-            </div>
-          </div>
+          </ContenedorTabla>
         </>
       )}
 
+      <Paginacion {...historial} />
       {stockInicialAbierto && (
         <StockInicialModal onCancelar={() => setStockInicialAbierto(false)} />
       )}

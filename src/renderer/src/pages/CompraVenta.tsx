@@ -1,5 +1,7 @@
-import { useCallback, useMemo, useState } from 'react'
-import { indexarPrimero } from '../utils/indices'
+import { useState } from 'react'
+import Paginacion from '../components/Paginacion'
+import ContenedorTabla from '../components/ContenedorTabla'
+import { useHistorialCombinado } from '../hooks/useListados'
 import Compras from './Compras'
 import Ventas from './Ventas'
 import DetalleCuenta from '../components/DetalleCuenta'
@@ -11,34 +13,19 @@ export default function CompraVenta(): React.JSX.Element {
   const [estado, setEstado] = useState('todos')
   const [busqueda, setBusqueda] = useState('')
   const [detalle, setDetalle] = useState<string | null>(null)
-  const { cuentas, clientes } = useAppData()
-  const clientesPorId = useMemo(() => indexarPrimero(clientes, (c) => c.id), [clientes])
-  const nombre = useCallback(
-    (c: (typeof cuentas)[number]): string =>
-      c.categoria === 'compra'
-        ? (c.proveedorNombre ?? 'Proveedor')
-        : (clientesPorId.get(c.clienteId ?? '')?.nombreRazonSocial ?? 'Cliente'),
-    [clientesPorId]
+  const { cuentas } = useAppData()
+  const [desde, setDesde] = useState('')
+  const [hasta, setHasta] = useState('')
+  const historial = useHistorialCombinado(
+    { desde, hasta, tipo, estado, busqueda },
+    cuentas,
+    vista === 'historial'
   )
-  const filas = useMemo(
-    () =>
-      vista !== 'historial'
-        ? []
-        : cuentas.filter(
-            (c) =>
-              c.origen !== 'manual' &&
-              (tipo === 'todos' || c.categoria === tipo) &&
-              (estado === 'todos' || c.estado === estado) &&
-              (nombre(c) + ' ' + c.fecha + ' ' + (c.numeroCompra ?? c.numeroFactura))
-                .toLowerCase()
-                .includes(busqueda.toLowerCase())
-          ),
-    [vista, cuentas, nombre, tipo, estado, busqueda]
-  )
+  const filas = historial.filas
   const seleccion = detalle ? cuentas.find((c) => c.id === detalle) : undefined
   return (
-    <div className="flex min-h-0 flex-1 flex-col">
-      <nav aria-label="Compra y venta" className="flex gap-2 px-6 pt-4">
+    <div className="flex min-h-0 min-w-0 flex-1 flex-col">
+      <nav aria-label="Compra y venta" className="flex shrink-0 flex-wrap gap-2 px-6 pt-4">
         {[
           ['compras', 'Compras'],
           ['ventas', 'Ventas'],
@@ -63,7 +50,7 @@ export default function CompraVenta(): React.JSX.Element {
       ) : vista === 'ventas' ? (
         <Ventas />
       ) : (
-        <section className="min-h-0 flex-1 overflow-y-auto p-6">
+        <section className="min-h-0 min-w-0 flex-1 overflow-y-auto p-6">
           <h1 className="mb-2 text-xl font-bold">Historial de compra/venta</h1>
           <p className="mb-4 text-sm text-[#707972]">
             Las operaciones conservan sus datos y todos sus abonos, incluso después de quedar
@@ -97,10 +84,43 @@ export default function CompraVenta(): React.JSX.Element {
               <option value="pendiente">Pendientes</option>
               <option value="parcial">Parciales</option>
               <option value="cerrado">Saldadas</option>
+              <option value="anulado">Anuladas</option>
             </select>
+            <input
+              type="date"
+              aria-label="Desde"
+              value={desde}
+              onChange={(e) => setDesde(e.target.value)}
+              className="rounded-xl border p-2"
+            />
+            <input
+              type="date"
+              aria-label="Hasta"
+              value={hasta}
+              onChange={(e) => setHasta(e.target.value)}
+              className="rounded-xl border p-2"
+            />
           </div>
-          <div className="overflow-x-auto rounded-2xl border bg-white">
-            <table className="w-full text-left text-[13px]">
+          {historial.cargando && <p role="status">Cargando historial…</p>}
+          {historial.error && (
+            <p role="alert">
+              {historial.error} <button onClick={historial.reintentar}>Reintentar</button>
+            </p>
+          )}
+          <ContenedorTabla
+            etiqueta="Historial de compra y venta"
+            reinicio={JSON.stringify([
+              historial.numero,
+              historial.limite,
+              desde,
+              hasta,
+              tipo,
+              estado,
+              busqueda
+            ])}
+            className="rounded-2xl border bg-white"
+          >
+            <table className="w-full min-w-[1100px] text-left text-[13px]">
               <thead>
                 <tr>
                   {[
@@ -128,7 +148,7 @@ export default function CompraVenta(): React.JSX.Element {
                       {c.categoria === 'compra' ? 'Compra' : 'Venta'} N.º{' '}
                       {c.numeroCompra ?? c.numeroFactura} del día
                     </td>
-                    <td className="p-3">{nombre(c)}</td>
+                    <td className="p-3">{c.titular}</td>
                     <td className="p-3">
                       {'$'}
                       {formatoMoneda(c.montoTotal)}
@@ -150,7 +170,7 @@ export default function CompraVenta(): React.JSX.Element {
                     </td>
                   </tr>
                 ))}
-                {!filas.length && (
+                {!historial.cargando && !historial.error && !filas.length && (
                   <tr>
                     <td colSpan={9} className="p-6 text-center">
                       No hay operaciones que coincidan.
@@ -159,7 +179,8 @@ export default function CompraVenta(): React.JSX.Element {
                 )}
               </tbody>
             </table>
-          </div>
+          </ContenedorTabla>
+          <Paginacion {...historial} />
         </section>
       )}
       {seleccion && <DetalleCuenta cuenta={seleccion} onCerrar={() => setDetalle(null)} />}

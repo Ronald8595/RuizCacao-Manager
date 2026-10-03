@@ -1,6 +1,7 @@
 import { useNotificacion } from '../store/NotificacionContext'
-import { documentoReporte } from '../utils/reportePdf'
-import { useEffect, useState } from 'react'
+import Paginacion from '../components/Paginacion'
+import { useReportePeriodo } from '../hooks/useListados'
+import { useEffect, useMemo, useState } from 'react'
 import { CalendarDays, ClipboardList } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import EmptyState from '../components/EmptyState'
@@ -8,12 +9,7 @@ import ReporteDiario from '../components/reportes/ReporteDiario'
 import ReporteSemanal from '../components/reportes/ReporteSemanal'
 import ReporteMensual from '../components/reportes/ReporteMensual'
 import { useAppData } from '../store/AppDataContext'
-import {
-  rangoDiaActual,
-  rangoMesActual,
-  rangoSemanaActual,
-  resumirPeriodo
-} from '../utils/reportes'
+import { rangoDiaActual, rangoMesActual, rangoSemanaActual } from '../utils/reportes'
 
 type TipoReporte = 'diario' | 'semanal' | 'mensual'
 
@@ -22,7 +18,7 @@ type TipoReporte = 'diario' | 'semanal' | 'mensual'
  * son fijos y automáticos; el usuario elige el periodo, no la plantilla.
  */
 function Consultas(): React.JSX.Element {
-  const { ventas, gastos, movimientosCuenta, cuentas, compras } = useAppData()
+  const { cuentas } = useAppData()
   const { notificar } = useNotificacion()
   const [exportando, setExportando] = useState(false)
   const [errorPDF, setErrorPDF] = useState('')
@@ -38,11 +34,11 @@ function Consultas(): React.JSX.Element {
     setExportando(true)
     setErrorPDF('')
     try {
-      const doc = documentoReporte(resumen, tipoReporte)
-      const resultado = await window.api.generarReportePDF(
-        doc.html,
-        doc.nombreArchivo,
-        () => notificar('exito', 'Reporte generado correctamente. Selecciona dónde guardarlo.')
+      const respuesta = await window.api.datos.documentoReporte({ desde, hasta }, tipoReporte)
+      if (!respuesta.ok) throw new Error(respuesta.error)
+      const doc = respuesta.valor
+      const resultado = await window.api.generarReportePDF(doc.html, doc.nombreArchivo, () =>
+        notificar('exito', 'Reporte generado correctamente. Selecciona dónde guardarlo.')
       )
       if (resultado.error) {
         setErrorPDF(resultado.error)
@@ -64,13 +60,20 @@ function Consultas(): React.JSX.Element {
   const [hasta, setHasta] = useState(inicial.hasta)
   const [rangoAutomatico, setRangoAutomatico] = useState(true)
 
-  const resumen = resumirPeriodo(ventas, gastos, desde, hasta, movimientosCuenta, cuentas, compras)
+  // El modo también invalida la navegación, incluso cuando conserva el rango.
+  const revision = useMemo(() => ({ cuentas, tipoReporte }), [cuentas, tipoReporte])
+  const historial = useReportePeriodo({ desde, hasta }, revision)
+  const resumen = historial.pagina?.resumen
 
   function seleccionarTipo(tipo: TipoReporte): void {
     setTipoReporte(tipo)
     setRangoAutomatico(true)
     const rango =
-      tipo === 'diario' ? rangoDiaActual() : tipo === 'semanal' ? rangoSemanaActual() : rangoMesActual()
+      tipo === 'diario'
+        ? rangoDiaActual()
+        : tipo === 'semanal'
+          ? rangoSemanaActual()
+          : rangoMesActual()
     setDesde(rango.desde)
     setHasta(rango.hasta)
   }
@@ -93,24 +96,25 @@ function Consultas(): React.JSX.Element {
   }, [tipoReporte, rangoAutomatico])
 
   const ReporteActual =
-    tipoReporte === 'diario' ? ReporteDiario : tipoReporte === 'semanal' ? ReporteSemanal : ReporteMensual
-
-  const hayDatos = movimientosCuenta.length > 0 || gastos.some(g => g.tipo === 'manual')
+    tipoReporte === 'diario'
+      ? ReporteDiario
+      : tipoReporte === 'semanal'
+        ? ReporteSemanal
+        : ReporteMensual
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col overflow-y-auto p-4 sm:p-6 lg:p-7">
-      <PageHeader
-        greeting="Consultas y Reportes"
-        subtitle=""
-      />
+    <section className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto [&>*]:shrink-0 p-4 sm:p-6 lg:p-7">
+      <PageHeader greeting="Consultas y Reportes" subtitle="" />
 
       <div className="mb-5 rounded-2xl border border-[#e2e7e2] bg-white p-4 sm:p-5">
         <div className="mb-4 flex flex-wrap items-center gap-2">
-          {([
-            ['diario', 'Diario'],
-            ['semanal', 'Semanal'],
-            ['mensual', 'Mensual']
-          ] as const).map(([tipo, label]) => (
+          {(
+            [
+              ['diario', 'Diario'],
+              ['semanal', 'Semanal'],
+              ['mensual', 'Mensual']
+            ] as const
+          ).map(([tipo, label]) => (
             <button
               key={tipo}
               type="button"
@@ -134,7 +138,10 @@ function Consultas(): React.JSX.Element {
             <input
               type="date"
               value={desde}
-              onChange={(e) => { setDesde(e.target.value); setRangoAutomatico(false) }}
+              onChange={(e) => {
+                setDesde(e.target.value)
+                setRangoAutomatico(false)
+              }}
               className="w-full rounded-xl border border-[#e1e5e1] px-3 py-2.5 text-[13px] outline-none focus:border-[#16834b]"
             />
           </label>
@@ -143,19 +150,38 @@ function Consultas(): React.JSX.Element {
             <input
               type="date"
               value={hasta}
-              onChange={(e) => { setHasta(e.target.value); setRangoAutomatico(false) }}
+              onChange={(e) => {
+                setHasta(e.target.value)
+                setRangoAutomatico(false)
+              }}
               className="w-full rounded-xl border border-[#e1e5e1] px-3 py-2.5 text-[13px] outline-none focus:border-[#16834b]"
             />
           </label>
-          
         </div>
       </div>
 
       <div className="mb-4">
-        <button type="button" onClick={()=>void generarPDF()} disabled={exportando} className="rounded-xl bg-[#16834b] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-40">{exportando?'Generando…':'Generar PDF'}</button>
-        {errorPDF&&<p role="alert" className="mt-3 text-sm text-[#9d3029]">{errorPDF}</p>}
+        <button
+          type="button"
+          onClick={() => void generarPDF()}
+          disabled={exportando || !resumen || historial.cargando}
+          className="rounded-xl bg-[#16834b] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-40"
+        >
+          {exportando ? 'Generando…' : 'Generar PDF'}
+        </button>
+        {errorPDF && (
+          <p role="alert" className="mt-3 text-sm text-[#9d3029]">
+            {errorPDF}
+          </p>
+        )}
       </div>
-      {!hayDatos ? (
+      {historial.cargando ? (
+        <p role="status">Cargando reporte…</p>
+      ) : historial.error ? (
+        <p role="alert">
+          {historial.error} <button onClick={historial.reintentar}>Reintentar</button>
+        </p>
+      ) : !resumen ? (
         <EmptyState
           icon={ClipboardList}
           title="Aún no hay movimientos para consultar"
@@ -163,9 +189,20 @@ function Consultas(): React.JSX.Element {
         />
       ) : (
         <>
-          <ReporteActual resumen={resumen} />
+          <ReporteActual
+            resumen={resumen}
+            filas={historial.filas}
+            reinicio={JSON.stringify([
+              historial.numero,
+              historial.limite,
+              desde,
+              hasta,
+              tipoReporte
+            ])}
+          />
         </>
       )}
+      <Paginacion {...historial} />
     </section>
   )
 }

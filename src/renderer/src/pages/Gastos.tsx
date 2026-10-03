@@ -1,5 +1,8 @@
 import { ErrorNegocio } from '../../../shared/errorNegocio'
-import { useMemo, useState, type FormEvent } from 'react'
+import { useState, type FormEvent } from 'react'
+import Paginacion from '../components/Paginacion'
+import ContenedorTabla from '../components/ContenedorTabla'
+import { useListadoGastos, useResumenGastos } from '../hooks/useListados'
 import {
   TrendingDown,
   Plus,
@@ -37,7 +40,7 @@ import type { CategoriaGasto, Gasto, GastoFormData, TipoGasto } from '../types'
 // ============================================================
 
 type Vista = 'lista' | 'resumen'
-type PeriodoResumen = 'diario' | 'semanal' | 'mensual'
+type PeriodoResumen = 'diario' | 'semanal' | 'mensual' | 'rango'
 
 function hoyISO(): string {
   return new Date().toISOString().slice(0, 10)
@@ -65,7 +68,7 @@ function fechaAISO(fecha: Date): string {
 }
 
 function rangoParaResumen(
-  periodo: PeriodoResumen,
+  periodo: Exclude<PeriodoResumen, 'rango'>,
   referencia: string
 ): { desde: string; hasta: string } {
   const fecha = fechaDesdeISO(referencia)
@@ -334,8 +337,6 @@ function Gastos(): React.JSX.Element {
   const {
     gastos,
     movimientosStock,
-    movimientosCuenta,
-    cuentas,
     estadoJornada,
     fechaJornadaActiva,
     crearGastoManual,
@@ -346,7 +347,7 @@ function Gastos(): React.JSX.Element {
 
   const fechaActual = useFechaActual()
   const [vista, setVista] = useState<Vista>('lista')
-  const [periodoResumen, setPeriodoResumen] = useState<PeriodoResumen>('diario')
+  const [periodoResumen, setPeriodoResumen] = useState<PeriodoResumen>('rango')
   const [fechaResumenManual, setFechaResumenManual] = useState<string | null>(null)
   const fechaResumen = fechaResumenManual ?? fechaJornadaActiva ?? fechaActual
   const [modalAbierto, setModalAbierto] = useState(false)
@@ -402,55 +403,24 @@ function Gastos(): React.JSX.Element {
     }
   }
 
-  const gastosFiltrados = useMemo(() => {
-    return gastos.filter((g) => {
-      if (filtroCategoria !== 'Todas' && g.categoria !== filtroCategoria) return false
-      if (filtroTipo !== 'Todos' && g.tipo !== filtroTipo) return false
-      if (filtroDesde && g.fecha < filtroDesde) return false
-      if (filtroHasta && g.fecha > filtroHasta) return false
-      return true
-    })
-  }, [gastos, filtroCategoria, filtroTipo, filtroDesde, filtroHasta])
-
-  // ===== Resumen por período =====
-  const resumen = useMemo(() => {
-    const rango = rangoParaResumen(periodoResumen, fechaResumen)
-    const totalesPorCategoria: Record<string, number> = {}
-    let totalOperativos = 0
-    let totalCompras = 0
-
-    for (const g of gastos) {
-      if (g.tipo !== 'manual' || g.fecha < rango.desde || g.fecha > rango.hasta) continue
-      totalesPorCategoria[g.categoria] = (totalesPorCategoria[g.categoria] ?? 0) + g.monto
-      totalOperativos += g.monto
-    }
-
-    // Las compras se resumen por lo efectivamente pagado en cada fecha.
-    // Si una compra fue anulada, sus pagos quedan en el historial de la cuenta,
-    // pero no participan en los indicadores financieros.
-    for (const movimiento of movimientosCuenta) {
-      if (
-        movimiento.categoria !== 'compra' ||
-        movimiento.tipo !== 'Abono' ||
-        movimiento.fecha < rango.desde ||
-        movimiento.fecha > rango.hasta
-      )
-        continue
-      const cuenta = cuentas.find((c) => c.id === movimiento.cuentaId)
-      if (!cuenta || cuenta.estado === 'anulado') continue
-      totalesPorCategoria['Inversión en materia prima'] =
-        (totalesPorCategoria['Inversión en materia prima'] ?? 0) + movimiento.monto
-      totalCompras += movimiento.monto
-    }
-
-    return {
-      ...rango,
-      totalesPorCategoria,
-      totalOperativos,
-      totalCompras,
-      totalEgresos: totalOperativos + totalCompras
-    }
-  }, [gastos, movimientosCuenta, cuentas, periodoResumen, fechaResumen])
+  const historial = useListadoGastos(
+    { desde: filtroDesde, hasta: filtroHasta, categoria: filtroCategoria, tipo: filtroTipo },
+    gastos,
+    vista === 'lista'
+  )
+  const gastosFiltrados = historial.filas
+  const rango =
+    periodoResumen === 'rango'
+      ? { desde: filtroDesde, hasta: filtroHasta }
+      : rangoParaResumen(periodoResumen, fechaResumen)
+  const consultaResumen = useResumenGastos(rango, gastos, vista === 'resumen')
+  const resumen = consultaResumen.pagina?.resumen ?? {
+    ...rango,
+    totalesPorCategoria: {} as Record<string, number>,
+    totalOperativos: 0,
+    totalCompras: 0,
+    totalEgresos: 0
+  }
 
   const movimientoDelDetalle = gastoDetalle?.referenciaStockId
     ? (movimientosStock.find((m) => m.id === gastoDetalle.referenciaStockId) ?? null)
@@ -459,7 +429,7 @@ function Gastos(): React.JSX.Element {
   const hayGastos = gastos.length > 0
 
   return (
-    <section className="flex min-h-0 flex-1 flex-col overflow-y-auto p-4 sm:p-6 lg:p-7">
+    <section className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto [&>*]:shrink-0 p-4 sm:p-6 lg:p-7">
       <PageHeader
         greeting="Gastos"
         subtitle="Pagos de compras y gastos operativos registrados manualmente."
@@ -555,7 +525,24 @@ function Gastos(): React.JSX.Element {
             />
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+          {historial.cargando && <p role="status">Cargando gastos…</p>}
+          {historial.error && (
+            <p role="alert">
+              {historial.error} <button onClick={historial.reintentar}>Reintentar</button>
+            </p>
+          )}
+          <ContenedorTabla
+            etiqueta="Lista de gastos"
+            reinicio={JSON.stringify([
+              historial.numero,
+              historial.limite,
+              filtroDesde,
+              filtroHasta,
+              filtroCategoria,
+              filtroTipo
+            ])}
+            className="rounded-2xl border border-[#e2e7e2] bg-white"
+          >
             <table className="w-full min-w-[900px] text-left text-[13px]">
               <thead>
                 <tr className="border-b border-[#e2e7e2] bg-[#fafbfa] text-[11px] font-bold uppercase tracking-wide text-[#8a938d]">
@@ -579,9 +566,7 @@ function Gastos(): React.JSX.Element {
                   </tr>
                 ) : (
                   gastosFiltrados.map((g) => {
-                    const anulada =
-                      g.tipo === 'automatico' &&
-                      cuentas.some((c) => c.compraId === g.compra_id && c.estado === 'anulado')
+                    const anulada = g.anulada
                     const pagado =
                       g.tipo === 'manual'
                         ? g.monto
@@ -684,14 +669,23 @@ function Gastos(): React.JSX.Element {
                 )}
               </tbody>
             </table>
-          </div>
+          </ContenedorTabla>
+          <Paginacion {...historial} />
         </>
       ) : (
         <div className="space-y-4">
+          {consultaResumen.cargando && <p role="status">Cargando resumen…</p>}
+          {consultaResumen.error && (
+            <p role="alert">
+              {consultaResumen.error}{' '}
+              <button onClick={consultaResumen.reintentar}>Reintentar</button>
+            </p>
+          )}
           <div className="flex flex-wrap items-center gap-3 rounded-2xl border border-[#e2e7e2] bg-white p-4">
             <div className="flex flex-wrap gap-2">
               {(
                 [
+                  ['rango', 'Rango de la lista'],
                   ['diario', 'Diario'],
                   ['semanal', 'Semanal'],
                   ['mensual', 'Mensual']
@@ -712,13 +706,15 @@ function Gastos(): React.JSX.Element {
                 </button>
               ))}
             </div>
-            <input
-              type="date"
-              value={fechaResumen}
-              onChange={(e) => setFechaResumenManual(e.target.value)}
-              className="ml-auto h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none focus:border-[#16834b]"
-              aria-label="Fecha de referencia del resumen"
-            />
+            {periodoResumen !== 'rango' && (
+              <input
+                type="date"
+                value={fechaResumen}
+                onChange={(e) => setFechaResumenManual(e.target.value)}
+                className="ml-auto h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none focus:border-[#16834b]"
+                aria-label="Fecha de referencia del resumen"
+              />
+            )}
             <span className="text-[12px] text-[#8a938d]">
               {resumen.desde === resumen.hasta
                 ? resumen.desde

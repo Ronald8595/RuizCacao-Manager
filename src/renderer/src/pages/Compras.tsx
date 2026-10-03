@@ -1,3 +1,5 @@
+import Paginacion from '../components/Paginacion'
+import ContenedorTabla from '../components/ContenedorTabla'
 import { useHistorialOperaciones } from '../hooks/useHistorialOperaciones'
 import AnularOperacion from '../components/AnularOperacion'
 import DetalleOperacion from '../components/DetalleOperacion'
@@ -618,7 +620,17 @@ export default function Compras(): React.JSX.Element {
         />
       ) : (
         <>
-          <div className="overflow-x-auto rounded-2xl border border-[#e2e7e2] bg-white">
+          <ContenedorTabla
+            etiqueta="Historial de compras"
+            reinicio={JSON.stringify([
+              historial.numero,
+              historial.limite,
+              busqueda,
+              filtroDesde,
+              filtroHasta
+            ])}
+            className="rounded-2xl border border-[#e2e7e2] bg-white"
+          >
             <table className="w-full min-w-[1000px] text-left text-[13px]">
               <thead>
                 <tr className="border-b bg-[#fafbfa] text-[11px] uppercase text-[#5b635e]">
@@ -716,32 +728,10 @@ export default function Compras(): React.JSX.Element {
                 )}
               </tbody>
             </table>
-          </div>
-          <div className="mt-4 flex items-center justify-between text-[12px]">
-            <span>
-              {historial.filas.length} registros en esta página · Página {historial.numero}
-            </span>
-            <div className="flex gap-2">
-              <button
-                type="button"
-                disabled={!historial.hayAnterior || historial.cargando}
-                onClick={historial.anterior}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Anterior
-              </button>
-              <button
-                type="button"
-                disabled={!historial.haySiguiente || historial.cargando}
-                onClick={historial.siguiente}
-                className="rounded-lg border px-3 py-2 disabled:opacity-40"
-              >
-                Siguiente
-              </button>
-            </div>
-          </div>
+          </ContenedorTabla>
         </>
       )}
+      <Paginacion {...historial} />
       {modal && (
         <CompraModal
           onCerrar={() => setModal(false)}

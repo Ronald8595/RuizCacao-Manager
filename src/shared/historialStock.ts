@@ -5,6 +5,7 @@ export interface FiltroHistorialStock {
   hasta?: string
   producto?: Producto | 'Todos'
   busqueda?: string
+  limite?: import('./listados').LimitePagina
   cursor?: string | null
 }
 export type FilaHistorialStock = Pick<
@@ -24,5 +25,6 @@ export type FilaHistorialStock = Pick<
 export interface PaginaHistorialStock {
   filas: FilaHistorialStock[]
   siguiente: string | null
+  total: number
 }
 export const TAMANO_PAGINA_STOCK = 15

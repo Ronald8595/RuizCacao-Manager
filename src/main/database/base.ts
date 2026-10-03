@@ -1,3 +1,5 @@
+import { consultarListado, reporteCompleto } from './listados'
+import type { FiltroListado, Listados } from '../../shared/listados'
 import { consultarHistorialCompras, consultarHistorialVentas } from './historial-operaciones'
 import type {
   FiltroHistorialOperaciones,
@@ -100,10 +102,10 @@ export class BaseLocal {
       this.usuarioPrincipal = false
     })
   }
-  async transaccion<T>(fn: (db: PoolClient) => Promise<T>): Promise<T> {
+  async transaccion<T>(fn: (db: PoolClient) => Promise<T>, lectura = false): Promise<T> {
     const db = await this.pool.connect()
     try {
-      await db.query('BEGIN')
+      await db.query(lectura ? 'BEGIN ISOLATION LEVEL REPEATABLE READ READ ONLY' : 'BEGIN')
       await db.query("SET LOCAL TIME ZONE 'America/Guayaquil'")
       await db.query('SELECT pg_advisory_xact_lock(7302026)')
       const value = await fn(db)
@@ -730,26 +732,64 @@ export class BaseLocal {
     return this.transaccion((db) => this.estado(db))
   }
 
+  async historialCombinado(filtro: FiltroListado): Promise<Listados['historialCombinado']> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarListado(db, 'historialCombinado', filtro)
+    }, true)
+  }
+  async listadoGastos(filtro: FiltroListado): Promise<Listados['listadoGastos']> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarListado(db, 'listadoGastos', filtro)
+    }, true)
+  }
+  async resumenGastos(filtro: FiltroListado): Promise<Listados['resumenGastos']> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarListado(db, 'resumenGastos', filtro)
+    }, true)
+  }
+  async reportePeriodo(filtro: FiltroListado): Promise<Listados['reportePeriodo']> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarListado(db, 'reportePeriodo', filtro)
+    }, true)
+  }
+  async documentoReporte(
+    filtro: FiltroListado,
+    tipo: 'diario' | 'semanal' | 'mensual'
+  ): Promise<{ html: string; nombreArchivo: string }> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return reporteCompleto(db, filtro, tipo)
+    }, true)
+  }
   async historialCompras(filtro: FiltroHistorialOperaciones): Promise<PaginaCompras> {
     this.exigirSesion()
     return this.transaccion((db) => {
       this.exigirSesion()
       return consultarHistorialCompras(db, filtro)
-    })
+    }, true)
   }
   async historialVentas(filtro: FiltroHistorialOperaciones): Promise<PaginaVentas> {
     this.exigirSesion()
     return this.transaccion((db) => {
       this.exigirSesion()
       return consultarHistorialVentas(db, filtro)
-    })
+    }, true)
   }
   async historialStock(filtro: FiltroHistorialStock): Promise<PaginaHistorialStock> {
     this.exigirSesion()
     return this.transaccion((db) => {
       this.exigirSesion()
       return consultarHistorialStock(db, filtro)
-    })
+    }, true)
   }
 
   async registrarStockInicial(input: StockInicialInput): Promise<EstadoAplicacion> {

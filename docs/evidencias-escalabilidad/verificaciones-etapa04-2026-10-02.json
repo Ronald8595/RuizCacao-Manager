@@ -1,0 +1,223 @@
+{
+  "fecha": "2026-10-02T17:23:00.896Z",
+  "rama": "feature/escalabilidad-postgresql",
+  "headInicial": "9efb6c6",
+  "esquema": 9,
+  "tablas": 25,
+  "migracion010": false,
+  "seedLocalEjecutado": false,
+  "baseDesarrolloSoloLecturas": true,
+  "snapshotIgual": true,
+  "huellaSnapshot": "942fb1869779bd707aa4d37ea228e859f9274dcdc2f94b5e1df8f59c2e1354e7",
+  "historicos": {
+    "001-base.sql": "ca081cc7d8de55e9a275c0412e7fc0953aac829574100ff1fe4e97c3c92dc795",
+    "002-relacional.sql": "db3ea22f0af0a6f1d82289901bed2c232dd89dd964b8a97beb3e1767197e3803",
+    "003-seguridad-respaldos.sql": "fbed523cce1169e1e343f66ebd051231cb636fc9eada5fbe7015f4d32787e708",
+    "004-interrupciones-umbrales.sql": "2b1af167a0e389511384475b18fb5ac43d8dddd7fe0f9498e2451c660495616a",
+    "005-multiusuario.sql": "b5119dcd85a6b65ff6d66743da0bdb1ca63295e74cfa7ec01307bc5a0ff4ac1a",
+    "006-stock-inicial.sql": "240f8829447f4194e5d204105e7c0f305a55dd5a8687f2986105d10babaaf226",
+    "007-anulaciones.sql": "c5f632ed09bbb959fbd99ef860ad17919c17ce7da282b7c8c4ad3e248ed6ca54",
+    "008-rendimiento-paginacion.sql": "17556cc20877d33ff4580e18f286a35c5c25cae92630865826853a63570b31f8",
+    "009-rendimiento-paginacion-compras-ventas.sql": "6ed5765a3084672fc5ca524d7b1c63a9500ff6045f705d0675799088ae2dba41"
+  },
+  "pruebas": {
+    "typecheck": 0,
+    "lint": 0,
+    "dbTest": 0,
+    "dbSql": "No aplica; sin migración",
+    "benchmarkAntes": 0,
+    "benchmarkDespues": 0,
+    "pdf": 0,
+    "diffCheck": 0,
+    "conteoFunciones": 0,
+    "lintAdvertencias": 777
+  },
+  "conteos": {
+    "empleados": 3,
+    "clientes": 1004,
+    "proveedores": 506,
+    "compras": 10014,
+    "ventas": 15007,
+    "cuentas": 25021,
+    "movimientosCuenta": 16695,
+    "movimientosStock": 25450,
+    "gastos": 13019
+  },
+  "validacionesUI": [
+    {
+      "pantalla": "historial",
+      "cantidad": 10,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "historial",
+      "cantidad": 15,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "historial",
+      "cantidad": 25,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "historial",
+      "cantidad": 50,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "historial",
+      "detalleYAbonos": true,
+      "filtroDesdePaginaProfunda": true
+    },
+    {
+      "pantalla": "gastos",
+      "cantidad": 10,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "gastos",
+      "cantidad": 15,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "gastos",
+      "cantidad": 25,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "gastos",
+      "cantidad": 50,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "gastos",
+      "resumenRangoCompletoInvariante": true
+    },
+    {
+      "pantalla": "reportes",
+      "cantidad": 10,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "reportes",
+      "cantidad": 15,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "reportes",
+      "cantidad": 25,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "reportes",
+      "cantidad": 50,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "reportes",
+      "modoYRangoReinician": true,
+      "respuestaAnteriorIgnorada": true
+    },
+    {
+      "pantalla": "proveedores",
+      "cantidad": 10,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "proveedores",
+      "cantidad": 15,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "proveedores",
+      "cantidad": 25,
+      "paginas": true,
+      "resumenInvariante": true
+    },
+    {
+      "pantalla": "proveedores",
+      "cantidad": 50,
+      "paginas": true,
+      "resumenInvariante": true
+    }
+  ],
+  "equivalenciaFinanciera": [
+    {
+      "desde": "2026-01-05",
+      "hasta": "2026-01-05",
+      "filas": 106,
+      "htmlPDFIdentico": true
+    },
+    {
+      "desde": "2026-01-05",
+      "hasta": "2026-01-11",
+      "filas": 553,
+      "htmlPDFIdentico": true
+    },
+    {
+      "desde": "2026-01-01",
+      "hasta": "2026-01-31",
+      "filas": 2237,
+      "htmlPDFIdentico": true
+    },
+    {
+      "desde": "2026-01-01",
+      "hasta": "2026-09-30",
+      "filas": 19691,
+      "htmlPDFIdentico": true
+    },
+    {
+      "desde": "2030-01-01",
+      "hasta": "2030-01-31",
+      "filas": 0,
+      "htmlPDFIdentico": true
+    }
+  ],
+  "revisionVisualHumana": "Pendiente app completa y diálogo de guardar PDF",
+  "pdf": [
+    {
+      "tipo": "diario",
+      "desde": "2026-01-05",
+      "hasta": "2026-01-05",
+      "archivo": "docs/evidencias-escalabilidad/PDF_etapa04_diario.pdf",
+      "paginas": 5,
+      "bytes": 114801,
+      "filasHTML": 106,
+      "sha256": "05dd964ef156d0c22afb8649a4084604fdb74ba58ff0cd29bbee705396520f42"
+    },
+    {
+      "tipo": "semanal",
+      "desde": "2026-01-05",
+      "hasta": "2026-01-11",
+      "archivo": "docs/evidencias-escalabilidad/PDF_etapa04_semanal.pdf",
+      "paginas": 25,
+      "bytes": 156590,
+      "filasHTML": 553,
+      "sha256": "72aed35cf86b59c4ad2c3e18c16241ffb52e9b8180e2fa053a96516d7442b681"
+    },
+    {
+      "tipo": "mensual",
+      "desde": "2026-01-01",
+      "hasta": "2026-01-31",
+      "archivo": "docs/evidencias-escalabilidad/PDF_etapa04_mensual.pdf",
+      "paginas": 98,
+      "bytes": 307552,
+      "filasHTML": 2237,
+      "sha256": "c49f800a6f9d859e84379ede93cd3b2e7bd4d07d0faeb1acf40cce82bd0e9302"
+    }
+  ]
+}

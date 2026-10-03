@@ -1,0 +1,24 @@
+{
+  "etiqueta": "estadisticas",
+  "huella": "942fb1869779bd707aa4d37ea228e859f9274dcdc2f94b5e1df8f59c2e1354e7",
+  "filas": 19691,
+  "conteos": {
+    "filter": {
+      "llamadas": 6,
+      "evaluaciones": 108478
+    },
+    "map": {
+      "llamadas": 1,
+      "evaluaciones": 16686
+    },
+    "some": {
+      "llamadas": 16693,
+      "evaluaciones": 208998776
+    },
+    "find": {
+      "llamadas": 33372,
+      "evaluaciones": 317397121
+    }
+  },
+  "nota": "Conteo del algoritmo anterior conservado; la instrumentación altera tiempos y no se usa como benchmark temporal."
+}

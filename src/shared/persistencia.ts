@@ -124,6 +124,23 @@ export interface EstadoAcceso {
 }
 export type Respuesta<T> = { ok: true; valor: T } | { ok: false; error: string }
 export interface ApiPersistencia {
+  historialCombinado: (
+    filtro: import('./listados').FiltroListado
+  ) => Promise<Respuesta<import('./listados').Listados['historialCombinado']>>
+  listadoGastos: (
+    filtro: import('./listados').FiltroListado
+  ) => Promise<Respuesta<import('./listados').Listados['listadoGastos']>>
+  resumenGastos: (
+    filtro: import('./listados').FiltroListado
+  ) => Promise<Respuesta<import('./listados').Listados['resumenGastos']>>
+  reportePeriodo: (
+    filtro: import('./listados').FiltroListado
+  ) => Promise<Respuesta<import('./listados').Listados['reportePeriodo']>>
+  documentoReporte: (
+    filtro: import('./listados').FiltroListado,
+    tipo: 'diario' | 'semanal' | 'mensual'
+  ) => Promise<Respuesta<{ html: string; nombreArchivo: string }>>
+
   historialCompras: (
     filtro: import('./historialOperaciones').FiltroHistorialOperaciones
   ) => Promise<Respuesta<import('./historialOperaciones').PaginaCompras>>

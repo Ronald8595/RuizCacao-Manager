@@ -65,6 +65,11 @@ async function main() {
         paginas = 0
       do {
         const page = await base.historialStock({ ...filtro, cursor })
+        assert.equal(
+          page.total,
+          esperados.length,
+          'COUNT debe compartir filtros sin cursor de avance'
+        )
         assert.ok(page.filas.length <= 15)
         assert.ok(page.filas.every((r) => !('orden' in r) && !('proveedorNombre' in r)))
         ids.push(...page.filas.map((r) => r.id))

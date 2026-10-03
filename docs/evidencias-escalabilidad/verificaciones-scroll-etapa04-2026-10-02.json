@@ -1,0 +1,39 @@
+{
+  "fecha": "2026-10-02",
+  "rama": "feature/escalabilidad-postgresql",
+  "esquema": 9,
+  "tablas": 25,
+  "migracion010": false,
+  "sqlDeAplicacionModificadoEnCierre": false,
+  "pdfModificado": false,
+  "seedLocalEjecutado": false,
+  "buildEjecutado": false,
+  "pruebas": {
+    "typecheck": 0,
+    "lint": 0,
+    "lintAdvertencias": 776,
+    "dbTest": 0,
+    "cluster": "ruizcacao-tests-CXqaGR",
+    "scroll": 0,
+    "casos": 28,
+    "diffCheck": 0
+  },
+  "hashesMigraciones": {
+    "001-base.sql": "ca081cc7d8de55e9a275c0412e7fc0953aac829574100ff1fe4e97c3c92dc795",
+    "002-relacional.sql": "db3ea22f0af0a6f1d82289901bed2c232dd89dd964b8a97beb3e1767197e3803",
+    "003-seguridad-respaldos.sql": "fbed523cce1169e1e343f66ebd051231cb636fc9eada5fbe7015f4d32787e708",
+    "004-interrupciones-umbrales.sql": "2b1af167a0e389511384475b18fb5ac43d8dddd7fe0f9498e2451c660495616a",
+    "005-multiusuario.sql": "b5119dcd85a6b65ff6d66743da0bdb1ca63295e74cfa7ec01307bc5a0ff4ac1a",
+    "006-stock-inicial.sql": "240f8829447f4194e5d204105e7c0f305a55dd5a8687f2986105d10babaaf226",
+    "007-anulaciones.sql": "c5f632ed09bbb959fbd99ef860ad17919c17ce7da282b7c8c4ad3e248ed6ca54",
+    "008-rendimiento-paginacion.sql": "17556cc20877d33ff4580e18f286a35c5c25cae92630865826853a63570b31f8",
+    "009-rendimiento-paginacion-compras-ventas.sql": "6ed5765a3084672fc5ca524d7b1c63a9500ff6045f705d0675799088ae2dba41"
+  },
+  "visual": {
+    "matriz": "scroll-etapa04-2026-10-02.json",
+    "capturas": 28,
+    "zoomReal": 1.25,
+    "humanaPendiente": true,
+    "pendiente": "Trackpad físico, app con sesión existente y hardware final, diálogo de guardar PDF; checklist en Informe Etapa 04."
+  }
+}

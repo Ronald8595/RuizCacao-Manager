@@ -56,3 +56,27 @@ button {
 input::placeholder {
   color: #a5aca7;
 }
+
+.contenedor-tabla {
+  max-width: 100%;
+  /* En ventanas muy bajas, queda una porción utilizable de tabla y la página
+     exterior permite alcanzar los filtros y el pie sin recorrer todas las filas. */
+  max-height: max(20vh, calc(100vh - var(--tabla-espacio, 60vh)));
+  max-height: max(20dvh, calc(100dvh - var(--tabla-espacio, 60dvh)));
+  overflow: auto;
+  scrollbar-gutter: stable;
+  scroll-padding-top: 3.5rem;
+}
+
+.contenedor-tabla:focus-visible {
+  outline: 2px solid #16834b;
+  outline-offset: 2px;
+}
+
+.contenedor-tabla thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fafbfa;
+  box-shadow: inset 0 -1px #e2e7e2;
+}

@@ -1,0 +1,12 @@
+*   [33mfebb305[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #2 from Ronald8595/revert-1-feature/escalabilidad-postgresql
+[31m|[m[32m\[m  
+[31m|[m * [33m4ffbb98[m[33m ([m[1;31morigin/revert-1-feature/escalabilidad-postgresql[m[33m)[m Revert "perf: paginar historial de stock y optimizar PostgreSQL"
+[31m|[m[31m/[m  
+*   [33m3f4ed98[m Merge pull request #1 from Ronald8595/feature/escalabilidad-postgresql
+[33m|[m[34m\[m  
+[33m|[m * [33m9efb6c6[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/escalabilidad-postgresql[m[33m, [m[1;31morigin/feature/escalabilidad-postgresql[m[33m)[m perf: optimizar paginacion y rendimiento de modulos
+[33m|[m * [33mbebcda3[m perf: paginar historial de stock y optimizar PostgreSQL
+* [34m|[m [33m49c06e5[m Detalles de la version 1.1.2 y para futuras versiones
+[34m|[m[34m/[m  
+* [33m584d7c2[m[33m ([m[1;32mmain[m[33m)[m release: RuizCacao Manager 1.1.2
+* [33m272ec58[m[33m ([m[1;33mtag: [m[1;33mv1.1.2[m[33m)[m release: RuizCacao Manager 1.1.2

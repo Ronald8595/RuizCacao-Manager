@@ -19,6 +19,7 @@ interface Cursor {
   despues: Posicion
 }
 interface Filtro {
+  limite: number
   desde: string
   hasta: string
   producto: string
@@ -62,10 +63,12 @@ export function validarFiltroStock(input: FiltroHistorialStock): Filtro {
   if (!input || typeof input !== 'object' || Array.isArray(input)) return fallo()
   if (
     Object.keys(input).some(
-      (k) => !['desde', 'hasta', 'producto', 'busqueda', 'cursor'].includes(k)
+      (k) => !['desde', 'hasta', 'producto', 'busqueda', 'cursor', 'limite'].includes(k)
     )
   )
     return fallo()
+  const limite = input.limite ?? TAMANO_PAGINA_STOCK
+  if (![10, 15, 25, 50].includes(limite)) return fallo()
   const desde = fecha(input.desde),
     hasta = fecha(input.hasta)
   if (desde && hasta && desde > hasta) return fallo()
@@ -80,7 +83,7 @@ export function validarFiltroStock(input: FiltroHistorialStock): Filtro {
     return fallo()
   const busqueda = (input.busqueda ?? '').trim().toLowerCase()
   const firma = createHash('sha256')
-    .update(JSON.stringify([desde, hasta, producto, busqueda]))
+    .update(JSON.stringify([desde, hasta, producto, busqueda, limite]))
     .digest('hex')
   let cursor: Cursor | null = null
   if (input.cursor !== undefined && input.cursor !== null) {
@@ -105,13 +108,14 @@ export function validarFiltroStock(input: FiltroHistorialStock): Filtro {
       return fallo()
     if (BigInt(cursor.despues.orden) > BigInt(cursor.techo.orden)) return fallo()
   }
-  return { desde, hasta, producto, busqueda, firma, cursor }
+  return { desde, hasta, producto, busqueda, limite, firma, cursor }
 }
 // Constructor compartido por servicio y benchmark. Solo identificadores constantes.
 export function consultaLoteStock(
   f: Filtro,
   despues = f.cursor?.despues,
-  techo = f.cursor?.techo
+  techo = f.cursor?.techo,
+  conteo = false
 ): { sql: string; params: unknown[] } {
   const where: string[] = [],
     params: unknown[] = []
@@ -124,7 +128,7 @@ export function consultaLoteStock(
   if (f.producto !== 'Todos') where.push('producto = ' + parametro(f.producto))
   if (techo)
     where.push(`(orden,id) <= (${parametro(techo.orden)}::bigint,${parametro(techo.id)}::text)`)
-  if (despues)
+  if (despues && !conteo)
     where.push(`(orden,id) < (${parametro(despues.orden)}::bigint,${parametro(despues.id)}::text)`)
   if (f.busqueda) {
     const texto = parametro(f.busqueda)
@@ -138,9 +142,9 @@ export function consultaLoteStock(
         ')'
     )
   }
-  const limite = TAMANO_PAGINA_STOCK + 1
+  const limite = f.limite + 1
   return {
-    sql: `SELECT ${columnas} FROM ruizcacao.movimientos_stock${where.length ? ' WHERE ' + where.join(' AND ') : ''} ORDER BY orden DESC,id DESC LIMIT ${parametro(limite)}`,
+    sql: `SELECT ${conteo ? 'count(*)::text total' : columnas} FROM ruizcacao.movimientos_stock${where.length ? ' WHERE ' + where.join(' AND ') : ''} ${conteo ? '' : 'ORDER BY orden DESC,id DESC LIMIT ' + parametro(limite)}`,
     params
   }
 }
@@ -178,10 +182,10 @@ export async function consultarHistorialStock(
   const techo =
     f.cursor?.techo ?? (rows.length ? { orden: String(rows[0].orden), id: rows[0].id } : undefined)
   encontradas.push(...rows)
-  const visibles = encontradas.slice(0, TAMANO_PAGINA_STOCK),
+  const visibles = encontradas.slice(0, f.limite),
     last = visibles[visibles.length - 1]
   const siguiente =
-    encontradas.length > TAMANO_PAGINA_STOCK && techo
+    encontradas.length > f.limite && techo
       ? Buffer.from(
           JSON.stringify({
             version: 1,
@@ -191,5 +195,7 @@ export async function consultarHistorialStock(
           } satisfies Cursor)
         ).toString('base64url')
       : null
-  return { filas: visibles.map(dto), siguiente }
+  const count = consultaLoteStock(f, undefined, techo, true)
+  const total = Number((await db.query(count.sql, count.params)).rows[0].total)
+  return { filas: visibles.map(dto), siguiente, total }
 }

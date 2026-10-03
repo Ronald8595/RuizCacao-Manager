@@ -1,0 +1,662 @@
+[
+  {
+    "escenario": {
+      "nombre": "escritorio",
+      "ancho": 1440,
+      "alto": 960,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "pantalla": "historial",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 418,
+        "ancho": 1128,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "gastos",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 362,
+        "ancho": 1120,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "reportes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 128,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 156,
+        "ancho": 1065,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "stock",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 281,
+        "ancho": 1120,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "compras",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 307,
+        "ancho": 1120,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "ventas",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 307,
+        "ancho": 1120,
+        "viewport": [
+          1443,
+          778
+        ]
+      },
+      {
+        "pantalla": "proveedores",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 362,
+        "ancho": 1120,
+        "viewport": [
+          1443,
+          778
+        ]
+      }
+    ]
+  },
+  {
+    "escenario": {
+      "nombre": "reducida",
+      "ancho": 1024,
+      "alto": 768,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "pantalla": "historial",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 396,
+        "ancho": 886,
+        "viewport": [
+          1027,
+          771
+        ]
+      },
+      {
+        "pantalla": "gastos",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 340,
+        "ancho": 878,
+        "viewport": [
+          1027,
+          771
+        ]
+      },
+      {
+        "pantalla": "reportes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 134,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 154,
+        "ancho": 823,
+        "viewport": [
+          1027,
+          771
+        ]
+      },
+      {
+        "pantalla": "stock",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 238,
+        "ancho": 878,
+        "viewport": [
+          1027,
+          771
+        ]
+      },
+      {
+        "pantalla": "compras",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 285,
+        "ancho": 878,
+        "viewport": [
+          1027,
+          771
+        ]
+      },
+      {
+        "pantalla": "ventas",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 285,
+        "ancho": 878,
+        "viewport": [
+          1027,
+          771
+        ]
+      },
+      {
+        "pantalla": "proveedores",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 340,
+        "ancho": 878,
+        "viewport": [
+          1027,
+          771
+        ]
+      }
+    ]
+  },
+  {
+    "escenario": {
+      "nombre": "compacta",
+      "ancho": 800,
+      "alto": 600,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "pantalla": "historial",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 174,
+        "ancho": 662,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "gastos",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 128,
+        "ancho": 662,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "reportes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 337,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 106,
+        "ancho": 607,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "stock",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 146,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 104,
+        "ancho": 647,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "compras",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 125,
+        "ancho": 662,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "ventas",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 125,
+        "ancho": 662,
+        "viewport": [
+          803,
+          603
+        ]
+      },
+      {
+        "pantalla": "proveedores",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 180,
+        "ancho": 662,
+        "viewport": [
+          803,
+          603
+        ]
+      }
+    ]
+  },
+  {
+    "escenario": {
+      "nombre": "zoom125",
+      "ancho": 1280,
+      "alto": 800,
+      "zoom": 1.25
+    },
+    "zoomReal": 1.25,
+    "validaciones": [
+      {
+        "pantalla": "historial",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 251,
+        "ancho": 889,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "gastos",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 196,
+        "ancho": 881,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "reportes",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": false,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 251,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 124,
+        "ancho": 829,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "stock",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 17,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": false,
+        "alto": 111,
+        "ancho": 869,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "compras",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 142,
+        "ancho": 881,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "ventas",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 142,
+        "ancho": 881,
+        "viewport": [
+          1026,
+          622
+        ]
+      },
+      {
+        "pantalla": "proveedores",
+        "filas": 50,
+        "vertical": true,
+        "horizontal": true,
+        "sticky": true,
+        "pieFuera": true,
+        "scrollExteriorMaximo": 0,
+        "cambioPagina": true,
+        "cambioLimite": true,
+        "filtroProfundo": true,
+        "focoNavegacion": true,
+        "rueda": true,
+        "teclado": true,
+        "tabAccion": true,
+        "alto": 196,
+        "ancho": 881,
+        "viewport": [
+          1026,
+          622
+        ]
+      }
+    ]
+  }
+]
