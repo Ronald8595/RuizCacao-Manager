@@ -26,7 +26,6 @@ export default function NovedadesVersion({
         <li>Paginación y navegación optimizadas en historiales, gastos y reportes.</li>
         <li>Mejoras visuales de tablas, scroll y encabezados.</li>
         <li>Nueva gestión de notificaciones: marcar, eliminar y limpieza automática.</li>
-        <li>Mejoras generales de estabilidad y preparación de PostgreSQL.</li>
       </ul>
       <button
         data-autofocus

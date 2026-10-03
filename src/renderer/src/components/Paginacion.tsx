@@ -1,16 +1,19 @@
 import { LIMITES_PAGINA, type LimitePagina } from '../../../shared/listados'
-interface Props {
+interface Props<T extends number = LimitePagina> {
   total: number
-  limite: LimitePagina
+  limite: T
+  limites?: readonly T[]
   numero: number
   hayAnterior: boolean
   haySiguiente: boolean
   cargando?: boolean
   anterior: () => void
   siguiente: () => void
-  cambiarLimite: (limite: LimitePagina) => void
+  cambiarLimite: (limite: T) => void
 }
-export default function Paginacion(p: Props): React.JSX.Element {
+export default function Paginacion<T extends number = LimitePagina>(
+  p: Props<T>
+): React.JSX.Element {
   const paginas = Math.max(1, Math.ceil(p.total / p.limite))
   // aria-disabled conserva el foco durante la consulta; las guardas de los
   // callbacks impiden navegar mientras carga o fuera de los extremos.
@@ -24,10 +27,10 @@ export default function Paginacion(p: Props): React.JSX.Element {
         <select
           aria-label="Registros por página"
           value={p.limite}
-          onChange={(e) => p.cambiarLimite(Number(e.target.value) as LimitePagina)}
+          onChange={(e) => p.cambiarLimite(Number(e.target.value) as T)}
           className="rounded-lg border border-[#e1e5e1] bg-white px-2 py-1"
         >
-          {LIMITES_PAGINA.map((n) => (
+          {(p.limites ?? LIMITES_PAGINA).map((n) => (
             <option key={n} value={n}>
               {n}
             </option>

@@ -1,0 +1,161 @@
+[
+  {
+    "escenario": {
+      "nombre": "escritorio",
+      "ancho": 1440,
+      "alto": 960,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "limite": 10,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 25,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 50,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 100,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      }
+    ],
+    "cuentas": 16252,
+    "paginas100": 163,
+    "filtrosDesdeProfunda": true,
+    "extremos": true,
+    "abonoPagina2": true,
+    "vacio": true,
+    "paginadorPredeterminadoIntacto": true,
+    "novedadesSinTextoTecnico": true,
+    "llamadasDatos": 0,
+    "fixtureIntacta": true
+  },
+  {
+    "escenario": {
+      "nombre": "reducida",
+      "ancho": 800,
+      "alto": 600,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "validaciones": [
+      {
+        "limite": 10,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 25,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 50,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 100,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      }
+    ],
+    "cuentas": 16252,
+    "paginas100": 163,
+    "filtrosDesdeProfunda": true,
+    "extremos": true,
+    "abonoPagina2": true,
+    "vacio": true,
+    "paginadorPredeterminadoIntacto": true,
+    "novedadesSinTextoTecnico": true,
+    "llamadasDatos": 0,
+    "fixtureIntacta": true
+  },
+  {
+    "escenario": {
+      "nombre": "zoom125",
+      "ancho": 1280,
+      "alto": 800,
+      "zoom": 1.25
+    },
+    "zoomReal": 1.25,
+    "validaciones": [
+      {
+        "limite": 10,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 25,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 50,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      },
+      {
+        "limite": 100,
+        "navegacion": true,
+        "orden": true,
+        "virtualizacion": true,
+        "scrollReiniciado": true,
+        "tarjetasInvariantes": true
+      }
+    ],
+    "cuentas": 16252,
+    "paginas100": 163,
+    "filtrosDesdeProfunda": true,
+    "extremos": true,
+    "abonoPagina2": true,
+    "vacio": true,
+    "paginadorPredeterminadoIntacto": true,
+    "novedadesSinTextoTecnico": true,
+    "llamadasDatos": 0,
+    "fixtureIntacta": true
+  }
+]

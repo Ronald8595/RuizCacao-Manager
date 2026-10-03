@@ -1,5 +1,19 @@
 # Estado de continuidad — Escalabilidad PostgreSQL
 
+## Último ajuste UX 1.2.0: Cuentas y Novedades — 2026-10-03
+
+Cuentas añade paginación visual sobre su listado filtrado en memoria, con selector 10/25/50/100 (inicial 25), total filtrado, página/total y Anterior/Siguiente. Paginacion compartido admite opciones tipadas por pantalla; los demás módulos conservan 10/15/25/50. No hay endpoint ni paginación SQL nueva. Se mantiene useFilasVisibles y sus espacios virtuales dentro de la página actual; las tarjetas financieras siguen calculándose sobre TODAS las cuentas vigentes.
+
+Categoría, búsqueda, estado, fechas y tamaño reinician a página 1; una reducción del listado acota la página almacenada a una válida. Cambio de página reinicia el scroll mediante el hook existente. Se reemplaza “Desplázate para verlas” por el total dinámico de cuentas coincidentes. Acciones reciben la cuenta real de la página; detalle, abonos y cuentas manuales mantienen su lógica. Novedades elimina solo el punto técnico de PostgreSQL: quedan cuatro beneficios visibles; mecanismo por usuario/versión y claves de almacenamiento intactos.
+
+Typecheck 0; lint --no-cache 0 (0 errores/726 advertencias previas); db:test 0 en clúster temporal ruizcacao-tests-8LdZpW; prueba novedades 0; diff --check 0. Código Main/shared/preload/store/migraciones sin diff contra el inicio de esta tarea. Esquema 10/25 tablas; no migración 011 ni cambios 001–010, Snapshot, saldos, abonos o reglas financieras. No seed, build, commit ni push.
+
+Interfaz real y StrictMode: 0 en escritorio 1440×960, reducida 800×600 y zoom 1,25 / 1280×800. Fixture de 16.252 cuentas solo en memoria, perfil Electron temporal, cero IPC de negocio y fixture intacta. Se recorren las 163 páginas de 100 y sus ventanas de scroll recogiendo IDs del DOM: ninguna cuenta omitida/duplicada, última cuenta accesible y menos de 40 filas de datos montadas. También se verifican 10/25/50/100, extremos, total filtrado/páginas, reinicios de scroll, categorías, búsquedas cliente/proveedor/número/Unicode, estado/fechas desde página profunda, vacío y abono de la cuenta correcta en página 2 (abrir/cancelar, sin guardar). Tarjetas permanecen iguales en todos los cambios de páginas/filtros. Paginador predeterminado de otros módulos conserva 10/15/25/50. Novedades tiene cuatro beneficios sin texto técnico y Entendido cierra la ventana.
+
+Arnés: scripts/probar-cuentas-ux.cjs y scripts/perfil-cuentas-ux.tsx. Evidencias: docs/evidencias-escalabilidad/cuentas-ux-2026-10-03.json, seis PNG cuentas-ux-*, y logs typecheck/lint/db-test-cuentas-ux-2026-10-03.txt. La primera ejecución restringida de db:test/Chromium no arrancó sus procesos; repetir fuera del sandbox pasó. Se corrigió una ruta del arnés y se aislaron usuarios ficticios por tamaño de ventana para que Entendido del primer escenario no ocultara Novedades en los siguientes.
+
+Archivos de aplicación: src/renderer/src/pages/Cuentas.tsx, src/renderer/src/components/Paginacion.tsx y src/renderer/src/components/NovedadesVersion.tsx. Continuidad y arnés/evidencias de validación añadidos. SIGUIENTE PASO EXACTO: revisar visualmente Cuentas en la app completa con datos existentes (selector, navegación, filtros y apertura/cancelación del abono), antes del cierre humano de 1.2.0. No ejecutar seed ni build aún. La prueba del instalador offline permanece pendiente según el apartado siguiente.
+
 ## Prerrequisito del instalador Windows 1.2.0 — 2026-10-03
 
 Hallazgo real de VM comunicado por el usuario: PostgreSQL 18.6 incluido terminaba con -1073741515 / 0xC0000135; faltaban las DLL del runtime VC++ x64. Instalar el redistribuible oficial permitió ejecutar los cuatro binarios. El intento data-inicializando se conservó/retiró manualmente, y se obtuvo data válido PG_VERSION=18 y Crear usuario.

@@ -5,6 +5,7 @@ import { useCallback, useMemo, useState, type FormEvent } from 'react'
 import { Wallet, Plus, X, AlertTriangle, ArrowLeft, HandCoins, Ban } from 'lucide-react'
 import DetalleCuenta from '../components/DetalleCuenta'
 import PageHeader from '../components/PageHeader'
+import Paginacion from '../components/Paginacion'
 import EmptyState from '../components/EmptyState'
 import { FormField, inputClass } from '../components/FormField'
 import { useNotificacion } from '../store/NotificacionContext'
@@ -30,6 +31,8 @@ import type { Cuenta, EstadoCuenta, MetodoPago, TipoMovimientoCuenta } from '../
 // ============================================================
 
 type FiltroEstado = 'todas' | 'abiertas' | EstadoCuenta | 'a_favor'
+const LIMITES_CUENTAS = [10, 25, 50, 100] as const
+type LimiteCuentas = (typeof LIMITES_CUENTAS)[number]
 
 function hoyISO(): string {
   return rangoDiaActual().desde
@@ -577,6 +580,8 @@ function Cuentas(): React.JSX.Element {
   const [filtroEstado, setFiltroEstado] = useState<FiltroEstado>('abiertas')
   const [filtroDesde, setFiltroDesde] = useState('')
   const [filtroHasta, setFiltroHasta] = useState('')
+  const [limite, setLimite] = useState<LimiteCuentas>(25)
+  const [pagina, setPagina] = useState(1)
 
   const [cuentaAbono, setCuentaAbono] = useState<Cuenta | null>(null)
   const [modalManual, setModalManual] = useState(false)
@@ -646,13 +651,22 @@ function Cuentas(): React.JSX.Element {
     categoria
   ])
 
+  const totalPaginas = Math.max(1, Math.ceil(cuentasFiltradas.length / limite))
+  const paginaActual = Math.min(pagina, totalPaginas)
+  // Si una actualización de las cuentas reduce el listado, conservar una página
+  // válida también en el estado, sin recuperar una página antigua al crecer.
+  if (pagina !== paginaActual) setPagina(paginaActual)
+  const cuentasPagina = useMemo(
+    () => cuentasFiltradas.slice((paginaActual - 1) * limite, paginaActual * limite),
+    [cuentasFiltradas, paginaActual, limite]
+  )
   const {
     contenedor,
     inicio: inicioVisible,
     fin: finVisible,
     antes: espacioAntes,
     despues: espacioDespues
-  } = useFilasVisibles(cuentasFiltradas, !clienteDetalle)
+  } = useFilasVisibles(cuentasPagina, !clienteDetalle)
 
   // Tarjetas de resumen: se calculan sobre TODAS las cuentas vigentes, no
   // sobre las filtradas, porque representan la situación global del negocio.
@@ -969,7 +983,10 @@ function Cuentas(): React.JSX.Element {
             key={id}
             type="button"
             aria-pressed={categoria === id}
-            onClick={() => setCategoria(id)}
+            onClick={() => {
+              setCategoria(id)
+              setPagina(1)
+            }}
             className={
               'rounded-xl px-4 py-2 text-sm ' +
               (categoria === id ? 'bg-[#e7f4eb] text-[#16834b]' : 'bg-white')
@@ -1011,13 +1028,19 @@ function Cuentas(): React.JSX.Element {
             <input
               type="search"
               value={busqueda}
-              onChange={(e) => setBusqueda(e.target.value)}
+              onChange={(e) => {
+                setBusqueda(e.target.value)
+                setPagina(1)
+              }}
               placeholder="Buscar cliente, proveedor o número"
               className="h-10 min-w-[220px] flex-1 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none focus:border-[#16834b]"
             />
             <select
               value={filtroEstado}
-              onChange={(e) => setFiltroEstado(e.target.value as FiltroEstado)}
+              onChange={(e) => {
+                setFiltroEstado(e.target.value as FiltroEstado)
+                setPagina(1)
+              }}
               className="h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none"
             >
               <option value="abiertas">Cuentas abiertas</option>
@@ -1031,7 +1054,10 @@ function Cuentas(): React.JSX.Element {
             <input
               type="date"
               value={filtroDesde}
-              onChange={(e) => setFiltroDesde(e.target.value)}
+              onChange={(e) => {
+                setFiltroDesde(e.target.value)
+                setPagina(1)
+              }}
               className="h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none"
               aria-label="Desde"
             />
@@ -1039,15 +1065,16 @@ function Cuentas(): React.JSX.Element {
             <input
               type="date"
               value={filtroHasta}
-              onChange={(e) => setFiltroHasta(e.target.value)}
+              onChange={(e) => {
+                setFiltroHasta(e.target.value)
+                setPagina(1)
+              }}
               className="h-10 rounded-xl border border-[#e1e5e1] bg-white px-3 text-[13px] text-[#4a524c] outline-none"
               aria-label="Hasta"
             />
           </div>
 
-          <p className="mb-2 text-xs text-[#69716b]">
-            {cuentasFiltradas.length} cuentas coinciden · Desplázate para verlas
-          </p>
+          <p className="mb-2 text-xs text-[#69716b]">{cuentasFiltradas.length} cuentas coinciden</p>
           <div
             ref={contenedor}
             tabIndex={0}
@@ -1057,7 +1084,7 @@ function Cuentas(): React.JSX.Element {
             className="rounded-2xl border border-[#e2e7e2] bg-white"
           >
             <table
-              aria-rowcount={cuentasFiltradas.length + 1}
+              aria-rowcount={cuentasPagina.length + 1}
               className="w-full min-w-[1100px] text-left text-[13px]"
             >
               <thead>
@@ -1086,7 +1113,7 @@ function Cuentas(): React.JSX.Element {
                         <td colSpan={8} style={{ height: espacioAntes, padding: 0 }} />
                       </tr>
                     )}
-                    {cuentasFiltradas.slice(inicioVisible, finVisible).map((c, indice) => {
+                    {cuentasPagina.slice(inicioVisible, finVisible).map((c, indice) => {
                       const saldo = saldoDeCuenta(c)
                       const insignia = insigniaEstado(c)
                       const puedeAbonar = c.estado !== 'anulado' && saldo > 0
@@ -1195,6 +1222,20 @@ function Cuentas(): React.JSX.Element {
               </tbody>
             </table>
           </div>
+          <Paginacion
+            total={cuentasFiltradas.length}
+            limite={limite}
+            limites={LIMITES_CUENTAS}
+            numero={paginaActual}
+            hayAnterior={paginaActual > 1}
+            haySiguiente={paginaActual < totalPaginas}
+            anterior={() => setPagina(paginaActual - 1)}
+            siguiente={() => setPagina(paginaActual + 1)}
+            cambiarLimite={(nuevo) => {
+              setLimite(nuevo)
+              setPagina(1)
+            }}
+          />
         </>
       )}
 
