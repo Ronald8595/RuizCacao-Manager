@@ -1,0 +1,32 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> electron-app@1.2.1 db:test
+> node tests/run.cjs
+
+OK: runtime ausente en los cuatro binarios, versión inválida, logs sanitizados, PW retirado e intentos/data existentes conservados.
+OK pgctl: motor detenido, disponibilidad SQL y datos persistentes
+OK pgctl: motor ya iniciado: conexión verificada sin lanzar pg_ctl
+OK pgctl: cierre normal y reapertura: datos y credenciales conservados
+OK pgctl: puerto ocupado: rechazo, sin cambiar puerto ni credenciales
+OK pgctl: postgres no puede iniciar: biblioteca inexistente
+OK pgctl: error real de pg_ctl y stderr conservado
+OK pgctl: exit 0 sin servidor no es aceptado
+OK pgctl: timeout real de proceso a 35000 ms, hijo terminado
+Evidencia pgctl: C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\docs\evidencias-pgctl\regresion-1791944311032.json
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+true !== false
+
+    at parado (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\pgctl-arranque.cjs:81:12)
+    at async C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\pgctl-arranque.cjs:211:9
+    at async caso (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\pgctl-arranque.cjs:91:7)
+    at async main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\pgctl-arranque.cjs:201:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: true,
+  expected: false,
+  operator: 'strictEqual',
+  diff: 'simple'
+}
+pgctl-arranque.cjs falló.

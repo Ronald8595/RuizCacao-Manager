@@ -1,0 +1,241 @@
+{
+  "node": {
+    "node": "26.7.0",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.8",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "libffi": "3.7.1",
+    "lief": "0.17.0",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "147",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.6",
+    "simdutf": "7.7.0",
+    "sqlite": "3.53.4",
+    "tz": "2026c",
+    "undici": "8.9.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "14.6.202.34-node.28",
+    "zlib": "1.3.2.1-motley-42c2f19",
+    "zstd": "1.5.7"
+  },
+  "temp": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-pgctl-experimento-tw5uoQ",
+  "bin": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\vendor\\postgresql\\bin",
+  "variantes": [
+    {
+      "nombre": "stop-fast-recuperacion-t60",
+      "pidPostgres": 10000,
+      "eventos": [
+        {
+          "nombre": "spawn",
+          "ms": 14.19890000000305
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 1023.5866999999998
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 2026.6722999999984
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 3030.3638999999966
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 4046.538099999998
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 5046.862200000003
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 6047.163200000003
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 7056.2834
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 8080.532599999999
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 9095.055099999998
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 10114.090600000003
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 11115.0634
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 12130.207600000002
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 13137.534899999999
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 14142.6878
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 15146.4366
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 16146.790699999998
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 17161.285499999998
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 18165.0029
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 19180.9294
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 20189.6613
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 21195.962699999996
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 22196.935400000002
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 23212.2633
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 24213.560600000004
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 25213.0749
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 26227.514900000002
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 27246.776699999995
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 28255.400199999996
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 29265.588299999996
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 30280.3666
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 31289.794499999996
+        },
+        {
+          "nombre": "postgres-activo",
+          "ms": 32297.868299999995
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 33260.2293
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 33260.266200000005
+        },
+        {
+          "nombre": "exit",
+          "ms": 33261.16880000001,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "callback",
+          "ms": 33261.257699999995,
+          "detalle": {
+            "error": false
+          }
+        },
+        {
+          "nombre": "close",
+          "ms": 33261.2989,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        }
+      ],
+      "args": [
+        "-D",
+        "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-pgctl-experimento-tw5uoQ\\data",
+        "-m",
+        "fast",
+        "-w",
+        "-t",
+        "60",
+        "stop"
+      ],
+      "options": {
+        "windowsHide": true,
+        "timeout": 65000
+      },
+      "pidPgCtl": 10764,
+      "postgresResidual": false,
+      "logFinal": [
+        "2026-10-13 21:26:45.575 -05 [10000] LOG:  starting PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit\r",
+        "2026-10-13 21:26:45.576 -05 [10000] LOG:  listening on IPv4 address \"127.0.0.1\", port 55433\r",
+        "2026-10-13 21:26:45.668 -05 [16280] LOG:  database system was shut down at 2026-10-13 21:26:39 -05",
+        "2026-10-13 21:26:49.333 -05 [16580] FATAL:  the database system is starting up",
+        "2026-10-13 21:27:18.537 -05 [10000] LOG:  received fast shutdown request\r",
+        "2026-10-13 21:27:51.642 -05 [16280] LOG:  starting archive recovery",
+        "2026-10-13 21:27:51.680 -05 [16280] LOG:  consistent recovery state reached at 0/17F3578",
+        "2026-10-13 21:27:51.681 -05 [16280] LOG:  invalid record length at 0/17F3578: expected at least 24, got 0",
+        "2026-10-13 21:27:51.681 -05 [16280] LOG:  redo is not required",
+        "2026-10-13 21:27:51.687 -05 [5048] LOG:  shutting down",
+        "2026-10-13 21:27:51.729 -05 [10000] LOG:  database system is shut down\r",
+        ""
+      ]
+    }
+  ],
+  "version": "pg_ctl (PostgreSQL) 18.6",
+  "port": 55433,
+  "completo": true
+}

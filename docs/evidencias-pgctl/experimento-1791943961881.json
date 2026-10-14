@@ -1,0 +1,77 @@
+{
+  "node": {
+    "node": "26.7.0",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.8",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "libffi": "3.7.1",
+    "lief": "0.17.0",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "147",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.6",
+    "simdutf": "7.7.0",
+    "sqlite": "3.53.4",
+    "tz": "2026c",
+    "undici": "8.9.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "14.6.202.34-node.28",
+    "zlib": "1.3.2.1-motley-42c2f19",
+    "zstd": "1.5.7"
+  },
+  "temp": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-pgctl-experimento-K1VPxk",
+  "bin": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\vendor\\postgresql\\bin",
+  "variantes": [
+    {
+      "nombre": "spawn-stdout-stderr-archivo-1",
+      "stdio": "archivo",
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.04510000000027503
+        },
+        {
+          "nombre": "spawn",
+          "ms": 8.0628999999999
+        },
+        {
+          "nombre": "exit",
+          "ms": 204.8134,
+          "detalle": {
+            "code": 1,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "promise-reject",
+          "ms": 204.94819999999982
+        },
+        {
+          "nombre": "close",
+          "ms": 204.98050000000057,
+          "detalle": {
+            "code": 1,
+            "signal": null
+          }
+        }
+      ],
+      "pidPgCtl": 9380
+    }
+  ],
+  "version": "pg_ctl (PostgreSQL) 18.6",
+  "port": 55433,
+  "error": "The expression evaluated to a falsy value:\n\n  assert.ok(listo)\n"
+}

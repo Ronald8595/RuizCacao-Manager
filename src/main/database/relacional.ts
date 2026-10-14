@@ -1,4 +1,5 @@
 import type { PoolClient } from 'pg'
+import { marcaPerfil, perfilActivo } from '../perfil-arranque'
 import type { Snapshot } from '../../shared/persistencia'
 
 // Mapeo explícito entre los DTO de React y las columnas SQL. No almacena documentos.
@@ -91,6 +92,7 @@ export async function leerEntidades(db: PoolClient, resultado: Snapshot): Promis
     const { rows } = await db.query(
       `SELECT ${columnas} FROM ruizcacao.${entidad.tabla} ORDER BY orden DESC`
     )
+    const inicioDto = perfilActivo() ? performance.now() : 0
     const registros = rows.map((row) => {
       const dto: Record<string, unknown> = { id: key === 'empleados' ? Number(row.id) : row.id }
       for (const campo of entidad.campos) {
@@ -124,6 +126,12 @@ export async function leerEntidades(db: PoolClient, resultado: Snapshot): Promis
       return dto
     })
     Object.assign(resultado, { [key]: registros })
+    if (perfilActivo())
+      marcaPerfil('conversion-dto', {
+        entidad: key,
+        filas: rows.length,
+        ms: performance.now() - inicioDto
+      })
   }
 }
 

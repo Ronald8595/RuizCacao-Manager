@@ -19,13 +19,12 @@ export default function NovedadesVersion({
         Novedades de RuizCacao Manager {VERSION_APP}
       </h2>
       <p className="mt-3 text-sm">
-        Esta actualización mejora el rendimiento, la navegación y la gestión de notificaciones.
+        Esta actualización corrije un bug de inicio de la aplicación y facilita la consulta de cuentas pendientes.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-5 text-sm">
-        <li>Mayor rendimiento con grandes volúmenes de información.</li>
-        <li>Paginación y navegación optimizadas en historiales, gastos y reportes.</li>
-        <li>Mejoras visuales de tablas, scroll y encabezados.</li>
-        <li>Nueva gestión de notificaciones: marcar, eliminar y limpieza automática.</li>
+        <li>Inicio de la aplicación mucho más rápido.</li>
+        <li>Mejoras en el arranque y cierre de la aplicación.</li>
+        <li>Las cuentas ahora muestran la fecha de la operación que las originó.</li>
       </ul>
       <button
         data-autofocus

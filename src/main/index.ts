@@ -1,3 +1,4 @@
+import { marcaPerfil, perfilActivo, recibirMarcaPerfil } from './perfil-arranque'
 import { guardarDocumento } from './documentos'
 import { traducirError } from './database/errores'
 import { ErrorNegocio } from '../shared/errorNegocio'
@@ -18,6 +19,7 @@ const instanciaUnica = app.requestSingleInstanceLock()
 if (!instanciaUnica) app.quit()
 
 function createWindow(): void {
+  marcaPerfil('window-create')
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -27,6 +29,7 @@ function createWindow(): void {
     icon,
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
+      additionalArguments: perfilActivo() ? ['--rcm-perfil-arranque'] : [],
       sandbox: true,
       contextIsolation: true,
       nodeIntegration: false,
@@ -35,6 +38,28 @@ function createWindow(): void {
   })
 
   principal = mainWindow
+  if (perfilActivo()) {
+    ipcMain.on('perfil:marca', (event, marca) => {
+      if (
+        event.sender !== mainWindow.webContents ||
+        event.senderFrame !== mainWindow.webContents.mainFrame
+      )
+        return
+      if (
+        !marca ||
+        typeof marca.nombre !== 'string' ||
+        marca.nombre.length > 80 ||
+        !Number.isFinite(marca.epoch)
+      )
+        return
+      recibirMarcaPerfil(
+        marca.nombre,
+        marca.epoch,
+        marca.proceso === 'preload' ? 'preload' : 'renderer',
+        marca.detalle
+      )
+    })
+  }
   registrarPersistenciaIPC(mainWindow)
   mainWindow.on('close', async (event) => {
     if (cierreAutorizado) return
@@ -130,6 +155,7 @@ function createWindow(): void {
   })
 
   mainWindow.on('ready-to-show', () => {
+    marcaPerfil('window-ready-to-show')
     mainWindow.show()
   })
 
@@ -151,6 +177,7 @@ function createWindow(): void {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(async () => {
+  marcaPerfil('app-whenReady')
   if (!instanciaUnica) return
   await iniciarPersistencia()
   // Identidad oficial de la aplicación para Windows y notificaciones

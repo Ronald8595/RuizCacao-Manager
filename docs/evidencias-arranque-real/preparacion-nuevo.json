@@ -1,0 +1,15 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-instalacion-2xkJo1",
+  "perfiles": {
+    "nuevo": {
+      "version": 1,
+      "escenario": "nuevo",
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-instalacion-2xkJo1\\nuevo",
+      "dataDirectory": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-instalacion-2xkJo1\\nuevo\\postgres\\data",
+      "binarios": "C:\\Program Files\\PostgreSQL\\18\\bin",
+      "preparadoParaPerfil": true,
+      "esquema": 0,
+      "instalacionNueva": true
+    }
+  }
+}

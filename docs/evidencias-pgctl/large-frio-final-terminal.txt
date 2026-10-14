@@ -1,0 +1,34 @@
+vite v7.3.6 building ssr environment for development...
+transforming...
+✓ 37 modules transformed.
+rendering chunks...
+out/main/index.js  240.43 kB
+✓ built in 300ms
+
+electron main process built successfully
+
+-----
+
+vite v7.3.6 building ssr environment for development...
+transforming...
+✓ 1 modules transformed.
+rendering chunks...
+out/preload/index.js  4.56 kB
+✓ built in 15ms
+
+electron preload scripts built successfully
+
+-----
+
+dev server running for the electron renderer process at:
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+
+starting electron app...
+
+
+PERFIL ENTRY large/frio
+PERFIL LOCK true
+PERFIL REPOSO large/frio: 5 segundos
+PERFIL FINAL large/frio: OK

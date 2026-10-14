@@ -1,4 +1,5 @@
 import { consultarListado, reporteCompleto } from './listados'
+import { marcaPerfil } from '../perfil-arranque'
 import type { FiltroListado, Listados } from '../../shared/listados'
 import { consultarHistorialCompras, consultarHistorialVentas } from './historial-operaciones'
 import type {
@@ -127,7 +128,10 @@ export class BaseLocal {
     }
   }
   async iniciar(): Promise<void> {
+    marcaPerfil('base-iniciar-start')
+    marcaPerfil('base-conexion-start')
     this.candado = await this.pool.connect()
+    marcaPerfil('base-conexion-end')
     this.candado.on('error', () => {
       this.usuario = null
       this.usuarioId = null
@@ -253,6 +257,7 @@ export class BaseLocal {
       }
       await db.query('INSERT INTO ruizcacao.sesiones(id) VALUES($1)', [this.sesion])
     })
+    marcaPerfil('base-iniciar-end')
   }
   async existeAdministrador(): Promise<boolean> {
     const r = await this.pool.query('SELECT id FROM ruizcacao.usuarios LIMIT 1')
@@ -373,7 +378,9 @@ export class BaseLocal {
   }
 
   async login(nombre: string, password: string): Promise<EstadoAplicacion> {
+    marcaPerfil('login-main-start')
     const usuario = await this.comprobar(nombre, password)
+    marcaPerfil('login-auth-end', { ok: !!usuario })
     if (!usuario) throw new ErrorNegocio('Usuario o contraseña incorrectos.')
     this.usuario = usuario.nombre
     this.usuarioId = usuario.id
@@ -684,6 +691,7 @@ export class BaseLocal {
     return result
   }
   private async estado(db: PoolClient): Promise<EstadoAplicacion> {
+    marcaPerfil('estado-start')
     const datos = await this.datos(db)
     const avisos = this.usuarioId ? (await consultarNotificaciones(db, this.usuarioId)).avisos : []
     const umbralesStock = Object.fromEntries(
@@ -712,6 +720,7 @@ export class BaseLocal {
         'SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1'
       )
     ).rows[0]
+    marcaPerfil('estado-end')
     return {
       datos,
       avisos,

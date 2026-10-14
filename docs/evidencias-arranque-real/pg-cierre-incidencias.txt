@@ -1,0 +1,2 @@
+2026-10-13 12:24:46.106 -05 [2088] ERROR:  duplicate key value violates unique constraint "respaldo_automatico_equivalente"
+2026-10-13 12:24:46.108 -05 [2088] WARNING:  there is no transaction in progress

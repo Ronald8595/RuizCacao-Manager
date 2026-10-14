@@ -1,7 +1,8 @@
 import { ErrorNegocio } from '../../shared/errorNegocio'
-import { execFile } from 'node:child_process'
+import { marcaPerfil } from '../perfil-arranque'
+import { execFile, spawn } from 'node:child_process'
 import { promisify } from 'node:util'
-import { access, mkdir, readFile, writeFile, rename, unlink, readdir } from 'node:fs/promises'
+import { access, mkdir, readFile, writeFile, rename, unlink, readdir, open } from 'node:fs/promises'
 import { join } from 'node:path'
 import { randomBytes } from 'node:crypto'
 import { createServer } from 'node:net'
@@ -104,6 +105,8 @@ export class PostgresLocal {
     }
   }
   async iniciar(): Promise<ConexionLocal> {
+    marcaPerfil('postgres-local-iniciar-start')
+    marcaPerfil('postgres-verificacion-start')
     const bin = this.opciones.binarios
     let versionMotor: string | undefined
     // Antes de generar credenciales o crear el directorio provisional: un motor
@@ -123,6 +126,7 @@ export class PostgresLocal {
         throw falloMotor(error, nombre + '_version')
       }
     }
+    marcaPerfil('postgres-verificacion-end')
     await mkdir(this.opciones.carpeta, { recursive: true })
     if (process.platform === 'win32') {
       // No heredar accesos de otros usuarios para credenciales y datos financieros.
@@ -184,6 +188,7 @@ export class PostgresLocal {
         )
       try {
         await writeFile(pw, c.passwordAdministrador + '\n', { mode: 0o600 })
+        marcaPerfil('initdb-start')
         await ejecutar(
           join(bin, 'initdb.exe'),
           [
@@ -198,6 +203,7 @@ export class PostgresLocal {
           ],
           { windowsHide: true, timeout: 60000 }
         )
+        marcaPerfil('initdb-end')
         await writeFile(
           join(provisional, 'ruizcacao.conf'),
           `listen_addresses = '127.0.0.1'\nport = ${c.conexion.port}\ntimezone = 'America/Guayaquil'\npassword_encryption = 'scram-sha-256'\n`,
@@ -213,29 +219,70 @@ export class PostgresLocal {
         await unlink(pw).catch(() => {})
       }
     }
+    marcaPerfil('postgres-conexion-start')
     let conectado = await this.administrador(async () => true).catch(() => false)
     if (!conectado) {
       try {
         // En Windows no arrancar postgres.exe como proceso detached: Node crea una consola
         // independiente para procesos detached. pg_ctl espera el arranque del servidor y,
         // junto con windowsHide, mantiene PostgreSQL completamente en segundo plano.
-        await ejecutar(
-          join(bin, 'pg_ctl.exe'),
-          ['-D', data, '-l', this.ruta('postgresql.log'), '-w', '-t', '30', 'start'],
-          { windowsHide: true, timeout: 35000 }
-        )
+        // pg_ctl crea CMD en Windows, que hereda sus pipes y vive tanto como
+        // postgres. Archivos en lugar de pipes permiten recibir close al salir
+        // pg_ctl, conservando stderr. Separar este log del -l evita un bloqueo
+        // de apertura de postgresql.log por la redirección interna de CMD.
+        const salida = await open(this.ruta('pg_ctl.log'), 'a', 0o600)
+        try {
+          await new Promise<void>((resolve, reject) => {
+            const child = spawn(
+              join(bin, 'pg_ctl.exe'),
+              ['-D', data, '-l', this.ruta('postgresql.log'), '-w', '-t', '30', 'start'],
+              {
+                windowsHide: true,
+                shell: false,
+                detached: false,
+                stdio: ['ignore', salida.fd, salida.fd],
+                timeout: 35000,
+                killSignal: 'SIGTERM'
+              }
+            )
+            child.once('error', reject)
+            child.once('close', (code, signal) => {
+              if (code === 0 && !signal) resolve()
+              else reject(Object.assign(new Error('Fallo al iniciar pg_ctl'), { code, signal }))
+            })
+          })
+          marcaPerfil('pg_ctl-resolved')
+        } finally {
+          await salida.close()
+        }
       } catch (error) {
         traducirError(error, { modulo: 'postgres', operacion: 'arrancar_cluster' })
-        // pg_ctl puede devolver error aunque el servidor haya alcanzado a iniciar;
-        // comprobamos la conexión antes de mostrar el mensaje al usuario.
-      }
-      conectado = await this.administrador(async () => true).catch(() => false)
-      if (!conectado)
+        // Un timeout puede dejar el servidor privado arrancando. El mismo
+        // cierre por data_directory evita dejarlo huérfano; no ocultar el fallo
+        // de pg_ctl aunque una conexión posterior llegara a funcionar.
+        // En la prueba de recuperación bloqueada fast necesitó ~34 s después
+        // de la señal. Solo este cierre excepcional admite 60 s; el normal 20 s.
+        this.iniciado = true
+        await this.detenerConEspera(60).catch((fallo) =>
+          traducirError(fallo, { modulo: 'postgres', operacion: 'cerrar_arranque_fallido' })
+        )
         throw new ErrorNegocio(
           'El almacenamiento local no pudo iniciarse. Contacta con soporte; tus datos se conservaron.'
         )
+      }
+      conectado = await this.administrador(async () => true).catch(() => false)
+      if (!conectado) {
+        this.iniciado = true
+        await this.detenerConEspera(60).catch((fallo) =>
+          traducirError(fallo, { modulo: 'postgres', operacion: 'cerrar_arranque_no_disponible' })
+        )
+        throw new ErrorNegocio(
+          'El almacenamiento local no pudo iniciarse. Contacta con soporte; tus datos se conservaron.'
+        )
+      }
     }
     this.iniciado = true
+    marcaPerfil('postgres-auth-ready')
     await this.administrador(async (db) => {
       // Contraseña generada hexadecimal: nunca se interpola una entrada del usuario.
       if (!/^[0-9a-f]{64}$/.test(c.conexion.password))
@@ -248,9 +295,14 @@ export class PostgresLocal {
         await db.query('CREATE DATABASE ruizcacao_manager OWNER ruizcacao_app')
       await db.query('REVOKE ALL ON DATABASE ruizcacao_manager FROM PUBLIC')
     })
+    marcaPerfil('postgres-ready')
+    marcaPerfil('postgres-local-iniciar-end')
     return { ...c.conexion }
   }
   async detener(): Promise<void> {
+    await this.detenerConEspera(20)
+  }
+  private async detenerConEspera(segundos: number): Promise<void> {
     if (!this.iniciado) return
     try {
       await ejecutar(
@@ -267,8 +319,8 @@ export class PostgresLocal {
     }
     await ejecutar(
       join(this.opciones.binarios, 'pg_ctl.exe'),
-      ['-D', this.ruta('data'), '-m', 'fast', '-w', '-t', '20', 'stop'],
-      { windowsHide: true, timeout: 25000 }
+      ['-D', this.ruta('data'), '-m', 'fast', '-w', '-t', String(segundos), 'stop'],
+      { windowsHide: true, timeout: (segundos + 5) * 1000 }
     )
     this.iniciado = false
   }

@@ -1,0 +1,4 @@
+2026-10-13 12:23:52.904 -05 [17132] LOG:  starting PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit
+2026-10-13 12:23:52.976 -05 [17132] LOG:  database system is ready to accept connections
+2026-10-13 12:25:26.654 -05 [16080] LOG:  starting PostgreSQL 18.6 on x86_64-windows, compiled by msvc-19.44.35228, 64-bit
+2026-10-13 12:25:26.723 -05 [16080] LOG:  database system is ready to accept connections

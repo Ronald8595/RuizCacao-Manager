@@ -35,9 +35,11 @@ async function main() {
     await fs.writeFile(archivo, JSON.stringify(config), { mode: 0o600 })
     const suites = [
       'postgres-prerrequisito.cjs',
+      'pgctl-arranque.cjs',
       'notificaciones.cjs',
       'listados.cjs',
       'lectura-dominio.cjs',
+      'cuentas-fecha.cjs',
       'guardar-indices.cjs',
       'migracion-v9.cjs',
       'seed-rendimiento.cjs',

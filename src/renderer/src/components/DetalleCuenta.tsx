@@ -31,7 +31,8 @@ export default function DetalleCuenta({
         · {nombre}
       </h2>
       <p className="my-3 text-sm">
-        Fecha: {formatoFecha(cuenta.fecha)} · {operacion?.producto} · Estado: {cuenta.estado}
+        Fecha de operación: {formatoFecha(cuenta.fecha)} · {operacion?.producto} · Estado:{' '}
+        {cuenta.estado}
       </p>
       {operacion && (
         <div className="mb-3 rounded-xl bg-[#f5f7f4] p-3 text-sm">
@@ -68,7 +69,14 @@ export default function DetalleCuenta({
         <table className="w-full text-left text-[12px]">
           <thead>
             <tr>
-              {['Fecha', 'Movimiento', 'Monto', 'Método', 'Usuario', 'Observación / comprobante'].map((h) => (
+              {[
+                'Fecha',
+                'Movimiento',
+                'Monto',
+                'Método',
+                'Usuario',
+                'Observación / comprobante'
+              ].map((h) => (
                 <th key={h} className="p-2">
                   {h}
                 </th>

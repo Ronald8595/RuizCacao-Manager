@@ -1,11 +1,27 @@
 import { contextBridge, ipcRenderer } from 'electron'
 import type { ApiPersistencia, Respuesta } from '../shared/persistencia'
+const perfilActivo = process.argv.includes('--rcm-perfil-arranque')
+const marcaPerfil = (nombre: string, detalle?: Record<string, string | number | boolean>): void => {
+  if (perfilActivo)
+    ipcRenderer.send('perfil:marca', {
+      nombre,
+      detalle,
+      epoch: performance.timeOrigin + performance.now(),
+      proceso: 'preload'
+    })
+}
 
 const invocar = <T>(canal: string, ...args: unknown[]): Promise<Respuesta<T>> =>
-  ipcRenderer.invoke(canal, ...args).catch(() => ({
-    ok: false,
-    error: 'No se pudo comunicar con la aplicación. Vuelve a intentarlo.'
-  }))
+  ipcRenderer
+    .invoke(canal, ...args)
+    .then((respuesta) => {
+      marcaPerfil('ipc-response-end', { canal: canal.replace('datos:', '') })
+      return respuesta
+    })
+    .catch(() => ({
+      ok: false,
+      error: 'No se pudo comunicar con la aplicación. Vuelve a intentarlo.'
+    }))
 // Custom APIs for renderer
 const datos: ApiPersistencia = {
   listarNotificaciones: () => invocar('datos:listarNotificaciones'),
@@ -41,6 +57,19 @@ const datos: ApiPersistencia = {
   salir: () => invocar('datos:salir')
 }
 const api = {
+  ...(perfilActivo
+    ? {
+        perfil: {
+          marca: (
+            nombre: string,
+            epoch: number,
+            detalle?: Record<string, string | number | boolean>
+          ): void => {
+            ipcRenderer.send('perfil:marca', { nombre, epoch, detalle, proceso: 'renderer' })
+          }
+        }
+      }
+    : {}),
   datos,
   copiarTexto: (texto: string): Promise<boolean> =>
     ipcRenderer.invoke('sistema:copiar-texto', texto).then(Boolean, () => false),

@@ -1,0 +1,3271 @@
+[
+  {
+    "nombre": "small-frio",
+    "entorno": {
+      "escenario": "small",
+      "corrida": "frio",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\small",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/small/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 108.12,
+      "persistenciaMs": 35605.92,
+      "verificacionPgMs": 141.92,
+      "esperaMotorMs": 35115.07,
+      "baseConexionMs": 134.51,
+      "baseIniciarMs": 188.44,
+      "ventanaReadyMs": 1511.32,
+      "hastaAccesoMs": 37392.6,
+      "pausaAutomaticaMs": 109.2,
+      "loginAuthMs": 168.92,
+      "estadoMs": 38.86,
+      "sqlClienteEstadoMs": 28.29,
+      "dtoMs": 0.07,
+      "ipcMainPreloadMs": 0.73,
+      "puenteRendererMs": 0.1,
+      "rendererMs": 34.1,
+      "contextoMs": 0.2,
+      "inicioRenderCommitMs": 2.4,
+      "commitPinturaInteractivoMs": 26.8,
+      "loginInicioMs": 248.1,
+      "totalMs": 37749.9,
+      "firstPaintMs": 37260
+    },
+    "payload": 1096,
+    "conteos": {
+      "empleados": 0,
+      "clientes": 0,
+      "proveedores": 0,
+      "compras": 0,
+      "ventas": 0,
+      "cuentas": 0,
+      "movimientosCuenta": 0,
+      "movimientosStock": 0,
+      "gastos": 0
+    },
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 0,
+        "ms": 0.013200000001234002
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 0,
+        "ms": 0.009500000000116415
+      },
+      {
+        "entidad": "empleados",
+        "filas": 0,
+        "ms": 0.008599999993748497
+      },
+      {
+        "entidad": "compras",
+        "filas": 0,
+        "ms": 0.010799999996379483
+      },
+      {
+        "entidad": "ventas",
+        "filas": 0,
+        "ms": 0.007599999997182749
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 0,
+        "ms": 0.005300000004353933
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 0,
+        "ms": 0.005999999993946403
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 0,
+        "ms": 0.005600000004051253
+      },
+      {
+        "entidad": "gastos",
+        "filas": 0,
+        "ms": 0.006800000002840534
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 20.3,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "ventas",
+        "interactivoMs": 23.4,
+        "primeraPaginaSqlMs": 177.5
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 26.7,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 105.91,
+          "privadoMiB": 74.37
+        },
+        "Tab": {
+          "wsMiB": 115.05,
+          "privadoMiB": 54.97
+        },
+        "GPU": {
+          "wsMiB": 130.58,
+          "privadoMiB": 103.3
+        },
+        "Utility": {
+          "wsMiB": 54.09,
+          "privadoMiB": 14.35
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.75,
+          "privadoMiB": 41.52,
+          "procesos": 11,
+          "desfaseMs": 349
+        },
+        "mainRssMiB": 105.91
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 109.44,
+          "privadoMiB": 76.51
+        },
+        "Tab": {
+          "wsMiB": 119.71,
+          "privadoMiB": 58.16
+        },
+        "GPU": {
+          "wsMiB": 146.82,
+          "privadoMiB": 115.62
+        },
+        "Utility": {
+          "wsMiB": 54.09,
+          "privadoMiB": 14.35
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.75,
+          "privadoMiB": 41.52,
+          "procesos": 11,
+          "desfaseMs": -63
+        },
+        "mainRssMiB": 109.44
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 109.69,
+          "privadoMiB": 72.67
+        },
+        "Tab": {
+          "wsMiB": 122.67,
+          "privadoMiB": 60.69
+        },
+        "GPU": {
+          "wsMiB": 165.26,
+          "privadoMiB": 132.49
+        },
+        "Utility": {
+          "wsMiB": 54.09,
+          "privadoMiB": 14.35
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.77,
+          "privadoMiB": 41.52,
+          "procesos": 11,
+          "desfaseMs": 545
+        },
+        "mainRssMiB": 109.69
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 109.7,
+          "privadoMiB": 72.68
+        },
+        "Tab": {
+          "wsMiB": 124.99,
+          "privadoMiB": 63.28
+        },
+        "GPU": {
+          "wsMiB": 165.88,
+          "privadoMiB": 132.93
+        },
+        "Utility": {
+          "wsMiB": 54.09,
+          "privadoMiB": 14.35
+        },
+        "PostgreSQL": {
+          "wsMiB": 175.82,
+          "privadoMiB": 41.54,
+          "procesos": 11,
+          "desfaseMs": 51
+        },
+        "mainRssMiB": 109.7
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 109.93,
+          "privadoMiB": 72.8
+        },
+        "Tab": {
+          "wsMiB": 126.45,
+          "privadoMiB": 64.43
+        },
+        "GPU": {
+          "wsMiB": 166.08,
+          "privadoMiB": 132.16
+        },
+        "Utility": {
+          "wsMiB": 54.09,
+          "privadoMiB": 14.35
+        },
+        "PostgreSQL": {
+          "wsMiB": 175.83,
+          "privadoMiB": 41.54,
+          "procesos": 11,
+          "desfaseMs": -399
+        },
+        "mainRssMiB": 109.93
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 109.95,
+          "privadoMiB": 72.8
+        },
+        "Tab": {
+          "wsMiB": 126.74,
+          "privadoMiB": 64.65
+        },
+        "GPU": {
+          "wsMiB": 166.22,
+          "privadoMiB": 132.18
+        },
+        "Utility": {
+          "wsMiB": 53.85,
+          "privadoMiB": 14.13
+        },
+        "PostgreSQL": {
+          "wsMiB": 175.85,
+          "privadoMiB": 41.54,
+          "procesos": 11,
+          "desfaseMs": 424
+        },
+        "mainRssMiB": 109.95
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 109.96,
+          "privadoMiB": 72.81
+        },
+        "Tab": {
+          "wsMiB": 126.7,
+          "privadoMiB": 64.65
+        },
+        "GPU": {
+          "wsMiB": 153.94,
+          "privadoMiB": 119.53
+        },
+        "Utility": {
+          "wsMiB": 53.9,
+          "privadoMiB": 14.15
+        },
+        "PostgreSQL": {
+          "wsMiB": 175.91,
+          "privadoMiB": 41.54,
+          "procesos": 11,
+          "desfaseMs": -1113
+        },
+        "mainRssMiB": 109.96
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 1288.39,
+        "picoPorcentajeUnNucleo": 107.44
+      },
+      "Tab": {
+        "ms": 406.41,
+        "picoPorcentajeUnNucleo": 52.06
+      },
+      "GPU": {
+        "ms": 445.01,
+        "picoPorcentajeUnNucleo": 101.3
+      },
+      "Utility": {
+        "ms": 273.92,
+        "picoPorcentajeUnNucleo": 31.06
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 74.02,
+        "promedioPorcentajeUnNucleo": 1.48,
+        "picoPorcentajeUnNucleo": 3.77
+      },
+      "Tab": {
+        "ms": 1.81,
+        "promedioPorcentajeUnNucleo": 0.04,
+        "picoPorcentajeUnNucleo": 0.29
+      },
+      "GPU": {
+        "ms": 3.45,
+        "promedioPorcentajeUnNucleo": 0.07,
+        "picoPorcentajeUnNucleo": 0.67
+      },
+      "Utility": {
+        "ms": 5.31,
+        "promedioPorcentajeUnNucleo": 0.11,
+        "picoPorcentajeUnNucleo": 1.93
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 296.88,
+      "reposoMs": 0,
+      "picoArranque": 1.35,
+      "picoReposo": 0
+    },
+    "reposoMs": 5014.53,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 122.16,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130313
+    }
+  },
+  {
+    "nombre": "small-segundo",
+    "entorno": {
+      "escenario": "small",
+      "corrida": "segundo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\small",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/small/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 102.69,
+      "persistenciaMs": 35614.3,
+      "verificacionPgMs": 146.49,
+      "esperaMotorMs": 35208.47,
+      "baseConexionMs": 35.36,
+      "baseIniciarMs": 92.55,
+      "ventanaReadyMs": 1423.55,
+      "hastaAccesoMs": 37329.72,
+      "pausaAutomaticaMs": 192,
+      "loginAuthMs": 182.36,
+      "estadoMs": 34.92,
+      "sqlClienteEstadoMs": 25.87,
+      "dtoMs": 0.08,
+      "ipcMainPreloadMs": 0.63,
+      "puenteRendererMs": 0.1,
+      "rendererMs": 36.3,
+      "contextoMs": 0.2,
+      "inicioRenderCommitMs": 2.5,
+      "commitPinturaInteractivoMs": 28.6,
+      "loginInicioMs": 260.1,
+      "totalMs": 37781.82,
+      "firstPaintMs": 37166.12
+    },
+    "payload": 1096,
+    "conteos": {
+      "empleados": 0,
+      "clientes": 0,
+      "proveedores": 0,
+      "compras": 0,
+      "ventas": 0,
+      "cuentas": 0,
+      "movimientosCuenta": 0,
+      "movimientosStock": 0,
+      "gastos": 0
+    },
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 0,
+        "ms": 0.01239999999961583
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 0,
+        "ms": 0.010600000001431908
+      },
+      {
+        "entidad": "empleados",
+        "filas": 0,
+        "ms": 0.011200000000826549
+      },
+      {
+        "entidad": "compras",
+        "filas": 0,
+        "ms": 0.011599999997997656
+      },
+      {
+        "entidad": "ventas",
+        "filas": 0,
+        "ms": 0.007600000004458707
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 0,
+        "ms": 0.0044000000052619725
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 0,
+        "ms": 0.00480000000243308
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 0,
+        "ms": 0.00819999999657739
+      },
+      {
+        "entidad": "gastos",
+        "filas": 0,
+        "ms": 0.0054000000018277206
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 23.9,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "ventas",
+        "interactivoMs": 21.7,
+        "primeraPaginaSqlMs": 161.7
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 23.7,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 108.7,
+          "privadoMiB": 76.98
+        },
+        "Tab": {
+          "wsMiB": 116.73,
+          "privadoMiB": 57.7
+        },
+        "GPU": {
+          "wsMiB": 133.28,
+          "privadoMiB": 105.85
+        },
+        "Utility": {
+          "wsMiB": 54.22,
+          "privadoMiB": 14.26
+        },
+        "PostgreSQL": {
+          "wsMiB": 170.74,
+          "privadoMiB": 40.95,
+          "procesos": 11,
+          "desfaseMs": -43
+        },
+        "mainRssMiB": 108.7
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 112.16,
+          "privadoMiB": 79.19
+        },
+        "Tab": {
+          "wsMiB": 121.47,
+          "privadoMiB": 60.94
+        },
+        "GPU": {
+          "wsMiB": 139.93,
+          "privadoMiB": 112.7
+        },
+        "Utility": {
+          "wsMiB": 54.22,
+          "privadoMiB": 14.26
+        },
+        "PostgreSQL": {
+          "wsMiB": 170.74,
+          "privadoMiB": 40.95,
+          "procesos": 11,
+          "desfaseMs": -465
+        },
+        "mainRssMiB": 112.16
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 112.23,
+          "privadoMiB": 75.17
+        },
+        "Tab": {
+          "wsMiB": 124.27,
+          "privadoMiB": 63.06
+        },
+        "GPU": {
+          "wsMiB": 161,
+          "privadoMiB": 125.35
+        },
+        "Utility": {
+          "wsMiB": 54.22,
+          "privadoMiB": 14.26
+        },
+        "PostgreSQL": {
+          "wsMiB": 172.89,
+          "privadoMiB": 41.28,
+          "procesos": 11,
+          "desfaseMs": 170
+        },
+        "mainRssMiB": 112.23
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 112.24,
+          "privadoMiB": 75.18
+        },
+        "Tab": {
+          "wsMiB": 126.72,
+          "privadoMiB": 65.68
+        },
+        "GPU": {
+          "wsMiB": 161.29,
+          "privadoMiB": 125.91
+        },
+        "Utility": {
+          "wsMiB": 54.22,
+          "privadoMiB": 14.26
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.82,
+          "privadoMiB": 41.28,
+          "procesos": 11,
+          "desfaseMs": -262
+        },
+        "mainRssMiB": 112.24
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 112.59,
+          "privadoMiB": 75.66
+        },
+        "Tab": {
+          "wsMiB": 128.21,
+          "privadoMiB": 67.04
+        },
+        "GPU": {
+          "wsMiB": 160.9,
+          "privadoMiB": 125.41
+        },
+        "Utility": {
+          "wsMiB": 54.22,
+          "privadoMiB": 14.26
+        },
+        "PostgreSQL": {
+          "wsMiB": 174,
+          "privadoMiB": 41.36,
+          "procesos": 11,
+          "desfaseMs": 458
+        },
+        "mainRssMiB": 112.59
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 112.61,
+          "privadoMiB": 75.67
+        },
+        "Tab": {
+          "wsMiB": 128.47,
+          "privadoMiB": 67.27
+        },
+        "GPU": {
+          "wsMiB": 160.91,
+          "privadoMiB": 125.41
+        },
+        "Utility": {
+          "wsMiB": 54.29,
+          "privadoMiB": 14.35
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.01,
+          "privadoMiB": 41.36,
+          "procesos": 11,
+          "desfaseMs": 125
+        },
+        "mainRssMiB": 112.61
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 114.09,
+          "privadoMiB": 74.39
+        },
+        "Tab": {
+          "wsMiB": 112.66,
+          "privadoMiB": 49.74
+        },
+        "GPU": {
+          "wsMiB": 135.58,
+          "privadoMiB": 99.3
+        },
+        "Utility": {
+          "wsMiB": 53.57,
+          "privadoMiB": 13.29
+        },
+        "PostgreSQL": {
+          "wsMiB": 156.59,
+          "privadoMiB": 35.96,
+          "procesos": 10,
+          "desfaseMs": -976
+        },
+        "mainRssMiB": 114.09
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 1276.99,
+        "picoPorcentajeUnNucleo": 87.51
+      },
+      "Tab": {
+        "ms": 443.86,
+        "picoPorcentajeUnNucleo": 46.74
+      },
+      "GPU": {
+        "ms": 397.25,
+        "picoPorcentajeUnNucleo": 67.24
+      },
+      "Utility": {
+        "ms": 221.78,
+        "picoPorcentajeUnNucleo": 21.53
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 3092.62,
+        "promedioPorcentajeUnNucleo": 1.03,
+        "picoPorcentajeUnNucleo": 6.45
+      },
+      "Tab": {
+        "ms": 253.38,
+        "promedioPorcentajeUnNucleo": 0.08,
+        "picoPorcentajeUnNucleo": 41.9
+      },
+      "GPU": {
+        "ms": 46.77,
+        "promedioPorcentajeUnNucleo": 0.02,
+        "picoPorcentajeUnNucleo": 5.12
+      },
+      "Utility": {
+        "ms": 19.1,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.43
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 359.38,
+      "reposoMs": 125,
+      "picoArranque": 1.36,
+      "picoReposo": 2.69
+    },
+    "reposoMs": 300006.37,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 123.27,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130313
+    }
+  },
+  {
+    "nombre": "large-frio",
+    "entorno": {
+      "escenario": "large",
+      "corrida": "frio",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\large",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/large/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 108.72,
+      "persistenciaMs": 35596.67,
+      "verificacionPgMs": 153.25,
+      "esperaMotorMs": 35131.49,
+      "baseConexionMs": 51.87,
+      "baseIniciarMs": 138.11,
+      "ventanaReadyMs": 1671.48,
+      "hastaAccesoMs": 37586.53,
+      "pausaAutomaticaMs": 139.6,
+      "loginAuthMs": 204.69,
+      "estadoMs": 1063.45,
+      "sqlClienteEstadoMs": 754.7,
+      "dtoMs": 300.24,
+      "ipcMainPreloadMs": 232.74,
+      "puenteRendererMs": 331.6,
+      "rendererMs": 76.7,
+      "contextoMs": 20.5,
+      "inicioRenderCommitMs": 6.9,
+      "commitPinturaInteractivoMs": 30.2,
+      "loginInicioMs": 1917.7,
+      "totalMs": 39643.83,
+      "firstPaintMs": 37411.33
+    },
+    "payload": 65340429,
+    "conteos": {
+      "empleados": 3,
+      "clientes": 1004,
+      "proveedores": 506,
+      "compras": 10014,
+      "ventas": 15007,
+      "cuentas": 25021,
+      "movimientosCuenta": 16695,
+      "movimientosStock": 25450,
+      "gastos": 13019
+    },
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 1004,
+        "ms": 2.996899999998277
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 506,
+        "ms": 1.423399999999674
+      },
+      {
+        "entidad": "empleados",
+        "filas": 3,
+        "ms": 0.11370000000169966
+      },
+      {
+        "entidad": "compras",
+        "filas": 10014,
+        "ms": 41.22799999999552
+      },
+      {
+        "entidad": "ventas",
+        "filas": 15007,
+        "ms": 68.32289999999921
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 25021,
+        "ms": 82.45919999999751
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 16695,
+        "ms": 43.67809999999736
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 25450,
+        "ms": 34.444500000005064
+      },
+      {
+        "entidad": "gastos",
+        "filas": 13019,
+        "ms": 25.57810000000609
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 56.2,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "ventas",
+        "interactivoMs": 16.5,
+        "primeraPaginaSqlMs": 159.7
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 17.1,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 107.21,
+          "privadoMiB": 76.15
+        },
+        "Tab": {
+          "wsMiB": 112.91,
+          "privadoMiB": 54.61
+        },
+        "GPU": {
+          "wsMiB": 130.86,
+          "privadoMiB": 103.64
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.29
+        },
+        "PostgreSQL": {
+          "wsMiB": 177,
+          "privadoMiB": 41.46,
+          "procesos": 11,
+          "desfaseMs": 145
+        },
+        "mainRssMiB": 107.21
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 273.91,
+          "privadoMiB": 240.53
+        },
+        "Tab": {
+          "wsMiB": 267.98,
+          "privadoMiB": 208.57
+        },
+        "GPU": {
+          "wsMiB": 136.31,
+          "privadoMiB": 108.95
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.29
+        },
+        "PostgreSQL": {
+          "wsMiB": 246.3,
+          "privadoMiB": 43.22,
+          "procesos": 11,
+          "desfaseMs": 398
+        },
+        "mainRssMiB": 273.91
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 278.56,
+          "privadoMiB": 240.95
+        },
+        "Tab": {
+          "wsMiB": 282.34,
+          "privadoMiB": 220.27
+        },
+        "GPU": {
+          "wsMiB": 156.92,
+          "privadoMiB": 129.06
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.29
+        },
+        "PostgreSQL": {
+          "wsMiB": 248.18,
+          "privadoMiB": 43.22,
+          "procesos": 11,
+          "desfaseMs": -180
+        },
+        "mainRssMiB": 278.56
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 278.63,
+          "privadoMiB": 240.96
+        },
+        "Tab": {
+          "wsMiB": 283.65,
+          "privadoMiB": 221.46
+        },
+        "GPU": {
+          "wsMiB": 157.1,
+          "privadoMiB": 128.73
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.29
+        },
+        "PostgreSQL": {
+          "wsMiB": 248.3,
+          "privadoMiB": 43.22,
+          "procesos": 11,
+          "desfaseMs": 517
+        },
+        "mainRssMiB": 278.63
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 279.58,
+          "privadoMiB": 241.89
+        },
+        "Tab": {
+          "wsMiB": 285.2,
+          "privadoMiB": 222.72
+        },
+        "GPU": {
+          "wsMiB": 158.11,
+          "privadoMiB": 129.72
+        },
+        "Utility": {
+          "wsMiB": 53.81,
+          "privadoMiB": 14.06
+        },
+        "PostgreSQL": {
+          "wsMiB": 248.32,
+          "privadoMiB": 43.22,
+          "procesos": 11,
+          "desfaseMs": 49
+        },
+        "mainRssMiB": 279.58
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 279.59,
+          "privadoMiB": 241.89
+        },
+        "Tab": {
+          "wsMiB": 285.26,
+          "privadoMiB": 222.86
+        },
+        "GPU": {
+          "wsMiB": 157.95,
+          "privadoMiB": 129.65
+        },
+        "Utility": {
+          "wsMiB": 53.86,
+          "privadoMiB": 14.09
+        },
+        "PostgreSQL": {
+          "wsMiB": 248.35,
+          "privadoMiB": 43.22,
+          "procesos": 11,
+          "desfaseMs": -279
+        },
+        "mainRssMiB": 279.59
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 107.98,
+          "privadoMiB": 73.08
+        },
+        "Tab": {
+          "wsMiB": 285.26,
+          "privadoMiB": 222.86
+        },
+        "GPU": {
+          "wsMiB": 152.62,
+          "privadoMiB": 124.32
+        },
+        "Utility": {
+          "wsMiB": 53.86,
+          "privadoMiB": 14.09
+        },
+        "PostgreSQL": {
+          "wsMiB": 248.44,
+          "privadoMiB": 43.22,
+          "procesos": 11,
+          "desfaseMs": 528
+        },
+        "mainRssMiB": 107.98
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 2650.1,
+        "picoPorcentajeUnNucleo": 141.33
+      },
+      "Tab": {
+        "ms": 1148.89,
+        "picoPorcentajeUnNucleo": 156.49
+      },
+      "GPU": {
+        "ms": 474.58,
+        "picoPorcentajeUnNucleo": 91.41
+      },
+      "Utility": {
+        "ms": 296.23,
+        "picoPorcentajeUnNucleo": 31.86
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 101.64,
+        "promedioPorcentajeUnNucleo": 2.03,
+        "picoPorcentajeUnNucleo": 14.01
+      },
+      "Tab": {
+        "ms": 1.74,
+        "promedioPorcentajeUnNucleo": 0.03,
+        "picoPorcentajeUnNucleo": 0.21
+      },
+      "GPU": {
+        "ms": 1.47,
+        "promedioPorcentajeUnNucleo": 0.03,
+        "picoPorcentajeUnNucleo": 0.41
+      },
+      "Utility": {
+        "ms": 0.04,
+        "promedioPorcentajeUnNucleo": 0,
+        "picoPorcentajeUnNucleo": 0.01
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 1375,
+      "reposoMs": 0,
+      "picoArranque": 26.71,
+      "picoReposo": 0
+    },
+    "reposoMs": 5006.71,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 238.68,
+    "pgCtl": [
+      {
+        "nombre": "pg_ctl-spawn",
+        "ms": 435.28
+      },
+      {
+        "nombre": "pg_ctl-exit",
+        "ms": 861.03,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      },
+      {
+        "nombre": "pg_ctl-callback",
+        "ms": 35443.96,
+        "detalle": {
+          "error": false,
+          "killed": false
+        }
+      },
+      {
+        "nombre": "pg_ctl-close",
+        "ms": 35444,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      }
+    ],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130313
+    }
+  },
+  {
+    "nombre": "large-segundo",
+    "entorno": {
+      "escenario": "large",
+      "corrida": "segundo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\large",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/large/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": "Timeout esperando interactive/ventas",
+    "tiempos": {
+      "procesoReadyMs": 107.83,
+      "persistenciaMs": 35648.43,
+      "verificacionPgMs": 148.76,
+      "esperaMotorMs": 35223.65,
+      "baseConexionMs": 35.51,
+      "baseIniciarMs": 104.01,
+      "ventanaReadyMs": 1468.49,
+      "hastaAccesoMs": 37429.97,
+      "pausaAutomaticaMs": 150.8,
+      "loginAuthMs": 130.4,
+      "estadoMs": 1008.99,
+      "sqlClienteEstadoMs": 730.42,
+      "dtoMs": 269.7,
+      "ipcMainPreloadMs": 232.32,
+      "puenteRendererMs": 372.5,
+      "rendererMs": 79.3,
+      "contextoMs": 24.7,
+      "inicioRenderCommitMs": 6.4,
+      "commitPinturaInteractivoMs": 29.9,
+      "loginInicioMs": 1833.8,
+      "totalMs": 39414.57,
+      "firstPaintMs": 37246.27
+    },
+    "payload": null,
+    "conteos": null,
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": null
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 1004,
+        "ms": 1.265800000001036
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 506,
+        "ms": 0.6214000000036322
+      },
+      {
+        "entidad": "empleados",
+        "filas": 3,
+        "ms": 0.07690000000002328
+      },
+      {
+        "entidad": "compras",
+        "filas": 10014,
+        "ms": 27.61830000000191
+      },
+      {
+        "entidad": "ventas",
+        "filas": 15007,
+        "ms": 61.22980000000098
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 25021,
+        "ms": 64.62219999999797
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 16695,
+        "ms": 38.14929999999731
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 25450,
+        "ms": 49.085800000000745
+      },
+      {
+        "entidad": "gastos",
+        "filas": 13019,
+        "ms": 27.03070000000298
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 53.4,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "inicio",
+        "interactivoMs": 16,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "inicio",
+        "pagina": "ventas",
+        "interactivoMs": null,
+        "primeraPaginaSqlMs": 918.7
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 108.77,
+          "privadoMiB": 76.83
+        },
+        "Tab": {
+          "wsMiB": 114.08,
+          "privadoMiB": 54.85
+        },
+        "GPU": {
+          "wsMiB": 131.07,
+          "privadoMiB": 103.96
+        },
+        "Utility": {
+          "wsMiB": 53.87,
+          "privadoMiB": 14
+        },
+        "PostgreSQL": {
+          "wsMiB": 195.72,
+          "privadoMiB": 44.58,
+          "procesos": 11,
+          "desfaseMs": 417
+        },
+        "mainRssMiB": 108.77
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 277.68,
+          "privadoMiB": 244.74
+        },
+        "Tab": {
+          "wsMiB": 269.45,
+          "privadoMiB": 209.96
+        },
+        "GPU": {
+          "wsMiB": 138.13,
+          "privadoMiB": 111.33
+        },
+        "Utility": {
+          "wsMiB": 53.87,
+          "privadoMiB": 14
+        },
+        "PostgreSQL": {
+          "wsMiB": 239.22,
+          "privadoMiB": 42.32,
+          "procesos": 11,
+          "desfaseMs": -416
+        },
+        "mainRssMiB": 277.68
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 282.5,
+          "privadoMiB": 245.14
+        },
+        "Tab": {
+          "wsMiB": 283.02,
+          "privadoMiB": 220.84
+        },
+        "GPU": {
+          "wsMiB": 156.27,
+          "privadoMiB": 128.99
+        },
+        "Utility": {
+          "wsMiB": 53.87,
+          "privadoMiB": 14
+        },
+        "PostgreSQL": {
+          "wsMiB": 240.46,
+          "privadoMiB": 42.34,
+          "procesos": 11,
+          "desfaseMs": 184
+        },
+        "mainRssMiB": 282.5
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 282.69,
+          "privadoMiB": 245.19
+        },
+        "Tab": {
+          "wsMiB": 284.27,
+          "privadoMiB": 222.14
+        },
+        "GPU": {
+          "wsMiB": 156.26,
+          "privadoMiB": 128.8
+        },
+        "Utility": {
+          "wsMiB": 53.87,
+          "privadoMiB": 14
+        },
+        "PostgreSQL": {
+          "wsMiB": 240.47,
+          "privadoMiB": 42.34,
+          "procesos": 11,
+          "desfaseMs": -362
+        },
+        "mainRssMiB": 282.69
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 2708.35,
+        "picoPorcentajeUnNucleo": 134.6
+      },
+      "Tab": {
+        "ms": 1171.95,
+        "picoPorcentajeUnNucleo": 152.86
+      },
+      "GPU": {
+        "ms": 384.14,
+        "picoPorcentajeUnNucleo": 101.52
+      },
+      "Utility": {
+        "ms": 213.04,
+        "picoPorcentajeUnNucleo": 15.92
+      }
+    },
+    "cpuReposo": null,
+    "postgresCpu": {
+      "arranqueMs": 687.5,
+      "reposoMs": 0,
+      "picoArranque": 17.41,
+      "picoReposo": 17.41
+    },
+    "reposoMs": null,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 206.57,
+    "pgCtl": [
+      {
+        "nombre": "pg_ctl-spawn",
+        "ms": 428.57
+      },
+      {
+        "nombre": "pg_ctl-exit",
+        "ms": 742.73,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      },
+      {
+        "nombre": "pg_ctl-callback",
+        "ms": 35441.23,
+        "detalle": {
+          "error": false,
+          "killed": false
+        }
+      },
+      {
+        "nombre": "pg_ctl-close",
+        "ms": 35441.36,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      }
+    ],
+    "recursosWeb": null
+  },
+  {
+    "nombre": "small-externo-frio",
+    "entorno": {
+      "escenario": "small",
+      "corrida": "frio",
+      "conexion": "configurada; motor de copia ya activo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\small",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/small/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 121.02,
+      "persistenciaMs": 151.56,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 42.9,
+      "baseIniciarMs": 143.44,
+      "ventanaReadyMs": 1200.04,
+      "hastaAccesoMs": 1621.38,
+      "pausaAutomaticaMs": 103.7,
+      "loginAuthMs": 146.74,
+      "estadoMs": 66.65,
+      "sqlClienteEstadoMs": 56.85,
+      "dtoMs": 0.13,
+      "ipcMainPreloadMs": 4.64,
+      "puenteRendererMs": 0.2,
+      "rendererMs": 52,
+      "contextoMs": 0.5,
+      "inicioRenderCommitMs": 4.5,
+      "commitPinturaInteractivoMs": 40.7,
+      "loginInicioMs": 280.4,
+      "totalMs": 2005.48,
+      "firstPaintMs": 1622.08
+    },
+    "payload": 1096,
+    "conteos": {
+      "empleados": 0,
+      "clientes": 0,
+      "proveedores": 0,
+      "compras": 0,
+      "ventas": 0,
+      "cuentas": 0,
+      "movimientosCuenta": 0,
+      "movimientosStock": 0,
+      "gastos": 0
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 0,
+        "ms": 0.016599999999925785
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 0,
+        "ms": 0.02519999999981337
+      },
+      {
+        "entidad": "empleados",
+        "filas": 0,
+        "ms": 0.01139999999986685
+      },
+      {
+        "entidad": "compras",
+        "filas": 0,
+        "ms": 0.01869999999985339
+      },
+      {
+        "entidad": "ventas",
+        "filas": 0,
+        "ms": 0.010300000000142973
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 0,
+        "ms": 0.024400000000014188
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 0,
+        "ms": 0.0060000000000854925
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 0,
+        "ms": 0.006200000000035288
+      },
+      {
+        "entidad": "gastos",
+        "filas": 0,
+        "ms": 0.009600000000091313
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 26.9,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "inicio",
+        "interactivoMs": 23.4,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "inicio",
+        "pagina": "ventas",
+        "interactivoMs": 17.4,
+        "primeraPaginaSqlMs": 188
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 21.9,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 108.15,
+          "privadoMiB": 75.66
+        },
+        "Tab": {
+          "wsMiB": 111.01,
+          "privadoMiB": 53.11
+        },
+        "GPU": {
+          "wsMiB": 122.12,
+          "privadoMiB": 96.36
+        },
+        "Utility": {
+          "wsMiB": 54.34,
+          "privadoMiB": 14.43
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.64,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": 420
+        },
+        "mainRssMiB": 108.15
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 111.65,
+          "privadoMiB": 77.83
+        },
+        "Tab": {
+          "wsMiB": 116.35,
+          "privadoMiB": 57.31
+        },
+        "GPU": {
+          "wsMiB": 138.92,
+          "privadoMiB": 112.04
+        },
+        "Utility": {
+          "wsMiB": 54.34,
+          "privadoMiB": 14.43
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.64,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": 4
+        },
+        "mainRssMiB": 111.65
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 115.34,
+          "privadoMiB": 77.47
+        },
+        "Tab": {
+          "wsMiB": 118.85,
+          "privadoMiB": 59.06
+        },
+        "GPU": {
+          "wsMiB": 154.66,
+          "privadoMiB": 126.91
+        },
+        "Utility": {
+          "wsMiB": 54.34,
+          "privadoMiB": 14.43
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.66,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": -473
+        },
+        "mainRssMiB": 115.34
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 115.4,
+          "privadoMiB": 77.48
+        },
+        "Tab": {
+          "wsMiB": 122.53,
+          "privadoMiB": 62.75
+        },
+        "GPU": {
+          "wsMiB": 154.79,
+          "privadoMiB": 126.91
+        },
+        "Utility": {
+          "wsMiB": 54.34,
+          "privadoMiB": 14.43
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.85,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": -30
+        },
+        "mainRssMiB": 115.4
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 115.69,
+          "privadoMiB": 78.28
+        },
+        "Tab": {
+          "wsMiB": 124.18,
+          "privadoMiB": 63.94
+        },
+        "GPU": {
+          "wsMiB": 154.86,
+          "privadoMiB": 126.9
+        },
+        "Utility": {
+          "wsMiB": 54.17,
+          "privadoMiB": 14.24
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.86,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": -400
+        },
+        "mainRssMiB": 115.69
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 115.71,
+          "privadoMiB": 78.28
+        },
+        "Tab": {
+          "wsMiB": 124.2,
+          "privadoMiB": 63.95
+        },
+        "GPU": {
+          "wsMiB": 149.27,
+          "privadoMiB": 121.1
+        },
+        "Utility": {
+          "wsMiB": 54.17,
+          "privadoMiB": 14.24
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.9,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": 594
+        },
+        "mainRssMiB": 115.71
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 115.73,
+          "privadoMiB": 78.28
+        },
+        "Tab": {
+          "wsMiB": 124.2,
+          "privadoMiB": 63.95
+        },
+        "GPU": {
+          "wsMiB": 147.48,
+          "privadoMiB": 119.3
+        },
+        "Utility": {
+          "wsMiB": 54.17,
+          "privadoMiB": 14.24
+        },
+        "PostgreSQL": {
+          "wsMiB": 173.96,
+          "privadoMiB": 40.75,
+          "procesos": 11,
+          "desfaseMs": -699
+        },
+        "mainRssMiB": 115.73
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 806.12,
+        "picoPorcentajeUnNucleo": 79.44
+      },
+      "Tab": {
+        "ms": 491.61,
+        "picoPorcentajeUnNucleo": 64.98
+      },
+      "GPU": {
+        "ms": 426.47,
+        "picoPorcentajeUnNucleo": 68.53
+      },
+      "Utility": {
+        "ms": 228.14,
+        "picoPorcentajeUnNucleo": 24.19
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 59.85,
+        "promedioPorcentajeUnNucleo": 1.19,
+        "picoPorcentajeUnNucleo": 92
+      },
+      "Tab": {
+        "ms": 0.82,
+        "promedioPorcentajeUnNucleo": 0.02,
+        "picoPorcentajeUnNucleo": 0.11
+      },
+      "GPU": {
+        "ms": 3.03,
+        "promedioPorcentajeUnNucleo": 0.06,
+        "picoPorcentajeUnNucleo": 0.92
+      },
+      "Utility": {
+        "ms": 0.08,
+        "promedioPorcentajeUnNucleo": 0,
+        "picoPorcentajeUnNucleo": 0.03
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 0,
+      "reposoMs": 0,
+      "picoArranque": 0,
+      "picoReposo": 0
+    },
+    "reposoMs": 5010,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 92.6,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130313
+    }
+  },
+  {
+    "nombre": "small-externo-segundo",
+    "entorno": {
+      "escenario": "small",
+      "corrida": "segundo",
+      "conexion": "configurada; motor de copia ya activo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\small",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/small/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 116.82,
+      "persistenciaMs": 107.59,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 42.15,
+      "baseIniciarMs": 98.6,
+      "ventanaReadyMs": 1042.99,
+      "hastaAccesoMs": 1399.34,
+      "pausaAutomaticaMs": 164.3,
+      "loginAuthMs": 165.57,
+      "estadoMs": 41.61,
+      "sqlClienteEstadoMs": 29.44,
+      "dtoMs": 0.1,
+      "ipcMainPreloadMs": 3.31,
+      "puenteRendererMs": 0.1,
+      "rendererMs": 45.8,
+      "contextoMs": 0.2,
+      "inicioRenderCommitMs": 3.5,
+      "commitPinturaInteractivoMs": 35.4,
+      "loginInicioMs": 261.3,
+      "totalMs": 1824.94,
+      "firstPaintMs": 1315.64
+    },
+    "payload": 1096,
+    "conteos": {
+      "empleados": 0,
+      "clientes": 0,
+      "proveedores": 0,
+      "compras": 0,
+      "ventas": 0,
+      "cuentas": 0,
+      "movimientosCuenta": 0,
+      "movimientosStock": 0,
+      "gastos": 0
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 0,
+        "ms": 0.018799999999828287
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 0,
+        "ms": 0.011799999999993815
+      },
+      {
+        "entidad": "empleados",
+        "filas": 0,
+        "ms": 0.010700000000042564
+      },
+      {
+        "entidad": "compras",
+        "filas": 0,
+        "ms": 0.010299999999915599
+      },
+      {
+        "entidad": "ventas",
+        "filas": 0,
+        "ms": 0.009399999999914144
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 0,
+        "ms": 0.006399999999985084
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 0,
+        "ms": 0.007599999999911233
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 0,
+        "ms": 0.005200000000058935
+      },
+      {
+        "entidad": "gastos",
+        "filas": 0,
+        "ms": 0.016000000000076398
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 23.6,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "inicio",
+        "interactivoMs": 18.7,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "inicio",
+        "pagina": "ventas",
+        "interactivoMs": 25.9,
+        "primeraPaginaSqlMs": 181.2
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 12.2,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 110.73,
+          "privadoMiB": 77.94
+        },
+        "Tab": {
+          "wsMiB": 111.16,
+          "privadoMiB": 53.49
+        },
+        "GPU": {
+          "wsMiB": 131.43,
+          "privadoMiB": 104.09
+        },
+        "Utility": {
+          "wsMiB": 53.89,
+          "privadoMiB": 14.07
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.23,
+          "privadoMiB": 40.79,
+          "procesos": 11,
+          "desfaseMs": 356
+        },
+        "mainRssMiB": 110.73
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 113.14,
+          "privadoMiB": 79.29
+        },
+        "Tab": {
+          "wsMiB": 117.01,
+          "privadoMiB": 57.91
+        },
+        "GPU": {
+          "wsMiB": 138.18,
+          "privadoMiB": 111.68
+        },
+        "Utility": {
+          "wsMiB": 53.89,
+          "privadoMiB": 14.07
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.23,
+          "privadoMiB": 40.79,
+          "procesos": 11,
+          "desfaseMs": -72
+        },
+        "mainRssMiB": 113.14
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 117.96,
+          "privadoMiB": 80.03
+        },
+        "Tab": {
+          "wsMiB": 119.55,
+          "privadoMiB": 59.75
+        },
+        "GPU": {
+          "wsMiB": 153.8,
+          "privadoMiB": 125.65
+        },
+        "Utility": {
+          "wsMiB": 53.89,
+          "privadoMiB": 14.07
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.23,
+          "privadoMiB": 40.79,
+          "procesos": 11,
+          "desfaseMs": -568
+        },
+        "mainRssMiB": 117.96
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 117.99,
+          "privadoMiB": 80.04
+        },
+        "Tab": {
+          "wsMiB": 123.23,
+          "privadoMiB": 62.82
+        },
+        "GPU": {
+          "wsMiB": 155.8,
+          "privadoMiB": 127.8
+        },
+        "Utility": {
+          "wsMiB": 53.9,
+          "privadoMiB": 14.07
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.39,
+          "privadoMiB": 40.79,
+          "procesos": 11,
+          "desfaseMs": -86
+        },
+        "mainRssMiB": 117.99
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 118.33,
+          "privadoMiB": 80.56
+        },
+        "Tab": {
+          "wsMiB": 124.62,
+          "privadoMiB": 64.44
+        },
+        "GPU": {
+          "wsMiB": 154.63,
+          "privadoMiB": 126.46
+        },
+        "Utility": {
+          "wsMiB": 53.97,
+          "privadoMiB": 14.16
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.39,
+          "privadoMiB": 40.79,
+          "procesos": 11,
+          "desfaseMs": -449
+        },
+        "mainRssMiB": 118.33
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 118.33,
+          "privadoMiB": 80.56
+        },
+        "Tab": {
+          "wsMiB": 124.94,
+          "privadoMiB": 64.61
+        },
+        "GPU": {
+          "wsMiB": 154.54,
+          "privadoMiB": 126.46
+        },
+        "Utility": {
+          "wsMiB": 53.97,
+          "privadoMiB": 14.16
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.41,
+          "privadoMiB": 40.79,
+          "procesos": 11,
+          "desfaseMs": 541
+        },
+        "mainRssMiB": 118.33
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 109.38,
+          "privadoMiB": 72.88
+        },
+        "Tab": {
+          "wsMiB": 114.36,
+          "privadoMiB": 52.5
+        },
+        "GPU": {
+          "wsMiB": 128.63,
+          "privadoMiB": 99.54
+        },
+        "Utility": {
+          "wsMiB": 53.31,
+          "privadoMiB": 13.1
+        },
+        "PostgreSQL": {
+          "wsMiB": 158.7,
+          "privadoMiB": 34.8,
+          "procesos": 10,
+          "desfaseMs": -124
+        },
+        "mainRssMiB": 109.38
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 762.71,
+        "picoPorcentajeUnNucleo": 89.68
+      },
+      "Tab": {
+        "ms": 456.08,
+        "picoPorcentajeUnNucleo": 64.19
+      },
+      "GPU": {
+        "ms": 427.02,
+        "picoPorcentajeUnNucleo": 62.37
+      },
+      "Utility": {
+        "ms": 189.42,
+        "picoPorcentajeUnNucleo": 16.44
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 3178.35,
+        "promedioPorcentajeUnNucleo": 1.06,
+        "picoPorcentajeUnNucleo": 16.5
+      },
+      "Tab": {
+        "ms": 205,
+        "promedioPorcentajeUnNucleo": 0.07,
+        "picoPorcentajeUnNucleo": 22.57
+      },
+      "GPU": {
+        "ms": 371.55,
+        "promedioPorcentajeUnNucleo": 0.12,
+        "picoPorcentajeUnNucleo": 23.77
+      },
+      "Utility": {
+        "ms": 22.85,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.56
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 15.63,
+      "reposoMs": 250,
+      "picoArranque": 1.07,
+      "picoReposo": 8.87
+    },
+    "reposoMs": 300007.95,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 105.25,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130321
+    }
+  },
+  {
+    "nombre": "large-externo-frio",
+    "entorno": {
+      "escenario": "large",
+      "corrida": "frio",
+      "conexion": "configurada; motor de copia ya activo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\large",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/large/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 127.28,
+      "persistenciaMs": 146.31,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 42.5,
+      "baseIniciarMs": 139.87,
+      "ventanaReadyMs": 1865.11,
+      "hastaAccesoMs": 2271.72,
+      "pausaAutomaticaMs": 106.8,
+      "loginAuthMs": 238.01,
+      "estadoMs": 1009.5,
+      "sqlClienteEstadoMs": 785.09,
+      "dtoMs": 215.41,
+      "ipcMainPreloadMs": 277.05,
+      "puenteRendererMs": 379.4,
+      "rendererMs": 94.3,
+      "contextoMs": 25.6,
+      "inicioRenderCommitMs": 7.5,
+      "commitPinturaInteractivoMs": 38.8,
+      "loginInicioMs": 2015.4,
+      "totalMs": 4393.92,
+      "firstPaintMs": 2280.72
+    },
+    "payload": 65340664,
+    "conteos": {
+      "empleados": 3,
+      "clientes": 1004,
+      "proveedores": 506,
+      "compras": 10014,
+      "ventas": 15007,
+      "cuentas": 25021,
+      "movimientosCuenta": 16695,
+      "movimientosStock": 25450,
+      "gastos": 13019
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 1004,
+        "ms": 2.980399999999918
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 506,
+        "ms": 0.6966999999999643
+      },
+      {
+        "entidad": "empleados",
+        "filas": 3,
+        "ms": 0.09770000000025902
+      },
+      {
+        "entidad": "compras",
+        "filas": 10014,
+        "ms": 26.202499999999873
+      },
+      {
+        "entidad": "ventas",
+        "filas": 15007,
+        "ms": 42.978000000000065
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 25021,
+        "ms": 51.92890000000034
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 16695,
+        "ms": 34.409200000000055
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 25450,
+        "ms": 32.0282000000002
+      },
+      {
+        "entidad": "gastos",
+        "filas": 13019,
+        "ms": 24.090499999999793
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 127.9,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "inicio",
+        "interactivoMs": 22.9,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "inicio",
+        "pagina": "ventas",
+        "interactivoMs": 15.4,
+        "primeraPaginaSqlMs": 173.2
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 25.3,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 108.47,
+          "privadoMiB": 75.85
+        },
+        "Tab": {
+          "wsMiB": 112.03,
+          "privadoMiB": 54.2
+        },
+        "GPU": {
+          "wsMiB": 123.92,
+          "privadoMiB": 96.7
+        },
+        "Utility": {
+          "wsMiB": 54.11,
+          "privadoMiB": 14.2
+        },
+        "PostgreSQL": {
+          "wsMiB": 174.7,
+          "privadoMiB": 40.38,
+          "procesos": 11,
+          "desfaseMs": -422
+        },
+        "mainRssMiB": 108.47
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 279.93,
+          "privadoMiB": 244.67
+        },
+        "Tab": {
+          "wsMiB": 266.69,
+          "privadoMiB": 207.39
+        },
+        "GPU": {
+          "wsMiB": 137.14,
+          "privadoMiB": 109.59
+        },
+        "Utility": {
+          "wsMiB": 54.11,
+          "privadoMiB": 14.2
+        },
+        "PostgreSQL": {
+          "wsMiB": 244.85,
+          "privadoMiB": 42.11,
+          "procesos": 11,
+          "desfaseMs": -156
+        },
+        "mainRssMiB": 279.93
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 284.41,
+          "privadoMiB": 245.06
+        },
+        "Tab": {
+          "wsMiB": 278.37,
+          "privadoMiB": 217.25
+        },
+        "GPU": {
+          "wsMiB": 157.57,
+          "privadoMiB": 130.04
+        },
+        "Utility": {
+          "wsMiB": 54.12,
+          "privadoMiB": 14.2
+        },
+        "PostgreSQL": {
+          "wsMiB": 244.86,
+          "privadoMiB": 42.11,
+          "procesos": 11,
+          "desfaseMs": 459
+        },
+        "mainRssMiB": 284.41
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 284.41,
+          "privadoMiB": 245.06
+        },
+        "Tab": {
+          "wsMiB": 280.89,
+          "privadoMiB": 219.65
+        },
+        "GPU": {
+          "wsMiB": 157.84,
+          "privadoMiB": 129.72
+        },
+        "Utility": {
+          "wsMiB": 54.23,
+          "privadoMiB": 14.33
+        },
+        "PostgreSQL": {
+          "wsMiB": 244.88,
+          "privadoMiB": 42.11,
+          "procesos": 11,
+          "desfaseMs": -328
+        },
+        "mainRssMiB": 284.41
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 284.19,
+          "privadoMiB": 244.84
+        },
+        "Tab": {
+          "wsMiB": 282.35,
+          "privadoMiB": 220.77
+        },
+        "GPU": {
+          "wsMiB": 158.71,
+          "privadoMiB": 130.36
+        },
+        "Utility": {
+          "wsMiB": 54.23,
+          "privadoMiB": 14.33
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.02,
+          "privadoMiB": 42.11,
+          "procesos": 11,
+          "desfaseMs": 551
+        },
+        "mainRssMiB": 284.19
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 284.2,
+          "privadoMiB": 244.84
+        },
+        "Tab": {
+          "wsMiB": 282.47,
+          "privadoMiB": 221.05
+        },
+        "GPU": {
+          "wsMiB": 158.72,
+          "privadoMiB": 130.37
+        },
+        "Utility": {
+          "wsMiB": 54.23,
+          "privadoMiB": 14.33
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.03,
+          "privadoMiB": 42.11,
+          "procesos": 11,
+          "desfaseMs": 288
+        },
+        "mainRssMiB": 284.2
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 284.21,
+          "privadoMiB": 244.85
+        },
+        "Tab": {
+          "wsMiB": 282.43,
+          "privadoMiB": 221.05
+        },
+        "GPU": {
+          "wsMiB": 147.09,
+          "privadoMiB": 118.61
+        },
+        "Utility": {
+          "wsMiB": 54.23,
+          "privadoMiB": 14.33
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.12,
+          "privadoMiB": 43.02,
+          "procesos": 11,
+          "desfaseMs": 240
+        },
+        "mainRssMiB": 284.21
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 2138.75,
+        "picoPorcentajeUnNucleo": 132.84
+      },
+      "Tab": {
+        "ms": 1330.55,
+        "picoPorcentajeUnNucleo": 157.8
+      },
+      "GPU": {
+        "ms": 411.91,
+        "picoPorcentajeUnNucleo": 133.55
+      },
+      "Utility": {
+        "ms": 224.79,
+        "picoPorcentajeUnNucleo": 26.61
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 55.55,
+        "promedioPorcentajeUnNucleo": 1.11,
+        "picoPorcentajeUnNucleo": 5.12
+      },
+      "Tab": {
+        "ms": 1.84,
+        "promedioPorcentajeUnNucleo": 0.04,
+        "picoPorcentajeUnNucleo": 0.27
+      },
+      "GPU": {
+        "ms": 3.14,
+        "promedioPorcentajeUnNucleo": 0.06,
+        "picoPorcentajeUnNucleo": 0.94
+      },
+      "Utility": {
+        "ms": 0.07,
+        "promedioPorcentajeUnNucleo": 0,
+        "picoPorcentajeUnNucleo": 0.03
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 515.63,
+      "reposoMs": 0,
+      "picoArranque": 24.91,
+      "picoReposo": 0
+    },
+    "reposoMs": 5006.43,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 128.71,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130313
+    }
+  },
+  {
+    "nombre": "large-externo-segundo",
+    "entorno": {
+      "escenario": "large",
+      "corrida": "segundo",
+      "conexion": "configurada; motor de copia ya activo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\large",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/large/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 117.35,
+      "persistenciaMs": 97.32,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 38.79,
+      "baseIniciarMs": 90.89,
+      "ventanaReadyMs": 1082.25,
+      "hastaAccesoMs": 1424.64,
+      "pausaAutomaticaMs": 158.7,
+      "loginAuthMs": 187.86,
+      "estadoMs": 916.28,
+      "sqlClienteEstadoMs": 665.42,
+      "dtoMs": 241.6,
+      "ipcMainPreloadMs": 267.18,
+      "puenteRendererMs": 391.3,
+      "rendererMs": 104.9,
+      "contextoMs": 31.5,
+      "inicioRenderCommitMs": 7.9,
+      "commitPinturaInteractivoMs": 34.4,
+      "loginInicioMs": 1904.6,
+      "totalMs": 3487.94,
+      "firstPaintMs": 1340.64
+    },
+    "payload": 65340664,
+    "conteos": {
+      "empleados": 3,
+      "clientes": 1004,
+      "proveedores": 506,
+      "compras": 10014,
+      "ventas": 15007,
+      "cuentas": 25021,
+      "movimientosCuenta": 16695,
+      "movimientosStock": 25450,
+      "gastos": 13019
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 19
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 1004,
+        "ms": 4.106999999999971
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 506,
+        "ms": 0.7654999999999745
+      },
+      {
+        "entidad": "empleados",
+        "filas": 3,
+        "ms": 0.17090000000007421
+      },
+      {
+        "entidad": "compras",
+        "filas": 10014,
+        "ms": 36.57979999999998
+      },
+      {
+        "entidad": "ventas",
+        "filas": 15007,
+        "ms": 44.257100000000264
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 25021,
+        "ms": 60.91809999999987
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 16695,
+        "ms": 32.08860000000004
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 25450,
+        "ms": 33.09280000000035
+      },
+      {
+        "entidad": "gastos",
+        "filas": 13019,
+        "ms": 29.624899999999798
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 66.9,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "inicio",
+        "interactivoMs": 17.4,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "inicio",
+        "pagina": "ventas",
+        "interactivoMs": 20.2,
+        "primeraPaginaSqlMs": 182
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 35.3,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 108.06,
+          "privadoMiB": 75.36
+        },
+        "Tab": {
+          "wsMiB": 114.48,
+          "privadoMiB": 56.05
+        },
+        "GPU": {
+          "wsMiB": 130.97,
+          "privadoMiB": 103.67
+        },
+        "Utility": {
+          "wsMiB": 54.07,
+          "privadoMiB": 14.18
+        },
+        "PostgreSQL": {
+          "wsMiB": 208.53,
+          "privadoMiB": 40.49,
+          "procesos": 11,
+          "desfaseMs": 324
+        },
+        "mainRssMiB": 108.06
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 273.96,
+          "privadoMiB": 238.45
+        },
+        "Tab": {
+          "wsMiB": 268.34,
+          "privadoMiB": 208.61
+        },
+        "GPU": {
+          "wsMiB": 136.22,
+          "privadoMiB": 108.66
+        },
+        "Utility": {
+          "wsMiB": 54.07,
+          "privadoMiB": 14.18
+        },
+        "PostgreSQL": {
+          "wsMiB": 244.82,
+          "privadoMiB": 42.04,
+          "procesos": 11,
+          "desfaseMs": -583
+        },
+        "mainRssMiB": 273.96
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 278.44,
+          "privadoMiB": 238.83
+        },
+        "Tab": {
+          "wsMiB": 281.62,
+          "privadoMiB": 219.7
+        },
+        "GPU": {
+          "wsMiB": 156.86,
+          "privadoMiB": 129.05
+        },
+        "Utility": {
+          "wsMiB": 54.07,
+          "privadoMiB": 14.18
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.06,
+          "privadoMiB": 42.04,
+          "procesos": 11,
+          "desfaseMs": 91
+        },
+        "mainRssMiB": 278.44
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 278.44,
+          "privadoMiB": 238.83
+        },
+        "Tab": {
+          "wsMiB": 284.13,
+          "privadoMiB": 222.13
+        },
+        "GPU": {
+          "wsMiB": 157.02,
+          "privadoMiB": 128.73
+        },
+        "Utility": {
+          "wsMiB": 54,
+          "privadoMiB": 14.01
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.18,
+          "privadoMiB": 42.04,
+          "procesos": 11,
+          "desfaseMs": 627
+        },
+        "mainRssMiB": 278.44
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 278.04,
+          "privadoMiB": 238.38
+        },
+        "Tab": {
+          "wsMiB": 285.7,
+          "privadoMiB": 223.35
+        },
+        "GPU": {
+          "wsMiB": 158.07,
+          "privadoMiB": 129.61
+        },
+        "Utility": {
+          "wsMiB": 54,
+          "privadoMiB": 14.01
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.2,
+          "privadoMiB": 42.04,
+          "procesos": 11,
+          "desfaseMs": 199
+        },
+        "mainRssMiB": 278.04
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 278.07,
+          "privadoMiB": 238.38
+        },
+        "Tab": {
+          "wsMiB": 285.68,
+          "privadoMiB": 223.63
+        },
+        "GPU": {
+          "wsMiB": 158,
+          "privadoMiB": 129.61
+        },
+        "Utility": {
+          "wsMiB": 54,
+          "privadoMiB": 14.01
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.2,
+          "privadoMiB": 42.04,
+          "procesos": 11,
+          "desfaseMs": -83
+        },
+        "mainRssMiB": 278.07
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 109.95,
+          "privadoMiB": 72.65
+        },
+        "Tab": {
+          "wsMiB": 207.21,
+          "privadoMiB": 143.24
+        },
+        "GPU": {
+          "wsMiB": 145.64,
+          "privadoMiB": 109.16
+        },
+        "Utility": {
+          "wsMiB": 53.29,
+          "privadoMiB": 13
+        },
+        "PostgreSQL": {
+          "wsMiB": 180.74,
+          "privadoMiB": 34.74,
+          "procesos": 10,
+          "desfaseMs": -178
+        },
+        "mainRssMiB": 109.95
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 1952.59,
+        "picoPorcentajeUnNucleo": 138.05
+      },
+      "Tab": {
+        "ms": 1323.67,
+        "picoPorcentajeUnNucleo": 169.72
+      },
+      "GPU": {
+        "ms": 397.88,
+        "picoPorcentajeUnNucleo": 104.32
+      },
+      "Utility": {
+        "ms": 193.16,
+        "picoPorcentajeUnNucleo": 18.4
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 3932.61,
+        "promedioPorcentajeUnNucleo": 1.31,
+        "picoPorcentajeUnNucleo": 22.73
+      },
+      "Tab": {
+        "ms": 2334.55,
+        "promedioPorcentajeUnNucleo": 0.78,
+        "picoPorcentajeUnNucleo": 140.97
+      },
+      "GPU": {
+        "ms": 1691.65,
+        "promedioPorcentajeUnNucleo": 0.56,
+        "picoPorcentajeUnNucleo": 49.69
+      },
+      "Utility": {
+        "ms": 21.05,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.45
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 250,
+      "reposoMs": 171.88,
+      "picoArranque": 14.25,
+      "picoReposo": 1.29
+    },
+    "reposoMs": 300011.68,
+    "interaccionesReposo": 6,
+    "entradaBloqueadaReposo": false,
+    "mainBloqueoMaxMs": 152.44,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130313
+    }
+  },
+  {
+    "nombre": "large-externo-reposo",
+    "entorno": {
+      "escenario": "large",
+      "corrida": "reposo",
+      "conexion": "configurada; motor de copia ya activo",
+      "modo": "electron-vite dev; app completa; React desarrollo/StrictMode",
+      "version": "1.2.1",
+      "electron": "44.3.0",
+      "node": "24.20.0",
+      "cpus": 12,
+      "ramTotalBytes": 16857817088,
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\large",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/large/postgres/data",
+      "errorMonitor": "",
+      "monitorCode": 0,
+      "ventana": {
+        "x": 281,
+        "y": 53,
+        "width": 903,
+        "height": 673
+      }
+    },
+    "incompleto": null,
+    "tiempos": {
+      "procesoReadyMs": 167.06,
+      "persistenciaMs": 172.54,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 45.01,
+      "baseIniciarMs": 160.69,
+      "ventanaReadyMs": 1169.06,
+      "hastaAccesoMs": 1636.82,
+      "pausaAutomaticaMs": 114,
+      "loginAuthMs": 147.84,
+      "estadoMs": 880.23,
+      "sqlClienteEstadoMs": 647.39,
+      "dtoMs": 222,
+      "ipcMainPreloadMs": 313.63,
+      "puenteRendererMs": 362.4,
+      "rendererMs": 173,
+      "contextoMs": 23.2,
+      "inicioRenderCommitMs": 10.2,
+      "commitPinturaInteractivoMs": 74.6,
+      "loginInicioMs": 1883.3,
+      "totalMs": 3634.12,
+      "firstPaintMs": 1553.72
+    },
+    "payload": 65340664,
+    "conteos": {
+      "empleados": 3,
+      "clientes": 1004,
+      "proveedores": 506,
+      "compras": 10014,
+      "ventas": 15007,
+      "cuentas": 25021,
+      "movimientosCuenta": 16695,
+      "movimientosStock": 25450,
+      "gastos": 13019
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    },
+    "entidades": [
+      {
+        "entidad": "clientes",
+        "filas": 1004,
+        "ms": 1.7676000000001295
+      },
+      {
+        "entidad": "proveedores",
+        "filas": 506,
+        "ms": 0.6767999999999574
+      },
+      {
+        "entidad": "empleados",
+        "filas": 3,
+        "ms": 0.07970000000000255
+      },
+      {
+        "entidad": "compras",
+        "filas": 10014,
+        "ms": 23.007299999999987
+      },
+      {
+        "entidad": "ventas",
+        "filas": 15007,
+        "ms": 44.82629999999972
+      },
+      {
+        "entidad": "cuentas",
+        "filas": 25021,
+        "ms": 52.309299999999894
+      },
+      {
+        "entidad": "movimientosCuenta",
+        "filas": 16695,
+        "ms": 34.949299999999766
+      },
+      {
+        "entidad": "movimientosStock",
+        "filas": 25450,
+        "ms": 31.297300000000178
+      },
+      {
+        "entidad": "gastos",
+        "filas": 13019,
+        "ms": 33.08590000000004
+      }
+    ],
+    "navegacion": [
+      {
+        "desde": "inicio",
+        "pagina": "cuentas",
+        "interactivoMs": 100.9,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "cuentas",
+        "pagina": "inicio",
+        "interactivoMs": 40.4,
+        "primeraPaginaSqlMs": null
+      },
+      {
+        "desde": "inicio",
+        "pagina": "ventas",
+        "interactivoMs": 36.3,
+        "primeraPaginaSqlMs": 194.2
+      },
+      {
+        "desde": "ventas",
+        "pagina": "inicio",
+        "interactivoMs": 24.6,
+        "primeraPaginaSqlMs": null
+      }
+    ],
+    "memoria": {
+      "acceso-visible": {
+        "Browser": {
+          "wsMiB": 110.59,
+          "privadoMiB": 77.99
+        },
+        "Tab": {
+          "wsMiB": 112.38,
+          "privadoMiB": 54.05
+        },
+        "GPU": {
+          "wsMiB": 129.87,
+          "privadoMiB": 102.78
+        },
+        "Utility": {
+          "wsMiB": 54.03,
+          "privadoMiB": 14.14
+        },
+        "PostgreSQL": {
+          "wsMiB": 219.43,
+          "privadoMiB": 44.27,
+          "procesos": 11,
+          "desfaseMs": 571
+        },
+        "mainRssMiB": 110.59
+      },
+      "post-login": {
+        "Browser": {
+          "wsMiB": 277.02,
+          "privadoMiB": 241.54
+        },
+        "Tab": {
+          "wsMiB": 266.49,
+          "privadoMiB": 206.99
+        },
+        "GPU": {
+          "wsMiB": 138.98,
+          "privadoMiB": 112.02
+        },
+        "Utility": {
+          "wsMiB": 54.03,
+          "privadoMiB": 14.14
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.21,
+          "privadoMiB": 41.99,
+          "procesos": 11,
+          "desfaseMs": -231
+        },
+        "mainRssMiB": 277.02
+      },
+      "post-cuentas": {
+        "Browser": {
+          "wsMiB": 281.48,
+          "privadoMiB": 241.92
+        },
+        "Tab": {
+          "wsMiB": 279.61,
+          "privadoMiB": 217.54
+        },
+        "GPU": {
+          "wsMiB": 157,
+          "privadoMiB": 130.04
+        },
+        "Utility": {
+          "wsMiB": 54.03,
+          "privadoMiB": 14.14
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.23,
+          "privadoMiB": 41.99,
+          "procesos": 11,
+          "desfaseMs": 301
+        },
+        "mainRssMiB": 281.48
+      },
+      "post-ventas": {
+        "Browser": {
+          "wsMiB": 281.52,
+          "privadoMiB": 241.95
+        },
+        "Tab": {
+          "wsMiB": 282.06,
+          "privadoMiB": 219.7
+        },
+        "GPU": {
+          "wsMiB": 157.6,
+          "privadoMiB": 129.98
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.01
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.38,
+          "privadoMiB": 42.02,
+          "procesos": 11,
+          "desfaseMs": 486
+        },
+        "mainRssMiB": 281.52
+      },
+      "post-inicio": {
+        "Browser": {
+          "wsMiB": 281.25,
+          "privadoMiB": 241.77
+        },
+        "Tab": {
+          "wsMiB": 283.6,
+          "privadoMiB": 221.26
+        },
+        "GPU": {
+          "wsMiB": 158.55,
+          "privadoMiB": 130.74
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.01
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.42,
+          "privadoMiB": 42.02,
+          "procesos": 11,
+          "desfaseMs": 4
+        },
+        "mainRssMiB": 281.25
+      },
+      "idle-start": {
+        "Browser": {
+          "wsMiB": 281.3,
+          "privadoMiB": 241.77
+        },
+        "Tab": {
+          "wsMiB": 283.72,
+          "privadoMiB": 221.39
+        },
+        "GPU": {
+          "wsMiB": 158.41,
+          "privadoMiB": 130.58
+        },
+        "Utility": {
+          "wsMiB": 53.95,
+          "privadoMiB": 14.01
+        },
+        "PostgreSQL": {
+          "wsMiB": 245.43,
+          "privadoMiB": 42.02,
+          "procesos": 11,
+          "desfaseMs": -384
+        },
+        "mainRssMiB": 281.3
+      },
+      "idle-end": {
+        "Browser": {
+          "wsMiB": 112.26,
+          "privadoMiB": 74.74
+        },
+        "Tab": {
+          "wsMiB": 189.48,
+          "privadoMiB": 126.33
+        },
+        "GPU": {
+          "wsMiB": 125.95,
+          "privadoMiB": 96.87
+        },
+        "Utility": {
+          "wsMiB": 53.28,
+          "privadoMiB": 13
+        },
+        "PostgreSQL": {
+          "wsMiB": 180.83,
+          "privadoMiB": 34.7,
+          "procesos": 10,
+          "desfaseMs": -519
+        },
+        "mainRssMiB": 112.26
+      }
+    },
+    "cpuArranque": {
+      "Browser": {
+        "ms": 1991.32,
+        "picoPorcentajeUnNucleo": 119.06
+      },
+      "Tab": {
+        "ms": 1345.95,
+        "picoPorcentajeUnNucleo": 173.52
+      },
+      "GPU": {
+        "ms": 403.88,
+        "picoPorcentajeUnNucleo": 147.23
+      },
+      "Utility": {
+        "ms": 198.75,
+        "picoPorcentajeUnNucleo": 22.99
+      }
+    },
+    "cpuReposo": {
+      "Browser": {
+        "ms": 3679.35,
+        "promedioPorcentajeUnNucleo": 1.23,
+        "picoPorcentajeUnNucleo": 12.85
+      },
+      "Tab": {
+        "ms": 495.8,
+        "promedioPorcentajeUnNucleo": 0.17,
+        "picoPorcentajeUnNucleo": 78.4
+      },
+      "GPU": {
+        "ms": 140.23,
+        "promedioPorcentajeUnNucleo": 0.05,
+        "picoPorcentajeUnNucleo": 17.58
+      },
+      "Utility": {
+        "ms": 25.5,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.64
+      }
+    },
+    "postgresCpu": {
+      "arranqueMs": 375,
+      "reposoMs": 187.5,
+      "picoArranque": 16.81,
+      "picoReposo": 4.03
+    },
+    "reposoMs": 300002.36,
+    "interaccionesReposo": 0,
+    "entradaBloqueadaReposo": true,
+    "mainBloqueoMaxMs": 259.92,
+    "pgCtl": [],
+    "recursosWeb": {
+      "entradas": 78,
+      "bytesDecodificados": 5130361
+    }
+  }
+]

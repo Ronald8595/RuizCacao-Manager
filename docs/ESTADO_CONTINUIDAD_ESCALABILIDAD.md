@@ -125,3 +125,97 @@ Validación de catálogos: Clientes 50 filas, Empleados 15 por su paginación ex
 Archivos de este último ajuste: páginas Clientes.tsx/Empleados.tsx; scripts probar-scroll-catalogos-etapa04.cjs/perfil-scroll-catalogos-etapa04.tsx; ambos documentos y evidencia. ContenedorTabla, Paginacion, CSS, Main/IPC/preload, Snapshot, SQL/hook de datos, finanzas/PDF y dependencias sin cambios. Esquema 9, 25 tablas, 010 NO.
 
 SIGUIENTE PASO EXACTO: npm run dev, sesión existente, lista humana final al final del Informe Etapa 04: Clientes con 50, Empleados con 15 y lista larga, filtros/páginas/orden, edición/desactivación con cancelación, rueda/teclado/trackpad físicos, ventana reducida y zoom 125%; completar además los siete módulos anteriores y diálogo de guardar PDF. Etapa 04 lista para cierre visual humano; no declarar la revisión humana terminada antes de ejecutarla. No seed/build ni publicación Git.
+
+## Diagnóstico y fecha de Cuentas v1.2.1 — 2026-10-13
+
+Estado actual prevalece sobre las referencias históricas a esquema 9: esquema 10 y 25 tablas, migraciones 001–010 intactas, 011 NO. Fuentes/versiones raíz sincronizadas en 1.2.1, sin build ni publicación.
+
+Fecha de operación agregada a Cuentas y al detalle, DD/MM/YYYY. Usa Cuenta.fecha existente, originada en compra/venta/manual; no usa último abono ni reescribe historia. Nuevo botón permite detalle por cuenta para cualquier categoría/estado. Conserva paginación 10/25/50/100, filtros y virtualización. Suite de fechas con abonos posteriores y saldado aprobada e incorporada a db:test.
+
+Perfil reproducible scripts/perfil-parche.cjs: base grande existente READ ONLY, IPC real cacheado sin UI; opción --small en clúster temporal nuevo para motor/migraciones/login. Payload 65.339.663 bytes y 15 consultas de estado sin sesión, sin reducción. Corte inicial estado 888,49 ms / IPC 613 ms; corte final 1.720,64 / 2.982,80 ms. Variación del arnés, sin optimización aceptada ni mejora atribuible. La memoria de este arnés retiene filas/estado y no equivale a la app real.
+
+Dos variantes de preclasificación DTO descartadas por ausencia de ventaja fiable, relacional.ts restaurado. Consulta de notificaciones conservada: incluye asignación de avisos históricos y limpieza de leídos de más de 48 horas, no es una lectura duplicada pura. Snapshot, cola IPC, cálculos financieros, reportes/PDF, jornadas, recuperación y dependencias funcionales conservados.
+
+Typecheck 0; lint 0, 725 advertencias y cero errores; db:test 0, clúster ruizcacao-tests-4b7xoY; fechas/novedades 0; git diff --check 0. Evidencia y alcance en Informe_Parche_Optimizacion_v1.2.1.md y docs/evidencias-escalabilidad/parche-*.json.
+
+**Trabajo de rendimiento aún pendiente:** bootstrap de producción hasta Acceso/Inicio interactivo, login real, navegación Cuentas/Compra-Venta/vuelta, memoria privada PostgreSQL y reposo de cinco minutos. No declarar terminada la optimización de arranque ni revisión humana de Cuentas. No seed/build/commit/push/tag. Siguiente paso: medir aplicación completa con sesión existente y motor recurrente; aplicar únicamente cambios con evidencia comparativa y consistencia verificada.
+
+## Perfil real v1.2.1 — cierre del diagnóstico 2026-10-13
+
+A (servidor externo), B (PostgresLocal recurrente ya configurado) y C (primera instalación hasta Crear usuario) medidos. Este cierre sustituye el pendiente de perfil real del corte anterior; no es un perfil de producción ni una optimización. Evidencias en docs/evidencias-arranque-real y tablas completas en [Informe_Perfil_Arranque_Real_v1.2.1.md](Informe_Perfil_Arranque_Real_v1.2.1.md).
+
+| Ruta | Acceso visible | Login → Inicio | Proceso → Inicio |
+|---|---|---|---|
+| A pequeña, primer/segundo proceso | 1,62 / 1,40 s | 0,280 / 0,261 s | 2,01 / 1,82 s |
+| A grande, primer/segundo proceso | 2,27 / 1,42 s | 2,02 / 1,90 s | 4,39 / 3,49 s |
+| B pequeña, primer/segundo proceso | 37,39 / 37,33 s | 0,248 / 0,260 s | 37,75 / 37,78 s |
+| B grande, primer/segundo proceso | 37,59 / 37,43 s | 1,918 / 1,834 s | 39,64 / 39,41 s |
+| C nueva | 53,68 s hasta Crear usuario | N/D, sin alta | N/D, sin alta |
+
+C: initdb **12,07 s**, fase posterior de conexión/arranque PG **35,52 s**, BaseLocal.iniciar/migraciones **0,478 s**. B no incluye initdb. La demora recurrente B queda localizada entre la salida de pg_ctl (exit 0 tras ~0,3–0,4 s) y close/resolución (~35 s): ~34,6 s adicionales. Posible retención de stdio/handles heredados; causalidad exacta pendiente de experimento, no de asumir que PostgreSQL tarda 35 s en estar listo. A usa configuración externa y omite PostgresLocal.
+
+Cuello principal A: Snapshot completo de **65.340.429 bytes** frente a **1.096 bytes** en pequeña. Segundo login grande: estado916,28 ms (SQL cliente665,42 + DTO241,60), Main→preload267,18 ms, puente→Renderer391,30 ms, procesamiento restante104,90 ms. Estado/transporte explican ~83% del login. Secundario: carga de ventana/UI1,08–1,87 s, sin atribución demostrada a parseo JS.
+
+Reposo válido grande: 300 s, cero interacciones/SQL. Working Set Main281,30→112,26 / Renderer283,72→189,48 / PostgreSQL245,43→180,83 MiB; GPU125,95 y Utility53,28 MiB finales. CPU media Main1,23% / Renderer0,17% / PostgreSQL0,06% de un núcleo, incluida instrumentación. Memoria estable en esa ventana (sin crecimiento neto), no prueba ausencia de fugas largas. CPU de arranque, picos y PID individuales en el informe. La corrida large-externo-segundo tuvo actividad durante reposo y se excluyó de esa comparación; large-externo-reposo la reemplaza con entrada deshabilitada. large-segundo tiene arranque válido pero navegación/reposo incompletos, conservado como evidencia parcial.
+
+Suite PostgreSQL recuperada: log termina en “Suite PostgreSQL completa”, clúster ruizcacao-tests-oQgSqd. La sesión de terminal 10117 ya no existe: código de salida no recuperable, resultado funcional completo registrado; no repetir la suite. Typecheck0, lint0 (**726 advertencias/0 errores**), diff-check0 y verificador de evidencia0. La suite precede a dos marcas opt-in initdb-start/end; C las ejercita y typecheck/lint posteriores pasan. No hay pruebas en ejecución y los motores aislados están detenidos. Sin optimización implementada; cambios de fecha de Cuentas previos conservados.
+
+Incidencia: origen22/25 tablas iguales. Auditoria164→166, sesiones86→87, huella usuarios distinta. Sesión11:53:42–11:54:01 y dos autenticaciones fallidas11:53:54/58; atribución no concluyente, imposible certificar cero escrituras durante todos los intentos previos. No borrar ni restaurar datos para ocultar diferencias. Todas las tablas comerciales coinciden. Se conserva original-final.json.
+
+Recomendaciones: **Splash SÍ solo UX en B/C**, no prioridad A y reevaluar tras corregir la espera; **lazy NO por ahora** (sin A/B que pruebe beneficio); **Snapshot parcial SÍ como diseño/piloto posterior**, riesgo alto de contratos/saldos/hidratación; **Worker NO**, **índices NO**, **V8 snapshot NO** por falta de evidencia específica. Prioridades: 1) investigar/corregir lifecycle de pg_ctl para motor administrado, impacto potencial ~34,6 s/riesgo medio; 2) contrato inicial mínimo para ruta externa, alto impacto potencial en login/memoria y alto riesgo funcional; 3) experimento lazy de páginas ajenas a Inicio, beneficio aún no demostrado. Ninguna aplicada.
+
+Archivos del diagnóstico: instrumentación opt-in Main/index y database/{base,conexion,ipc,postgres-local,relacional}, nuevo main/perfil-arranque.ts; preload/index.ts e index.d.ts; Renderer App, Acceso, main, inicio, AppDataContext y utils/perfilArranque. Scripts de preparación, conexión externa, driver real, recursos PG, resumen, documentación y verificación conservados/extendidos. Informe, continuidad y evidencias actualizados. Se preservan package/lock1.2.1, Cuentas/DetalleCuenta, tests/cuentas-fecha y tests/run, informe/arnés/evidencias del parche previo. `.eslintcache` ya estaba eliminado al retomar; no se revirtió. Migraciones001–010 intactas, sin011 ni cambios de negocio nuevos.
+
+Límites y pendientes humanos: desarrollo React/StrictMode, frío de proceso sin vaciar caché del SO, Vite fuera del intervalo; no release/instalador. C termina en Crear usuario, sin alta ni primer login, sin reposo propio; sus muestras no capturan todos los procesos transitorios de initdb. Revisar entrada física/visual de Cuentas y equipo final en otra tarea. Incidencia de origen pendiente de atribución; no certificar conservación integral. No quedan mediciones automatizadas obligatorias en ejecución.
+
+### CONTINUAR DESDE AQUÍ
+
+1. Leer el informe final y original-final.json; conservar las corridas A/B/C y no repetir los reposos válidos.
+2. Revisar la incidencia de auditoria/sesiones/usuarios solo en lectura; no restaurar contadores ni borrar evidencia.
+3. Siguiente experimento propuesto para motor administrado: localizar por qué pg_ctl exit tarda ~34,6 s en llegar a close y validar una corrección en copia aislada. Para priorizar desarrollo externo, diseñar primero el contrato inicial mínimo.
+4. No tocar migraciones001–010, base original, reglas, Fecha de operación ni evidencia. No crear011 ni aplicar optimizaciones como parte de este cierre.
+5. Si cambia código posteriormente, ejecutar desde electron-app: `npm run typecheck`, `npm run lint -- --no-cache`, `npm run db:test`, `git diff --check`. No repetir la suite solo por haber perdido su sesión de terminal.
+6. Para regenerar documentos: `node scripts/resumir-perfil-real.cjs` y `node scripts/documentar-perfil-real.cjs`; verificar con `node scripts/verificar-perfil-real.cjs`. No son nuevas mediciones.
+7. Registrar revisión humana de teclado/ventana/Cuentas y onboarding nuevo en otra tarea; release/instalador requiere alcance posterior.
+8. Mantener prohibición de seed, build, commit, push y tag. Presentar/revisar el diagnóstico antes de implementar la estrategia elegida.
+
+Últimos comandos de cierre: `node scripts/documentar-perfil-real.cjs`, `node scripts/verificar-perfil-real.cjs` y `git diff --check`, resultado0. Resultados y límites en docs/evidencias-arranque-real/validacion-comandos.json; logs typecheck.txt, lint.txt y db-test.txt. Ninguna prueba queda ejecutándose. Diagnóstico entregado; no hay mejora de rendimiento implementada ni demostrada por comparación antes/después.
+
+## Parche pg_ctl v1.2.1 — cierre validado 2026-10-13
+
+Este corte sucede al diagnóstico anterior: ahora sí hay una corrección de arranque implementada y medida. Alcance exclusivo: lifecycle de pg_ctl en PostgresLocal. Informe: [Informe_Optimizacion_Arranque_pgctl_v1.2.1.md](Informe_Optimizacion_Arranque_pgctl_v1.2.1.md). Evidencia nueva en docs/evidencias-pgctl; no se alteró evidencia anterior.
+
+Causa confirmada: pg_ctl Windows crea CMD con stdout/stderr heredados; CMD permanece mientras vive PostgreSQL. Aunque pg_ctl termina con exit0, ambos pipes impiden close hasta que execFile los destruye a35 s. Consumirlos, quitar solo uno o stdin no resuelve. Eliminar ambos o enviarlos a archivo elimina la espera. El árbol de PID y fuente REL_18_6 explican el mecanismo; no se inspeccionó el identificador nativo de cada HANDLE.
+
+Solución: spawn exclusivamente para start, stdin ignore, stdout/stderr a pg_ctl.log en append, separado de postgresql.log de -l. Se conserva windowsHide, sin shell/detached, -w/-t30, timeout35000 y verificación autenticada posterior. Error/señal/código no0 se propaga; exit0 sin servidor se rechaza. No se aceptan errores de pg_ctl por el solo hecho de que una conexión posterior funcione.
+
+El caso de recuperación bloqueada descubrió un fallo real de shutdown, no de pipes: restore_command de32 s retrasó la salida ~34 s tras fast, superior a -t20. Se conserva el fallo original. Solo la limpieza de un arranque fallido permite -t60/timeout65000, margen basado en esa medición; el cierre normal conserva -t20/timeout25000. La sonda stop confirmó33.246,97 ms spawn→exit,0,13 ms exit→close y PID terminado. No se mató postgres ni se rebajó ninguna aserción. Si un comando externo supera también60 s, el cierre sigue considerándose fallido y se registra; no hay garantía contra bloqueos ilimitados.
+
+| Escenario | Acceso antes → después ms | Inicio antes → después ms | pg_ctl exit→close después ms |
+|---|---|---|---|
+| Pequeña, primer proceso | 37.392,60 → 2.117,31 | 37.749,90 → 2.522,11 | 0,28 |
+| Pequeña, segundo proceso | 37.329,72 → 2.239,77 | 37.781,82 → 2.703,07 | 0,34 |
+| Grande, primer proceso | 37.586,53 → 3.278,59 | 39.643,83 → 5.261,99 | 0,57 |
+| Grande, segundo proceso | 37.429,97 → 2.074,41 | 39.414,57 → 4.067,11 | 0,32 |
+
+Antes, exit→close grande34.582,97/34.698,62 ms. Persistencia pasa de~35,6 s a0,89–1,54 s; mejora de Acceso91,28–94,46%. Login grande1,81/1,83 s, similar a1,92/1,83 s antes. Pequeña sube40–73 ms (estado/Renderer); no se atribuye causalmente ni se descarta estadísticamente con solo dos observaciones. RAM Main/Renderer varía pocos MiB; no se repitieron reposos acreditados de5 minutos. Los JSON pequeños antiguos no tenían listeners pg_ctl; sus eventos anteriores individuales se indican N/D. Desarrollo real, sin medición de release ni initdb en este A/B.
+
+Regresiones: motor detenido/ya iniciado, segundo arranque, SQL disponible, error real pg_ctl, puerto ocupado, postgres fallido, exit0 sin servidor, timeout de proceso35 s y timeout PostgreSQL30 s, datos/clave conservados, cierre/reapertura, logs y protecciones data/data-inicializando/versión: OK. Cuatro cierres de la app con cero PID PostgreSQL observados aún activos; barrido final motores-final.json sin motores residuales en raíces verificadas. EnumWindows cada20 ms no detectó consolas nuevas; revisión humana no sustituida, posibles destellos inferiores al intervalo no excluidos.
+
+Validación definitiva: typecheck0; lint0,0 errores/726 advertencias; db:test0, suite funcional completa, clúster ruizcacao-tests-GzrPO1; git diff --check0. Se conservaron db-test.txt (fallo de cierre inicial), db-test-final.txt (último caso afectado por una sonda del agente que compitió por puerto55433) y lint.txt (dos variables sin uso en generador documental, corregidas). Logs válidos: db-test-secuencial.txt y lint-final.txt. Los motores se validaron finalmente sin pruebas paralelas; no queda prueba en ejecución.
+
+Archivos propios del parche: src/main/database/postgres-local.ts; tests/pgctl-arranque.cjs y tests/run.cjs; scripts/perfil-aplicacion-real.cjs extendido; nuevos experimento-pgctl.cjs, benchmark-pgctl-final.cjs, vigilar-consolas-pgctl.ps1, documentar-pgctl.cjs; informe, continuidad y evidencias-pgctl. Resto de cambios previos preservados. Instrumentación opt-in conservada; scripts de diagnóstico fuera del arranque cliente, sin logs de rendimiento por defecto.
+
+69 huellas protegidas iguales: evidencia anterior, SQL001–010 y Cuentas/DetalleCuenta. original-final.json conserva su incidencia22/25; esta tarea no se conectó al origen ni corrigió sus tablas. Esquema10,25 tablas,011 NO. Snapshot, reglas, notificaciones, recuperación de contraseña, reportes/PDF, Fecha de operación, índices, lazy, splash, workers y V8 snapshots sin cambios. Sin seed/build/commit/push/merge/tag.
+
+### CONTINUAR DESDE AQUI
+
+1. Leer el informe pg_ctl y resumen-final.json; no repetir experimentos cerrados ni sobrescribir evidencia.
+2. Siguiente paso exacto: revisión humana de arranque/cierre/reapertura sin consola usando una copia aislada, antes de preparar un release en otra tarea.
+3. Revisar el diff de PostgresLocal y pruebas. No tocar base original, migraciones001–010, Snapshot ni Fecha de operación.
+4. Ante cambios nuevos, ejecutar desde electron-app: `npm run typecheck`, `npm run lint -- --no-cache`, `npm run db:test`, `git diff --check`. Pruebas de motor siempre secuenciales entre sí.
+5. Regenerar solo el informe derivado con `node scripts/documentar-pgctl.cjs`; los archivos *-final.json son mediciones inmutables. El benchmark rechaza sobrescribirlos.
+6. Conservar fallos anteriores y riesgos de cierre con comandos externos bloqueados. No ocultar errores ni terminar postgres por fuerza.
+7. Mantener prohibición de seed/build/publicación Git y de nuevas optimizaciones fuera de alcance.
+
+Última prueba de aplicación: large-segundo-final, código0, cierre normal y sin procesos residuales. Última suite: npm run db:test, código0 y Suite PostgreSQL completa. Últimos comandos documentales de cierre: node scripts/documentar-pgctl.cjs y git diff --check, código0. Pendiente únicamente revisión humana; ningún proceso de prueba activo.

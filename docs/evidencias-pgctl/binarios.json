@@ -1,0 +1,10 @@
+{
+  "pg_ctl.exe": {
+    "empaquetado": "3cdb444b7067d824d8c6b2626aaf8688163ef0b001734c1a8a6502cdccde23bb",
+    "instalado": "3cdb444b7067d824d8c6b2626aaf8688163ef0b001734c1a8a6502cdccde23bb"
+  },
+  "postgres.exe": {
+    "empaquetado": "14817df435104dcfe05ad8343fda200930abf778553ab60154bd285aea6833e1",
+    "instalado": "14817df435104dcfe05ad8343fda200930abf778553ab60154bd285aea6833e1"
+  }
+}

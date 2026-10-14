@@ -1,0 +1,1102 @@
+{
+  "node": {
+    "node": "26.7.0",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.8",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "libffi": "3.7.1",
+    "lief": "0.17.0",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "147",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.6",
+    "simdutf": "7.7.0",
+    "sqlite": "3.53.4",
+    "tz": "2026c",
+    "undici": "8.9.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "14.6.202.34-node.28",
+    "zlib": "1.3.2.1-motley-42c2f19",
+    "zstd": "1.5.7"
+  },
+  "temp": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-pgctl-experimento-IvAhzH",
+  "bin": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\vendor\\postgresql\\bin",
+  "variantes": [
+    {
+      "nombre": "execFile-actual-1",
+      "stdio": "execFile predeterminado: pipe/pipe/pipe",
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.021000000000640284
+        },
+        {
+          "nombre": "stdin-abierto",
+          "ms": 7.354000000001179
+        },
+        {
+          "nombre": "stdout-abierto",
+          "ms": 7.360200000000987
+        },
+        {
+          "nombre": "stderr-abierto",
+          "ms": 7.364600000000792
+        },
+        {
+          "nombre": "spawn",
+          "ms": 8.906000000000859
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 113.48090000000047,
+          "detalle": {
+            "bytes": 30
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 115.04690000000119,
+          "detalle": {
+            "bytes": 1
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 593.7119000000002,
+          "detalle": {
+            "bytes": 23
+          }
+        },
+        {
+          "nombre": "exit",
+          "ms": 597.4254000000001,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdin-close",
+          "ms": 597.5263000000014
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 620.4860000000008
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 35016.0964
+        },
+        {
+          "nombre": "callback",
+          "ms": 35016.2374,
+          "detalle": {
+            "error": false,
+            "stdoutBytes": 54,
+            "stderrBytes": 0
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 35016.2387
+        },
+        {
+          "nombre": "close",
+          "ms": 35016.2862,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 35016.2947
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 36749.1521
+        }
+      ],
+      "pidPgCtl": 15176,
+      "pidPostgres": 13000,
+      "descendientes": [
+        {
+          "ProcessId": 13000,
+          "ParentProcessId": 8548
+        },
+        {
+          "ProcessId": 8352,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 7308,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 5028,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 1704,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 9724,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 12844,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 9380,
+          "ParentProcessId": 13000
+        },
+        {
+          "ProcessId": 6348,
+          "ParentProcessId": 13000
+        }
+      ],
+      "logBytes": 484
+    },
+    {
+      "nombre": "spawn-pipes-consumidos",
+      "stdio": [
+        "pipe",
+        "pipe",
+        "pipe"
+      ],
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.01329999999870779
+        },
+        {
+          "nombre": "stdin-abierto",
+          "ms": 7.555000000000291
+        },
+        {
+          "nombre": "stdout-abierto",
+          "ms": 7.5657999999966705
+        },
+        {
+          "nombre": "stderr-abierto",
+          "ms": 7.59259999999631
+        },
+        {
+          "nombre": "spawn",
+          "ms": 8.390200000001641
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 115.06590000000142,
+          "detalle": {
+            "bytes": 31
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 353.08290000000125,
+          "detalle": {
+            "bytes": 23
+          }
+        },
+        {
+          "nombre": "exit",
+          "ms": 356.4684999999954,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdin-close",
+          "ms": 356.5411000000022
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 421.57050000000163
+        },
+        {
+          "nombre": "timeout-observacion",
+          "ms": 35019.1222
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 35019.61379999999
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 35019.8195
+        },
+        {
+          "nombre": "close",
+          "ms": 35019.97439999999,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 35019.986399999994
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 36512.11899999999
+        }
+      ],
+      "pidPgCtl": 2992,
+      "pidPostgres": 4844,
+      "descendientes": [
+        {
+          "ProcessId": 4844,
+          "ParentProcessId": 12280
+        },
+        {
+          "ProcessId": 6580,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 2892,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 7548,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 2688,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 10504,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 4112,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 3476,
+          "ParentProcessId": 4844
+        },
+        {
+          "ProcessId": 7008,
+          "ParentProcessId": 4844
+        }
+      ],
+      "logBytes": 1759
+    },
+    {
+      "nombre": "spawn-sin-stdout",
+      "stdio": [
+        "pipe",
+        "ignore",
+        "pipe"
+      ],
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.003499999991618097
+        },
+        {
+          "nombre": "stdin-abierto",
+          "ms": 7.181400000001304
+        },
+        {
+          "nombre": "stderr-abierto",
+          "ms": 7.186600000000908
+        },
+        {
+          "nombre": "spawn",
+          "ms": 7.544599999993807
+        },
+        {
+          "nombre": "exit",
+          "ms": 352.2783999999956,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdin-close",
+          "ms": 352.369200000001
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 413.3191999999981
+        },
+        {
+          "nombre": "timeout-observacion",
+          "ms": 35015.150299999994
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 35015.5074
+        },
+        {
+          "nombre": "close",
+          "ms": 35015.533299999996,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 35015.538700000005
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 36409.0794
+        }
+      ],
+      "pidPgCtl": 15080,
+      "pidPostgres": 11804,
+      "descendientes": [
+        {
+          "ProcessId": 11804,
+          "ParentProcessId": 2784
+        },
+        {
+          "ProcessId": 8424,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 10740,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 7928,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 11048,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 4200,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 9912,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 3068,
+          "ParentProcessId": 11804
+        },
+        {
+          "ProcessId": 3544,
+          "ParentProcessId": 11804
+        }
+      ],
+      "logBytes": 3037
+    },
+    {
+      "nombre": "spawn-sin-stderr",
+      "stdio": [
+        "pipe",
+        "pipe",
+        "ignore"
+      ],
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.003700000001117587
+        },
+        {
+          "nombre": "stdin-abierto",
+          "ms": 6.893799999990733
+        },
+        {
+          "nombre": "stdout-abierto",
+          "ms": 6.899900000003981
+        },
+        {
+          "nombre": "spawn",
+          "ms": 7.488400000002002
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 108.46199999999953,
+          "detalle": {
+            "bytes": 30
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 108.51939999999013,
+          "detalle": {
+            "bytes": 1
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 350.7016000000003,
+          "detalle": {
+            "bytes": 23
+          }
+        },
+        {
+          "nombre": "exit",
+          "ms": 354.2641999999905,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdin-close",
+          "ms": 354.3191999999981
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 527.6477000000014
+        },
+        {
+          "nombre": "timeout-observacion",
+          "ms": 35012.245599999995
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 35012.7818
+        },
+        {
+          "nombre": "close",
+          "ms": 35012.81700000001,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 35012.8438
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 36266.864899999986
+        }
+      ],
+      "pidPgCtl": 12000,
+      "pidPostgres": 7000,
+      "descendientes": [
+        {
+          "ProcessId": 7000,
+          "ParentProcessId": 11868
+        },
+        {
+          "ProcessId": 13104,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 12920,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 3520,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 2208,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 11212,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 6924,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 7288,
+          "ParentProcessId": 7000
+        },
+        {
+          "ProcessId": 5004,
+          "ParentProcessId": 7000
+        }
+      ],
+      "logBytes": 4319
+    },
+    {
+      "nombre": "spawn-sin-stdin",
+      "stdio": [
+        "ignore",
+        "pipe",
+        "pipe"
+      ],
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.002599999977974221
+        },
+        {
+          "nombre": "stdout-abierto",
+          "ms": 4.743799999996554
+        },
+        {
+          "nombre": "stderr-abierto",
+          "ms": 4.75199999997858
+        },
+        {
+          "nombre": "spawn",
+          "ms": 4.90679999999702
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 98.48949999999604,
+          "detalle": {
+            "bytes": 31
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 321.483899999992,
+          "detalle": {
+            "bytes": 23
+          }
+        },
+        {
+          "nombre": "exit",
+          "ms": 324.51840000000084,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 394.7695999999996
+        },
+        {
+          "nombre": "timeout-observacion",
+          "ms": 35013.6747
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 35014.0729
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 35014.10769999999
+        },
+        {
+          "nombre": "close",
+          "ms": 35014.13089999999,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 35014.13249999998
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 36579.0031
+        }
+      ],
+      "pidPgCtl": 7048,
+      "pidPostgres": 11596,
+      "descendientes": [
+        {
+          "ProcessId": 11596,
+          "ParentProcessId": 12048
+        },
+        {
+          "ProcessId": 14988,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 13184,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 7380,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 14512,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 10064,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 6440,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 11080,
+          "ParentProcessId": 11596
+        },
+        {
+          "ProcessId": 4260,
+          "ParentProcessId": 11596
+        }
+      ],
+      "logBytes": 5592
+    },
+    {
+      "nombre": "spawn-sin-pipes-1",
+      "stdio": [
+        "ignore",
+        "ignore",
+        "ignore"
+      ],
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.002499999973224476
+        },
+        {
+          "nombre": "spawn",
+          "ms": 6.8818999999784864
+        },
+        {
+          "nombre": "exit",
+          "ms": 473.6049999999814,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 473.67639999999665
+        },
+        {
+          "nombre": "close",
+          "ms": 473.6850999999733,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 649.005599999975
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 2031.0819999999949
+        }
+      ],
+      "pidPgCtl": 10504,
+      "pidPostgres": 7068,
+      "descendientes": [
+        {
+          "ProcessId": 7068,
+          "ParentProcessId": 12312
+        },
+        {
+          "ProcessId": 6428,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 6552,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 3512,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 7968,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 15012,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 1456,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 4884,
+          "ParentProcessId": 7068
+        },
+        {
+          "ProcessId": 16200,
+          "ParentProcessId": 7068
+        }
+      ],
+      "logBytes": 6868
+    },
+    {
+      "nombre": "execFile-pipes-destruidos",
+      "stdio": "execFile predeterminado: pipe/pipe/pipe",
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.0026000000070780516
+        },
+        {
+          "nombre": "stdin-abierto",
+          "ms": 9.691300000005867
+        },
+        {
+          "nombre": "stdout-abierto",
+          "ms": 9.699200000002747
+        },
+        {
+          "nombre": "stderr-abierto",
+          "ms": 9.706899999990128
+        },
+        {
+          "nombre": "spawn",
+          "ms": 10.23399999999674
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 148.86209999999846,
+          "detalle": {
+            "bytes": 31
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 587.2112999999954,
+          "detalle": {
+            "bytes": 23
+          }
+        },
+        {
+          "nombre": "exit",
+          "ms": 590.4586000000127,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "destruir-pipes-solo-experimento",
+          "ms": 590.5233000000007
+        },
+        {
+          "nombre": "stdin-close",
+          "ms": 590.5738999999885
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 590.6285999999964
+        },
+        {
+          "nombre": "callback",
+          "ms": 590.6993000000075,
+          "detalle": {
+            "error": false,
+            "stdoutBytes": 54,
+            "stderrBytes": 0
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 590.7011000000057
+        },
+        {
+          "nombre": "close",
+          "ms": 590.7194000000018,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 590.7215000000142
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 597.612300000008
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 2036.4495999999926
+        }
+      ],
+      "pidPgCtl": 9996,
+      "pidPostgres": 8872,
+      "descendientes": [
+        {
+          "ProcessId": 8872,
+          "ParentProcessId": 12744
+        },
+        {
+          "ProcessId": 8984,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 8536,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 4124,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 8552,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 15664,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 12396,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 11988,
+          "ParentProcessId": 8872
+        },
+        {
+          "ProcessId": 10064,
+          "ParentProcessId": 8872
+        }
+      ],
+      "logBytes": 8140
+    },
+    {
+      "nombre": "execFile-actual-2",
+      "stdio": "execFile predeterminado: pipe/pipe/pipe",
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.004899999999906868
+        },
+        {
+          "nombre": "stdin-abierto",
+          "ms": 14.755299999989802
+        },
+        {
+          "nombre": "stdout-abierto",
+          "ms": 14.763199999986682
+        },
+        {
+          "nombre": "stderr-abierto",
+          "ms": 14.770400000008522
+        },
+        {
+          "nombre": "spawn",
+          "ms": 15.308199999999488
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 186.2378000000026,
+          "detalle": {
+            "bytes": 31
+          }
+        },
+        {
+          "nombre": "stdout-data",
+          "ms": 516.3485999999975,
+          "detalle": {
+            "bytes": 23
+          }
+        },
+        {
+          "nombre": "exit",
+          "ms": 519.5664000000106,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdin-close",
+          "ms": 519.6103000000003
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 575.0522000000055
+        },
+        {
+          "nombre": "stderr-close",
+          "ms": 35030.04139999999
+        },
+        {
+          "nombre": "callback",
+          "ms": 35030.15400000001,
+          "detalle": {
+            "error": false,
+            "stdoutBytes": 54,
+            "stderrBytes": 0
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 35030.15589999998
+        },
+        {
+          "nombre": "close",
+          "ms": 35030.18460000001,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "stdout-close",
+          "ms": 35030.187199999986
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 36436.2242
+        }
+      ],
+      "pidPgCtl": 15100,
+      "pidPostgres": 6588,
+      "descendientes": [
+        {
+          "ProcessId": 6588,
+          "ParentProcessId": 14176
+        },
+        {
+          "ProcessId": 11392,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 7364,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 4608,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 7632,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 2008,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 14956,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 10928,
+          "ParentProcessId": 6588
+        },
+        {
+          "ProcessId": 15512,
+          "ParentProcessId": 6588
+        }
+      ],
+      "logBytes": 9410
+    },
+    {
+      "nombre": "spawn-sin-pipes-2",
+      "stdio": [
+        "ignore",
+        "ignore",
+        "ignore"
+      ],
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.0032999999821186066
+        },
+        {
+          "nombre": "spawn",
+          "ms": 7.737099999998463
+        },
+        {
+          "nombre": "exit",
+          "ms": 352.86169999997946,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 352.9492999999784
+        },
+        {
+          "nombre": "close",
+          "ms": 352.960299999977,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 534.7304000000004
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 1897.6893999999738
+        }
+      ],
+      "pidPgCtl": 1864,
+      "pidPostgres": 4896,
+      "descendientes": [
+        {
+          "ProcessId": 4896,
+          "ParentProcessId": 5504
+        },
+        {
+          "ProcessId": 1192,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 12756,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 4140,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 3488,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 14496,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 10800,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 7000,
+          "ParentProcessId": 4896
+        },
+        {
+          "ProcessId": 4844,
+          "ParentProcessId": 4896
+        }
+      ],
+      "logBytes": 10681
+    }
+  ],
+  "version": "pg_ctl (PostgreSQL) 18.6",
+  "port": 55432,
+  "completo": true
+}

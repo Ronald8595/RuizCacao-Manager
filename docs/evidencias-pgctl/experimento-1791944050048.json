@@ -1,0 +1,236 @@
+{
+  "node": {
+    "node": "26.7.0",
+    "acorn": "8.18.0",
+    "ada": "4.0.0",
+    "amaro": "1.1.11",
+    "ares": "1.34.8",
+    "brotli": "1.2.0",
+    "cldr": "48.0",
+    "icu": "78.3",
+    "libffi": "3.7.1",
+    "lief": "0.17.0",
+    "llhttp": "9.4.3",
+    "merve": "1.2.2",
+    "modules": "147",
+    "napi": "10",
+    "nbytes": "0.1.4",
+    "ncrypto": "0.0.1",
+    "nghttp2": "1.70.0",
+    "nghttp3": "",
+    "ngtcp2": "",
+    "openssl": "3.5.7",
+    "simdjson": "4.6.6",
+    "simdutf": "7.7.0",
+    "sqlite": "3.53.4",
+    "tz": "2026c",
+    "undici": "8.9.0",
+    "unicode": "17.0",
+    "uv": "1.52.1",
+    "uvwasi": "0.0.23",
+    "v8": "14.6.202.34-node.28",
+    "zlib": "1.3.2.1-motley-42c2f19",
+    "zstd": "1.5.7"
+  },
+  "temp": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-pgctl-experimento-mL5W5O",
+  "bin": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\vendor\\postgresql\\bin",
+  "variantes": [
+    {
+      "nombre": "spawn-stdout-stderr-archivo-1",
+      "stdio": "archivo",
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.11299999999937427
+        },
+        {
+          "nombre": "spawn",
+          "ms": 21.234200000000783
+        },
+        {
+          "nombre": "exit",
+          "ms": 446.858400000001,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 447.0653999999995
+        },
+        {
+          "nombre": "close",
+          "ms": 447.1425999999992,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 506.2618999999995
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 2203.5985
+        }
+      ],
+      "pidPgCtl": 5088,
+      "pidPostgres": 5456,
+      "descendientes": [
+        {
+          "Name": "cmd.exe",
+          "ProcessId": 8032,
+          "ParentProcessId": 5088
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 5456,
+          "ParentProcessId": 8032
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 2908,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 15012,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 10048,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 1864,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 7720,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 7716,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 11196,
+          "ParentProcessId": 5456
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 1528,
+          "ParentProcessId": 5456
+        }
+      ],
+      "logBytes": 481
+    },
+    {
+      "nombre": "spawn-stdout-stderr-archivo-2",
+      "stdio": "archivo",
+      "eventos": [
+        {
+          "nombre": "antes-child",
+          "ms": 0.02019999999902211
+        },
+        {
+          "nombre": "spawn",
+          "ms": 15.737699999999677
+        },
+        {
+          "nombre": "exit",
+          "ms": 560.8673999999992,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "promise-resolve",
+          "ms": 560.9704999999994
+        },
+        {
+          "nombre": "close",
+          "ms": 560.9840000000004,
+          "detalle": {
+            "code": 0,
+            "signal": null
+          }
+        },
+        {
+          "nombre": "postgres-disponible-sql",
+          "ms": 628.5321999999996
+        },
+        {
+          "nombre": "motor-detenido",
+          "ms": 2068.2358000000004
+        }
+      ],
+      "pidPgCtl": 4772,
+      "pidPostgres": 6648,
+      "descendientes": [
+        {
+          "Name": "cmd.exe",
+          "ProcessId": 2568,
+          "ParentProcessId": 4772
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 6648,
+          "ParentProcessId": 2568
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 4428,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 6432,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 7492,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 16068,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 6428,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 8412,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 8628,
+          "ParentProcessId": 6648
+        },
+        {
+          "Name": "postgres.exe",
+          "ProcessId": 12592,
+          "ParentProcessId": 6648
+        }
+      ],
+      "logBytes": 1750
+    }
+  ],
+  "version": "pg_ctl (PostgreSQL) 18.6",
+  "port": 55432,
+  "completo": true
+}

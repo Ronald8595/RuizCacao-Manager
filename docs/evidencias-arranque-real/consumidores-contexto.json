@@ -1,0 +1,164 @@
+[
+  {
+    "archivo": "src/renderer/src\\components\\AnularOperacion.tsx",
+    "linea": 17,
+    "consumidor": "AnularOperacion",
+    "campos": "{ anularOperacion }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\CambiarPassword.tsx",
+    "linea": 9,
+    "consumidor": "CambiarPassword",
+    "campos": "{administrador,cambiarPassword}"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\ControlJornada.tsx",
+    "linea": 9,
+    "consumidor": "ControlJornada",
+    "campos": "{ estadoJornada, fechaJornadaActiva, horaInicioJornada, gestionarJornada }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Compras.tsx",
+    "linea": 34,
+    "consumidor": "CompraModal",
+    "campos": "{ proveedoresActivos, registrarCompra, estadoJornada }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Compras.tsx",
+    "linea": 522,
+    "consumidor": "Compras",
+    "campos": "{ compras, cuentas, estadoJornada }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\DetalleCuenta.tsx",
+    "linea": 13,
+    "consumidor": "DetalleCuenta",
+    "campos": "{ movimientosCuenta, clientes, compras, ventas }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\CompraVenta.tsx",
+    "linea": 16,
+    "consumidor": "CompraVenta",
+    "campos": "{ cuentas }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Clientes.tsx",
+    "linea": 148,
+    "consumidor": "Clientes",
+    "campos": "{ clientes, crearCliente, actualizarCliente, desactivarCliente, proveedores, crearProveedor, actualizarProveedor, desactivarProveedor }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Cuentas.tsx",
+    "linea": 566,
+    "consumidor": "Cuentas",
+    "campos": "{ cuentas, movimientosCuenta, clientes, clientesActivos, ventas, registrarAbono, crearCuentaManual, anularCuenta }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Consultas.tsx",
+    "linea": 21,
+    "consumidor": "Consultas",
+    "campos": "{ cuentas }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Empleados.tsx",
+    "linea": 23,
+    "consumidor": "Empleados",
+    "campos": "{ empleados, desactivarEmpleado }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\EmpleadoFormModal.tsx",
+    "linea": 23,
+    "consumidor": "EmpleadoFormModal",
+    "campos": "{ empleados, crearEmpleado, actualizarEmpleado }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\inicio.tsx",
+    "linea": 49,
+    "consumidor": "Inicio",
+    "campos": "{ ventas, gastos, movimientosCuenta, cuentas, compras, administrador, usuarioActual }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\Header.tsx",
+    "linea": 13,
+    "consumidor": "Header",
+    "campos": "{ noLeidas: pendientes, administrador, usuarioActual, listarNotificaciones, cerrarSesion }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Gastos.tsx",
+    "linea": 127,
+    "consumidor": "GastoFormModal",
+    "campos": "{ fechaJornadaActiva }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Gastos.tsx",
+    "linea": 337,
+    "consumidor": "Gastos",
+    "campos": "{ gastos, movimientosStock, estadoJornada, fechaJornadaActiva, crearGastoManual, actualizarGastoManual, eliminarGastoManual }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Stock.tsx",
+    "linea": 31,
+    "consumidor": "ConversionModal",
+    "campos": "{ stock, ultimoFactorUsado, registrarConversionCacao }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Stock.tsx",
+    "linea": 165,
+    "consumidor": "DiferenciaConversionModal",
+    "campos": "{ registrarDiferenciaConversion }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Stock.tsx",
+    "linea": 305,
+    "consumidor": "AjusteStockModal",
+    "campos": "{ stock, registrarAjusteStock, fechaJornadaActiva }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Stock.tsx",
+    "linea": 513,
+    "consumidor": "StockInicialModal",
+    "campos": "{ registrarStockInicial }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Stock.tsx",
+    "linea": 726,
+    "consumidor": "Stock",
+    "campos": "{ stock, movimientosStock, umbralesStock, configurarUmbralStock, usuarioActual, stockInicialRegistrado, estadoJornada }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Usuarios.tsx",
+    "linea": 12,
+    "consumidor": "Usuarios",
+    "campos": "{ usuarios, usuarioActual, crearUsuario, cambiarEstadoUsuario, restablecerPasswordUsuario }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\PanelNotificaciones.tsx",
+    "linea": 14,
+    "consumidor": "PanelNotificaciones",
+    "campos": "{ avisos, noLeidas, actualizandoNotificaciones: ocupado, errorNotificaciones, marcarNotificacionLeida, marcarTodasNotificacionesLeidas, eliminarNotificacion, eliminarTodasNotificaciones }"
+  },
+  {
+    "archivo": "src/renderer/src\\pages\\Ventas.tsx",
+    "linea": 89,
+    "consumidor": "Ventas",
+    "campos": "{ clientes, clientesActivos, crearCliente, stock, ventas, cuentas, proximoNumeroFactura, proximoNumeroComprobante, registrarVenta, estadoJornada, fechaJornadaActiva }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\ProveedorCompraModal.tsx",
+    "linea": 16,
+    "consumidor": "ProveedorCompraModal",
+    "campos": "{ proveedores, crearProveedor }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\Sidebar.tsx",
+    "linea": 15,
+    "consumidor": "Sidebar",
+    "campos": "{ usuarioActual }"
+  },
+  {
+    "archivo": "src/renderer/src\\components\\SelectorEmpleado.tsx",
+    "linea": 17,
+    "consumidor": "SelectorEmpleado",
+    "campos": "{ empleados, empleadosActivos }"
+  }
+]

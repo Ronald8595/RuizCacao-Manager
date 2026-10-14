@@ -1,0 +1,141 @@
+{
+  "fecha": "2026-10-14T02:42:53.143Z",
+  "series": [
+    {
+      "nombre": "small-frio",
+      "antes": {
+        "appReady": 108.116455078125,
+        "persistencia": 35605.916259765625,
+        "verificacion": 141.91552734375,
+        "pgDisponibleLog": null,
+        "spawnExit": null,
+        "exitClose": null,
+        "spawnResolucion": null,
+        "postgresLocal": 35409.18701171875,
+        "ventana": 1511.322509765625,
+        "acceso": 37392.60107421875,
+        "login": 248.099853515625,
+        "inicio": 37749.90087890625
+      },
+      "despues": {
+        "appReady": 117.757568359375,
+        "persistencia": 886.746337890625,
+        "verificacion": 155.671142578125,
+        "pgDisponibleLog": 281.614501953125,
+        "spawnExit": 326.729248046875,
+        "exitClose": 0.276611328125,
+        "spawnResolucion": 327.0625,
+        "postgresLocal": 774.70361328125,
+        "ventana": 971.615478515625,
+        "acceso": 2117.314453125,
+        "login": 287.699951171875,
+        "inicio": 2522.114501953125
+      },
+      "reduccionAccesoPct": 94.33761120569696
+    },
+    {
+      "nombre": "small-segundo",
+      "antes": {
+        "appReady": 102.6904296875,
+        "persistencia": 35614.30419921875,
+        "verificacion": 146.49169921875,
+        "pgDisponibleLog": null,
+        "spawnExit": null,
+        "exitClose": null,
+        "spawnResolucion": null,
+        "postgresLocal": 35512.801025390625,
+        "ventana": 1423.54833984375,
+        "acceso": 37329.72314453125,
+        "login": 260.099853515625,
+        "inicio": 37781.822998046875
+      },
+      "despues": {
+        "appReady": 109.080078125,
+        "persistencia": 997.804931640625,
+        "verificacion": 148.759033203125,
+        "pgDisponibleLog": 320.5400390625,
+        "spawnExit": 344.707763671875,
+        "exitClose": 0.342041015625,
+        "spawnResolucion": 345.12841796875,
+        "postgresLocal": 757.86669921875,
+        "ventana": 1005.80859375,
+        "acceso": 2239.767333984375,
+        "login": 333,
+        "inicio": 2703.0673828125
+      },
+      "reduccionAccesoPct": 94.00004300778615
+    },
+    {
+      "nombre": "large-frio",
+      "antes": {
+        "appReady": 108.715087890625,
+        "persistencia": 35596.665283203125,
+        "verificacion": 153.25244140625,
+        "pgDisponibleLog": 358.4482421875,
+        "spawnExit": 425.753662109375,
+        "exitClose": 34582.967041015625,
+        "spawnResolucion": 35008.67724609375,
+        "postgresLocal": 35451.210205078125,
+        "ventana": 1671.475830078125,
+        "acceso": 37586.529296875,
+        "login": 1917.699951171875,
+        "inicio": 39643.829345703125
+      },
+      "despues": {
+        "appReady": 122.3837890625,
+        "persistencia": 1540.29833984375,
+        "verificacion": 270.896484375,
+        "pgDisponibleLog": 452.546875,
+        "spawnExit": 562.720703125,
+        "exitClose": 0.573486328125,
+        "spawnResolucion": 563.41015625,
+        "postgresLocal": 1291.218017578125,
+        "ventana": 1501.072265625,
+        "acceso": 3278.58837890625,
+        "login": 1806.800048828125,
+        "inicio": 5261.988525390625
+      },
+      "reduccionAccesoPct": 91.27722500523922
+    },
+    {
+      "nombre": "large-segundo",
+      "antes": {
+        "appReady": 107.83056640625,
+        "persistencia": 35648.429443359375,
+        "verificacion": 148.75830078125,
+        "pgDisponibleLog": 248.196044921875,
+        "spawnExit": 314.15966796875,
+        "exitClose": 34698.62255859375,
+        "spawnResolucion": 35012.655517578125,
+        "postgresLocal": 35536.405029296875,
+        "ventana": 1468.48876953125,
+        "acceso": 37429.970703125,
+        "login": 1833.800048828125,
+        "inicio": 39414.57080078125
+      },
+      "despues": {
+        "appReady": 120.1796875,
+        "persistencia": 892.174072265625,
+        "verificacion": 148.425537109375,
+        "pgDisponibleLog": 294.231689453125,
+        "spawnExit": 330.691650390625,
+        "exitClose": 0.3193359375,
+        "spawnResolucion": 331.072265625,
+        "postgresLocal": 786.57421875,
+        "ventana": 907.896240234375,
+        "acceso": 2074.405517578125,
+        "login": 1832.89990234375,
+        "inicio": 4067.10546875
+      },
+      "reduccionAccesoPct": 94.45790237446022
+    }
+  ],
+  "archivosProtegidosIguales": 69,
+  "regresion": "regresion-1791944933004.json",
+  "checks": {
+    "typecheck": "0",
+    "lint": "0",
+    "dbTest": "0",
+    "diffCheck": "0"
+  }
+}

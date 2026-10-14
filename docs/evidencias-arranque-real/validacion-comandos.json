@@ -1,0 +1,11 @@
+{
+  "npm run typecheck": "Aprobado, exit 0; Node y Web. Log: typecheck.txt.",
+  "npm run lint -- --no-cache": "Aprobado, exit 0; 0 errores y 726 advertencias. Log: lint.txt.",
+  "npm run db:test": "Suite PostgreSQL completa según db-test.txt; 14 pruebas RC satisfactorias y cierre completo de la suite. Clúster ruizcacao-tests-oQgSqd. Código de salida de la sesión anterior no recuperable; no se repitió la suite.",
+  "Alcance de regresión": "La suite completa precede a las dos marcas opt-in initdb-start/end; estas se ejercitaron en la corrida real C y pasaron typecheck/lint posteriores. No hubo cambios de negocio posteriores a la suite.",
+  "git diff --check": "Aprobado, exit 0; advertencias de normalización LF/CRLF, sin errores de whitespace.",
+  "node scripts/verificar-perfil-real.cjs": "Aprobado, exit 0 para integridad de mediciones y migraciones. Registra explícitamente conservación parcial del origen: 22/25 tablas, no certifica cero escrituras.",
+  "Estado de ejecuciones": "Sin prueba de regresión ni corrida de perfil pendiente. Motores aislados detenidos.",
+  "Últimos comandos de cierre": "node scripts/documentar-perfil-real.cjs; node scripts/verificar-perfil-real.cjs; git diff --check. Son regeneración documental y verificación; no repiten mediciones.",
+  "Pendiente humano": "Revisión visual/entrada física; alta de administrador y primer login de una instalación nueva; validación de equipo final/instalador en otra tarea. Atribución de la incidencia en tablas de acceso no concluyente."
+}

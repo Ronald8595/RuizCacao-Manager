@@ -3,6 +3,15 @@ import './assets/main.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { perfilActivo } from './utils/perfilArranque'
+
+if (perfilActivo()) {
+  new PerformanceObserver((lista) => {
+    for (const entrada of lista.getEntries()) {
+      window.api.perfil?.marca(entrada.name, performance.timeOrigin + entrada.startTime)
+    }
+  }).observe({ type: 'paint', buffered: true })
+}
 
 /**
  * Corrección: scroll accidental sobre campos numéricos.

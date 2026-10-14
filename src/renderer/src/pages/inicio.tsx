@@ -1,4 +1,5 @@
-import { useMemo } from 'react'
+import { useMemo, useLayoutEffect } from 'react'
+import { marcaPerfil } from '../utils/perfilArranque'
 import { DollarSign, TrendingDown as GastoIcon } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import { menuItems } from '../data/menu'
@@ -41,6 +42,10 @@ function formatearMoneda(valor: number): string {
 // estado) vive en AppDataContext; esta página solo lo consume y muestra la
 // confirmación/mensajes al usuario.
 function Inicio({ onNavigate }: PageProps): React.JSX.Element {
+  marcaPerfil('Inicio-render-start')
+  useLayoutEffect(() => {
+    marcaPerfil('Inicio-render-end')
+  })
   const { ventas, gastos, movimientosCuenta, cuentas, compras, administrador, usuarioActual } =
     useAppData()
 

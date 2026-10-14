@@ -1,4 +1,5 @@
 import logoGrupoRuiz from '../assets/brand/logo-grupo-ruiz.jpeg'
+import { marcaPerfil, despuesDePintar } from '../utils/perfilArranque'
 import { validarAcceso, type ErroresAcceso } from '../../../shared/validacionAcceso'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react'
@@ -38,6 +39,7 @@ export default function Acceso({
   }
   useEffect(() => {
     let vigente = true
+    marcaPerfil('acceso-render')
     void consultarAcceso()
       .then((estado) => {
         if (vigente) setAcceso(estado)
@@ -50,9 +52,14 @@ export default function Acceso({
       vigente = false
     }
   }, [])
+  useEffect(() => {
+    if (acceso?.configurada && !sesion) return despuesDePintar('acceso-visible')
+    return undefined
+  }, [acceso, sesion])
   async function enviar(event: FormEvent): Promise<void> {
     event.preventDefault()
     if (ocupado) return
+    marcaPerfil('login-click')
     setError('')
     setMensaje('')
     const nuevos = validarAcceso({
@@ -86,6 +93,7 @@ export default function Acceso({
         return
       }
       const estado = desenvolver(await window.api.datos.login(nombre, password))
+      marcaPerfil('estado-received')
       setPassword('')
       setSesion(estado)
     } catch (e) {

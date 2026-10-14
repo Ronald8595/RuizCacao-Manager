@@ -1,0 +1,8 @@
+﻿{
+    "intervaloMs":  20,
+    "nuevasConsolas":  [
+
+                       ],
+    "muestras":  475,
+    "limite":  "No detecta destellos inferiores al muestreo; no lee tÃ­tulos ni contenido de ventanas."
+}

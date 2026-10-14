@@ -1,4 +1,5 @@
 import { ErrorNegocio } from '../../shared/errorNegocio'
+import { marcaPerfil } from '../perfil-arranque'
 import { Respaldos } from './respaldos'
 import { configurarLogs, traducirError } from './errores'
 import { app, safeStorage } from 'electron'
@@ -40,6 +41,7 @@ async function conectar(config: ConexionLocal): Promise<void> {
 }
 export async function iniciarPersistencia(): Promise<void> {
   if (base) return
+  marcaPerfil('persistencia-start')
   configurarLogs(join(app.getPath('userData'), 'logs'))
   try {
     const restauracionPendiente = await access(
@@ -74,6 +76,7 @@ export async function iniciarPersistencia(): Promise<void> {
   } catch (error) {
     errorInicio = traducirError(error, { modulo: 'acceso', operacion: 'iniciar' })
   }
+  marcaPerfil('persistencia-end', { ok: !!base })
 }
 export async function estadoAcceso(): Promise<EstadoAcceso> {
   if (!base) await iniciarPersistencia()

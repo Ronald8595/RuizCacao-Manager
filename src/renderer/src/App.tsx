@@ -1,4 +1,5 @@
 import NovedadesVersion from './components/NovedadesVersion'
+import { marcaPerfil, despuesDePintar } from './utils/perfilArranque'
 import { useEffect, useState, type ComponentType } from 'react'
 import Acceso from './components/Acceso'
 import Sidebar from './components/Sidebar'
@@ -29,6 +30,18 @@ const pages = {
   usuarios: Usuarios
 } as Record<Page, ComponentType<PageProps>>
 
+function PaginaMedida({
+  pagina,
+  onNavigate
+}: {
+  pagina: Page
+  onNavigate: (page: Page) => void
+}): React.JSX.Element {
+  const Componente = pages[pagina]
+  useEffect(() => despuesDePintar('interactive', { pagina }), [pagina])
+  return <Componente onNavigate={onNavigate} />
+}
+
 function App(): React.JSX.Element {
   const [activePage, setActivePage] = useState<Page>('inicio')
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
@@ -44,7 +57,10 @@ function App(): React.JSX.Element {
     return () => mediaQuery.removeEventListener('change', updateSidebar)
   }, [])
 
-  const ActivePage = pages[activePage]
+  const navegar = (pagina: Page): void => {
+    marcaPerfil('navigation-start', { pagina })
+    setActivePage(pagina)
+  }
 
   return (
     <Acceso>
@@ -60,14 +76,14 @@ function App(): React.JSX.Element {
             <div className="flex h-screen min-w-0 bg-[#f5f7f4] text-[#292d2a]">
               <Sidebar
                 activePage={activePage}
-                onNavigate={setActivePage}
+                onNavigate={navegar}
                 collapsed={sidebarCollapsed}
                 onToggle={() => setSidebarCollapsed((value) => !value)}
               />
 
               <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
-                <Header onNavigate={setActivePage} />
-                <ActivePage onNavigate={setActivePage} />
+                <Header onNavigate={navegar} />
+                <PaginaMedida pagina={activePage} onNavigate={navegar} />
               </main>
             </div>
           </AppDataProvider>

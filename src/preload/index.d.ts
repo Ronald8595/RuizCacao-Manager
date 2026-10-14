@@ -4,6 +4,13 @@ declare global {
   interface Window {
     electron: { process: { versions: Record<string, string | undefined> } }
     api: {
+      perfil?: {
+        marca: (
+          nombre: string,
+          epoch: number,
+          detalle?: Record<string, string | number | boolean>
+        ) => void
+      }
       datos: ApiPersistencia
       copiarTexto: (texto: string) => Promise<boolean>
       generarReportePDF: (

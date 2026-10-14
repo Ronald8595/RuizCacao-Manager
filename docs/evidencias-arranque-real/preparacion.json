@@ -1,0 +1,229 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB",
+  "fecha": "2026-10-13T16:46:17.091Z",
+  "originalAntes": {
+    "administrador": {
+      "filas": 1,
+      "huella": "2ac33dee005725125da35276f8e31d03"
+    },
+    "auditoria": {
+      "filas": 164,
+      "huella": "39e701fdf979cec4e16b8810fab936e8"
+    },
+    "clientes": {
+      "filas": 1004,
+      "huella": "b9e1bd35cc20f0fc5945dba43588819e"
+    },
+    "compras": {
+      "filas": 10014,
+      "huella": "1bb2aca14ffe37175e7bb0c89018a9e8"
+    },
+    "configuracion": {
+      "filas": 1,
+      "huella": "d79f58f4a1473a3c5739826314807a2f"
+    },
+    "control_recuperacion": {
+      "filas": 1,
+      "huella": "13508cf83f6f568a9460d4faa5ebb34e"
+    },
+    "cuentas": {
+      "filas": 25021,
+      "huella": "d63d0a8638b824dcadd8c9165e69988e"
+    },
+    "empleados": {
+      "filas": 3,
+      "huella": "fee9e4cbff34d615eaf5d0965447472a"
+    },
+    "eventos_jornada": {
+      "filas": 49,
+      "huella": "9502f3129fa23c962eb908132242db6a"
+    },
+    "existencias": {
+      "filas": 3,
+      "huella": "3856f71783e989a27dcf9abb4dbf619f"
+    },
+    "gastos": {
+      "filas": 13019,
+      "huella": "e8d9e1b76e3d00ded6f271fe99ab6a1d"
+    },
+    "instalacion": {
+      "filas": 1,
+      "huella": "865a6839a1e682dd39e0e9cd8893f9ba"
+    },
+    "jornadas": {
+      "filas": 7,
+      "huella": "d3e85f405c5753c401fdfeeb7db9bbc0"
+    },
+    "migraciones": {
+      "filas": 10,
+      "huella": "5de68ac94c716c84c6d393cb5a7a9c3a"
+    },
+    "movimientos_cuenta": {
+      "filas": 16695,
+      "huella": "684d93c143bd1e2bfea701135b8ebd3c"
+    },
+    "movimientos_stock": {
+      "filas": 25450,
+      "huella": "a76cd3ffdb1b9eff572baff9956da19e"
+    },
+    "notificaciones": {
+      "filas": 98,
+      "huella": "119886b1aa651d761290d81d2b9a1400"
+    },
+    "operaciones": {
+      "filas": 61,
+      "huella": "de2ace3eb2540eb3009f08247f67dd42"
+    },
+    "productos": {
+      "filas": 3,
+      "huella": "aece795c97e15901e6caae1d3d25163e"
+    },
+    "proveedores": {
+      "filas": 506,
+      "huella": "c2849e9e70f77305b95053f2db6c637c"
+    },
+    "respaldos": {
+      "filas": 39,
+      "huella": "e877d0699e816df4efc4ee2d9818a213"
+    },
+    "sesiones": {
+      "filas": 86,
+      "huella": "bfcfda9641cc8840d0c19393136749be"
+    },
+    "solicitudes_recuperacion": {
+      "filas": 11,
+      "huella": "6a3a0d4c3dea88c5fbb844704fc5b958"
+    },
+    "usuarios": {
+      "filas": 2,
+      "huella": "9157ba600f7af769f00f5c8ef8d68a51"
+    },
+    "ventas": {
+      "filas": 15007,
+      "huella": "875ffe4000df28c5830cf04c716d5d9d"
+    }
+  },
+  "perfiles": {
+    "small": {
+      "version": 1,
+      "escenario": "small",
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\small",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/small/postgres/data",
+      "binarios": "C:\\Program Files\\PostgreSQL\\18\\bin",
+      "preparadoParaPerfil": true,
+      "esquema": 10
+    },
+    "large": {
+      "version": 1,
+      "escenario": "large",
+      "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-real-pPIlvB\\large",
+      "dataDirectory": "C:/Users/LENOVO/AppData/Local/Temp/ruizcacao-perfil-real-pPIlvB/large/postgres/data",
+      "binarios": "C:\\Program Files\\PostgreSQL\\18\\bin",
+      "preparadoParaPerfil": true,
+      "esquema": 10
+    }
+  },
+  "dumpSha256": "2359a95425e0abe57375f17c70aa9642f8d989020d65636d4b041642b0d06269",
+  "originalDespues": {
+    "administrador": {
+      "filas": 1,
+      "huella": "2ac33dee005725125da35276f8e31d03"
+    },
+    "auditoria": {
+      "filas": 164,
+      "huella": "39e701fdf979cec4e16b8810fab936e8"
+    },
+    "clientes": {
+      "filas": 1004,
+      "huella": "b9e1bd35cc20f0fc5945dba43588819e"
+    },
+    "compras": {
+      "filas": 10014,
+      "huella": "1bb2aca14ffe37175e7bb0c89018a9e8"
+    },
+    "configuracion": {
+      "filas": 1,
+      "huella": "d79f58f4a1473a3c5739826314807a2f"
+    },
+    "control_recuperacion": {
+      "filas": 1,
+      "huella": "13508cf83f6f568a9460d4faa5ebb34e"
+    },
+    "cuentas": {
+      "filas": 25021,
+      "huella": "d63d0a8638b824dcadd8c9165e69988e"
+    },
+    "empleados": {
+      "filas": 3,
+      "huella": "fee9e4cbff34d615eaf5d0965447472a"
+    },
+    "eventos_jornada": {
+      "filas": 49,
+      "huella": "9502f3129fa23c962eb908132242db6a"
+    },
+    "existencias": {
+      "filas": 3,
+      "huella": "3856f71783e989a27dcf9abb4dbf619f"
+    },
+    "gastos": {
+      "filas": 13019,
+      "huella": "e8d9e1b76e3d00ded6f271fe99ab6a1d"
+    },
+    "instalacion": {
+      "filas": 1,
+      "huella": "865a6839a1e682dd39e0e9cd8893f9ba"
+    },
+    "jornadas": {
+      "filas": 7,
+      "huella": "d3e85f405c5753c401fdfeeb7db9bbc0"
+    },
+    "migraciones": {
+      "filas": 10,
+      "huella": "5de68ac94c716c84c6d393cb5a7a9c3a"
+    },
+    "movimientos_cuenta": {
+      "filas": 16695,
+      "huella": "684d93c143bd1e2bfea701135b8ebd3c"
+    },
+    "movimientos_stock": {
+      "filas": 25450,
+      "huella": "a76cd3ffdb1b9eff572baff9956da19e"
+    },
+    "notificaciones": {
+      "filas": 98,
+      "huella": "119886b1aa651d761290d81d2b9a1400"
+    },
+    "operaciones": {
+      "filas": 61,
+      "huella": "de2ace3eb2540eb3009f08247f67dd42"
+    },
+    "productos": {
+      "filas": 3,
+      "huella": "aece795c97e15901e6caae1d3d25163e"
+    },
+    "proveedores": {
+      "filas": 506,
+      "huella": "c2849e9e70f77305b95053f2db6c637c"
+    },
+    "respaldos": {
+      "filas": 39,
+      "huella": "e877d0699e816df4efc4ee2d9818a213"
+    },
+    "sesiones": {
+      "filas": 86,
+      "huella": "bfcfda9641cc8840d0c19393136749be"
+    },
+    "solicitudes_recuperacion": {
+      "filas": 11,
+      "huella": "6a3a0d4c3dea88c5fbb844704fc5b958"
+    },
+    "usuarios": {
+      "filas": 2,
+      "huella": "9157ba600f7af769f00f5c8ef8d68a51"
+    },
+    "ventas": {
+      "filas": 15007,
+      "huella": "875ffe4000df28c5830cf04c716d5d9d"
+    }
+  }
+}

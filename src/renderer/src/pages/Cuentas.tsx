@@ -2,7 +2,7 @@ import { useFilasVisibles } from '../hooks/useFilasVisibles'
 import { indexarPrimero } from '../utils/indices'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
 import { useCallback, useMemo, useState, type FormEvent } from 'react'
-import { Wallet, Plus, X, AlertTriangle, ArrowLeft, HandCoins, Ban } from 'lucide-react'
+import { Wallet, Plus, X, AlertTriangle, ArrowLeft, HandCoins, Ban, Eye } from 'lucide-react'
 import DetalleCuenta from '../components/DetalleCuenta'
 import PageHeader from '../components/PageHeader'
 import Paginacion from '../components/Paginacion'
@@ -1092,6 +1092,7 @@ function Cuentas(): React.JSX.Element {
                   <th className="px-4 py-3">Tipo</th>
                   <th className="px-4 py-3">Titular</th>
                   <th className="px-4 py-3">Operación</th>
+                  <th className="px-4 py-3">Fecha de operación</th>
                   <th className="px-4 py-3">Total operación</th>
                   <th className="px-4 py-3">Pagado</th>
                   <th className="px-4 py-3">Saldo</th>
@@ -1102,7 +1103,7 @@ function Cuentas(): React.JSX.Element {
               <tbody>
                 {cuentasFiltradas.length === 0 ? (
                   <tr>
-                    <td colSpan={8} className="px-4 py-8 text-center text-[12px] text-[#a3aaa5]">
+                    <td colSpan={9} className="px-4 py-8 text-center text-[12px] text-[#a3aaa5]">
                       Ninguna cuenta coincide con los filtros.
                     </td>
                   </tr>
@@ -1110,7 +1111,7 @@ function Cuentas(): React.JSX.Element {
                   <>
                     {espacioAntes > 0 && (
                       <tr aria-hidden="true">
-                        <td colSpan={8} style={{ height: espacioAntes, padding: 0 }} />
+                        <td colSpan={9} style={{ height: espacioAntes, padding: 0 }} />
                       </tr>
                     )}
                     {cuentasPagina.slice(inicioVisible, finVisible).map((c, indice) => {
@@ -1157,6 +1158,7 @@ function Cuentas(): React.JSX.Element {
                                 ? `Venta N.º ${c.numeroFactura} del día`
                                 : 'Manual'}
                           </td>
+                          <td className="px-4 py-3 text-[#5b635e]">{formatoFecha(c.fecha)}</td>
                           <td className="px-4 py-3 text-[#5b635e]">
                             ${formatoMoneda(c.montoTotal)}
                           </td>
@@ -1187,6 +1189,15 @@ function Cuentas(): React.JSX.Element {
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center justify-end gap-1">
+                              <button
+                                type="button"
+                                title="Ver detalle de cuenta"
+                                aria-label="Ver detalle de cuenta"
+                                onClick={() => setDetalleCompra(c)}
+                                className="flex h-8 w-8 items-center justify-center rounded-lg text-[#8a938d] hover:bg-[#f0f4f0] hover:text-[#16834b]"
+                              >
+                                <Eye size={15} />
+                              </button>
                               {puedeAbonar && (
                                 <button
                                   type="button"
@@ -1214,7 +1225,7 @@ function Cuentas(): React.JSX.Element {
                     })}
                     {espacioDespues > 0 && (
                       <tr aria-hidden="true">
-                        <td colSpan={8} style={{ height: espacioDespues, padding: 0 }} />
+                        <td colSpan={9} style={{ height: espacioDespues, padding: 0 }} />
                       </tr>
                     )}
                   </>

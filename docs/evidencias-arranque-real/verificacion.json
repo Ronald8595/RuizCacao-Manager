@@ -1,0 +1,46 @@
+{
+  "fecha": "2026-10-14T01:59:49.840Z",
+  "arranques": 9,
+  "instalacionNueva": {
+    "hastaAccesoMs": 53683.89208984375,
+    "initdbMs": 12072.567138671875,
+    "login": "No aplica: no se creó usuario en C"
+  },
+  "corridasCompletas": 8,
+  "corridaParcial": "large-segundo: arranque válido; navegación/reposo incompletos",
+  "repososCincoMinutos": [
+    "small-segundo",
+    "small-externo-segundo",
+    "large-externo-reposo"
+  ],
+  "reposoDescartado": "large-externo-segundo: seis navegaciones durante la ventana de reposo",
+  "original25TablasIgual": false,
+  "tablasOriginalesIguales": 22,
+  "diferenciasOriginales": [
+    "auditoria",
+    "sesiones",
+    "usuarios"
+  ],
+  "migracionesSinCambios": {
+    "database/001-base.sql": "ca081cc7d8de55e9a275c0412e7fc0953aac829574100ff1fe4e97c3c92dc795",
+    "database/002-relacional.sql": "db3ea22f0af0a6f1d82289901bed2c232dd89dd964b8a97beb3e1767197e3803",
+    "database/003-seguridad-respaldos.sql": "fbed523cce1169e1e343f66ebd051231cb636fc9eada5fbe7015f4d32787e708",
+    "database/004-interrupciones-umbrales.sql": "2b1af167a0e389511384475b18fb5ac43d8dddd7fe0f9498e2451c660495616a",
+    "database/005-multiusuario.sql": "b5119dcd85a6b65ff6d66743da0bdb1ca63295e74cfa7ec01307bc5a0ff4ac1a",
+    "database/006-stock-inicial.sql": "240f8829447f4194e5d204105e7c0f305a55dd5a8687f2986105d10babaaf226",
+    "database/007-anulaciones.sql": "c5f632ed09bbb959fbd99ef860ad17919c17ce7da282b7c8c4ad3e248ed6ca54",
+    "database/008-rendimiento-paginacion.sql": "17556cc20877d33ff4580e18f286a35c5c25cae92630865826853a63570b31f8",
+    "database/009-rendimiento-paginacion-compras-ventas.sql": "6ed5765a3084672fc5ca524d7b1c63a9500ff6045f705d0675799088ae2dba41",
+    "database/010-notificaciones.sql": "66cf912f77b2b29e73a6c177f851365053d00ae59f35ec1efd77772dacb21b05",
+    "docs/evidencias-escalabilidad/migracion-desarrollador-v9-2026-10-01.json": "31eeaf2920b2b44e6c67d950cf2aae55d5af84767b5fb74dc525ef653e3f30eb",
+    "scripts/aplicar-migracion-rendimiento.cjs": "1e839bca603476e99eaa8b4ab79db80534f5e5808f33a572bb312781d5409087",
+    "src/main/database/migracion-cinco.ts": "041852b139201dca843be3a16913b9995da6271fc4d5755aad3488ebbdb87c8a",
+    "src/main/database/migracion-cuatro.ts": "4b29d9baf7de5cadfa12f465cda2aa78edc0f52f71dc75e4102195210ab72ec7",
+    "src/main/database/migracion-diez.ts": "51a3be1d88f6827094c020b6331bee7c305a0a7d0bce9fd8b1176e81e0284186",
+    "src/main/database/migracion-nueve.ts": "4be309b9aa33bceba07d38f2875c36127b969263612cabed80e69735f3c6488e",
+    "src/main/database/migracion-ocho.ts": "12e66170dfe762f1f4ba48039edf24eb2ebffa8802eec28657c2d7455f779514",
+    "src/main/database/migracion-seis.ts": "027697bd645f253bb441f5799991bc998eb1ee475d0fe372efdc9eadd9fe6605",
+    "src/main/database/migracion-siete.ts": "a0340078789153a774fefe498385454582f0b56df1d1662c29990f3d531d650c",
+    "src/main/database/migracion-tres.ts": "3ca8bd7f6838e2c7197c10ef46060635d9e86506fda0b69bca6af627b1a47628"
+  }
+}

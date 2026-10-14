@@ -1,0 +1,930 @@
+[
+  {
+    "nombre": "small-frio",
+    "tiempos": {
+      "procesoReadyMs": 108.12,
+      "persistenciaMs": 35605.92,
+      "verificacionPgMs": 141.92,
+      "esperaMotorMs": 35115.07,
+      "baseConexionMs": 134.51,
+      "baseIniciarMs": 188.44,
+      "ventanaReadyMs": 1511.32,
+      "hastaAccesoMs": 37392.6,
+      "pausaAutomaticaMs": 109.2,
+      "loginAuthMs": 168.92,
+      "estadoMs": 38.86,
+      "sqlClienteEstadoMs": 28.29,
+      "dtoMs": 0.07,
+      "ipcMainPreloadMs": 0.73,
+      "puenteRendererMs": 0.1,
+      "rendererMs": 34.1,
+      "contextoMs": 0.2,
+      "inicioRenderCommitMs": 2.4,
+      "commitPinturaInteractivoMs": 26.8,
+      "loginInicioMs": 248.1,
+      "totalMs": 37749.9,
+      "firstPaintMs": 37260
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 109.44,
+        "privadoMiB": 76.51
+      },
+      "Tab": {
+        "wsMiB": 119.71,
+        "privadoMiB": 58.16
+      },
+      "GPU": {
+        "wsMiB": 146.82,
+        "privadoMiB": 115.62
+      },
+      "Utility": {
+        "wsMiB": 54.09,
+        "privadoMiB": 14.35
+      },
+      "PostgreSQL": {
+        "wsMiB": 173.75,
+        "privadoMiB": 41.52,
+        "procesos": 11,
+        "desfaseMs": -63
+      },
+      "mainRssMiB": 109.44
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 1288.39,
+        "picoPorcentajeUnNucleo": 107.44
+      },
+      "Tab": {
+        "ms": 406.41,
+        "picoPorcentajeUnNucleo": 52.06
+      },
+      "GPU": {
+        "ms": 445.01,
+        "picoPorcentajeUnNucleo": 101.3
+      },
+      "Utility": {
+        "ms": 273.92,
+        "picoPorcentajeUnNucleo": 31.06
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 74.02,
+        "promedioPorcentajeUnNucleo": 1.48,
+        "picoPorcentajeUnNucleo": 3.77
+      },
+      "Tab": {
+        "ms": 1.81,
+        "promedioPorcentajeUnNucleo": 0.04,
+        "picoPorcentajeUnNucleo": 0.29
+      },
+      "GPU": {
+        "ms": 3.45,
+        "promedioPorcentajeUnNucleo": 0.07,
+        "picoPorcentajeUnNucleo": 0.67
+      },
+      "Utility": {
+        "ms": 5.31,
+        "promedioPorcentajeUnNucleo": 0.11,
+        "picoPorcentajeUnNucleo": 1.93
+      }
+    },
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  },
+  {
+    "nombre": "small-segundo",
+    "tiempos": {
+      "procesoReadyMs": 102.69,
+      "persistenciaMs": 35614.3,
+      "verificacionPgMs": 146.49,
+      "esperaMotorMs": 35208.47,
+      "baseConexionMs": 35.36,
+      "baseIniciarMs": 92.55,
+      "ventanaReadyMs": 1423.55,
+      "hastaAccesoMs": 37329.72,
+      "pausaAutomaticaMs": 192,
+      "loginAuthMs": 182.36,
+      "estadoMs": 34.92,
+      "sqlClienteEstadoMs": 25.87,
+      "dtoMs": 0.08,
+      "ipcMainPreloadMs": 0.63,
+      "puenteRendererMs": 0.1,
+      "rendererMs": 36.3,
+      "contextoMs": 0.2,
+      "inicioRenderCommitMs": 2.5,
+      "commitPinturaInteractivoMs": 28.6,
+      "loginInicioMs": 260.1,
+      "totalMs": 37781.82,
+      "firstPaintMs": 37166.12
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 112.16,
+        "privadoMiB": 79.19
+      },
+      "Tab": {
+        "wsMiB": 121.47,
+        "privadoMiB": 60.94
+      },
+      "GPU": {
+        "wsMiB": 139.93,
+        "privadoMiB": 112.7
+      },
+      "Utility": {
+        "wsMiB": 54.22,
+        "privadoMiB": 14.26
+      },
+      "PostgreSQL": {
+        "wsMiB": 170.74,
+        "privadoMiB": 40.95,
+        "procesos": 11,
+        "desfaseMs": -465
+      },
+      "mainRssMiB": 112.16
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 1276.99,
+        "picoPorcentajeUnNucleo": 87.51
+      },
+      "Tab": {
+        "ms": 443.86,
+        "picoPorcentajeUnNucleo": 46.74
+      },
+      "GPU": {
+        "ms": 397.25,
+        "picoPorcentajeUnNucleo": 67.24
+      },
+      "Utility": {
+        "ms": 221.78,
+        "picoPorcentajeUnNucleo": 21.53
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 3092.62,
+        "promedioPorcentajeUnNucleo": 1.03,
+        "picoPorcentajeUnNucleo": 6.45
+      },
+      "Tab": {
+        "ms": 253.38,
+        "promedioPorcentajeUnNucleo": 0.08,
+        "picoPorcentajeUnNucleo": 41.9
+      },
+      "GPU": {
+        "ms": 46.77,
+        "promedioPorcentajeUnNucleo": 0.02,
+        "picoPorcentajeUnNucleo": 5.12
+      },
+      "Utility": {
+        "ms": 19.1,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.43
+      }
+    },
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  },
+  {
+    "nombre": "large-frio",
+    "tiempos": {
+      "procesoReadyMs": 108.72,
+      "persistenciaMs": 35596.67,
+      "verificacionPgMs": 153.25,
+      "esperaMotorMs": 35131.49,
+      "baseConexionMs": 51.87,
+      "baseIniciarMs": 138.11,
+      "ventanaReadyMs": 1671.48,
+      "hastaAccesoMs": 37586.53,
+      "pausaAutomaticaMs": 139.6,
+      "loginAuthMs": 204.69,
+      "estadoMs": 1063.45,
+      "sqlClienteEstadoMs": 754.7,
+      "dtoMs": 300.24,
+      "ipcMainPreloadMs": 232.74,
+      "puenteRendererMs": 331.6,
+      "rendererMs": 76.7,
+      "contextoMs": 20.5,
+      "inicioRenderCommitMs": 6.9,
+      "commitPinturaInteractivoMs": 30.2,
+      "loginInicioMs": 1917.7,
+      "totalMs": 39643.83,
+      "firstPaintMs": 37411.33
+    },
+    "pgCtl": [
+      {
+        "nombre": "pg_ctl-spawn",
+        "ms": 435.28
+      },
+      {
+        "nombre": "pg_ctl-exit",
+        "ms": 861.03,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      },
+      {
+        "nombre": "pg_ctl-callback",
+        "ms": 35443.96,
+        "detalle": {
+          "error": false,
+          "killed": false
+        }
+      },
+      {
+        "nombre": "pg_ctl-close",
+        "ms": 35444,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      }
+    ],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 273.91,
+        "privadoMiB": 240.53
+      },
+      "Tab": {
+        "wsMiB": 267.98,
+        "privadoMiB": 208.57
+      },
+      "GPU": {
+        "wsMiB": 136.31,
+        "privadoMiB": 108.95
+      },
+      "Utility": {
+        "wsMiB": 53.95,
+        "privadoMiB": 14.29
+      },
+      "PostgreSQL": {
+        "wsMiB": 246.3,
+        "privadoMiB": 43.22,
+        "procesos": 11,
+        "desfaseMs": 398
+      },
+      "mainRssMiB": 273.91
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 2650.1,
+        "picoPorcentajeUnNucleo": 141.33
+      },
+      "Tab": {
+        "ms": 1148.89,
+        "picoPorcentajeUnNucleo": 156.49
+      },
+      "GPU": {
+        "ms": 474.58,
+        "picoPorcentajeUnNucleo": 91.41
+      },
+      "Utility": {
+        "ms": 296.23,
+        "picoPorcentajeUnNucleo": 31.86
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 101.64,
+        "promedioPorcentajeUnNucleo": 2.03,
+        "picoPorcentajeUnNucleo": 14.01
+      },
+      "Tab": {
+        "ms": 1.74,
+        "promedioPorcentajeUnNucleo": 0.03,
+        "picoPorcentajeUnNucleo": 0.21
+      },
+      "GPU": {
+        "ms": 1.47,
+        "promedioPorcentajeUnNucleo": 0.03,
+        "picoPorcentajeUnNucleo": 0.41
+      },
+      "Utility": {
+        "ms": 0.04,
+        "promedioPorcentajeUnNucleo": 0,
+        "picoPorcentajeUnNucleo": 0.01
+      }
+    },
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  },
+  {
+    "nombre": "large-segundo",
+    "tiempos": {
+      "procesoReadyMs": 107.83,
+      "persistenciaMs": 35648.43,
+      "verificacionPgMs": 148.76,
+      "esperaMotorMs": 35223.65,
+      "baseConexionMs": 35.51,
+      "baseIniciarMs": 104.01,
+      "ventanaReadyMs": 1468.49,
+      "hastaAccesoMs": 37429.97,
+      "pausaAutomaticaMs": 150.8,
+      "loginAuthMs": 130.4,
+      "estadoMs": 1008.99,
+      "sqlClienteEstadoMs": 730.42,
+      "dtoMs": 269.7,
+      "ipcMainPreloadMs": 232.32,
+      "puenteRendererMs": 372.5,
+      "rendererMs": 79.3,
+      "contextoMs": 24.7,
+      "inicioRenderCommitMs": 6.4,
+      "commitPinturaInteractivoMs": 29.9,
+      "loginInicioMs": 1833.8,
+      "totalMs": 39414.57,
+      "firstPaintMs": 37246.27
+    },
+    "pgCtl": [
+      {
+        "nombre": "pg_ctl-spawn",
+        "ms": 428.57
+      },
+      {
+        "nombre": "pg_ctl-exit",
+        "ms": 742.73,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      },
+      {
+        "nombre": "pg_ctl-callback",
+        "ms": 35441.23,
+        "detalle": {
+          "error": false,
+          "killed": false
+        }
+      },
+      {
+        "nombre": "pg_ctl-close",
+        "ms": 35441.36,
+        "detalle": {
+          "code": 0,
+          "signal": ""
+        }
+      }
+    ],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 277.68,
+        "privadoMiB": 244.74
+      },
+      "Tab": {
+        "wsMiB": 269.45,
+        "privadoMiB": 209.96
+      },
+      "GPU": {
+        "wsMiB": 138.13,
+        "privadoMiB": 111.33
+      },
+      "Utility": {
+        "wsMiB": 53.87,
+        "privadoMiB": 14
+      },
+      "PostgreSQL": {
+        "wsMiB": 239.22,
+        "privadoMiB": 42.32,
+        "procesos": 11,
+        "desfaseMs": -416
+      },
+      "mainRssMiB": 277.68
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 2708.35,
+        "picoPorcentajeUnNucleo": 134.6
+      },
+      "Tab": {
+        "ms": 1171.95,
+        "picoPorcentajeUnNucleo": 152.86
+      },
+      "GPU": {
+        "ms": 384.14,
+        "picoPorcentajeUnNucleo": 101.52
+      },
+      "Utility": {
+        "ms": 213.04,
+        "picoPorcentajeUnNucleo": 15.92
+      }
+    },
+    "reposo": null,
+    "consultas": {
+      "hastaInicio": 51,
+      "estado": 16,
+      "login": 28,
+      "reposo": null
+    }
+  },
+  {
+    "nombre": "small-externo-frio",
+    "tiempos": {
+      "procesoReadyMs": 121.02,
+      "persistenciaMs": 151.56,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 42.9,
+      "baseIniciarMs": 143.44,
+      "ventanaReadyMs": 1200.04,
+      "hastaAccesoMs": 1621.38,
+      "pausaAutomaticaMs": 103.7,
+      "loginAuthMs": 146.74,
+      "estadoMs": 66.65,
+      "sqlClienteEstadoMs": 56.85,
+      "dtoMs": 0.13,
+      "ipcMainPreloadMs": 4.64,
+      "puenteRendererMs": 0.2,
+      "rendererMs": 52,
+      "contextoMs": 0.5,
+      "inicioRenderCommitMs": 4.5,
+      "commitPinturaInteractivoMs": 40.7,
+      "loginInicioMs": 280.4,
+      "totalMs": 2005.48,
+      "firstPaintMs": 1622.08
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 111.65,
+        "privadoMiB": 77.83
+      },
+      "Tab": {
+        "wsMiB": 116.35,
+        "privadoMiB": 57.31
+      },
+      "GPU": {
+        "wsMiB": 138.92,
+        "privadoMiB": 112.04
+      },
+      "Utility": {
+        "wsMiB": 54.34,
+        "privadoMiB": 14.43
+      },
+      "PostgreSQL": {
+        "wsMiB": 173.64,
+        "privadoMiB": 40.75,
+        "procesos": 11,
+        "desfaseMs": 4
+      },
+      "mainRssMiB": 111.65
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 806.12,
+        "picoPorcentajeUnNucleo": 79.44
+      },
+      "Tab": {
+        "ms": 491.61,
+        "picoPorcentajeUnNucleo": 64.98
+      },
+      "GPU": {
+        "ms": 426.47,
+        "picoPorcentajeUnNucleo": 68.53
+      },
+      "Utility": {
+        "ms": 228.14,
+        "picoPorcentajeUnNucleo": 24.19
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 59.85,
+        "promedioPorcentajeUnNucleo": 1.19,
+        "picoPorcentajeUnNucleo": 92
+      },
+      "Tab": {
+        "ms": 0.82,
+        "promedioPorcentajeUnNucleo": 0.02,
+        "picoPorcentajeUnNucleo": 0.11
+      },
+      "GPU": {
+        "ms": 3.03,
+        "promedioPorcentajeUnNucleo": 0.06,
+        "picoPorcentajeUnNucleo": 0.92
+      },
+      "Utility": {
+        "ms": 0.08,
+        "promedioPorcentajeUnNucleo": 0,
+        "picoPorcentajeUnNucleo": 0.03
+      }
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  },
+  {
+    "nombre": "small-externo-segundo",
+    "tiempos": {
+      "procesoReadyMs": 116.82,
+      "persistenciaMs": 107.59,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 42.15,
+      "baseIniciarMs": 98.6,
+      "ventanaReadyMs": 1042.99,
+      "hastaAccesoMs": 1399.34,
+      "pausaAutomaticaMs": 164.3,
+      "loginAuthMs": 165.57,
+      "estadoMs": 41.61,
+      "sqlClienteEstadoMs": 29.44,
+      "dtoMs": 0.1,
+      "ipcMainPreloadMs": 3.31,
+      "puenteRendererMs": 0.1,
+      "rendererMs": 45.8,
+      "contextoMs": 0.2,
+      "inicioRenderCommitMs": 3.5,
+      "commitPinturaInteractivoMs": 35.4,
+      "loginInicioMs": 261.3,
+      "totalMs": 1824.94,
+      "firstPaintMs": 1315.64
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 113.14,
+        "privadoMiB": 79.29
+      },
+      "Tab": {
+        "wsMiB": 117.01,
+        "privadoMiB": 57.91
+      },
+      "GPU": {
+        "wsMiB": 138.18,
+        "privadoMiB": 111.68
+      },
+      "Utility": {
+        "wsMiB": 53.89,
+        "privadoMiB": 14.07
+      },
+      "PostgreSQL": {
+        "wsMiB": 174.23,
+        "privadoMiB": 40.79,
+        "procesos": 11,
+        "desfaseMs": -72
+      },
+      "mainRssMiB": 113.14
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 762.71,
+        "picoPorcentajeUnNucleo": 89.68
+      },
+      "Tab": {
+        "ms": 456.08,
+        "picoPorcentajeUnNucleo": 64.19
+      },
+      "GPU": {
+        "ms": 427.02,
+        "picoPorcentajeUnNucleo": 62.37
+      },
+      "Utility": {
+        "ms": 189.42,
+        "picoPorcentajeUnNucleo": 16.44
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 3178.35,
+        "promedioPorcentajeUnNucleo": 1.06,
+        "picoPorcentajeUnNucleo": 16.5
+      },
+      "Tab": {
+        "ms": 205,
+        "promedioPorcentajeUnNucleo": 0.07,
+        "picoPorcentajeUnNucleo": 22.57
+      },
+      "GPU": {
+        "ms": 371.55,
+        "promedioPorcentajeUnNucleo": 0.12,
+        "picoPorcentajeUnNucleo": 23.77
+      },
+      "Utility": {
+        "ms": 22.85,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.56
+      }
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  },
+  {
+    "nombre": "large-externo-frio",
+    "tiempos": {
+      "procesoReadyMs": 127.28,
+      "persistenciaMs": 146.31,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 42.5,
+      "baseIniciarMs": 139.87,
+      "ventanaReadyMs": 1865.11,
+      "hastaAccesoMs": 2271.72,
+      "pausaAutomaticaMs": 106.8,
+      "loginAuthMs": 238.01,
+      "estadoMs": 1009.5,
+      "sqlClienteEstadoMs": 785.09,
+      "dtoMs": 215.41,
+      "ipcMainPreloadMs": 277.05,
+      "puenteRendererMs": 379.4,
+      "rendererMs": 94.3,
+      "contextoMs": 25.6,
+      "inicioRenderCommitMs": 7.5,
+      "commitPinturaInteractivoMs": 38.8,
+      "loginInicioMs": 2015.4,
+      "totalMs": 4393.92,
+      "firstPaintMs": 2280.72
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 279.93,
+        "privadoMiB": 244.67
+      },
+      "Tab": {
+        "wsMiB": 266.69,
+        "privadoMiB": 207.39
+      },
+      "GPU": {
+        "wsMiB": 137.14,
+        "privadoMiB": 109.59
+      },
+      "Utility": {
+        "wsMiB": 54.11,
+        "privadoMiB": 14.2
+      },
+      "PostgreSQL": {
+        "wsMiB": 244.85,
+        "privadoMiB": 42.11,
+        "procesos": 11,
+        "desfaseMs": -156
+      },
+      "mainRssMiB": 279.93
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 2138.75,
+        "picoPorcentajeUnNucleo": 132.84
+      },
+      "Tab": {
+        "ms": 1330.55,
+        "picoPorcentajeUnNucleo": 157.8
+      },
+      "GPU": {
+        "ms": 411.91,
+        "picoPorcentajeUnNucleo": 133.55
+      },
+      "Utility": {
+        "ms": 224.79,
+        "picoPorcentajeUnNucleo": 26.61
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 55.55,
+        "promedioPorcentajeUnNucleo": 1.11,
+        "picoPorcentajeUnNucleo": 5.12
+      },
+      "Tab": {
+        "ms": 1.84,
+        "promedioPorcentajeUnNucleo": 0.04,
+        "picoPorcentajeUnNucleo": 0.27
+      },
+      "GPU": {
+        "ms": 3.14,
+        "promedioPorcentajeUnNucleo": 0.06,
+        "picoPorcentajeUnNucleo": 0.94
+      },
+      "Utility": {
+        "ms": 0.07,
+        "promedioPorcentajeUnNucleo": 0,
+        "picoPorcentajeUnNucleo": 0.03
+      }
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  },
+  {
+    "nombre": "large-externo-segundo",
+    "tiempos": {
+      "procesoReadyMs": 117.35,
+      "persistenciaMs": 97.32,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 38.79,
+      "baseIniciarMs": 90.89,
+      "ventanaReadyMs": 1082.25,
+      "hastaAccesoMs": 1424.64,
+      "pausaAutomaticaMs": 158.7,
+      "loginAuthMs": 187.86,
+      "estadoMs": 916.28,
+      "sqlClienteEstadoMs": 665.42,
+      "dtoMs": 241.6,
+      "ipcMainPreloadMs": 267.18,
+      "puenteRendererMs": 391.3,
+      "rendererMs": 104.9,
+      "contextoMs": 31.5,
+      "inicioRenderCommitMs": 7.9,
+      "commitPinturaInteractivoMs": 34.4,
+      "loginInicioMs": 1904.6,
+      "totalMs": 3487.94,
+      "firstPaintMs": 1340.64
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 273.96,
+        "privadoMiB": 238.45
+      },
+      "Tab": {
+        "wsMiB": 268.34,
+        "privadoMiB": 208.61
+      },
+      "GPU": {
+        "wsMiB": 136.22,
+        "privadoMiB": 108.66
+      },
+      "Utility": {
+        "wsMiB": 54.07,
+        "privadoMiB": 14.18
+      },
+      "PostgreSQL": {
+        "wsMiB": 244.82,
+        "privadoMiB": 42.04,
+        "procesos": 11,
+        "desfaseMs": -583
+      },
+      "mainRssMiB": 273.96
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 1952.59,
+        "picoPorcentajeUnNucleo": 138.05
+      },
+      "Tab": {
+        "ms": 1323.67,
+        "picoPorcentajeUnNucleo": 169.72
+      },
+      "GPU": {
+        "ms": 397.88,
+        "picoPorcentajeUnNucleo": 104.32
+      },
+      "Utility": {
+        "ms": 193.16,
+        "picoPorcentajeUnNucleo": 18.4
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 3932.61,
+        "promedioPorcentajeUnNucleo": 1.31,
+        "picoPorcentajeUnNucleo": 22.73
+      },
+      "Tab": {
+        "ms": 2334.55,
+        "promedioPorcentajeUnNucleo": 0.78,
+        "picoPorcentajeUnNucleo": 140.97
+      },
+      "GPU": {
+        "ms": 1691.65,
+        "promedioPorcentajeUnNucleo": 0.56,
+        "picoPorcentajeUnNucleo": 49.69
+      },
+      "Utility": {
+        "ms": 21.05,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.45
+      }
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 19
+    }
+  },
+  {
+    "nombre": "large-externo-reposo",
+    "tiempos": {
+      "procesoReadyMs": 167.06,
+      "persistenciaMs": 172.54,
+      "verificacionPgMs": null,
+      "esperaMotorMs": null,
+      "baseConexionMs": 45.01,
+      "baseIniciarMs": 160.69,
+      "ventanaReadyMs": 1169.06,
+      "hastaAccesoMs": 1636.82,
+      "pausaAutomaticaMs": 114,
+      "loginAuthMs": 147.84,
+      "estadoMs": 880.23,
+      "sqlClienteEstadoMs": 647.39,
+      "dtoMs": 222,
+      "ipcMainPreloadMs": 313.63,
+      "puenteRendererMs": 362.4,
+      "rendererMs": 173,
+      "contextoMs": 23.2,
+      "inicioRenderCommitMs": 10.2,
+      "commitPinturaInteractivoMs": 74.6,
+      "loginInicioMs": 1883.3,
+      "totalMs": 3634.12,
+      "firstPaintMs": 1553.72
+    },
+    "pgCtl": [],
+    "memoriaLogin": {
+      "Browser": {
+        "wsMiB": 277.02,
+        "privadoMiB": 241.54
+      },
+      "Tab": {
+        "wsMiB": 266.49,
+        "privadoMiB": 206.99
+      },
+      "GPU": {
+        "wsMiB": 138.98,
+        "privadoMiB": 112.02
+      },
+      "Utility": {
+        "wsMiB": 54.03,
+        "privadoMiB": 14.14
+      },
+      "PostgreSQL": {
+        "wsMiB": 245.21,
+        "privadoMiB": 41.99,
+        "procesos": 11,
+        "desfaseMs": -231
+      },
+      "mainRssMiB": 277.02
+    },
+    "cpu": {
+      "Browser": {
+        "ms": 1991.32,
+        "picoPorcentajeUnNucleo": 119.06
+      },
+      "Tab": {
+        "ms": 1345.95,
+        "picoPorcentajeUnNucleo": 173.52
+      },
+      "GPU": {
+        "ms": 403.88,
+        "picoPorcentajeUnNucleo": 147.23
+      },
+      "Utility": {
+        "ms": 198.75,
+        "picoPorcentajeUnNucleo": 22.99
+      }
+    },
+    "reposo": {
+      "Browser": {
+        "ms": 3679.35,
+        "promedioPorcentajeUnNucleo": 1.23,
+        "picoPorcentajeUnNucleo": 12.85
+      },
+      "Tab": {
+        "ms": 495.8,
+        "promedioPorcentajeUnNucleo": 0.17,
+        "picoPorcentajeUnNucleo": 78.4
+      },
+      "GPU": {
+        "ms": 140.23,
+        "promedioPorcentajeUnNucleo": 0.05,
+        "picoPorcentajeUnNucleo": 17.58
+      },
+      "Utility": {
+        "ms": 25.5,
+        "promedioPorcentajeUnNucleo": 0.01,
+        "picoPorcentajeUnNucleo": 0.64
+      }
+    },
+    "consultas": {
+      "hastaInicio": 48,
+      "estado": 16,
+      "login": 28,
+      "reposo": 0
+    }
+  }
+]

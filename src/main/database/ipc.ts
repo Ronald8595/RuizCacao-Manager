@@ -1,4 +1,5 @@
 import { ErrorNegocio } from '../../shared/errorNegocio'
+import { marcaPerfil } from '../perfil-arranque'
 import { traducirError } from './errores'
 import { ipcMain, type BrowserWindow } from 'electron'
 import { estadoAcceso, obtenerBase } from './conexion'
@@ -67,6 +68,7 @@ export function registrarPersistenciaIPC(ventana: BrowserWindow): void {
       const tarea = cola.then(async () => {
         try {
           const valor = await (handler as (...a: unknown[]) => Promise<unknown>)(...args)
+          marcaPerfil('ipc-response-start', { canal: nombre })
           return { ok: true as const, valor }
         } catch (error) {
           const mensaje = traducirError(error, { modulo: 'datos', operacion: nombre })

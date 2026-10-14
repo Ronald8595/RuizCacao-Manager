@@ -1,0 +1,560 @@
+{
+  "etiqueta": "despues",
+  "fecha": "2026-10-13T16:14:41.257Z",
+  "muestras": [
+    {
+      "estadoMs": 5.440199999997276,
+      "serializacionMs": 0.11669999999867287,
+      "lecturaDominioMs": 0.381600000000617,
+      "bytes": 1096,
+      "rss": 107040768,
+      "cpuMs": 0,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 0.34210000000166474,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 0.27150000000256114,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.25970000000233995,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 0.3878000000040629,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 0.34230000000388827,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 0.27449999999953434,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 0.2635999999984051,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 0.2742999999973108,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 0.2772000000040862,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.2404000000024098,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.31810000000405125,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.439700000002631,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE usuario_id=$1 ORDER BY fecha DESC,id DESC",
+          "ms": 0.42919999999867287,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.27960000000166474,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.30129999999917345,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.23359999999956926,
+          "filas": 1
+        }
+      ]
+    },
+    {
+      "estadoMs": 5.49040000000241,
+      "serializacionMs": 0.018299999996088445,
+      "lecturaDominioMs": 0.026200000000244472,
+      "bytes": 1096,
+      "rss": 106848256,
+      "cpuMs": 0,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 0.5014000000010128,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 0.2559000000037486,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.24569999999948777,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 0.3477999999959138,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 0.2919000000038068,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 0.251300000003539,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 0.2882000000026892,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 0.2819000000017695,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 0.355199999998149,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.31899999999586726,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.23009999999339925,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.4003999999986263,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE usuario_id=$1 ORDER BY fecha DESC,id DESC",
+          "ms": 0.39830000000074506,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.2782999999981257,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.2981999999974505,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.2745999999970081,
+          "filas": 1
+        }
+      ]
+    },
+    {
+      "estadoMs": 5.164900000003399,
+      "serializacionMs": 0.007900000004156027,
+      "lecturaDominioMs": 0.025799999995797407,
+      "bytes": 1096,
+      "rss": 107106304,
+      "cpuMs": 16,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 0.2848000000012689,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 0.240300000004936,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.2960000000020955,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 0.34170000000449363,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 0.4041999999972177,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 0.319100000000617,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 0.3122000000003027,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 0.2923000000009779,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 0.315599999994447,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.2356999999974505,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.1915000000008149,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.35660000000643777,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE usuario_id=$1 ORDER BY fecha DESC,id DESC",
+          "ms": 0.33699999999953434,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.2605000000039581,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.2951000000030035,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.3202999999994063,
+          "filas": 1
+        }
+      ]
+    },
+    {
+      "estadoMs": 4.6023000000059255,
+      "serializacionMs": 0.007499999999708962,
+      "lecturaDominioMs": 0.016700000000128057,
+      "bytes": 1096,
+      "rss": 107302912,
+      "cpuMs": 0,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 0.28259999999863794,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 0.2665000000051805,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.21209999999700813,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 0.25940000000264263,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 0.3018000000010943,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 0.29320000000006985,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 0.2940999999991618,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 0.31590000000142027,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 0.29310000000259606,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.21749999999883585,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.17650000000139698,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.3960000000006403,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE usuario_id=$1 ORDER BY fecha DESC,id DESC",
+          "ms": 0.3316000000049826,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.19200000000273576,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.2323000000033062,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.20949999999720603,
+          "filas": 1
+        }
+      ]
+    },
+    {
+      "estadoMs": 5.652099999999336,
+      "serializacionMs": 0.012199999997392297,
+      "lecturaDominioMs": 0.03950000000622822,
+      "bytes": 1096,
+      "rss": 107675648,
+      "cpuMs": 0,
+      "consultas": [
+        {
+          "sql": "SELECT id,nombre_razon_social,identificacion,telefono,email,direccion,tipo_cliente,notas,estado,fecha_registro FROM ruizcacao.clientes ORDER BY orden DESC",
+          "ms": 0.6366999999954714,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,ci_ruc,telefono,correo,numero_cuenta,direccion,estado,fecha_registro FROM ruizcacao.proveedores ORDER BY orden DESC",
+          "ms": 0.4043000000019674,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,nombre,cedula,telefono,direccion,estado,fecha_registro FROM ruizcacao.empleados ORDER BY orden DESC",
+          "ms": 0.34100000000034925,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_compra,fecha,fecha_hora_registro,proveedor_id,proveedor_nombre,producto,cantidad_qq,precio_compra_qq,impuesto_porcentaje,subtotal,monto_impuesto,total,monto_pagado_inicial,metodo_pago,monto_efectivo,monto_transferencia,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.compras ORDER BY orden DESC",
+          "ms": 0.2856000000028871,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,estado,anulada_en,anulada_por_usuario_id,anulada_por_nombre,motivo_anulacion,numero_factura,numero_comprobante,subtotal,monto_impuesto,total,saldo_pendiente,estado_cobro,fecha_venta,fecha_hora_registro,cliente_id,producto,cantidad_qq,precio_unitario,impuesto_porcentaje,metodo_pago,monto_efectivo,monto_transferencia,monto_recibido,numero_lote,observaciones,usuario_id,usuario_nombre FROM ruizcacao.ventas ORDER BY orden DESC",
+          "ms": 0.2602000000042608,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,origen,categoria,compra_id,numero_compra,proveedor_id,proveedor_nombre,venta_id,numero_factura,cliente_id,monto_total,monto_aplicado,fecha,fecha_hora_registro,fecha_ultimo_movimiento,estado,observacion,comprobante,motivo_anulacion,usuario_id,usuario_nombre FROM ruizcacao.cuentas ORDER BY orden DESC",
+          "ms": 0.2521000000051572,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,cuenta_id,categoria,proveedor_id,cliente_id,fecha,fecha_hora_registro,tipo,monto,metodo_pago,monto_efectivo,monto_transferencia,observacion,numero_comprobante,comprobante,usuario_id,usuario_nombre FROM ruizcacao.movimientos_cuenta ORDER BY orden DESC",
+          "ms": 0.2191000000020722,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,tipo,producto,entrada_qq,salida_qq,stock_resultante,detalle,gasto_generado_id,venta_id,compra_id,conversion_id,proveedor_id,proveedor_nombre,factor_conversion,cantidad_obtenida_qq,diferencia_qq,estado_pago,monto_abono,monto_total,saldo_pendiente,comprobante,observacion,usuario_id,usuario_nombre FROM ruizcacao.movimientos_stock ORDER BY orden DESC",
+          "ms": 0.30569999999715947,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,fecha,fecha_hora_registro,categoria,concepto,monto,comprobante,observacion,tipo,referencia_stock_id,compra_id,empleado_id,tipo_pago,empleado_nombre,proveedor_id,proveedor_nombre,estado_pago_proveedor,monto_abono,saldo_pendiente_proveedor,usuario_id,usuario_nombre FROM ruizcacao.gastos ORDER BY orden DESC",
+          "ms": 0.28580000000511063,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT ultimo_factor_usado FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.22789999999804422,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT * FROM ruizcacao.existencias",
+          "ms": 0.16030000000318978,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT fecha::text,estado,apertura,cierre FROM ruizcacao.jornadas WHERE estado IN ('activa','interrumpida') OR fecha=$1::date ORDER BY (estado IN ('activa','interrumpida')) DESC LIMIT 1",
+          "ms": 0.5290000000022701,
+          "filas": 0
+        },
+        {
+          "sql": "SELECT id,titulo,mensaje,fecha,leida,destino FROM ruizcacao.notificaciones WHERE usuario_id=$1 ORDER BY fecha DESC,id DESC",
+          "ms": 0.5128999999942607,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT nombre,umbral_stock FROM ruizcacao.productos",
+          "ms": 0.23879999999917345,
+          "filas": 3
+        },
+        {
+          "sql": "SELECT id,nombre,rol,activo,principal,creado_en FROM ruizcacao.usuarios ORDER BY principal DESC, lower(nombre)",
+          "ms": 0.2919000000038068,
+          "filas": 1
+        },
+        {
+          "sql": "SELECT stock_inicial_registrado,stock_inicial_registrado_en FROM ruizcacao.configuracion WHERE id=1",
+          "ms": 0.24420000000100117,
+          "filas": 1
+        }
+      ]
+    }
+  ],
+  "escenario": "base pequeña aislada nueva",
+  "procesoHastaReadyMs": 817.7299999999999,
+  "carpetaAislada": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-perfil-parche-ppaLxN",
+  "localizacionMs": 0.4458999999999378,
+  "motorNuevoMs": 41549.8434,
+  "baseNuevaMigracionesMs": 525.5919999999969,
+  "estadoAccesoMs": 7.383800000003248,
+  "loginMs": 171.73219999999856,
+  "conexionMs": 0.0349999999962165,
+  "esquema": 10,
+  "huella": "c2bc67fc1eccb3438e122649e984dd7e6c9379050141ab3aaeff9b8ba2d20611",
+  "conversionDtoMs": [
+    0.033000000003085006,
+    0.021099999998114072,
+    0.01780000000144355,
+    0.014800000004470348,
+    0.01419999999779975,
+    0.014100000000325963,
+    0.013800000000628643,
+    0.015000000006693881,
+    0.013700000003154855
+  ],
+  "huellaEntidades": "52310676fb0c2ed57926cecd1566725fb8971697ecf85fcb56b610b1baf53f84",
+  "ipcMs": [
+    0.39999985694885254,
+    0.20000004768371582,
+    0.20000004768371582,
+    0.09999990463256836,
+    0.20000004768371582
+  ],
+  "memoriaProcesos": [
+    {
+      "cpu": {
+        "cumulativeCPUUsage": 1.605205,
+        "percentCPUUsage": 0,
+        "idleWakeupsPerSecond": 0
+      },
+      "pid": 15556,
+      "type": "Browser",
+      "creationTime": 1791908080316.863,
+      "memory": {
+        "workingSetSize": 129064,
+        "peakWorkingSetSize": 133440,
+        "privateBytes": 97732
+      },
+      "integrityLevel": "medium",
+      "sandboxed": false
+    },
+    {
+      "cpu": {
+        "cumulativeCPUUsage": 0.156138,
+        "percentCPUUsage": 0,
+        "idleWakeupsPerSecond": 0
+      },
+      "pid": 22964,
+      "type": "GPU",
+      "creationTime": 1791908081261.026,
+      "serviceName": "GPU",
+      "memory": {
+        "workingSetSize": 107592,
+        "peakWorkingSetSize": 109568,
+        "privateBytes": 83944
+      },
+      "integrityLevel": "low",
+      "sandboxed": true
+    },
+    {
+      "cpu": {
+        "cumulativeCPUUsage": 0.074454,
+        "percentCPUUsage": 0,
+        "idleWakeupsPerSecond": 0
+      },
+      "pid": 23360,
+      "type": "Utility",
+      "creationTime": 1791908081263.267,
+      "serviceName": "network.mojom.NetworkService",
+      "name": "Network Service",
+      "memory": {
+        "workingSetSize": 53012,
+        "peakWorkingSetSize": 53012,
+        "privateBytes": 12036
+      },
+      "integrityLevel": "medium",
+      "sandboxed": false
+    },
+    {
+      "cpu": {
+        "cumulativeCPUUsage": 0.073647,
+        "percentCPUUsage": 0,
+        "idleWakeupsPerSecond": 0
+      },
+      "pid": 11576,
+      "type": "Tab",
+      "creationTime": 1791908123781.565,
+      "memory": {
+        "workingSetSize": 79784,
+        "peakWorkingSetSize": 79784,
+        "privateBytes": 24600
+      },
+      "integrityLevel": "untrusted",
+      "sandboxed": true
+    }
+  ],
+  "nota": "Estado sin sesión en transacción READ ONLY; IPC real cacheado en ventana vacía. No mide login, render de pantallas ni arranque del motor. CPU acumulada Main, no porcentaje del sistema."
+}
