@@ -2,11 +2,15 @@ import { createReadStream } from 'node:fs'
 import { stat } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 
-export async function integridadArchivo(ruta: string): Promise<{ tamano: number; sha256: string }> {
+export async function integridadArchivo(
+  ruta: string,
+  signal?: AbortSignal
+): Promise<{ tamano: number; sha256: string }> {
+  signal?.throwIfAborted()
   const antes = await stat(ruta)
   const hash = createHash('sha256')
   let bytes = 0
-  for await (const fragmento of createReadStream(ruta)) {
+  for await (const fragmento of createReadStream(ruta, { signal })) {
     bytes += fragmento.length
     hash.update(fragmento)
   }

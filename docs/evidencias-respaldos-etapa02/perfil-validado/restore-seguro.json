@@ -1,0 +1,589 @@
+{
+  "fecha": "2026-10-15T21:21:09.229Z",
+  "pruebas": [
+    "modo externo o sin control privado rechazado antes de acceder a datos",
+    "inactivo no inicia herramientas ni operaciones",
+    "cancelación backup durante proceso, hash y empaquetado",
+    "históricos 1 a 9 migran sin sesiones ni efectos de jornada",
+    "schema10, datos, identidad nueva, sesiones, solicitudes y login",
+    "cancelación restore previa a promoción mantiene activa",
+    "confirmación rechazada y cierre cancelable no promueven",
+    "restore grande conserva todas las filas comerciales",
+    "pre_restauracion existe y es verificable",
+    "backup máximo uno, exclusión de promoción y cierre crítico",
+    "schema4→10 conserva contraseña y login principal",
+    "startup con journal confirmado conserva base y login"
+  ],
+  "perfiles": [
+    {
+      "nombre": "inactivo",
+      "total_ms": 1506.8507,
+      "cpu_main_ms": 47,
+      "cpu_main_porcentaje": 3.119088042365445,
+      "rss_antes": 139075584,
+      "rss_pico": 139980800,
+      "rss_despues": 139984896,
+      "fases": [],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 3,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null
+      },
+      "herramientas": {
+        "muestras": 3,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null,
+        "cpu_acumulada_observada_ms": null
+      }
+    },
+    {
+      "nombre": "backup_pequeno",
+      "total_ms": 716.2001999999993,
+      "cpu_main_ms": 141,
+      "cpu_main_porcentaje": 19.687232703928334,
+      "rss_antes": 149798912,
+      "rss_pico": 151490560,
+      "rss_despues": 151519232,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 97.28499999999985
+        },
+        {
+          "fase": "exportando",
+          "ms": 444.7299000000021
+        },
+        {
+          "fase": "hash",
+          "ms": 12.107199999998556
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 21.379799999998795
+        },
+        {
+          "fase": "verificando",
+          "ms": 41.67740000000049
+        },
+        {
+          "fase": "guardando",
+          "ms": 85.34610000000248
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 2,
+        "pids": 12,
+        "working_set_pico_muestreado": 240484352,
+        "cpu_delta_muestreada_ms": 15.625
+      },
+      "herramientas": {
+        "muestras": 2,
+        "pids": 1,
+        "working_set_pico_muestreado": 14774272,
+        "cpu_delta_muestreada_ms": 0,
+        "cpu_acumulada_observada_ms": 78.125
+      }
+    },
+    {
+      "nombre": "backup_grande",
+      "total_ms": 1770.9775000000009,
+      "cpu_main_ms": 843,
+      "cpu_main_porcentaje": 47.6008306147311,
+      "rss_antes": 351543296,
+      "rss_pico": 351805440,
+      "rss_despues": 123305984,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 112.76180000000022
+        },
+        {
+          "fase": "exportando",
+          "ms": 1001.8343999999997
+        },
+        {
+          "fase": "hash",
+          "ms": 23.3721000000005
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 110.41109999999753
+        },
+        {
+          "fase": "verificando",
+          "ms": 153.36579999999958
+        },
+        {
+          "fase": "guardando",
+          "ms": 368.0478000000003
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 4,
+        "pids": 12,
+        "working_set_pico_muestreado": 350461952,
+        "cpu_delta_muestreada_ms": 0
+      },
+      "herramientas": {
+        "muestras": 4,
+        "pids": 1,
+        "working_set_pico_muestreado": 15765504,
+        "cpu_delta_muestreada_ms": 281.25,
+        "cpu_acumulada_observada_ms": 312.5
+      }
+    },
+    {
+      "nombre": "cancelar_backup_exportando",
+      "total_ms": 135.45409999999538,
+      "cpu_main_ms": 64,
+      "cpu_main_porcentaje": 47.248477528551874,
+      "rss_antes": 123305984,
+      "rss_pico": 123445248,
+      "rss_despues": 123445248,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 101.79780000000028
+        },
+        {
+          "fase": "exportando",
+          "ms": 31.493999999998778
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 0,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null
+      },
+      "herramientas": {
+        "muestras": 0,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null,
+        "cpu_acumulada_observada_ms": null
+      }
+    },
+    {
+      "nombre": "cancelar_backup_hash",
+      "total_ms": 1080.6001000000033,
+      "cpu_main_ms": 78,
+      "cpu_main_porcentaje": 7.21821143640462,
+      "rss_antes": 123449344,
+      "rss_pico": 123478016,
+      "rss_despues": 123658240,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 121.46630000000005
+        },
+        {
+          "fase": "exportando",
+          "ms": 937.6392000000051
+        },
+        {
+          "fase": "hash",
+          "ms": 9.05569999999716
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 2,
+        "pids": 12,
+        "working_set_pico_muestreado": 356966400,
+        "cpu_delta_muestreada_ms": 218.75
+      },
+      "herramientas": {
+        "muestras": 2,
+        "pids": 1,
+        "working_set_pico_muestreado": 15794176,
+        "cpu_delta_muestreada_ms": 328.125,
+        "cpu_acumulada_observada_ms": 359.375
+      }
+    },
+    {
+      "nombre": "cancelar_backup_empaquetando",
+      "total_ms": 1217.3286999999982,
+      "cpu_main_ms": 109,
+      "cpu_main_porcentaje": 8.954031889661367,
+      "rss_antes": 123658240,
+      "rss_pico": 123658240,
+      "rss_despues": 122548224,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 149.02620000000024
+        },
+        {
+          "fase": "exportando",
+          "ms": 1026.9928
+        },
+        {
+          "fase": "hash",
+          "ms": 22.07289999999921
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 8.942300000002433
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 3,
+        "pids": 12,
+        "working_set_pico_muestreado": 336863232,
+        "cpu_delta_muestreada_ms": 31.25
+      },
+      "herramientas": {
+        "muestras": 3,
+        "pids": 1,
+        "working_set_pico_muestreado": 15749120,
+        "cpu_delta_muestreada_ms": 0,
+        "cpu_acumulada_observada_ms": 218.75
+      }
+    },
+    {
+      "nombre": "restore_pequeno",
+      "total_ms": 23451.954200000007,
+      "cpu_main_ms": 2655,
+      "cpu_main_porcentaje": 11.321018186194475,
+      "rss_antes": 115359744,
+      "rss_pico": 121077760,
+      "rss_despues": 119922688,
+      "fases": [
+        {
+          "fase": "preparando_restore",
+          "ms": 21.445100000011735
+        },
+        {
+          "fase": "validando_contenedor",
+          "ms": 43.45919999999751
+        },
+        {
+          "fase": "iniciando_aislamiento",
+          "ms": 13022.6351
+        },
+        {
+          "fase": "inspeccionando",
+          "ms": 772.0911000000051
+        },
+        {
+          "fase": "exportando",
+          "ms": 409.14569999999367
+        },
+        {
+          "fase": "hash",
+          "ms": 187.09500000000116
+        },
+        {
+          "fase": "restaurando_staging",
+          "ms": 652.000199999995
+        },
+        {
+          "fase": "migrando_staging",
+          "ms": 40.06549999999697
+        },
+        {
+          "fase": "normalizando",
+          "ms": 158.40740000001097
+        },
+        {
+          "fase": "exportando",
+          "ms": 463.5650999999925
+        },
+        {
+          "fase": "hash",
+          "ms": 120.98030000001017
+        },
+        {
+          "fase": "preparando_candidata",
+          "ms": 475.75479999999516
+        },
+        {
+          "fase": "restaurando_candidata",
+          "ms": 642.1064999999944
+        },
+        {
+          "fase": "candidata_validada",
+          "ms": 40.668900000004214
+        },
+        {
+          "fase": "antes_mantenimiento",
+          "ms": 84.73219999999856
+        },
+        {
+          "fase": "pre_restauracion",
+          "ms": 76.30920000000333
+        },
+        {
+          "fase": "exportando",
+          "ms": 518.6661000000022
+        },
+        {
+          "fase": "hash",
+          "ms": 40.62029999999504
+        },
+        {
+          "fase": "antes_promocion",
+          "ms": 5628.302500000005
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 46,
+        "pids": 27,
+        "working_set_pico_muestreado": 470810624,
+        "cpu_delta_muestreada_ms": 1187.5
+      },
+      "herramientas": {
+        "muestras": 46,
+        "pids": 3,
+        "working_set_pico_muestreado": 14520320,
+        "cpu_delta_muestreada_ms": 0,
+        "cpu_acumulada_observada_ms": 62.5
+      }
+    },
+    {
+      "nombre": "restore_grande",
+      "total_ms": 29303.3352,
+      "cpu_main_ms": 2844,
+      "cpu_main_porcentaje": 9.705379884539559,
+      "rss_antes": 123478016,
+      "rss_pico": 128598016,
+      "rss_despues": 122535936,
+      "fases": [
+        {
+          "fase": "preparando_restore",
+          "ms": 47.99689999999828
+        },
+        {
+          "fase": "validando_contenedor",
+          "ms": 263.49259999999776
+        },
+        {
+          "fase": "iniciando_aislamiento",
+          "ms": 12676.587100000004
+        },
+        {
+          "fase": "inspeccionando",
+          "ms": 948.6459000000032
+        },
+        {
+          "fase": "exportando",
+          "ms": 407.9771999999939
+        },
+        {
+          "fase": "hash",
+          "ms": 229.23949999999604
+        },
+        {
+          "fase": "restaurando_staging",
+          "ms": 2660.8826000000117
+        },
+        {
+          "fase": "migrando_staging",
+          "ms": 56.56999999997788
+        },
+        {
+          "fase": "normalizando",
+          "ms": 233.38380000001052
+        },
+        {
+          "fase": "exportando",
+          "ms": 998.3625999999931
+        },
+        {
+          "fase": "hash",
+          "ms": 205.4878000000026
+        },
+        {
+          "fase": "preparando_candidata",
+          "ms": 496.3907000000181
+        },
+        {
+          "fase": "restaurando_candidata",
+          "ms": 2599.1603999999934
+        },
+        {
+          "fase": "candidata_validada",
+          "ms": 44.647999999986496
+        },
+        {
+          "fase": "antes_mantenimiento",
+          "ms": 103.91500000000815
+        },
+        {
+          "fase": "pre_restauracion",
+          "ms": 93.87400000001071
+        },
+        {
+          "fase": "exportando",
+          "ms": 530.8305999999866
+        },
+        {
+          "fase": "hash",
+          "ms": 72.93590000001132
+        },
+        {
+          "fase": "antes_promocion",
+          "ms": 6537.295199999993
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 55,
+        "pids": 29,
+        "working_set_pico_muestreado": 565993472,
+        "cpu_delta_muestreada_ms": 4171.875
+      },
+      "herramientas": {
+        "muestras": 55,
+        "pids": 3,
+        "working_set_pico_muestreado": 15708160,
+        "cpu_delta_muestreada_ms": 171.875,
+        "cpu_acumulada_observada_ms": 578.125
+      }
+    },
+    {
+      "nombre": "restore_historico4",
+      "total_ms": 27054.47590000002,
+      "cpu_main_ms": 2797,
+      "cpu_main_porcentaje": 10.338400234912694,
+      "rss_antes": 121589760,
+      "rss_pico": 125718528,
+      "rss_despues": 122699776,
+      "fases": [
+        {
+          "fase": "preparando_restore",
+          "ms": 13.334499999997206
+        },
+        {
+          "fase": "validando_contenedor",
+          "ms": 49.33750000002328
+        },
+        {
+          "fase": "iniciando_aislamiento",
+          "ms": 12725.219499999977
+        },
+        {
+          "fase": "inspeccionando",
+          "ms": 1104.7718000000168
+        },
+        {
+          "fase": "exportando",
+          "ms": 582.5315999999875
+        },
+        {
+          "fase": "hash",
+          "ms": 324.89910000000964
+        },
+        {
+          "fase": "restaurando_staging",
+          "ms": 788.1745999999985
+        },
+        {
+          "fase": "migrando_staging",
+          "ms": 302.9569999999949
+        },
+        {
+          "fase": "normalizando",
+          "ms": 183.79829999999492
+        },
+        {
+          "fase": "exportando",
+          "ms": 545.8018000000156
+        },
+        {
+          "fase": "hash",
+          "ms": 149.92290000000503
+        },
+        {
+          "fase": "preparando_candidata",
+          "ms": 526.8803999999946
+        },
+        {
+          "fase": "restaurando_candidata",
+          "ms": 986.0199999999895
+        },
+        {
+          "fase": "candidata_validada",
+          "ms": 11.934500000003027
+        },
+        {
+          "fase": "antes_mantenimiento",
+          "ms": 112.56239999999525
+        },
+        {
+          "fase": "pre_restauracion",
+          "ms": 115.34960000001593
+        },
+        {
+          "fase": "exportando",
+          "ms": 1162.4824999999837
+        },
+        {
+          "fase": "hash",
+          "ms": 171.50729999999749
+        },
+        {
+          "fase": "antes_promocion",
+          "ms": 7116.845499999996
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 49,
+        "pids": 30,
+        "working_set_pico_muestreado": 530817024,
+        "cpu_delta_muestreada_ms": 1375
+      },
+      "herramientas": {
+        "muestras": 49,
+        "pids": 4,
+        "working_set_pico_muestreado": 15818752,
+        "cpu_delta_muestreada_ms": 0,
+        "cpu_acumulada_observada_ms": 468.75
+      }
+    },
+    {
+      "nombre": "reposo_final",
+      "total_ms": 1503.3968999999925,
+      "cpu_main_ms": 16,
+      "cpu_main_porcentaje": 1.064256551280642,
+      "rss_antes": 121712640,
+      "rss_pico": 121749504,
+      "rss_despues": 121749504,
+      "fases": [],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 3,
+        "pids": 11,
+        "working_set_pico_muestreado": 187678720,
+        "cpu_delta_muestreada_ms": 0
+      },
+      "herramientas": {
+        "muestras": 3,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null,
+        "cpu_acumulada_observada_ms": null
+      }
+    }
+  ],
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-restore-tests-ZMogwo",
+  "runtime": {
+    "electron": "44.3.0",
+    "node": "24.20.0",
+    "renderer": "N/A: sin ventanas"
+  },
+  "mantenimiento_pequeno_ms": 1312.8208000000013,
+  "mantenimiento_grande_ms": 1407.2954000000027,
+  "exito": true,
+  "hijos_residuales": 0
+}

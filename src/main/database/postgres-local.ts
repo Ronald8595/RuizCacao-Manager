@@ -2,7 +2,19 @@ import { ErrorNegocio } from '../../shared/errorNegocio'
 import { marcaPerfil } from '../perfil-arranque'
 import { execFile, spawn } from 'node:child_process'
 import { promisify } from 'node:util'
-import { access, mkdir, readFile, writeFile, rename, unlink, readdir, open } from 'node:fs/promises'
+import {
+  access,
+  mkdir,
+  readFile,
+  writeFile,
+  rename,
+  unlink,
+  readdir,
+  open,
+  realpath
+} from 'node:fs/promises'
+import { JournalRestauracionArchivo } from './restore-journal'
+import { recuperarPromocion } from './restore-promocion'
 import { join } from 'node:path'
 import { randomBytes } from 'node:crypto'
 import { createServer } from 'node:net'
@@ -284,6 +296,9 @@ export class PostgresLocal {
     this.iniciado = true
     marcaPerfil('postgres-auth-ready')
     await this.administrador(async (db) => {
+      const journal = this.journalRestauracion()
+      const pendiente = await journal.leer()
+      if (pendiente) await recuperarPromocion(db, journal, pendiente)
       // Contraseña generada hexadecimal: nunca se interpola una entrada del usuario.
       if (!/^[0-9a-f]{64}$/.test(c.conexion.password))
         throw new ErrorNegocio('Configuración local inválida.')
@@ -301,6 +316,23 @@ export class PostgresLocal {
   }
   async detener(): Promise<void> {
     await this.detenerConEspera(20)
+  }
+  journalRestauracion(): JournalRestauracionArchivo {
+    return new JournalRestauracionArchivo(this.ruta('restauracion-journal.json'))
+  }
+  configuracionRestauracion(): ConexionLocal {
+    if (!this.credenciales || !this.iniciado)
+      throw new ErrorNegocio('El motor local no está preparado.')
+    return { ...this.credenciales.conexion }
+  }
+  async conAdministracionRestauracion<T>(trabajo: (db: Client) => Promise<T>): Promise<T> {
+    if (!this.iniciado) throw new ErrorNegocio('El motor local no está preparado.')
+    return this.administrador(async (db) => {
+      const actual = await realpath((await db.query('SHOW data_directory')).rows[0].data_directory)
+      if (actual.toLowerCase() !== (await realpath(this.ruta('data'))).toLowerCase())
+        throw new ErrorNegocio('El almacenamiento no pertenece a esta instalación.')
+      return trabajo(db)
+    })
   }
   private async detenerConEspera(segundos: number): Promise<void> {
     if (!this.iniciado) return

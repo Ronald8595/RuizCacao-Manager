@@ -1,0 +1,13 @@
+{
+  "casos": [
+    "preparada",
+    "intencion_antes_rename",
+    "original_renombrada",
+    "candidata_promovida",
+    "validada",
+    "confirmada"
+  ],
+  "clusterIncorrecto": "rechazado",
+  "journalCorrupto": "rechazado",
+  "sinCreacionVacia": true
+}

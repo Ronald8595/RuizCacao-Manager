@@ -1,17 +1,7 @@
-import {
-  mkdir,
-  mkdtemp,
-  chmod,
-  open,
-  rename,
-  link,
-  unlink,
-  rm,
-  copyFile,
-  rmdir
-} from 'node:fs/promises'
+import { mkdir, mkdtemp, chmod, open, rename, link, unlink, rm, rmdir } from 'node:fs/promises'
 import { join, dirname } from 'node:path'
 import { integridadArchivo } from './respaldo-integridad'
+import { copiarStreaming } from './archivo-stream'
 import type { BackupStorage, BackupWorkspace } from './respaldo-portable'
 
 export class AlmacenRespaldoLocal implements BackupStorage {
@@ -29,16 +19,17 @@ export class AlmacenRespaldoLocal implements BackupStorage {
     return {
       dump: join(privado, 'database.dump'),
       paquete: join(privado, 'paquete.tmp'),
-      publicar: async (nombre) => {
+      publicar: async (nombre, signal) => {
+        signal?.throwIfAborted()
         if (!/^RuizCacao_\d{4}-\d\d-\d\d_\d\d-\d\d$/.test(nombre))
           throw new Error('Nombre de respaldo inválido.')
         // Crear temporal exclusivo EN el destino: rename nunca cruza filesystems.
         const carpetaPublicacion = await mkdtemp(join(this.destino, '.ruizcacao-'))
         provisional = join(carpetaPublicacion, 'publicacion.tmp')
         completo = join(carpetaPublicacion, 'completo.tmp')
-        await copyFile(join(privado, 'paquete.tmp'), provisional)
-        const origen = await integridadArchivo(join(privado, 'paquete.tmp'))
-        const copia = await integridadArchivo(provisional)
+        await copiarStreaming(join(privado, 'paquete.tmp'), provisional, signal)
+        const origen = await integridadArchivo(join(privado, 'paquete.tmp'), signal)
+        const copia = await integridadArchivo(provisional, signal)
         if (origen.sha256 !== copia.sha256 || origen.tamano !== copia.tamano)
           throw new Error('La copia provisional no supera la verificación de integridad.')
         const handle = await open(provisional, 'r+')
@@ -52,6 +43,7 @@ export class AlmacenRespaldoLocal implements BackupStorage {
         // archivo completo atómicamente con no-replace, incluso frente a carreras.
         // Sin hardlinks, fallar cerrado: no degradar a copia parcial o rename inseguro.
         for (let i = 0; i < 10000; i++) {
+          signal?.throwIfAborted()
           const final = join(this.destino, nombre + (i ? '_' + String(i) : '') + '.back')
           try {
             await link(completo, final)

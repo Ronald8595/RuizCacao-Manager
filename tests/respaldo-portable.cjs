@@ -114,7 +114,9 @@ async function main() {
     })
     await check('colisiones concurrentes nunca sobrescriben', async () => {
       const original = await integridadArchivo(resultado.archivo)
-      const copias = await Promise.all(Array.from({ length: 5 }, () => crear()))
+      const copias = []
+      // El controlador limita a un backup activo; storage conserva semántica no-overwrite.
+      for (let i = 0; i < 5; i++) copias.push(await crear())
       assert.equal(new Set(copias.map((c) => c.archivo)).size, 5)
       assert.deepEqual(await integridadArchivo(resultado.archivo), original)
       for (const c of copias) assert.deepEqual(await paquete.verificar(c.archivo), manifest)

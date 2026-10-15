@@ -34,6 +34,9 @@ async function main() {
     const archivo = join(carpeta, 'conexion-test.json')
     await fs.writeFile(archivo, JSON.stringify(config), { mode: 0o600 })
     const suites = [
+      'restore-contratos.cjs',
+      'restore-seguro.cjs',
+      'restore-startup.cjs',
       'respaldo-portable.cjs',
       'respaldo-portabilidad.cjs',
       'postgres-prerrequisito.cjs',

@@ -1,0 +1,20 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+OK restore modo externo o sin control privado rechazado antes de acceder a datos
+OK restore inactivo no inicia herramientas ni operaciones
+OK restore cancelación backup durante proceso, hash y empaquetado
+OK restore históricos 1 a 9 migran sin sesiones ni efectos de jornada
+OK restore rechazo futuro mantiene activa intacta
+OK restore rechazo discordante mantiene activa intacta
+OK restore rechazo objeto mantiene activa intacta
+OK restore rechazo hueco mantiene activa intacta
+OK restore schema10, datos, identidad nueva, sesiones, solicitudes y login
+OK restore cancelación restore previa a promoción mantiene activa
+OK restore confirmación rechazada y cierre cancelable no promueven
+OK restore restore grande conserva todas las filas comerciales
+OK restore pre_restauracion existe y es verificable
+OK restore backup máximo uno, exclusión de promoción y cierre crítico
+OK restore schema4→10 conserva contraseña y login principal
+OK restore startup con journal confirmado conserva base y login
+Evidencia restore: C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\docs\evidencias-respaldos-etapa02\restore-seguro.json

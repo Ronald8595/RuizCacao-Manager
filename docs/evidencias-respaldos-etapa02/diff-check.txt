@@ -1,0 +1,13 @@
+warning: in the working copy of 'docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/base.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/conexion.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/postgres-local.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/respaldo-integridad.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/respaldo-paquete.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/respaldo-portable.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/respaldo-postgres.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/respaldo-storage.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/respaldos.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/respaldo-portable.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/run.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/v3.cjs', LF will be replaced by CRLF the next time Git touches it

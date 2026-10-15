@@ -1,0 +1,35 @@
+OK restore inactivo no inicia herramientas ni operaciones
+OK restore cancelación backup durante proceso, hash y empaquetado
+OK restore históricos 1 a 9 migran sin sesiones ni efectos de jornada
+OK restore rechazo futuro mantiene activa intacta
+OK restore rechazo discordante mantiene activa intacta
+OK restore rechazo objeto mantiene activa intacta
+OK restore rechazo hueco mantiene activa intacta
+Evidencia restore: C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-restore-tests-AS8PBB\restore-seguro.json
+error: operator is not unique: text || "char"
+    at C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\node_modules\pg-pool\index.js:45:11
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async firmaEstructura (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:32:15)
+    at async ValidadorRestorePostgres.comparar (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:50:13)
+    at async WorkspaceRestorePostgres.preparar (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:87:13)
+    at async RestaurarRespaldoSeguro.ejecutar (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:26:17)
+    at async perfil (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\restore-seguro.cjs:45:14)
+    at async main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\restore-seguro.cjs:88:11) {
+  length: 189,
+  severity: 'ERROR',
+  code: '42725',
+  detail: undefined,
+  hint: 'Could not choose a best candidate operator. You might need to add explicit type casts.',
+  position: '1499',
+  internalPosition: undefined,
+  internalQuery: undefined,
+  where: undefined,
+  schema: undefined,
+  table: undefined,
+  column: undefined,
+  dataType: undefined,
+  constraint: undefined,
+  file: 'parse_oper.c',
+  line: '633',
+  routine: 'op_error'
+}

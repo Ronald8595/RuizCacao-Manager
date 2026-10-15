@@ -1,0 +1,227 @@
+{
+  "fecha": "2026-10-15T21:36:34.001Z",
+  "casos": [
+    {
+      "escala": "pequeno",
+      "dumpBytes": 83659,
+      "dumpSha256": "21a01bb750c481d59970b9153b66f4031880d40558d8d5400c6f0c84a9052e94",
+      "pgRestoreList": "OK",
+      "restore": "OK",
+      "loginOriginal": "OK",
+      "tablas": {
+        "administrador": {
+          "n": 1,
+          "hash": "bf1f6707b540a1d7feb5a649d7b90225"
+        },
+        "auditoria": {
+          "n": 17,
+          "hash": "7d4f57dcce49bb7bd964c6c8348134b9"
+        },
+        "clientes": {
+          "n": 2,
+          "hash": "6889426850b495f1d03315494dc7e2e6"
+        },
+        "compras": {
+          "n": 2,
+          "hash": "e66e64bfd06855abe684d83f280b03fb"
+        },
+        "configuracion": {
+          "n": 1,
+          "hash": "7d8f9806f83cf0819dcb1cd45a2660cb"
+        },
+        "control_recuperacion": {
+          "n": 1,
+          "hash": "28dce05ee844defe12909515458e5bc9"
+        },
+        "cuentas": {
+          "n": 4,
+          "hash": "b435bba6dad0c833bf5a46d5c9192b3a"
+        },
+        "empleados": {
+          "n": 2,
+          "hash": "5492ffe6082c66627dc3756cb572a3d3"
+        },
+        "eventos_jornada": {
+          "n": 1,
+          "hash": "cb2249b9d7fe8fc5a385740250d17422"
+        },
+        "existencias": {
+          "n": 3,
+          "hash": "6796a3d14f7f1744ae188ff797a0d889"
+        },
+        "gastos": {
+          "n": 4,
+          "hash": "d857c5dfa3a27e845b594ba6672f7a98"
+        },
+        "instalacion": {
+          "n": 1,
+          "hash": "36935aa825ef9febd223a669ff262315"
+        },
+        "jornadas": {
+          "n": 1,
+          "hash": "02c60d8428ae53a68419e8eb30a35913"
+        },
+        "migraciones": {
+          "n": 10,
+          "hash": "4fdadebfc51f616c2a7835a589ee5ee0"
+        },
+        "movimientos_cuenta": {
+          "n": 5,
+          "hash": "30d54be5fc2f57ddb9f3183051676f55"
+        },
+        "movimientos_stock": {
+          "n": 5,
+          "hash": "ca23ac59710b5db3c517305fec35dec0"
+        },
+        "notificaciones": {
+          "n": 3,
+          "hash": "b9cc2d1a76b1d0956041095da3aed6fc"
+        },
+        "operaciones": {
+          "n": 14,
+          "hash": "84a2fca762a4a028bf7225ebb5f29b3d"
+        },
+        "productos": {
+          "n": 3,
+          "hash": "c911c03ae6cf3e4db8a04019c6f96d56"
+        },
+        "proveedores": {
+          "n": 2,
+          "hash": "3b950415581620593d62512e43c1823b"
+        },
+        "respaldos": {
+          "n": 0,
+          "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        },
+        "sesiones": {
+          "n": 1,
+          "hash": "4c1c53289918b8544f254d4a7d2bcf61"
+        },
+        "solicitudes_recuperacion": {
+          "n": 0,
+          "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        },
+        "usuarios": {
+          "n": 2,
+          "hash": "69580e99a7aefb90afa0e29636b86354"
+        },
+        "ventas": {
+          "n": 2,
+          "hash": "41f1018346de36e3e597951357acfe7d"
+        }
+      }
+    },
+    {
+      "escala": "grande",
+      "dumpBytes": 3065309,
+      "dumpSha256": "57d331fa835135480413c2f2c0e37baf174ff9bcb1e3c45840255eb26403449d",
+      "pgRestoreList": "OK",
+      "restore": "OK",
+      "loginOriginal": "OK",
+      "tablas": {
+        "administrador": {
+          "n": 1,
+          "hash": "bf1f6707b540a1d7feb5a649d7b90225"
+        },
+        "auditoria": {
+          "n": 18,
+          "hash": "898a434ef1f26621783cd70b92c3f501"
+        },
+        "clientes": {
+          "n": 1002,
+          "hash": "694fff4fd51819643bd4f3afb29728ba"
+        },
+        "compras": {
+          "n": 10002,
+          "hash": "746335101062bf3f6f976a55985f0116"
+        },
+        "configuracion": {
+          "n": 1,
+          "hash": "7d8f9806f83cf0819dcb1cd45a2660cb"
+        },
+        "control_recuperacion": {
+          "n": 1,
+          "hash": "28dce05ee844defe12909515458e5bc9"
+        },
+        "cuentas": {
+          "n": 25004,
+          "hash": "c9e545ff802c3427c530e2ae23bb159c"
+        },
+        "empleados": {
+          "n": 2,
+          "hash": "5492ffe6082c66627dc3756cb572a3d3"
+        },
+        "eventos_jornada": {
+          "n": 1,
+          "hash": "cb2249b9d7fe8fc5a385740250d17422"
+        },
+        "existencias": {
+          "n": 3,
+          "hash": "6fcb307ab8b18d519b51d5dc1e162a12"
+        },
+        "gastos": {
+          "n": 13004,
+          "hash": "9fa36861980f11f4a6a286c41c9d2fd0"
+        },
+        "instalacion": {
+          "n": 1,
+          "hash": "36935aa825ef9febd223a669ff262315"
+        },
+        "jornadas": {
+          "n": 1,
+          "hash": "02c60d8428ae53a68419e8eb30a35913"
+        },
+        "migraciones": {
+          "n": 10,
+          "hash": "4fdadebfc51f616c2a7835a589ee5ee0"
+        },
+        "movimientos_cuenta": {
+          "n": 16671,
+          "hash": "2c9d2546f6ef5d7487c228373ea830f9"
+        },
+        "movimientos_stock": {
+          "n": 25422,
+          "hash": "55e449eb626a1e7017f6e3736e376aa9"
+        },
+        "notificaciones": {
+          "n": 3,
+          "hash": "b9cc2d1a76b1d0956041095da3aed6fc"
+        },
+        "operaciones": {
+          "n": 14,
+          "hash": "84a2fca762a4a028bf7225ebb5f29b3d"
+        },
+        "productos": {
+          "n": 3,
+          "hash": "c911c03ae6cf3e4db8a04019c6f96d56"
+        },
+        "proveedores": {
+          "n": 502,
+          "hash": "00297c71c3175fe4c86fa61ae18567b9"
+        },
+        "respaldos": {
+          "n": 0,
+          "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        },
+        "sesiones": {
+          "n": 1,
+          "hash": "4c1c53289918b8544f254d4a7d2bcf61"
+        },
+        "solicitudes_recuperacion": {
+          "n": 0,
+          "hash": "d41d8cd98f00b204e9800998ecf8427e"
+        },
+        "usuarios": {
+          "n": 2,
+          "hash": "69580e99a7aefb90afa0e29636b86354"
+        },
+        "ventas": {
+          "n": 15002,
+          "hash": "e34cbcdc834f45cfb9a21d9a15bdd4d3"
+        }
+      }
+    }
+  ],
+  "soloArchivo": true,
+  "nuevasCredencialesB": true
+}

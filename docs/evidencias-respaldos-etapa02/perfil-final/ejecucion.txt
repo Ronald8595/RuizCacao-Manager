@@ -1,0 +1,24 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+OK restore modo externo o sin control privado rechazado antes de acceder a datos
+OK restore inactivo no inicia herramientas ni operaciones
+OK restore cancelación backup durante proceso, hash y empaquetado
+OK restore históricos 1 a 9 migran sin sesiones ni efectos de jornada
+Evidencia restore: C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\docs\evidencias-respaldos-etapa02\perfil-final\restore-seguro.json
+Error: Command failed: C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\vendor\postgresql\bin\pg_ctl.exe -D C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-restore-tests-Dc96sS\A\data -m fast -w -t 20 stop
+pg_ctl: server does not shut down
+
+    at genericNodeError (node:internal/errors:986:15)
+    at wrappedFn (node:internal/errors:540:14)
+    at ChildProcess.exithandler (node:child_process:417:12)
+    at ChildProcess.emit (node:events:514:28)
+    at maybeClose (node:internal/child_process:1141:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:306:5) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: 'C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\vendor\\postgresql\\bin\\pg_ctl.exe -D C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-restore-tests-Dc96sS\\A\\data -m fast -w -t 20 stop',
+  stdout: 'waiting for server to shut down....................... failed\r\n',
+  stderr: 'pg_ctl: server does not shut down\r\n'
+}

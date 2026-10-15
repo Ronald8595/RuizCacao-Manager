@@ -272,3 +272,44 @@ No se leyó ni conectó la base comercial original. No seed comercial, build, Do
 5. Resolver adaptador de publicación sin hardlinks antes de certificar FAT/exFAT/destinos remotos; sincronizadores reales pendientes.
 6. La aceptación de producto A→PC B limpia/otro SID/instalador sigue en etapa6; este ensayo solo certifica portabilidad técnica entre clústeres locales.
 7. Última prueba con motor: node tests/respaldo-portabilidad.cjs, código0; último control documental: git diff --check y fuentes nuevas, código0. Ninguna prueba obligatoria de etapa1 pendiente.
+
+## Respaldos etapa 02 — implementación en verificación, 2026-10-15
+
+Nueva política definitiva: respaldos de usuario SOLO MANUALES. Sustituye la propuesta histórica de automatización: se retiran todos los disparos de respaldarCierre en jornada/logout/cierre/recuperación, conservando reglas comerciales. pre_migracion y pre_restauracion permanecen como copias técnicas. No timers de respaldo, scheduler, polling de reposo, watchers ni retención .back.
+
+Informe de trabajo: [Informe_Respaldos_Etapa02_Restore_Seguro_v1.3.0.md](Informe_Respaldos_Etapa02_Restore_Seguro_v1.3.0.md). Rama correcta inicialmente limpia; etapa1 guardada y preservada. App1.2.1/esquema10, SQL001–010 intactos, sin011. No acceso a origen comercial ni perfil de desarrollo, sin build/Docker/publicación Git.
+
+Implementado: MigrationRunner extraído con secuencia completa para restore y sin efectos de sesión; workspace privado, referencia SQL confiable y clúster staging independiente; validación de inventario/catálogo/25 tablas/usuarios/secuencias/consultas acotadas; normalización técnica; candidata validada; pre_restauracion; mantenimiento Main; promoción por OID/system_identifier con journal local e intención persistida; rollback conservador y recuperación antes de CREATE DATABASE en startup. Herramientas y streams cancelables, espera de close, controlador de máximo un backup/un restore y exclusión de promoción. Sin UI, cambios Acceso ni IPC público. Modo postgres.enc externo rechazado por la composición interna.
+
+Verificación intermedia: typecheck0. Matriz de16 fallos, cancelaciones y login actual pasaron en corrida aislada; un cast de metadata se corrigió tras fallo temprano en staging. Primera carga grande rechazó backends pendientes antes de renombrar: se distingue cliente de autovacuum y se espera drenaje acotado (solo operación activa). Perfil Electron inicial luego completó pequeño/grande/schema4→10, mantenimiento~1,2s, pero la identificación de procesos Windows requirió normalizar separadores. Perfil posterior encontró cierre de fixture A excediendo20s por checkpoint de5623 archivos; fallo preservado. Se añade CHECKPOINT únicamente en los fixtures, fuera de intervalos medidos, sin cambiar lifecycle/timeouts pg_ctl del producto.
+
+Startup recovery: seis estados de corte, intención previa, original renombrada, candidata promovida, validada sin confirmar y confirmada; también OID ambiguo, clúster incorrecto y JSON corrupto: pruebas aisladas completadas, originales conservadas y sin crear vacías. Perfil Electron con muestreador Windows corregido y suite general final programados secuencialmente en una sesión de terminal; no iniciar otro motor mientras siga activa.
+
+### CONTINUAR DESDE AQUI — cierre etapa 02
+
+1. Leer este bloque y el informe Etapa02. Código implementado; no añadir UI ni funcionalidades nuevas.
+2. Revisar docs/evidencias-respaldos-etapa02/perfil-validado/ejecucion.txt y esperar cierre seguro; después la misma sesión ejecuta npm run db:test.
+3. Registrar código final y copiar comparaciones JSON del clúster efímero de suite a evidencia; conservar intentos fallidos y perfil inicial.
+4. Cerrar typecheck/lint/diff-check y regresiones Etapa01 incluidas en db:test; restaurar solo .eslintcache generado por lint al estado inicial.
+5. Resumir Main/PG/herramientas, fases/mantenimiento y límites del muestreo; Renderer N/A sin ventanas.
+6. Verificar cero procesos de estas pruebas en modo lectura y terminar muestreador; no tocar servicios ni motores ajenos.
+7. Actualizar ambos documentos con resultados reales, riesgos y último comando/código. No declarar etapa terminada antes.
+8. Siguiente etapa autorizable: UI/IPC y UX acordada, conservando servidor externo rechazado y pruebas Windows limpio/otra PC para aceptación posterior.
+
+## Respaldos etapa 02 — cierre verificado, 2026-10-15
+
+Este cierre sustituye los pendientes del bloque anterior, que queda como historial. Etapa02 backend COMPLETADA. Política definitiva: respaldo de usuario SOLO MANUAL, sin disparos de cierre/logout/jornada/recuperación. pre_migracion/pre_restauracion conservados. MigrationRunner sin efectos de sesión, staging privado con otro clúster/credenciales, TOC permitido y catálogo contra referencia confiable, schema histórico1–9→10 y futuro rechazado, identidad nueva, candidata, gate/pool drain, journal, renombres, rollback y recuperación de arranque antes de crear la base fija implementados. Cancelación espera hijos/streams; tramo crítico protegido. Sin UI/IPC público, sin Snapshot ni SQL001–010/011 ni cambios de lifecycle/timeouts pg_ctl.
+
+Validación final: typecheck0; lint0 (727 advertencias/0 errores); db:test0 completo en ruizcacao-tests-7ozeCT; portable22 casos0 y portabilidad A→B25 tablas/login pequeño y grande0; restore32 comprobaciones con16 fallos inyectados; startup6 cortes más OID/clúster/JSON inválidos0; contratos adicionales0, incluido pg_roles real del padre temporal en solo lectura. Guard aditivo de privilegios probado por separado tras cargar suite/perfil. Diff-check0 y fuentes nuevas sin whitespace. .eslintcache restaurado al estado inicial. Original preservada en fallos, login principal/operador conservado. Sin conexión comercial ni seed de rendimiento comercial, build, Docker, commit/push/merge/tag.
+
+Perfil definitivo Electron44.3.0/Node24.20.0 sin Renderer: backup grande1,771s/CPU Main843ms; restore grande29,303s/CPU Main2844ms; mantenimiento pequeño1,313s/grande1,407s. Inactivo1,507s/CPU47ms, reposo posterior1,503s/CPU16ms, cero herramientas nuevas de backup. RSS y WS/CPU PG/herramientas por fase en informe y JSON; muestreo y fixture en mismo Main limitan atribución, no certificar bases de64GiB ni arranque completo/UI. Checkpoint de fixtures corregido sin tocar el producto; intentos fallidos conservados.
+
+Consulta final Windows de solo lectura a16:46:49-05:00: cero procesos PostgreSQL/herramientas de estos ensayos y cero muestreadores. No queda prueba activa. Informe: docs/Informe_Respaldos_Etapa02_Restore_Seguro_v1.3.0.md. Evidencia: docs/evidencias-respaldos-etapa02/validacion-final.json, restore-suite.json, restore-startup.json, db-test.txt, perfil-validado y procesos-final.json. Último comando con motores npm run db:test código0; últimos controles procesos/diff-check0.
+
+### CONTINUAR DESDE AQUI — etapa 02 cerrada
+
+1. Leer informe Etapa02 y validacion-final.json; implementación backend y pruebas obligatorias terminadas.
+2. Siguiente paso exacto: etapa03 UI/IPC y UX de respaldos manuales con permisos/confirmación acordados; no implementada en este corte.
+3. Usar el caso interno seguro, conservar modo externo rechazado, journal ambiguo bloqueante y reserva/pre_restauracion.
+4. Mantener política manual y ausencia de timers/polling de reposo; espera de drenaje acotada solo en promoción.
+5. Aceptación de Windows limpio/otro SID/otra PC/instalador/corte físico y filesystem sin hardlinks sigue pendiente de su etapa; no repetir ensayos locales válidos.

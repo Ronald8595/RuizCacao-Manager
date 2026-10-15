@@ -1,5 +1,5 @@
-import { execFile } from 'node:child_process'
-import { promisify } from 'node:util'
+import { procesoPostgres } from './proceso-postgres'
+import { faseOperacion, type ContextoOperacion } from './operacion-respaldo'
 import { randomUUID } from 'node:crypto'
 import { mkdir, readFile, writeFile, rename, readdir, unlink } from 'node:fs/promises'
 import { join, basename } from 'node:path'
@@ -8,7 +8,6 @@ import { integridadArchivo } from './respaldo-integridad'
 import type { ExportacionRespaldo } from './respaldo-portable'
 import type { ConexionLocal } from '../../shared/persistencia'
 import { ErrorNegocio } from '../../shared/errorNegocio'
-const ejecutar = promisify(execFile)
 export const RETENCION_AUTOMATICOS = 14
 export type TipoRespaldo = 'automatico' | 'manual' | 'pre_migracion' | 'pre_restauracion'
 export interface Manifiesto {
@@ -46,15 +45,13 @@ export class Respaldos {
     readonly binarios: string,
     readonly carpeta: string
   ) {}
-  async herramienta(nombre: 'pg_dump' | 'pg_restore', args: string[]): Promise<string> {
+  async herramienta(
+    nombre: 'pg_dump' | 'pg_restore',
+    args: string[],
+    signal?: AbortSignal
+  ): Promise<string> {
     // Contraseña solo en el entorno del proceso hijo; nunca argv, logs ni archivos temporales.
-    const { stdout } = await ejecutar(join(this.binarios, nombre + '.exe'), args, {
-      windowsHide: true,
-      env: { ...process.env, PGPASSWORD: this.config.password },
-      timeout: 300000,
-      maxBuffer: 8 * 1024 * 1024
-    })
-    return stdout
+    return procesoPostgres(join(this.binarios, nombre + '.exe'), args, this.config.password, signal)
   }
   argumentosConexion(base = this.config.database): string[] {
     return [
@@ -113,26 +110,30 @@ export class Respaldos {
   }
   private async exportarSnapshot(
     db: PoolClient,
-    destino: string
+    destino: string,
+    ctx?: ContextoOperacion
   ): Promise<{ tamano: number; sha256: string }> {
     const snapshot = (await db.query('SELECT pg_export_snapshot() AS id')).rows[0].id
-    await this.herramienta('pg_dump', [
-      ...this.argumentosConexion(),
-      '-Fc',
-      '--snapshot',
-      snapshot,
-      '--file',
-      destino
-    ])
-    await this.herramienta('pg_restore', ['--list', destino])
-    const datos = await integridadArchivo(destino)
+    faseOperacion(ctx, 'exportando')
+    await this.herramienta(
+      'pg_dump',
+      [...this.argumentosConexion(), '-Fc', '--snapshot', snapshot, '--file', destino],
+      ctx?.signal
+    )
+    await this.herramienta('pg_restore', ['--list', destino], ctx?.signal)
+    faseOperacion(ctx, 'hash')
+    const datos = await integridadArchivo(destino, ctx?.signal)
     if (!datos.tamano) throw new ErrorNegocio('El respaldo quedó vacío. Intenta nuevamente.')
     return datos
   }
   // El mismo exportador/snapshot que usa crear; sin publicar ni registrar archivos legacy.
-  async exportar(pool: Pool, destino: string): Promise<ExportacionRespaldo> {
+  async exportar(
+    pool: Pool,
+    destino: string,
+    ctx?: ContextoOperacion
+  ): Promise<ExportacionRespaldo> {
     return this.conSnapshot(pool, async (db, version, major, tool) => {
-      const datos = await this.exportarSnapshot(db, destino)
+      const datos = await this.exportarSnapshot(db, destino, ctx)
       await db.query('COMMIT')
       return {
         id: randomUUID(),
@@ -147,7 +148,8 @@ export class Respaldos {
   async crear(
     pool: Pool,
     tipo: TipoRespaldo,
-    fechaJornada: string | null = null
+    fechaJornada: string | null = null,
+    ctx?: ContextoOperacion
   ): Promise<Manifiesto> {
     return this.conSnapshot(pool, async (db, version, major, _tool, revision) => {
       await mkdir(this.carpeta, { recursive: true })
@@ -170,7 +172,7 @@ export class Respaldos {
         archivo = `${tipo}_${new Date().toISOString().replace(/[:.]/g, '-')}_${id}.dump`,
         ruta = join(this.carpeta, archivo)
       try {
-        const datos = await this.exportarSnapshot(db, ruta + '.tmp')
+        const datos = await this.exportarSnapshot(db, ruta + '.tmp', ctx)
         const m: Manifiesto = {
           id,
           fecha: new Date().toISOString(),

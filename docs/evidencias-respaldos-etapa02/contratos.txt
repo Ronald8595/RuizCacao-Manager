@@ -1,0 +1,2 @@
+OK guard de privilegios contra pg_roles real del clúster temporal verificado; solo lectura
+OK contratos restore: rol sin privilegios elevados, modo privado, nombres y journal estricto; cero SQL en rechazo de modo

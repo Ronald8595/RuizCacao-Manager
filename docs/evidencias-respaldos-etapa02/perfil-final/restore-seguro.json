@@ -1,0 +1,251 @@
+{
+  "fecha": "2026-10-15T21:12:07.290Z",
+  "pruebas": [
+    "modo externo o sin control privado rechazado antes de acceder a datos",
+    "inactivo no inicia herramientas ni operaciones",
+    "cancelación backup durante proceso, hash y empaquetado",
+    "históricos 1 a 9 migran sin sesiones ni efectos de jornada"
+  ],
+  "perfiles": [
+    {
+      "nombre": "inactivo",
+      "total_ms": 1509.0566000000001,
+      "cpu_main_ms": 0,
+      "cpu_main_porcentaje": 0,
+      "rss_antes": 138403840,
+      "rss_pico": 138850304,
+      "rss_despues": 138805248,
+      "fases": [],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 2,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null
+      },
+      "herramientas": {
+        "muestras": 2,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null,
+        "cpu_acumulada_observada_ms": null
+      }
+    },
+    {
+      "nombre": "backup_pequeno",
+      "total_ms": 820.956000000002,
+      "cpu_main_ms": 140,
+      "cpu_main_porcentaje": 17.05328909222902,
+      "rss_antes": 148746240,
+      "rss_pico": 150470656,
+      "rss_despues": 150470656,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 114.71329999999944
+        },
+        {
+          "fase": "exportando",
+          "ms": 524.6660000000011
+        },
+        {
+          "fase": "hash",
+          "ms": 10.901300000001356
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 43.72060000000056
+        },
+        {
+          "fase": "verificando",
+          "ms": 61.10429999999906
+        },
+        {
+          "fase": "guardando",
+          "ms": 55.75920000000042
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 2,
+        "pids": 12,
+        "working_set_pico_muestreado": 237240320,
+        "cpu_delta_muestreada_ms": 31.25
+      },
+      "herramientas": {
+        "muestras": 2,
+        "pids": 1,
+        "working_set_pico_muestreado": 13643776,
+        "cpu_delta_muestreada_ms": 0,
+        "cpu_acumulada_observada_ms": 62.5
+      }
+    },
+    {
+      "nombre": "backup_grande",
+      "total_ms": 1704.6384000000035,
+      "cpu_main_ms": 906,
+      "cpu_main_porcentaje": 53.14910188577227,
+      "rss_antes": 133132288,
+      "rss_pico": 133771264,
+      "rss_despues": 120664064,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 108.12000000000262
+        },
+        {
+          "fase": "exportando",
+          "ms": 976.8286999999982
+        },
+        {
+          "fase": "hash",
+          "ms": 30.275500000003376
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 93.33870000000024
+        },
+        {
+          "fase": "verificando",
+          "ms": 199.43889999999374
+        },
+        {
+          "fase": "guardando",
+          "ms": 294.58000000000175
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 3,
+        "pids": 12,
+        "working_set_pico_muestreado": 341323776,
+        "cpu_delta_muestreada_ms": 0
+      },
+      "herramientas": {
+        "muestras": 3,
+        "pids": 1,
+        "working_set_pico_muestreado": 15753216,
+        "cpu_delta_muestreada_ms": 0,
+        "cpu_acumulada_observada_ms": 218.75
+      }
+    },
+    {
+      "nombre": "cancelar_backup_exportando",
+      "total_ms": 127.6597000000038,
+      "cpu_main_ms": 63,
+      "cpu_main_porcentaje": 49.34995147254625,
+      "rss_antes": 120664064,
+      "rss_pico": 120971264,
+      "rss_despues": 120975360,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 91.45880000000034
+        },
+        {
+          "fase": "exportando",
+          "ms": 34.1304999999993
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 0,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null
+      },
+      "herramientas": {
+        "muestras": 0,
+        "pids": 0,
+        "working_set_pico_muestreado": null,
+        "cpu_delta_muestreada_ms": null,
+        "cpu_acumulada_observada_ms": null
+      }
+    },
+    {
+      "nombre": "cancelar_backup_hash",
+      "total_ms": 1086.487000000001,
+      "cpu_main_ms": 124,
+      "cpu_main_porcentaje": 11.412929929212211,
+      "rss_antes": 120979456,
+      "rss_pico": 121278464,
+      "rss_despues": 121626624,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 93.954899999997
+        },
+        {
+          "fase": "exportando",
+          "ms": 983.0190000000002
+        },
+        {
+          "fase": "hash",
+          "ms": 8.067199999997683
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 2,
+        "pids": 12,
+        "working_set_pico_muestreado": 362430464,
+        "cpu_delta_muestreada_ms": 171.875
+      },
+      "herramientas": {
+        "muestras": 2,
+        "pids": 1,
+        "working_set_pico_muestreado": 15785984,
+        "cpu_delta_muestreada_ms": 406.25,
+        "cpu_acumulada_observada_ms": 437.5
+      }
+    },
+    {
+      "nombre": "cancelar_backup_empaquetando",
+      "total_ms": 1119.3543999999965,
+      "cpu_main_ms": 188,
+      "cpu_main_porcentaje": 16.795395631624853,
+      "rss_antes": 121626624,
+      "rss_pico": 125235200,
+      "rss_despues": 125423616,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 86.85990000000311
+        },
+        {
+          "fase": "exportando",
+          "ms": 981.165399999998
+        },
+        {
+          "fase": "hash",
+          "ms": 36.01929999999993
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 13.789100000001781
+        }
+      ],
+      "hijos_residuales": 0,
+      "postgres": {
+        "muestras": 3,
+        "pids": 13,
+        "working_set_pico_muestreado": 355274752,
+        "cpu_delta_muestreada_ms": 0
+      },
+      "herramientas": {
+        "muestras": 3,
+        "pids": 1,
+        "working_set_pico_muestreado": 15777792,
+        "cpu_delta_muestreada_ms": 343.75,
+        "cpu_acumulada_observada_ms": 421.875
+      }
+    }
+  ],
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-restore-tests-Dc96sS",
+  "runtime": {
+    "electron": "44.3.0",
+    "node": "24.20.0",
+    "renderer": "N/A: sin ventanas"
+  },
+  "hijos_residuales": 0
+}

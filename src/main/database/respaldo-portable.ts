@@ -1,4 +1,5 @@
 // Contratos y coordinación: sin filesystem, Electron ni procesos hijos.
+import { operacionesRespaldos, faseOperacion, type ContextoOperacion } from './operacion-respaldo'
 export const PRODUCT_ID = 'com.gruporuiz.ruizcacao-manager'
 export interface ExportacionRespaldo {
   id: string
@@ -24,16 +25,21 @@ export interface ManifestPortable {
   database_dump_sha256: string
 }
 export interface BackupExporter {
-  exportar(destinoDump: string): Promise<ExportacionRespaldo>
+  exportar(destinoDump: string, ctx?: ContextoOperacion): Promise<ExportacionRespaldo>
 }
 export interface BackupPackage {
-  escribir(dump: string, manifest: ManifestPortable, destino: string): Promise<void>
-  verificar(archivo: string): Promise<ManifestPortable>
+  escribir(
+    dump: string,
+    manifest: ManifestPortable,
+    destino: string,
+    signal?: AbortSignal
+  ): Promise<void>
+  verificar(archivo: string, signal?: AbortSignal): Promise<ManifestPortable>
 }
 export interface BackupWorkspace {
   dump: string
   paquete: string
-  publicar(nombre: string): Promise<string>
+  publicar(nombre: string, signal?: AbortSignal): Promise<string>
   limpiar(): Promise<void>
 }
 export interface BackupStorage {
@@ -52,13 +58,22 @@ export class GenerarRespaldoPortable {
     private readonly autorizar: () => Promise<void>,
     private readonly versionApp: string
   ) {}
-  async ejecutar(): Promise<ResultadoPortable> {
-    await this.autorizar()
-    const workspace = await this.storage.preparar()
+  async ejecutar(ctx: ContextoOperacion = {}): Promise<ResultadoPortable> {
+    const lease = operacionesRespaldos.adquirir('backup')
+    ctx = {
+      ...ctx,
+      signal: ctx.signal
+        ? AbortSignal.any([ctx.signal, lease.contexto.signal!])
+        : lease.contexto.signal
+    }
+    let workspace: BackupWorkspace | undefined
     let publicado = false
     const advertencias: string[] = []
     try {
-      const e = await this.exporter.exportar(workspace.dump)
+      await this.autorizar()
+      faseOperacion(ctx, 'preparando')
+      workspace = await this.storage.preparar()
+      const e = await this.exporter.exportar(workspace.dump, ctx)
       const manifest: ManifestPortable = {
         product_id: PRODUCT_ID,
         format_version: 1,
@@ -73,21 +88,25 @@ export class GenerarRespaldoPortable {
         database_dump_size: e.tamano,
         database_dump_sha256: e.sha256
       }
-      await this.paquete.escribir(workspace.dump, manifest, workspace.paquete)
-      await this.paquete.verificar(workspace.paquete)
+      faseOperacion(ctx, 'empaquetando')
+      await this.paquete.escribir(workspace.dump, manifest, workspace.paquete, ctx.signal)
+      faseOperacion(ctx, 'verificando')
+      await this.paquete.verificar(workspace.paquete, ctx.signal)
       // Nombre UTC explícito; no depende del huso horario de la PC.
       const nombre = 'RuizCacao_' + e.fecha.slice(0, 16).replace('T', '_').replace(':', '-')
-      const archivo = await workspace.publicar(nombre)
+      faseOperacion(ctx, 'guardando')
+      const archivo = await workspace.publicar(nombre, ctx.signal)
       publicado = true
       return { archivo, manifest, advertencias }
     } finally {
       try {
-        await workspace.limpiar()
+        await workspace?.limpiar()
       } catch {
         if (publicado)
           advertencias.push('El respaldo se publicó; no se completó la limpieza temporal.')
         // Una limpieza secundaria nunca oculta el fallo primario ni elimina el archivo final.
       }
+      lease.liberar()
     }
   }
 }

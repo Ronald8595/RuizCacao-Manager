@@ -1,0 +1,9 @@
+OK startup corte preparada conserva base identificada; no crea vacía
+OK startup corte intencion_antes_rename conserva base identificada; no crea vacía
+OK startup corte original_renombrada conserva base identificada; no crea vacía
+OK startup corte candidata_promovida conserva base identificada; no crea vacía
+OK startup corte validada conserva base identificada; no crea vacía
+OK startup corte confirmada conserva base identificada; no crea vacía
+OK startup OID ambiguo bloquea acceso y conserva bases
+OK startup identidad de clúster incorrecta bloqueada sin borrar datos
+OK startup journal corrupto bloqueado y recuperación conservadora

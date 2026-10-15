@@ -1,8 +1,9 @@
-import { createWriteStream } from 'node:fs'
+import { createReadStream, createWriteStream } from 'node:fs'
+import { addAbortSignal } from 'node:stream'
 import { open, unlink, stat } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { crc32 } from 'node:zlib'
-import { pipeline } from 'node:stream/promises'
+import { pipeline, finished } from 'node:stream/promises'
 import { ZipFile as ZipWriter } from 'yazl'
 import { openPromise, type Entry } from 'yauzl'
 import { ErrorNegocio } from '../../shared/errorNegocio'
@@ -79,28 +80,54 @@ function validarEntrada(e: Entry, maxDump: number): void {
 /** ZIP v1 STORE: dos entradas fijas. Nunca se extrae usando nombres del archivo. */
 export class PaqueteRespaldoZip implements BackupPackage {
   constructor(private readonly maxDump = MAX_DUMP_PORTABLE) {}
-  async escribir(dump: string, manifest: ManifestPortable, destino: string): Promise<void> {
+  async escribir(
+    dump: string,
+    manifest: ManifestPortable,
+    destino: string,
+    signal?: AbortSignal
+  ): Promise<void> {
+    signal?.throwIfAborted()
     validarManifest(manifest, this.maxDump)
     const zip = new ZipWriter()
     const salida = createWriteStream(destino, { flags: 'wx', mode: 0o600 })
-    const completado = pipeline(zip.outputStream, salida)
+    const completado = pipeline(zip.outputStream, salida, { signal })
     zip.on('error', (error) => salida.destroy(error))
     zip.addBuffer(Buffer.from(JSON.stringify(manifest, null, 2)), 'manifest.json', {
       compress: false,
       mode: 0o100600
     })
-    zip.addFile(dump, 'database.dump', { compress: false, mode: 0o100600 })
+    const entrada = createReadStream(dump, { signal })
+    entrada.on('error', (e) => salida.destroy(e))
+    zip.addReadStream(entrada, 'database.dump', {
+      compress: false,
+      mode: 0o100600,
+      size: manifest.database_dump_size
+    })
     zip.end()
-    await completado
+    try {
+      await completado
+    } finally {
+      entrada.destroy()
+      await finished(entrada).catch(() => {})
+    }
   }
-  async verificar(archivo: string): Promise<ManifestPortable> {
-    return this.procesar(archivo)
+  async verificar(archivo: string, signal?: AbortSignal): Promise<ManifestPortable> {
+    return this.procesar(archivo, undefined, signal)
   }
   // Infraestructura para inspección/pruebas; no restaura SQL ni está expuesta en IPC.
-  async extraerDump(archivo: string, destino: string): Promise<ManifestPortable> {
-    return this.procesar(archivo, destino)
+  async extraerDump(
+    archivo: string,
+    destino: string,
+    signal?: AbortSignal
+  ): Promise<ManifestPortable> {
+    return this.procesar(archivo, destino, signal)
   }
-  private async procesar(archivo: string, destino?: string): Promise<ManifestPortable> {
+  private async procesar(
+    archivo: string,
+    destino?: string,
+    signal?: AbortSignal
+  ): Promise<ManifestPortable> {
+    signal?.throwIfAborted()
     const meta = await stat(archivo)
     if (!meta.isFile() || meta.size > this.maxDump + 1024 * 1024) invalido()
     const zip = await openPromise(archivo, {
@@ -115,6 +142,7 @@ export class PaqueteRespaldoZip implements BackupPackage {
       if (zip.entryCount !== 2) invalido()
       const entradas = new Map<string, Entry>()
       for await (const e of zip.eachEntry()) {
+        signal?.throwIfAborted()
         validarEntrada(e, this.maxDump)
         if (entradas.has(e.fileName)) invalido()
         // Rechazar también discrepancias en encabezados locales.
@@ -133,7 +161,9 @@ export class PaqueteRespaldoZip implements BackupPackage {
       const partes: Buffer[] = []
       let leidos = 0
       let crcManifest = 0
-      for await (const fragmento of await zip.openReadStreamPromise(entradaManifest)) {
+      const streamManifest = await zip.openReadStreamPromise(entradaManifest)
+      if (signal) addAbortSignal(signal, streamManifest)
+      for await (const fragmento of streamManifest) {
         leidos += fragmento.length
         if (leidos > MAX_MANIFEST) invalido()
         crcManifest = crc32(fragmento, crcManifest)
@@ -150,7 +180,9 @@ export class PaqueteRespaldoZip implements BackupPackage {
       let crcDump = 0
       let cabecera = Buffer.alloc(0)
       if (destino) salida = await open(destino, 'wx', 0o600)
-      for await (const fragmento of await zip.openReadStreamPromise(entradaDump)) {
+      const streamDump = await zip.openReadStreamPromise(entradaDump)
+      if (signal) addAbortSignal(signal, streamDump)
+      for await (const fragmento of streamDump) {
         bytes += fragmento.length
         if (bytes > manifest.database_dump_size) invalido()
         if (cabecera.length < 5)
@@ -169,7 +201,11 @@ export class PaqueteRespaldoZip implements BackupPackage {
       correcto = true
       return manifest
     } finally {
-      zip.close()
+      if (zip.isOpen)
+        await new Promise<void>((resolve) => {
+          zip.once('close', resolve)
+          zip.close()
+        })
       if (salida) {
         await salida.close()
         if (!correcto && destino) await unlink(destino).catch(() => {})

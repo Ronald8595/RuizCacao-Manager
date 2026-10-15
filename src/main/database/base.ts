@@ -10,14 +10,7 @@ import type {
 import { ErrorNegocio } from '../../shared/errorNegocio'
 import { consultarHistorialStock } from './historial-stock'
 import type { FiltroHistorialStock, PaginaHistorialStock } from '../../shared/historialStock'
-import { migracionTres } from './migracion-tres'
-import { migracionCuatro } from './migracion-cuatro'
-import { migracionCinco } from './migracion-cinco'
-import { migracionSeis } from './migracion-seis'
-import { migracionSiete } from './migracion-siete'
-import { migracionOcho } from './migracion-ocho'
-import { migracionNueve } from './migracion-nueve'
-import { migracionDiez, VERSION_ACTUAL as VERSION_ESQUEMA } from './migracion-diez'
+import { MigracionesPostgres, VERSION_ESQUEMA } from './migration-runner'
 import {
   consultarNotificaciones,
   limpiarAvisos,
@@ -27,18 +20,10 @@ import {
 import type { Notificaciones } from '../../shared/persistencia'
 import { aplicarAnulacion } from '../../shared/anulaciones'
 import { nuevaSolicitud, tokenSolicitud, verificarAutorizacion, clavePublica } from './recuperacion'
-import { traducirError } from './errores'
 import type { Respaldos } from './respaldos'
 import { Pool, type PoolClient } from 'pg'
 import { createHash, randomUUID } from 'node:crypto'
-import { esquema, migracionUno } from './schema'
-import {
-  entidades,
-  leerEntidades,
-  guardarRegistro,
-  sqlNormalizacion,
-  type Entidad
-} from './relacional'
+import { entidades, leerEntidades, guardarRegistro, type Entidad } from './relacional'
 import { hashSecreto, verificarSecreto, validarPassword } from './seguridad'
 import { validarArgumentos } from './validacion'
 import { crearDominio, PRODUCTOS } from '../../shared/dominio'
@@ -159,79 +144,8 @@ export class BaseLocal {
       await this.opciones.respaldos.crear(this.pool, 'pre_migracion')
     }
     await this.transaccion(async (db) => {
-      await db.query(esquema)
-      const version = await db.query(
-        'SELECT version FROM ruizcacao.migraciones ORDER BY version DESC LIMIT 1'
-      )
-      if (version.rows[0]?.version > VERSION_ESQUEMA)
-        throw new ErrorNegocio('Esta base requiere una versión más reciente de la aplicación.')
-      if (!version.rowCount) {
-        await db.query(migracionUno)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(1)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 2) {
-        await db.query(sqlNormalizacion())
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(2)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 3) {
-        await db.query(migracionTres)
-        await db.query('INSERT INTO ruizcacao.instalacion(id,installation_id) VALUES(1,$1)', [
-          randomUUID()
-        ])
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(3)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 4) {
-        await db.query(migracionCuatro)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(4)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 5) {
-        await db.query(migracionCinco)
-        const adminAnterior = (
-          await db.query(
-            'SELECT nombre,password_hash,fallos,bloqueado_hasta,actualizado_en FROM ruizcacao.administrador WHERE id=1'
-          )
-        ).rows[0]
-        if (adminAnterior) {
-          await db.query(
-            "INSERT INTO ruizcacao.usuarios(id,nombre,password_hash,rol,activo,principal,fallos,bloqueado_hasta,actualizado_en) VALUES($1,$2,$3,'administrador',true,true,$4,$5,$6)",
-            [
-              randomUUID(),
-              adminAnterior.nombre,
-              adminAnterior.password_hash,
-              adminAnterior.fallos,
-              adminAnterior.bloqueado_hasta,
-              adminAnterior.actualizado_en
-            ]
-          )
-          await db.query(
-            'UPDATE ruizcacao.auditoria a SET usuario_id=u.id FROM ruizcacao.usuarios u WHERE u.principal AND a.responsable=u.nombre'
-          )
-          await db.query(
-            'UPDATE ruizcacao.eventos_jornada e SET usuario_id=u.id FROM ruizcacao.usuarios u WHERE u.principal AND e.responsable=u.nombre'
-          )
-        }
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(5)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 6) {
-        await db.query(migracionSeis)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(6)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 7) {
-        await db.query(migracionSiete)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(7)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 8) {
-        await db.query(migracionOcho)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(8)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 9) {
-        await db.query(migracionNueve)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(9)')
-      }
-      if ((version.rows[0]?.version ?? 0) < 10) {
-        await db.query(migracionDiez)
-        await db.query('INSERT INTO ruizcacao.migraciones(version) VALUES(10)')
-      }
+      // Conservar consultas del arranque habitual; el restore verifica el historial completo.
+      await new MigracionesPostgres().aplicarEnTransaccion(db, VERSION_ESQUEMA, false)
       const interrumpidas = await db.query(
         'SELECT id FROM ruizcacao.sesiones WHERE cerrada_en IS NULL'
       )
@@ -631,36 +545,11 @@ export class BaseLocal {
     this.usuarioId = null
     this.usuarioRol = null
     this.usuarioPrincipal = false
-    await this.respaldarCierre()
   }
   async respaldarManual(): Promise<void> {
     if (!this.opciones.respaldos)
       throw new ErrorNegocio('El respaldo no está disponible. Contacta con soporte.')
     await this.opciones.respaldos.crear(this.pool, 'manual')
-  }
-  private async respaldarCierre(): Promise<void> {
-    if (!this.opciones.respaldos) return
-    const row = (
-      await this.pool.query(
-        "SELECT fecha::text FROM ruizcacao.jornadas WHERE estado='finalizada' ORDER BY cierre DESC LIMIT 1"
-      )
-    ).rows[0]
-    if (!row) return
-    try {
-      await this.opciones.respaldos.crear(this.pool, 'automatico', row.fecha)
-    } catch (error) {
-      traducirError(error, { modulo: 'respaldos', operacion: 'automatico' })
-      await this.transaccion(async (db) => {
-        await this.auditoria(db, 'respaldo_fallido', { tipo: 'automatico' })
-        await this.aviso(
-          db,
-          'Respaldo pendiente',
-          'La jornada se cerró, pero no se pudo crear su respaldo. Contacta con soporte.',
-          'respaldo_fallido:' + row.fecha,
-          'inicio'
-        )
-      }).catch(() => {})
-    }
   }
   private async datos(db: PoolClient): Promise<Snapshot> {
     const result = estadoInicial()
@@ -1239,7 +1128,6 @@ export class BaseLocal {
         )
       return this.estado(db)
     })
-    if (accion === 'cerrar') await this.respaldarCierre()
     return this.cargar()
   }
   async configurarUmbralStock(producto: string, valor: number | null): Promise<EstadoAplicacion> {
@@ -1352,7 +1240,6 @@ export class BaseLocal {
     this.usuarioId = null
     this.usuarioRol = null
     this.usuarioPrincipal = false
-    await this.respaldarCierre()
   }
   async cerrar(): Promise<void> {
     if (this.cerrando) return
@@ -1365,7 +1252,6 @@ export class BaseLocal {
           [this.sesion]
         )
       })
-      await this.respaldarCierre()
       await this.desconectar()
     } catch (e) {
       this.cerrando = false
@@ -1379,5 +1265,15 @@ export class BaseLocal {
       this.candado = undefined
     }
     await this.pool.end()
+  }
+  async desconectarParaRestauracion(): Promise<void> {
+    // Cerrar solo la sesión técnica propia, nunca la jornada comercial.
+    await this.transaccion(async (db) => {
+      await db.query(
+        "UPDATE ruizcacao.sesiones SET cerrada_en=now(),cierre='mantenimiento' WHERE id=$1 AND cerrada_en IS NULL",
+        [this.sesion]
+      )
+    })
+    await this.desconectar()
   }
 }

@@ -1,0 +1,36 @@
+OK restore inactivo no inicia herramientas ni operaciones
+OK restore cancelación backup durante proceso, hash y empaquetado
+OK restore históricos 1 a 9 migran sin sesiones ni efectos de jornada
+OK restore rechazo futuro mantiene activa intacta
+OK restore rechazo discordante mantiene activa intacta
+OK restore rechazo objeto mantiene activa intacta
+OK restore rechazo hueco mantiene activa intacta
+OK restore schema10, datos, identidad nueva, sesiones, solicitudes y login
+OK restore fallo preparando_restore conserva original recuperable
+OK restore fallo restaurando_staging conserva original recuperable
+OK restore fallo migrando_staging conserva original recuperable
+OK restore fallo normalizando conserva original recuperable
+OK restore fallo restaurando_candidata conserva original recuperable
+OK restore fallo candidata_validada conserva original recuperable
+OK restore fallo antes_mantenimiento conserva original recuperable
+OK restore fallo antes_pre_restauracion conserva original recuperable
+OK restore fallo despues_pre_restauracion conserva original recuperable
+OK restore fallo antes_promocion conserva original recuperable
+OK restore fallo pool_cerrado conserva original recuperable
+OK restore fallo antes_renombrar_original conserva original recuperable
+OK restore fallo original_renombrada conserva original recuperable
+OK restore fallo candidata_promovida conserva original recuperable
+OK restore fallo validacion_final conserva original recuperable
+OK restore fallo validada conserva original recuperable
+OK restore cancelación restore previa a promoción mantiene activa
+OK restore confirmación rechazada y cierre cancelable no promueven
+Evidencia restore: C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-restore-tests-lZoO7d\restore-seguro.json
+ErrorNegocio: Hay conexiones pendientes. Cierra otras herramientas antes de cargar el respaldo.
+    at sinClientes (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:44:15)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async eval (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:77:21)
+    at async PostgresLocal.administrador (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:102:20)
+    at async PromocionPostgres.promover (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:63:13)
+    at async RestaurarRespaldoSeguro.ejecutar (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:54:13)
+    at async perfil (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\restore-seguro.cjs:175:14)
+    at async main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\restore-seguro.cjs:426:16)

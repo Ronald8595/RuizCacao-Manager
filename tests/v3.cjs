@@ -29,6 +29,7 @@ async function main() {
   const carpeta = join(process.env.RCM_TEST_ARTIFACTS, 'respaldos'),
     backup = new Respaldos(config, process.env.RCM_TEST_BIN, carpeta)
   const crear = () => new BaseLocal(config, { publica, respaldos: backup })
+  await fs.mkdir(carpeta, { recursive: true })
   let db = crear(),
     n = 0
   const clave = 'Prueba-v3-segura-2026',
@@ -229,8 +230,8 @@ async function main() {
     }
     await db.jornada('cerrar', otra)
     backup.crear = crearBackup
-    await test('fallo de respaldo mantiene datos y deja aviso', async () => {
-      assert.ok((await db.cargar()).avisos.some((n) => n.titulo === 'Respaldo pendiente'))
+    await test('cierre solo manual conserva jornada sin intentar respaldo automático', async () => {
+      assert.ok(!(await db.cargar()).avisos.some((n) => n.titulo === 'Respaldo pendiente'))
       assert.equal((await db.cargar()).datos.jornada.estado, 'finalizada')
     })
     configurarLogs(join(process.env.RCM_TEST_ARTIFACTS, 'logs'))
