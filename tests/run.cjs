@@ -34,6 +34,8 @@ async function main() {
     const archivo = join(carpeta, 'conexion-test.json')
     await fs.writeFile(archivo, JSON.stringify(config), { mode: 0o600 })
     const suites = [
+      'respaldo-portable.cjs',
+      'respaldo-portabilidad.cjs',
       'postgres-prerrequisito.cjs',
       'pgctl-arranque.cjs',
       'notificaciones.cjs',

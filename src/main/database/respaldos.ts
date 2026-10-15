@@ -1,9 +1,11 @@
 import { execFile } from 'node:child_process'
 import { promisify } from 'node:util'
-import { createHash, randomUUID } from 'node:crypto'
+import { randomUUID } from 'node:crypto'
 import { mkdir, readFile, writeFile, rename, readdir, unlink } from 'node:fs/promises'
 import { join, basename } from 'node:path'
-import type { Pool } from 'pg'
+import type { Pool, PoolClient } from 'pg'
+import { integridadArchivo } from './respaldo-integridad'
+import type { ExportacionRespaldo } from './respaldo-portable'
 import type { ConexionLocal } from '../../shared/persistencia'
 import { ErrorNegocio } from '../../shared/errorNegocio'
 const ejecutar = promisify(execFile)
@@ -24,12 +26,12 @@ export interface Manifiesto {
 }
 export async function verificarRespaldo(archivo: string): Promise<Manifiesto> {
   const m = JSON.parse(await readFile(archivo + '.json', 'utf8')) as Manifiesto
-  const datos = await readFile(archivo)
+  const datos = await integridadArchivo(archivo)
   if (
     m.archivo !== basename(archivo) ||
-    !datos.length ||
-    datos.length !== m.tamano ||
-    createHash('sha256').update(datos).digest('hex') !== m.sha256 ||
+    !datos.tamano ||
+    datos.tamano !== m.tamano ||
+    datos.sha256 !== m.sha256 ||
     !Number.isInteger(m.esquema_version) ||
     !Number.isInteger(m.postgres_major)
   )
@@ -67,11 +69,16 @@ export class Respaldos {
       '--no-password'
     ]
   }
-  async crear(
+  private async conSnapshot<T>(
     pool: Pool,
-    tipo: TipoRespaldo,
-    fechaJornada: string | null = null
-  ): Promise<Manifiesto> {
+    trabajo: (
+      db: PoolClient,
+      version: number,
+      major: number,
+      tool: number,
+      revision: string
+    ) => Promise<T>
+  ): Promise<T> {
     const db = await pool.connect()
     try {
       await db.query('SELECT pg_advisory_lock(7302026)')
@@ -95,6 +102,54 @@ export class Respaldos {
           "SELECT coalesce(max(id),0)::text AS revision FROM ruizcacao.auditoria WHERE accion NOT IN ('login','logout','autenticacion_fallida','recuperacion_fallida','respaldo_fallido')"
         )
       ).rows[0].revision
+      return await trabajo(db, version, major, tool, revision)
+    } catch (error) {
+      await db.query('ROLLBACK').catch(() => {})
+      throw error
+    } finally {
+      await db.query('SELECT pg_advisory_unlock(7302026)').catch(() => {})
+      db.release()
+    }
+  }
+  private async exportarSnapshot(
+    db: PoolClient,
+    destino: string
+  ): Promise<{ tamano: number; sha256: string }> {
+    const snapshot = (await db.query('SELECT pg_export_snapshot() AS id')).rows[0].id
+    await this.herramienta('pg_dump', [
+      ...this.argumentosConexion(),
+      '-Fc',
+      '--snapshot',
+      snapshot,
+      '--file',
+      destino
+    ])
+    await this.herramienta('pg_restore', ['--list', destino])
+    const datos = await integridadArchivo(destino)
+    if (!datos.tamano) throw new ErrorNegocio('El respaldo quedó vacío. Intenta nuevamente.')
+    return datos
+  }
+  // El mismo exportador/snapshot que usa crear; sin publicar ni registrar archivos legacy.
+  async exportar(pool: Pool, destino: string): Promise<ExportacionRespaldo> {
+    return this.conSnapshot(pool, async (db, version, major, tool) => {
+      const datos = await this.exportarSnapshot(db, destino)
+      await db.query('COMMIT')
+      return {
+        id: randomUUID(),
+        fecha: new Date().toISOString(),
+        esquema: version,
+        servidorMajor: major,
+        herramientaMajor: tool,
+        ...datos
+      }
+    })
+  }
+  async crear(
+    pool: Pool,
+    tipo: TipoRespaldo,
+    fechaJornada: string | null = null
+  ): Promise<Manifiesto> {
+    return this.conSnapshot(pool, async (db, version, major, _tool, revision) => {
       await mkdir(this.carpeta, { recursive: true })
       if (tipo === 'automatico')
         for (const file of await readdir(this.carpeta)) {
@@ -114,19 +169,8 @@ export class Respaldos {
       const id = randomUUID(),
         archivo = `${tipo}_${new Date().toISOString().replace(/[:.]/g, '-')}_${id}.dump`,
         ruta = join(this.carpeta, archivo)
-      const snapshot = (await db.query('SELECT pg_export_snapshot() AS id')).rows[0].id
       try {
-        await this.herramienta('pg_dump', [
-          ...this.argumentosConexion(),
-          '-Fc',
-          '--snapshot',
-          snapshot,
-          '--file',
-          ruta + '.tmp'
-        ])
-        await this.herramienta('pg_restore', ['--list', ruta + '.tmp'])
-        const datos = await readFile(ruta + '.tmp')
-        if (!datos.length) throw new ErrorNegocio('El respaldo quedó vacío. Intenta nuevamente.')
+        const datos = await this.exportarSnapshot(db, ruta + '.tmp')
         const m: Manifiesto = {
           id,
           fecha: new Date().toISOString(),
@@ -137,8 +181,8 @@ export class Respaldos {
           postgres_major: major,
           base: this.config.database,
           archivo,
-          tamano: datos.length,
-          sha256: createHash('sha256').update(datos).digest('hex')
+          tamano: datos.tamano,
+          sha256: datos.sha256
         }
         await writeFile(ruta + '.json.tmp', JSON.stringify(m, null, 2), { mode: 0o600 })
         await rename(ruta + '.tmp', ruta)
@@ -156,13 +200,7 @@ export class Respaldos {
         await unlink(ruta + '.json.tmp').catch(() => {})
         throw error
       }
-    } catch (error) {
-      await db.query('ROLLBACK').catch(() => {})
-      throw error
-    } finally {
-      await db.query('SELECT pg_advisory_unlock(7302026)').catch(() => {})
-      db.release()
-    }
+    })
   }
   async retencion(pool?: Pool): Promise<void> {
     const validos: Manifiesto[] = []

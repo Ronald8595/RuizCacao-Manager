@@ -24,6 +24,7 @@
     "db:benchmark": "node scripts/benchmark-postgres.cjs",
     "prepare:postgres": "node scripts/preparar-postgres.cjs",
     "db:backup": "electron scripts/mantenimiento.cjs backup",
+    "db:backup:portable": "electron scripts/mantenimiento.cjs backup --portable",
     "db:restore": "electron scripts/mantenimiento.cjs restore",
     "recovery:keygen": "node scripts/recuperacion.cjs generar",
     "recovery:sign": "node scripts/recuperacion.cjs firmar",
@@ -42,7 +43,9 @@
     "electron-updater": "^6.3.9",
     "lucide-react": "^1.45.0",
     "pg": "^8.23.0",
-    "tailwindcss": "^4.3.3"
+    "tailwindcss": "^4.3.3",
+    "yauzl": "3.4.0",
+    "yazl": "3.3.1"
   },
   "devDependencies": {
     "@electron-toolkit/eslint-config-prettier": "^3.0.0",
@@ -52,6 +55,8 @@
     "@types/pg": "^8.23.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
+    "@types/yauzl": "3.4.0",
+    "@types/yazl": "3.3.1",
     "@vitejs/plugin-react": "^5.1.1",
     "electron": "^44.3.0",
     "electron-builder": "^26.0.12",

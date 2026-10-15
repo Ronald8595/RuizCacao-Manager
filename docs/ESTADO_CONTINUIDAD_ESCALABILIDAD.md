@@ -219,3 +219,56 @@ Archivos propios del parche: src/main/database/postgres-local.ts; tests/pgctl-ar
 7. Mantener prohibición de seed/build/publicación Git y de nuevas optimizaciones fuera de alcance.
 
 Última prueba de aplicación: large-segundo-final, código0, cierre normal y sin procesos residuales. Última suite: npm run db:test, código0 y Suite PostgreSQL completa. Últimos comandos documentales de cierre: node scripts/documentar-pgctl.cjs y git diff --check, código0. Pendiente únicamente revisión humana; ningún proceso de prueba activo.
+
+## Auditoría de Respaldos y Restauración v1.3.0 — 2026-10-14
+
+Auditoría estática completada; solo diseño, sin implementación. Informe: [Informe_Auditoria_Respaldos_v1.3.0.md](Informe_Auditoria_Respaldos_v1.3.0.md). Aplicación sigue en 1.2.1/esquema 10; migraciones históricas intactas, 011 NO necesaria para el alcance propuesto.
+
+La raíz Git es electron-app. Estado inicial limpio y diff vacío sobre feature/escalabilidad-postgresql; feature/respaldos-restauracion no existía y se creó desde el HEAD actual para esta entrega. Cambios exclusivos: informe nuevo y este bloque documental. No se arrancó app/motor, no se conectó a origen, no se ejecutaron pruebas, backups, restores, seed, build, Docker, commit, push ni tag. La revisión humana pendiente del parche pg_ctl y las incidencias históricas conservan su estado; esta auditoría no las resuelve.
+
+Existe generación manual CLI, automática al cierre, pre_migracion y retención de 14 automáticos. Formato actual: pg_dump -Fc con snapshot y par .dump + .dump.json (hash/manifiesto); no cumple archivo único. Existe restore técnico CLI con pre_restauracion, locks, transacción pg_restore y marcador, pero reemplaza el esquema de la activa sin staging/promoción. Exige mismo nombre de base/esquema/major y no restaura desde Crear usuario. Scripts de diagnóstico restauran copias con conexiones nuevas; no certifican desastre en otro Windows.
+
+Diseño recomendado: .back como contenedor versionado de manifest.json + database.dump custom; no cifrado. Credenciales, safeStorage, puertos, rutas y preferencias se generan/guardan localmente. Usuarios y hashes scrypt son portables. UUID de instalación se renueva en destino, resolviendo las FKs de solicitudes y descartando autorizaciones viejas; conservar negocio/historia. No es necesario disponer del UUID ni AppData de origen por separado.
+
+Arquitectura: casos de uso dependen de contratos pequeños de exportación, paquete, almacenamiento, workspace de restore, migraciones y promoción. Reutilizar Respaldos, PostgresLocal y SQL histórico; extraer MigrationRunner de BaseLocal.iniciar para evitar sesiones/AutoRecover incidentales durante validación. Renderer no recibe fs/SQL/herramientas/credenciales; diálogos y autorización en Main. Rutas de respaldo/frecuencia/retención en configuración local, sin migración comercial.
+
+Seguridad propuesta: staging en clúster separado con rol limitado, migración y validación completas; candidata en clúster privado de destino; congelar escrituras, respaldo de activa, confirmación y promoción conservando base original como reserva. Dos renombres no son atómicos: journal duradero y recuperación de startup antes de crear automáticamente una base fija ausente son obligatorios. El modo postgres.enc externo requiere política separada; no asumir privilegios administrativos. Riesgo alto si se publica el restore actual como módulo; recuperación en PC nueva viable por diseño, PENDIENTE de certificación A → B.
+
+### CONTINUAR DESDE AQUI — Respaldos
+
+1. Revisar informe y contrato recomendado de .back v1; esta tarea termina en documentación.
+2. Siguiente paso exacto, solo tras autorizar implementación: etapa 1, adaptar exportador existente a archivo único con manifiesto/hash y probar contenido en clúster aislado con credenciales nuevas.
+3. Etapa 2: validación real, runner, identidad nueva y promoción/journal/rollback; probar cortes en cada fase antes de habilitar restore al usuario.
+4. Etapa 3: UI Respaldos e IPC específico con autorización, diálogos, progreso y confirmación.
+5. Etapa 4: automático y retención, reutilizando comportamiento existente y preferencias locales.
+6. Etapa 5: primera instalación con Crear instalación nueva o Restaurar, sin alta previa de usuario, terminando en Login.
+7. Etapa 6: VM Windows limpia, perfil distinto y solo .back procedente de A; comparar todos los datos y login original, sin reset de contraseña.
+8. Mantener origen, SQL001–010 y evidencia intactos; no seed/build/publicación ni Docker dentro de esta auditoría.
+
+Último archivo de seguridad revisado: src/main/database/recuperacion.ts. Cobertura estática: backup/restore, motor/credenciales, migraciones/rollback, usuarios/login/recuperación, IPC/diálogos, empaquetado y pruebas relacionadas. Pendientes empíricos: archivos reales, matriz de majors, promoción/cortes, instalador, revisión humana y A → B. Ninguna suite nueva ejecutada ni proceso de pruebas iniciado. Verificación documental de cierre: git diff --check y comprobación del alcance de archivos; no atribuir a este corte las pruebas históricas del parche anterior.
+
+## Respaldos etapa 01 portable — implementada y validada 2026-10-14
+
+Este corte sucede a la auditoría: etapa 1 implementada en feature/respaldos-restauracion. Informe: [Informe_Respaldos_Etapa01_Portable_v1.3.0.md](Informe_Respaldos_Etapa01_Portable_v1.3.0.md). App continúa 1.2.1/esquema10; 011 NO. No se tocaron SQL001–010, Renderer/IPC, BaseLocal, PostgresLocal ni reglas comerciales. La auditoría previa se conserva íntegra.
+
+Archivo único .back: ZIP STORE con manifest.json estricto v1 y database.dump custom pg_dump -Fc. Contratos pequeños BackupExporter/Package/Storage; caso sin fs/Electron/procesos. Respaldos.crear legacy y exportar portable comparten snapshot, advisory lock y herramientas; SHA-256/stat en streaming, también para integridad legacy. Validación: exactamente dos entradas regulares, sin rutas/duplicados/symlinks/ejecutables, sin cifrado, CRC, PGDMP, tamaño y hash; límite64GiB/manifest16KiB. Sin credenciales/puerto/rutas de origen en manifest, sin dependencia de AppData o claves Windows anteriores.
+
+Publicación segura: workspace privado → contenedor verificado → copia provisional dentro del destino cotejada por hash/tamaño → flush y rename de sellado → hardlink exclusivo a nombre final. Se eligió link para no sobrescribir ni siquiera en carreras, pues fs.rename puede reemplazar. NTFS local probado; destinos sin hardlinks fallan sin publicar archivo parcial. Sufijos deterministas evitan colisiones. Fallo secundario de limpieza no elimina final válido. Sin APIs cloud; carpetas sincronizadas tratadas como filesystem, sincronización real pendiente de ensayo.
+
+Nuevo comando técnico: npm run db:backup:portable -- --dest "D:\Respaldos RuizCacao"; hora UTC en nombre. No ejecutado contra perfil comercial. No modifica CLI backup/restore legacy ni automáticos/retención; no hay restore de producto ni UI/onboarding/promoción/journal. Scripts técnicos siguen excluidos del instalador; añadido ignore/exclusión de .back y dependencias yauzl3.4.0/yazl3.3.1 con tipos y lockfile.
+
+Portabilidad técnica local A→B: fixture QA pequeño y grande con10002 compras/15002 ventas/25004 cuentas; se retiró clúster A con sus claves antes de restaurar en B nuevo, credenciales distintas, rol comercial sin SUPERUSER/CREATEDB. Todas las25 tablas iguales en conteo/MD5 de filas canónicas; SHA-256 de dump verificado. Login de principal y operador con sus contraseñas originales, sin reset. Ensayo repetido tras últimos ajustes de CRC/storage. No certifica otra PC, SID Windows, instalador ni recuperación de producto.
+
+Validación: typecheck0; lint final0,727 warnings/0 errores, sin diagnósticos en los archivos de implementación nuevos/modificados; db:test0, suite completa ruizcacao-tests-L0qiXG; contenedor final22 casos0 (incluye64MiB sin readFile); portabilidad final0; diff-check0 y fuentes/documentos nuevos sin whitespace. La suite empezó antes de dos endurecimientos del paquete/storage; las pruebas afectadas se repitieron después, sin repetir regresiones no afectadas. Evidencia en docs/evidencias-respaldos-etapa01, incluyendo comparaciones completas, logs, pgctl-regresion nuevo y validacion-final.json. La evidencia histórica no se sobrescribió; .eslintcache se restauró al estado de entrada.
+
+No se leyó ni conectó la base comercial original. No seed comercial, build, Docker, commit, push, merge ni tag. Prueba de procesos final en modo lectura: cero PostgreSQL de la suite principal y ensayo final; todos los ensayos completaron su finally de parada. No quedan pruebas en ejecución. Sin cambios de migraciones ni versión.
+
+### CONTINUAR DESDE AQUI — después de etapa 01
+
+1. Leer informe Etapa01 y evidencia final; etapa cerrada, no repetir mediciones válidas.
+2. Siguiente paso exacto: diseñar e implementar etapa2 en tarea autorizada: MigrationRunner sin efectos de sesión, staging aislado, validación comercial, identidad destino y protocolo de promoción/journal/rollback.
+3. No conectar restore CLI al Renderer ni restaurar sobre la base activa. No ofrecer UI Restaurar antes de resolver cortes/promoción.
+4. Mantener legacy/automáticos/retención y SQL001–010. No crear011 sin necesidad comercial demostrada.
+5. Resolver adaptador de publicación sin hardlinks antes de certificar FAT/exFAT/destinos remotos; sincronizadores reales pendientes.
+6. La aceptación de producto A→PC B limpia/otro SID/instalador sigue en etapa6; este ensayo solo certifica portabilidad técnica entre clústeres locales.
+7. Última prueba con motor: node tests/respaldo-portabilidad.cjs, código0; último control documental: git diff --check y fuentes nuevas, código0. Ninguna prueba obligatoria de etapa1 pendiente.

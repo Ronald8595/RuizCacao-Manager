@@ -9,12 +9,50 @@ const { publicarAviso } = load(join(root, 'src/main/database/notificaciones.ts')
 app
   .whenReady()
   .then(async () => {
+    const portable = process.argv.includes('--portable')
+    const indiceDestino = process.argv.indexOf('--dest')
+    if (
+      portable &&
+      (!process.argv.includes('backup') || indiceDestino < 0 || !process.argv[indiceDestino + 1])
+    )
+      throw new ErrorNegocio('Indica backup --portable --dest con la carpeta de destino.')
     const { config, opciones } = await entorno(),
       pool = new Pool({ ...config, max: 3 }),
       backup = opciones.respaldos
     try {
       if (process.argv.includes('backup')) {
         try {
+          if (portable) {
+            const { GenerarRespaldoPortable } = load(
+              join(root, 'src/main/database/respaldo-portable.ts')
+            )
+            const { ExportadorRespaldoPostgres } = load(
+              join(root, 'src/main/database/respaldo-postgres.ts')
+            )
+            const { PaqueteRespaldoZip } = load(join(root, 'src/main/database/respaldo-paquete.ts'))
+            const { AlmacenRespaldoLocal } = load(
+              join(root, 'src/main/database/respaldo-storage.ts')
+            )
+            const { VERSION_APP } = load(join(root, 'src/shared/version.ts'))
+            const caso = new GenerarRespaldoPortable(
+              new ExportadorRespaldoPostgres(backup, pool),
+              new PaqueteRespaldoZip(),
+              new AlmacenRespaldoLocal(
+                resolve(process.argv[indiceDestino + 1]),
+                join(app.getPath('userData'), 'backup-workspaces')
+              ),
+              // Entrada técnica local: entorno() ya exige sesión Windows y safeStorage.
+              // No se expone este permiso al Renderer ni equivale a autorización UI.
+              async () => {
+                if (!config.password) throw new ErrorNegocio('Conexión local no autorizada.')
+              },
+              VERSION_APP
+            )
+            const resultado = await caso.ejecutar()
+            console.log('Respaldo portable verificado (fecha UTC): ' + resultado.archivo)
+            for (const aviso of resultado.advertencias) console.warn(aviso)
+            return
+          }
           const m = await backup.crear(pool, 'manual')
           console.log('Respaldo verificado: ' + join(backup.carpeta, m.archivo))
           return

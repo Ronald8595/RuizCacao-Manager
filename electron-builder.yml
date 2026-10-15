@@ -10,6 +10,7 @@ files:
   - '!vendor/**'
   - '!**/*.dump'
   - '!**/*.dump.json'
+  - '!**/*.back'
   - '!**/backups/**'
   - '!**/data/**'
   - '!**/conexion-test.json'

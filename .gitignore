@@ -9,6 +9,7 @@ vendor/vcredist/*.exe
 *.log
 *.dump
 *.dump.json
+*.back
 
 postgres.enc
 conexion.enc
