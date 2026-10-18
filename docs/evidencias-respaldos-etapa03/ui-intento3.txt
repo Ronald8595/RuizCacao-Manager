@@ -1,0 +1,8 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+Error: Script failed to execute, this normally means an error was thrown. Check the renderer console for the error.
+    at node:electron/js2c/sandbox_bundle:2:105688
+    at IpcRendererInternal.<anonymous> (node:electron/js2c/sandbox_bundle:2:100192)
+    at IpcRendererInternal.emit (node:electron/js2c/sandbox_bundle:2:37735)
+    at Object.onMessage (node:electron/js2c/sandbox_bundle:2:99258)

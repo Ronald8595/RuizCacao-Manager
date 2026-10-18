@@ -1,0 +1,13 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+(electron) 'console-message' arguments are deprecated and will be removed. Please use Event<WebContentsConsoleMessageEventParams> object instead.
+OK producto operador rechazado por Main y administrador autorizado
+OK producto cancelar ambos diálogos no inicia herramientas
+Error occurred in handler for 'respaldos:exec': Error: No handler registered for 'respaldos:exec'
+    at Session.<anonymous> (node:electron/js2c/browser_init:2:123930)
+    at Session.emit (node:events:514:28)
+OK producto IPC real: canal desconocido, payload/ruta arbitraria y otro emisor rechazados
+OK producto backup pequeño publicado/verificado y nombre elegido
+OK producto backup grande mediante IPC real
+OK producto cancelación real export/hash, sin final parcial ni hijos

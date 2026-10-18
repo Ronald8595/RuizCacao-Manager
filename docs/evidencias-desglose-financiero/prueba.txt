@@ -1,0 +1,5 @@
+OK Pago inicial y abonos por fecha/producto; conversión baba-seco no reclasifica compras; totales históricos idénticos
+OK Paginación SQL y PDF diario/semanal/mensual completos, con desglose y Producto; fila sin origen oculta si cero
+OK Compras y ventas anuladas excluyen pago inicial y abonos sin alterar gastos
+OK Cuenta manual conserva total y se identifica sin atribuir un producto arbitrario
+OK Periodo vacío y categorías sin movimientos devuelven cero

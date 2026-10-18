@@ -1,0 +1,218 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-uiipc-nIQHjp",
+  "pruebas": [
+    "operador rechazado por Main y administrador autorizado",
+    "cancelar ambos diálogos no inicia herramientas",
+    "IPC real: canal desconocido, payload/ruta arbitraria y otro emisor rechazados",
+    "backup pequeño publicado/verificado y nombre elegido",
+    "backup grande mediante IPC real",
+    "cancelación real export/hash, sin final parcial ni hijos"
+  ],
+  "perfiles": [
+    {
+      "nombre": "RuizCacao_2026-10-16_12-00",
+      "ms": 522.2322000000022,
+      "cpu": {
+        "user": 140000,
+        "system": 0
+      },
+      "renderer": {
+        "frames": 32,
+        "max_gap_ms": 16.799999999999727,
+        "proceso": {
+          "cpu": {
+            "cumulativeCPUUsage": 0.171374,
+            "percentCPUUsage": 0,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 1624,
+          "type": "Tab",
+          "creationTime": 1792197237745.319,
+          "memory": {
+            "workingSetSize": 80320,
+            "peakWorkingSetSize": 80560,
+            "privateBytes": 24636
+          },
+          "integrityLevel": "untrusted",
+          "sandboxed": true
+        }
+      },
+      "eventos": [
+        {
+          "operacionId": "75d9a53e-eaea-4bfa-b892-a7833410207d",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "75d9a53e-eaea-4bfa-b892-a7833410207d",
+          "fase": "exportando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "75d9a53e-eaea-4bfa-b892-a7833410207d",
+          "fase": "verificando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "75d9a53e-eaea-4bfa-b892-a7833410207d",
+          "fase": "guardando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "75d9a53e-eaea-4bfa-b892-a7833410207d",
+          "fase": "finalizando",
+          "cancelable": false
+        }
+      ],
+      "ipc_max_bytes": 94
+    },
+    {
+      "nombre": "RuizCacao_2026-10-16_12-01",
+      "ms": 1108.7252000000008,
+      "cpu": {
+        "user": 203000,
+        "system": 125000
+      },
+      "renderer": {
+        "frames": 67,
+        "max_gap_ms": 16.799999999999272,
+        "proceso": {
+          "cpu": {
+            "cumulativeCPUUsage": 0.211393,
+            "percentCPUUsage": 0.016724777736275443,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 1624,
+          "type": "Tab",
+          "creationTime": 1792197237745.319,
+          "memory": {
+            "workingSetSize": 80412,
+            "peakWorkingSetSize": 80560,
+            "privateBytes": 24948
+          },
+          "integrityLevel": "untrusted",
+          "sandboxed": true
+        }
+      },
+      "eventos": [
+        {
+          "operacionId": "8b27189c-614d-476f-8aee-d7a0d949a2b2",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "8b27189c-614d-476f-8aee-d7a0d949a2b2",
+          "fase": "exportando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "8b27189c-614d-476f-8aee-d7a0d949a2b2",
+          "fase": "verificando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "8b27189c-614d-476f-8aee-d7a0d949a2b2",
+          "fase": "guardando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "8b27189c-614d-476f-8aee-d7a0d949a2b2",
+          "fase": "finalizando",
+          "cancelable": false
+        }
+      ],
+      "ipc_max_bytes": 94
+    },
+    {
+      "nombre": "cancelado-export",
+      "ms": 69.03689999999915,
+      "cpu": {
+        "user": 16000,
+        "system": 47000
+      },
+      "renderer": {
+        "frames": 4,
+        "max_gap_ms": 16.700000000000728,
+        "proceso": {
+          "cpu": {
+            "cumulativeCPUUsage": 0.217877,
+            "percentCPUUsage": 0.4817007215110129,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 1624,
+          "type": "Tab",
+          "creationTime": 1792197237745.319,
+          "memory": {
+            "workingSetSize": 80448,
+            "peakWorkingSetSize": 80560,
+            "privateBytes": 24972
+          },
+          "integrityLevel": "untrusted",
+          "sandboxed": true
+        }
+      },
+      "eventos": [
+        {
+          "operacionId": "3b0b9968-6d41-42d7-85d1-1d67bfb34f76",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "3b0b9968-6d41-42d7-85d1-1d67bfb34f76",
+          "fase": "exportando",
+          "cancelable": true
+        }
+      ],
+      "ipc_max_bytes": 92
+    },
+    {
+      "nombre": "cancelado-hash",
+      "ms": 1108.945599999999,
+      "cpu": {
+        "user": 15000,
+        "system": 16000
+      },
+      "renderer": {
+        "frames": 132,
+        "max_gap_ms": 16.799999999999272,
+        "proceso": {
+          "cpu": {
+            "cumulativeCPUUsage": 0.261514,
+            "percentCPUUsage": 0.3269664894752112,
+            "idleWakeupsPerSecond": 0
+          },
+          "pid": 1624,
+          "type": "Tab",
+          "creationTime": 1792197237745.319,
+          "memory": {
+            "workingSetSize": 80556,
+            "peakWorkingSetSize": 80560,
+            "privateBytes": 24984
+          },
+          "integrityLevel": "untrusted",
+          "sandboxed": true
+        }
+      },
+      "eventos": [
+        {
+          "operacionId": "9be468d0-d7f0-4136-a716-79a497430196",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "9be468d0-d7f0-4136-a716-79a497430196",
+          "fase": "exportando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "9be468d0-d7f0-4136-a716-79a497430196",
+          "fase": "verificando",
+          "cancelable": true
+        }
+      ],
+      "ipc_max_bytes": 93
+    }
+  ],
+  "exito": true,
+  "hijos": 0
+}

@@ -7,7 +7,8 @@ import type { BackupStorage, BackupWorkspace } from './respaldo-portable'
 export class AlmacenRespaldoLocal implements BackupStorage {
   constructor(
     private readonly destino: string,
-    private readonly temporales: string
+    private readonly temporales: string,
+    private readonly seleccion?: { nombreArchivo: string; alPublicar: () => void }
   ) {}
   async preparar(): Promise<BackupWorkspace> {
     await mkdir(this.destino, { recursive: true })
@@ -42,9 +43,15 @@ export class AlmacenRespaldoLocal implements BackupStorage {
         // rename de Node puede reemplazar un archivo existente. link publica el
         // archivo completo atómicamente con no-replace, incluso frente a carreras.
         // Sin hardlinks, fallar cerrado: no degradar a copia parcial o rename inseguro.
+        signal?.throwIfAborted()
+        this.seleccion?.alPublicar()
         for (let i = 0; i < 10000; i++) {
-          signal?.throwIfAborted()
-          const final = join(this.destino, nombre + (i ? '_' + String(i) : '') + '.back')
+          if (!this.seleccion) signal?.throwIfAborted()
+          const elegido = this.seleccion?.nombreArchivo
+          if (elegido && (dirname(elegido) !== '.' || !elegido.toLowerCase().endsWith('.back')))
+            throw new Error('Nombre de respaldo inválido.')
+          const stem = elegido ? elegido.slice(0, -5) : nombre
+          const final = join(this.destino, stem + (i ? '_' + String(i) : '') + '.back')
           try {
             await link(completo, final)
             return final

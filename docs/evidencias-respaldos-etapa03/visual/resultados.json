@@ -1,0 +1,56 @@
+[
+  {
+    "escenario": {
+      "nombre": "escritorio",
+      "width": 1440,
+      "height": 900,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "framesDuranteOperacion": 20,
+    "llamadas": 20,
+    "datos": 0,
+    "listeners": 0,
+    "maxListeners": 1,
+    "reinicios": 1,
+    "dom": 16,
+    "foco": "viernes, 16 de octubre de 2026RespaldosProtege la información de RuizCacao Manager guardando una copia en un lugar seguro.Solo el administrador puede gestionar respaldos.",
+    "dialogos": 0
+  },
+  {
+    "escenario": {
+      "nombre": "reducida",
+      "width": 800,
+      "height": 600,
+      "zoom": 1
+    },
+    "zoomReal": 1,
+    "framesDuranteOperacion": 20,
+    "llamadas": 20,
+    "datos": 0,
+    "listeners": 0,
+    "maxListeners": 1,
+    "reinicios": 1,
+    "dom": 16,
+    "foco": "viernes, 16 de octubre de 2026RespaldosProtege la información de RuizCacao Manager guardando una copia en un lugar seguro.Solo el administrador puede gestionar respaldos.",
+    "dialogos": 0
+  },
+  {
+    "escenario": {
+      "nombre": "zoom125",
+      "width": 1000,
+      "height": 750,
+      "zoom": 1.25
+    },
+    "zoomReal": 1.25,
+    "framesDuranteOperacion": 20,
+    "llamadas": 20,
+    "datos": 0,
+    "listeners": 0,
+    "maxListeners": 1,
+    "reinicios": 1,
+    "dom": 16,
+    "foco": "viernes, 16 de octubre de 2026RespaldosProtege la información de RuizCacao Manager guardando una copia en un lugar seguro.Solo el administrador puede gestionar respaldos.",
+    "dialogos": 0
+  }
+]

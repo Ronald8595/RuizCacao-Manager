@@ -3,7 +3,12 @@ import { createHash } from 'node:crypto'
 import { entidades } from './relacional'
 import { validarFiltroStock } from './historial-stock'
 import { ErrorNegocio } from '../../shared/errorNegocio'
-import type { FiltroListado, Listados, TotalesFinancieros } from '../../shared/listados'
+import {
+  LIMITES_PAGINA_REPORTE,
+  type FiltroListado,
+  type Listados,
+  type TotalesFinancieros
+} from '../../shared/listados'
 import { documentoReporte } from '../../renderer/src/utils/reportePdf'
 import type { FilaFinanciera } from '../../renderer/src/utils/reportes'
 
@@ -43,7 +48,10 @@ function validar(modulo: Modulo, input: FiltroListado): Filtro {
     Object.keys(input).some((k) => !['desde', 'hasta', 'limite', 'cursor', ...extras].includes(k))
   )
     return fallo()
-  const base = validarFiltroStock({ desde: input.desde, hasta: input.hasta, limite: input.limite })
+  const base = validarFiltroStock(
+    { desde: input.desde, hasta: input.hasta, limite: input.limite },
+    modulo === 'reportePeriodo' ? LIMITES_PAGINA_REPORTE : undefined
+  )
   const busqueda = input.busqueda ?? '',
     tipo = input.tipo ?? (modulo === 'historialCombinado' ? 'todos' : 'Todos'),
     estado = input.estado ?? 'todos',
@@ -208,6 +216,7 @@ export function fuenteFinanciera(
     ].join(' AND ')
   const movimientos = `SELECT m.id,m.fecha::text fecha,${instante('m')} instante,0 fuente,m.orden registro,
     CASE WHEN c.categoria='compra' THEN 'Pago de compra' ELSE 'Cobro de venta' END tipo,
+    CASE WHEN c.categoria='compra' THEN b.producto ELSE v.producto END producto,
     (CASE WHEN c.categoria='compra' THEN 'Compra N.º '||coalesce(c.numero_compra::text,'undefined') WHEN c.numero_factura IS NOT NULL AND c.numero_factura<>0 THEN 'Venta N.º '||c.numero_factura::text ELSE 'Cuenta manual de cliente' END)||
     CASE WHEN c.categoria='compra' AND b.id IS NOT NULL THEN ' · '||b.producto WHEN c.categoria<>'compra' AND v.id IS NOT NULL THEN ' · '||v.producto ELSE '' END||' · '||m.observacion detalle,
     CASE WHEN c.categoria='compra' THEN -m.monto ELSE m.monto END monto
@@ -215,7 +224,7 @@ export function fuenteFinanciera(
     LEFT JOIN ruizcacao.compras b ON c.categoria='compra' AND b.id=c.compra_id
     LEFT JOIN ruizcacao.ventas v ON c.categoria<>'compra' AND v.id=c.venta_id
     WHERE m.tipo='Abono' AND c.estado<>'anulado' AND m.orden<=${p(cortes[0])}::bigint AND ${rango('m')}`
-  const gastos = `SELECT g.id,g.fecha::text fecha,${instante('g')} instante,1 fuente,g.orden registro,'Gasto operativo' tipo,
+  const gastos = `SELECT g.id,g.fecha::text fecha,${instante('g')} instante,1 fuente,g.orden registro,'Gasto operativo' tipo,NULL::text producto,
     g.categoria||' · '||CASE WHEN coalesce(g.empleado_nombre,'')<>'' THEN g.empleado_nombre||' · ' ELSE '' END||coalesce(nullif(g.observacion,''),'Sin observación') detalle,-g.monto monto
     FROM ruizcacao.gastos g WHERE g.tipo='manual' AND g.orden<=${p(cortes[1])}::bigint AND ${rango('g')}`
   return { sql: `WITH financiero AS (${movimientos} UNION ALL ${gastos})`, params }
@@ -228,6 +237,7 @@ function filaFinanciera(r: Record<string, unknown>): FilaFinanciera {
     orden: String(r.instante),
     tipo: r.tipo as FilaFinanciera['tipo'],
     detalle: String(r.detalle),
+    producto: (r.producto ?? null) as FilaFinanciera['producto'],
     monto: Number(r.monto)
   }
 }
@@ -334,6 +344,14 @@ export async function consultarListado<M extends Modulo>(
     coalesce(sum(monto) FILTER(WHERE monto>0),0)::text ingresos,
     coalesce(-sum(monto) FILTER(WHERE tipo='Pago de compra'),0)::text compras,
     coalesce(-sum(monto) FILTER(WHERE tipo='Gasto operativo'),0)::text manuales,
+    coalesce(sum(monto) FILTER(WHERE monto>0 AND producto='Cacao en Baba'),0)::text ingresos_baba,
+    coalesce(sum(monto) FILTER(WHERE monto>0 AND producto='Cacao Seco'),0)::text ingresos_seco,
+    coalesce(sum(monto) FILTER(WHERE monto>0 AND producto='Maracuyá'),0)::text ingresos_maracuya,
+    coalesce(sum(monto) FILTER(WHERE monto>0 AND producto IS NULL),0)::text ingresos_sin_producto,
+    coalesce(-sum(monto) FILTER(WHERE tipo='Pago de compra' AND producto='Cacao en Baba'),0)::text compras_baba,
+    coalesce(-sum(monto) FILTER(WHERE tipo='Pago de compra' AND producto='Cacao Seco'),0)::text compras_seco,
+    coalesce(-sum(monto) FILTER(WHERE tipo='Pago de compra' AND producto='Maracuyá'),0)::text compras_maracuya,
+    coalesce(-sum(monto) FILTER(WHERE tipo='Pago de compra' AND producto IS NULL),0)::text compras_sin_producto,
     coalesce(-sum(monto) FILTER(WHERE monto<0),0)::text egresos FROM financiero`,
       fuente.params
     )
@@ -341,6 +359,24 @@ export async function consultarListado<M extends Modulo>(
   const resumen: TotalesFinancieros = {
     desde: f.desde,
     hasta: f.hasta,
+    desgloseProductos: {
+      'Cacao en Baba': {
+        ingresos: Number(agregado.ingresos_baba),
+        pagosCompras: Number(agregado.compras_baba)
+      },
+      'Cacao Seco': {
+        ingresos: Number(agregado.ingresos_seco),
+        pagosCompras: Number(agregado.compras_seco)
+      },
+      Maracuyá: {
+        ingresos: Number(agregado.ingresos_maracuya),
+        pagosCompras: Number(agregado.compras_maracuya)
+      },
+      'Sin producto de origen': {
+        ingresos: Number(agregado.ingresos_sin_producto),
+        pagosCompras: Number(agregado.compras_sin_producto)
+      }
+    },
     totalIngresos: Number(agregado.ingresos),
     totalComprasPagadas: Number(agregado.compras),
     totalGastosManuales: Number(agregado.manuales),
@@ -360,7 +396,7 @@ export async function consultarListado<M extends Modulo>(
   const rows = (
     await db.query(
       fuente.sql +
-        ` SELECT id,fecha,instante,fuente,registro,tipo,detalle,monto FROM financiero${where} ORDER BY ${ordenFinanciero} LIMIT ${p(f.limite + 1)}`,
+        ` SELECT id,fecha,instante,fuente,registro,tipo,producto,detalle,monto FROM financiero${where} ORDER BY ${ordenFinanciero} LIMIT ${p(f.limite + 1)}`,
       params
     )
   ).rows
@@ -383,7 +419,7 @@ export async function reporteCompleto(
   const rows = (
     await db.query(
       fuente.sql +
-        ` SELECT id,fecha,instante,tipo,detalle,monto FROM financiero ORDER BY ${ordenFinanciero}`,
+        ` SELECT id,fecha,instante,tipo,producto,detalle,monto FROM financiero ORDER BY ${ordenFinanciero}`,
       fuente.params
     )
   ).rows

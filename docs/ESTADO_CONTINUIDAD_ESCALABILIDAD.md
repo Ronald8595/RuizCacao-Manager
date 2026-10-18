@@ -313,3 +313,26 @@ Consulta final Windows de solo lectura a16:46:49-05:00: cero procesos PostgreSQL
 3. Usar el caso interno seguro, conservar modo externo rechazado, journal ambiguo bloqueante y reserva/pre_restauracion.
 4. Mantener política manual y ausencia de timers/polling de reposo; espera de drenaje acotada solo en promoción.
 5. Aceptación de Windows limpio/otro SID/otra PC/instalador/corte físico y filesystem sin hardlinks sigue pendiente de su etapa; no repetir ensayos locales válidos.
+
+## Respaldos etapa 03 — cierre definitivo verificado, 2026-10-17
+
+Se retomó el árbol existente en feature/respaldos-restauracion, revisando status, rama, diff-check, diff completo y archivos nuevos antes de editar. No se reinició la etapa, no se hizo reset/limpieza y no se usó la base comercial. Etapas01/02 preservadas. Informe: [Informe_Respaldos_Etapa03_UI_IPC_v1.3.0.md](Informe_Respaldos_Etapa03_UI_IPC_v1.3.0.md).
+
+Implementados UI Respaldos, permiso Main/administrador, siete canales IPC tipados, selecciones opacas, generación, preparación privada, confirmación/contraseña, progreso por fases, cancelación y fase crítica, mensajes, bloqueo hasta reinicio, StrictMode/listeners y accesibilidad. Sin Snapshot nuevo, polling/timers del módulo, cambios SQL001–010/011, build ni operaciones de publicación Git. Acceso/onboarding intactos; Etapa04 NO iniciada.
+
+Conservados y válidos: UI tres tamaños/125%, 39 capturas, datos comerciales0, listeners finales0; producto Electron/IPC/PG temporal con backup pequeño/grande, archivos inválidos rechazados, restore desde copia privada aun alterando la selección, nuevo proceso hasta Login y contraseña original OK; hijos0 en arnés. Suite previa db-test.txt completa en ruizcacao-tests-JHl7Xa; el proceso de terminal ya no está disponible para recuperar su código final. No repetir pruebas visuales ni restauración de producto por continuidad.
+
+Revisión adicional encontró duplicación potencial de limpieza/reinicio por IPC y preparación retenida al perder permisos. Guardas corregidos y contratos focalizados código0. Typecheck de cierre código0; lint código0 (850 advertencias/0 errores). Suite general final sesión17924 TERMINADA código0, log db-test-cierre.txt y resultado persistido en db-test-cierre-resultado.json; raíz temporal ruizcacao-tests-YPhZqP.32 comprobaciones restore/16 fallos, seis estados startup y regresiones generales pasaron. No relanzar la suite por continuidad.
+
+Regresiones independientes finales: portable22 casos código0; portabilidad pequeño/grande25 tablas/login original/rol limitado código0 en ruizcacao-portable-9gOTbI. Primer intento portable bloqueado por rename en sandbox, conservado; repetición autorizada fuera del sandbox código0 sin modificar código. Contratos IPC final0. Consulta Windows final13:14:16-05:00, solo lectura: procesos propios residuales0; servicio PostgreSQL ajeno PID4212 y descendientes excluidos y preservados. No hay pruebas/motores propios activos. Git diff --check0.
+
+Etapa03 COMPLETADA SI. Snapshot usado NO, polling/timers del módulo NO, nueva migración011 NO, restauración termina en Login SI, contraseña original OK. UI3 tamaños/125%,39 capturas, producto restore/nuevo proceso y perfil IPC válidos se conservaron sin repetición. Evidencias: docs/evidencias-respaldos-etapa03/validacion-final.json y procesos-final.json. fuentes-validadas.json conserva SHA-256 e inventario de23 archivos de producción/pruebas; se comprobó que no cambiaron tras validar. Dos documentos actualizados y evidencia añadida; .eslintcache permanece eliminado por lint --no-cache, sin reset.
+
+Riesgos posteriores: filesystem sin hardlinks/sincronizadores reales; Windows limpio/otro SID/otra PC, instalador, relanzamiento empaquetado y corte físico pendientes de aceptación de su etapa. Lint conserva850 advertencias. No hay bloqueo funcional pendiente para el alcance Etapa03. Sin base comercial, db:seed:performance, SQL001–010/011, build, commit/push/merge/tag ni cambios de Acceso/onboarding.
+
+### CONTINUAR DESDE AQUI — Etapa03 cerrada; detenerse
+
+1. Leer informe Etapa03 y validacion-final.json; las comprobaciones obligatorias están terminadas.
+2. Conservar cambios/evidencias y no repetir pruebas válidas sin cambios que las afecten.
+3. Siguiente paso exacto: revisión humana del diff y evidencias; esperar autorización para Etapa04 «Primera instalación y recuperación: Crear usuario nuevo / Cargar respaldo».
+4. No iniciar Etapa04, build ni operaciones Git de publicación bajo esta autorización. Trabajo de Etapa03 detenido tras entregar resultados.

@@ -1,6 +1,6 @@
 import NovedadesVersion from './components/NovedadesVersion'
 import { marcaPerfil, despuesDePintar } from './utils/perfilArranque'
-import { useEffect, useState, type ComponentType } from 'react'
+import { useEffect, useState, lazy, Suspense, type ComponentType } from 'react'
 import Acceso from './components/Acceso'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
@@ -16,6 +16,7 @@ import Usuarios from './pages/Usuarios'
 import { AppDataProvider } from './store/AppDataContext'
 import { NotificacionProvider } from './store/NotificacionContext'
 import type { Page, PageProps } from './types'
+const Respaldos = lazy(() => import('./pages/Respaldos'))
 
 // Router simple basado en estado.
 const pages = {
@@ -27,19 +28,26 @@ const pages = {
   consultas: Consultas,
   clientes: Clientes,
   empleados: Empleados,
-  usuarios: Usuarios
+  usuarios: Usuarios,
+  respaldos: Respaldos
 } as Record<Page, ComponentType<PageProps>>
 
 function PaginaMedida({
   pagina,
-  onNavigate
+  onNavigate,
+  administrador
 }: {
   pagina: Page
   onNavigate: (page: Page) => void
+  administrador: boolean
 }): React.JSX.Element {
   const Componente = pages[pagina]
   useEffect(() => despuesDePintar('interactive', { pagina }), [pagina])
-  return <Componente onNavigate={onNavigate} />
+  return (
+    <Suspense fallback={<p className="p-6">Abriendo página…</p>}>
+      <Componente onNavigate={onNavigate} administrador={administrador} />
+    </Suspense>
+  )
 }
 
 function App(): React.JSX.Element {
@@ -83,7 +91,11 @@ function App(): React.JSX.Element {
 
               <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
                 <Header onNavigate={navegar} />
-                <PaginaMedida pagina={activePage} onNavigate={navegar} />
+                <PaginaMedida
+                  pagina={activePage}
+                  onNavigate={navegar}
+                  administrador={inicial.usuarioActual?.rol === 'administrador'}
+                />
               </main>
             </div>
           </AppDataProvider>

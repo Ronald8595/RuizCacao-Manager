@@ -19,12 +19,13 @@ export default function NovedadesVersion({
         Novedades de RuizCacao Manager {VERSION_APP}
       </h2>
       <p className="mt-3 text-sm">
-        Esta actualización corrije un bug de inicio de la aplicación y facilita la consulta de cuentas pendientes.
+        Esta actualización trae ahora la capacidad de generar respaldos.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-5 text-sm">
-        <li>Inicio de la aplicación mucho más rápido.</li>
-        <li>Mejoras en el arranque y cierre de la aplicación.</li>
-        <li>Las cuentas ahora muestran la fecha de la operación que las originó.</li>
+        <li>Ahora puedes generar tus respaldos manuales de tu información..</li>
+        <li>Recupera tus datos desde un respaldo cuando lo necesites.</li>
+        <li>Ahora puedes recuperar tu información en una nueva instalación de RuizCacao Manager.</li>
+        <li>Mejoras de seguridad y estabilidad durante los procesos de respaldo y recuperación.</li>
       </ul>
       <button
         data-autofocus

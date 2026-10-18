@@ -22,7 +22,8 @@ export class RestaurarRespaldoSeguro {
     private readonly journal: RestoreJournal,
     private readonly promocion: DatabasePromotion,
     private readonly mantenimiento: RestoreMaintenance,
-    private readonly reportarRecuperacion: (e: unknown) => void = () => {}
+    private readonly reportarRecuperacion: (e: unknown) => void = () => {},
+    private readonly despuesConfirmar: () => void = () => {}
   ) {}
   async ejecutar(
     archivo: string,
@@ -71,6 +72,7 @@ export class RestaurarRespaldoSeguro {
       await this.promocion.promover(j, () => this.destino.validarFinal(p!))
       await this.mantenimiento.reconectar()
       await this.promocion.confirmar(j)
+      this.despuesConfirmar()
       seguro = true
       return {
         operation_id: j.operation_id,

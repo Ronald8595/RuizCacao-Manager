@@ -204,6 +204,20 @@ export class BaseLocal {
     if (this.exigirUsuario().rol !== 'administrador')
       throw new ErrorNegocio('Solo el administrador puede gestionar usuarios.')
   }
+  autorizarRespaldos(): string {
+    const usuario = this.exigirUsuario()
+    if (usuario.rol !== 'administrador')
+      throw new ErrorNegocio('No tienes permisos para realizar esta acción.')
+    return usuario.id
+  }
+  async confirmarAdministradorRespaldo(password: string): Promise<boolean> {
+    const id = this.autorizarRespaldos()
+    const usuario = this.exigirUsuario()
+    const validado = await this.comprobar(usuario.nombre, password)
+    return (
+      validado?.id === id && validado.rol === 'administrador' && this.autorizarRespaldos() === id
+    )
+  }
   private async aviso(
     db: PoolClient,
     titulo: string,

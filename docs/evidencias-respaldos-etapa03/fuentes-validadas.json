@@ -1,0 +1,98 @@
+{
+  "archivos": [
+    {
+      "sha256": "A25FFCEB5DC3BC0407EB12683F1F9B01027D48E08C0D2DE6C1E81F6253C3BFA0",
+      "archivo": "scripts/perfil-respaldos-login.tsx"
+    },
+    {
+      "sha256": "DD2A57C1605547F2D9CDE927EA7A03B17F3B7689CD1F1F21948EF6F662495013",
+      "archivo": "scripts/perfil-respaldos-ui.tsx"
+    },
+    {
+      "sha256": "5753BF0E1F60C85BE29F6A5BAC6FE2E7C732B45B5E6592E19B6AA80B18587669",
+      "archivo": "scripts/probar-respaldos-ui.cjs"
+    },
+    {
+      "sha256": "A70F26A6476A6CB06DC5B635153D72957377AED91D9576610A17470FAE4629CD",
+      "archivo": "src/main/database/base.ts"
+    },
+    {
+      "sha256": "4FA6B257164DC9D0F112B85FECB0CDEABDAD6C149537373B62C5619EEEFC3B36",
+      "archivo": "src/main/database/conexion.ts"
+    },
+    {
+      "sha256": "3E32E2C023774955F2116333724539E78577BD91D56ABFCB96CD08C6DDB1C91D",
+      "archivo": "src/main/database/respaldo-paquete.ts"
+    },
+    {
+      "sha256": "E34B1445A2B970A679D04297C1DA9CB9E8F7CA244F10AD5AF72EE50B96309CB3",
+      "archivo": "src/main/database/respaldo-storage.ts"
+    },
+    {
+      "sha256": "9004C99A9827C1CF126578904D83DCD0F04C2E938EEB21960ADCD4208BBDA3DD",
+      "archivo": "src/main/database/restore-caso.ts"
+    },
+    {
+      "sha256": "125E21EAE617A9A7D69CA2FD2E3518A4F16CD6E4DCB365CDF1C1C289562386B1",
+      "archivo": "src/main/index.ts"
+    },
+    {
+      "sha256": "2DD182883DC9F2ABF2487F32AA514370CE771EBCFFC38A048FC000CD7D919285",
+      "archivo": "src/main/respaldos-ipc.ts"
+    },
+    {
+      "sha256": "3D13937F71462FB80ECF78FBE86964036C5F3D55B20EDCB53B9B4418B4708851",
+      "archivo": "src/main/respaldos-servicio.ts"
+    },
+    {
+      "sha256": "F66E264B5E05816FD8067368D6EBAD00A99F2DF786B64C80C8C93F7F0FCDB9F6",
+      "archivo": "src/preload/index.d.ts"
+    },
+    {
+      "sha256": "37B5BCC810D89912E0CE2340BFB5702435E4A50F5D2752BEFF7F1FBBE429A1A1",
+      "archivo": "src/preload/index.ts"
+    },
+    {
+      "sha256": "4E08F36060066EC65756DDCB0B2D7C3AA985335C0E3AB4C68341F5E1E1332F38",
+      "archivo": "src/preload/respaldos.ts"
+    },
+    {
+      "sha256": "0F4AA4FC668B7F03CA36543CFAAD0D8F49AE74FFBA30F346BD20BDBCF57D7258",
+      "archivo": "src/renderer/src/App.tsx"
+    },
+    {
+      "sha256": "1B89D914A32EB082C45BA91505989583C36ED3FBB07299BBE774BDC521C3405B",
+      "archivo": "src/renderer/src/components/Sidebar.tsx"
+    },
+    {
+      "sha256": "18324F2A7F0C09EBF17E7B18E880E4643F6F1E45A6B8253ED2799D3B3EA6E638",
+      "archivo": "src/renderer/src/data/menu.ts"
+    },
+    {
+      "sha256": "67BB53D3A6B4E5B91B133124FCCA38285BA2417C52DE0927C9C3F2E6BF9E7C17",
+      "archivo": "src/renderer/src/pages/Respaldos.tsx"
+    },
+    {
+      "sha256": "A0734827506F3450AE74D754384E0D8A88195F0C11346EB401B9172A9E916A25",
+      "archivo": "src/renderer/src/types.ts"
+    },
+    {
+      "sha256": "D6AED570EA29D940C9996CE9D561AD0F5FB322DF4A8467A0404D726A5C6E5336",
+      "archivo": "src/shared/respaldos.ts"
+    },
+    {
+      "sha256": "AD4E17D4193425AD582ED135D2B7CF741D6EC8A1AE17C0D716CC22269EEAF6D8",
+      "archivo": "tests/respaldos-ipc.cjs"
+    },
+    {
+      "sha256": "E7BC42747D921BC4FE0751D405381B3135609720782B26496218B91043C2AE20",
+      "archivo": "tests/respaldos-producto.cjs"
+    },
+    {
+      "sha256": "2FC85B46504EC8EC963A6A37FAA75D0F83F87586BDC3D55AD27424DF9F11B3B6",
+      "archivo": "tests/run.cjs"
+    }
+  ],
+  "fecha": "2026-10-17T06:43:04.9847449-05:00",
+  "rama": "feature/respaldos-restauracion"
+}

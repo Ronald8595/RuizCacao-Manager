@@ -1,0 +1,5 @@
+{
+  "comando": "node tests/respaldo-portable.cjs",
+  "codigo": 0,
+  "finalizado": "2026-10-17T13:11:27.8415829-05:00"
+}

@@ -1,0 +1,1 @@
+OK IPC: permisos, canales/payload/IDs, rutas opacas, concurrencia, contraseña, cancelación real, fase crítica, reinicio, limpieza y preload sin listeners residuales; cero datos binarios/Snapshot

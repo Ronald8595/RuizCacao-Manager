@@ -1,0 +1,69 @@
+{
+  "fecha": "2026-10-17",
+  "rama": "feature/respaldos-restauracion",
+  "implementado": "SI",
+  "totales_equivalentes": "SI",
+  "snapshot_modificado": "NO",
+  "migracion_011": "NO",
+  "clasificacion_aprobada": "Tres productos y Sin producto de origen cuando exista importe; su suma conserva los totales históricos.",
+  "pruebas": {
+    "financiera": {
+      "comando": "node tests/desglose-financiero.cjs",
+      "codigo": 0,
+      "grupos": 5,
+      "log": "prueba.txt",
+      "resultado": "resultado.json",
+      "motor_temporal_cerrado": true
+    },
+    "typecheck": {
+      "codigo": 0,
+      "log": "typecheck.txt"
+    },
+    "lint": {
+      "codigo": 0,
+      "errores": 0,
+      "advertencias": 850,
+      "log": "lint.txt"
+    },
+    "diff_check": {
+      "codigo": 0,
+      "log": "diff-check.txt"
+    }
+  },
+  "archivos": [
+    "src/main/database/listados.ts",
+    "src/shared/listados.ts",
+    "src/renderer/src/utils/reportes.ts",
+    "src/renderer/src/utils/reportePdf.ts",
+    "src/renderer/src/components/reportes/ReporteDiario.tsx",
+    "scripts/verificar-etapa04.cjs",
+    "tests/finanzas-oraculo.cjs",
+    "tests/desglose-financiero.cjs",
+    "docs/Informe_Desglose_Financiero_Productos_v1.3.0.md"
+  ],
+  "sin_cambios": [
+    "fórmulas de totales y saldo",
+    "reglas comerciales",
+    "SQL001–010",
+    "Snapshot",
+    "paginación SQL",
+    "carga de todas las filas del PDF"
+  ],
+  "no_ejecutado": [
+    "suite PostgreSQL general",
+    "pruebas visuales completas",
+    "capturas",
+    "perfiles pesados",
+    "build",
+    "commit",
+    "push",
+    "seed"
+  ],
+  "riesgos": [
+    "Aceptación visual manual pendiente del PDF impreso, saltos de página, ventana reducida y zoom.",
+    "Productos futuros requieren ampliar el desglose.",
+    "850 advertencias de lint, sin errores."
+  ],
+  "informe": "docs/Informe_Desglose_Financiero_Productos_v1.3.0.md",
+  "siguiente_paso": "Ejecutar las 12 comprobaciones manuales del informe, con operaciones de prueba solo en una copia aislada."
+}

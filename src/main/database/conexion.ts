@@ -10,10 +10,16 @@ import { PostgresLocal, localizarPostgres } from './postgres-local'
 import type { ConexionLocal, EstadoAcceso } from '../../shared/persistencia'
 import { operacionesRespaldos } from './operacion-respaldo'
 import type { RestaurarRespaldoSeguro } from './restore-caso'
+import type { RestoreWorkspace } from './restore-workspace'
 let base: BaseLocal | null = null
 let local: PostgresLocal | null = null
 let errorInicio = ''
 let mantenimiento = false
+let reinicioRestore = false
+export function bloquearHastaReinicioRestore(): void {
+  reinicioRestore = true
+  mantenimiento = true
+}
 let configActual: ConexionLocal | undefined
 export function obtenerBase(): BaseLocal {
   if (mantenimiento) throw new ErrorNegocio('Se está cargando un respaldo. Espera a que termine.')
@@ -120,13 +126,66 @@ export async function cerrarPersistencia(): Promise<void> {
   operacionesRespaldos.cancelarAlCerrar()
   await operacionesRespaldos.esperar()
   if (base) {
-    await base.cerrar()
+    if (reinicioRestore) await base.desconectarParaRestauracion()
+    else await base.cerrar()
     base = null
   }
   if (local) await local.detener()
 }
-// Composición interna de Main; NO hay canal IPC ni entrada Renderer en esta etapa.
-export async function crearRestauradorInterno(): Promise<RestaurarRespaldoSeguro> {
+export async function crearWorkspaceRestoreInterno(): Promise<RestoreWorkspace> {
+  if (!local || !base || !configActual)
+    throw new ErrorNegocio(
+      'Modo de PostgreSQL externo no soporta restauración automática de producto en esta versión.'
+    )
+  const { WorkspaceRestorePostgres } = await import('./restore-workspace')
+  return new WorkspaceRestorePostgres({
+    raiz: join(app.getPath('userData'), 'restore-workspaces'),
+    binarios: await localizarPostgres(process.resourcesPath),
+    cifrar: (s) => safeStorage.encryptString(s),
+    descifrar: (b) => safeStorage.decryptString(b)
+  })
+}
+export async function crearGeneradorInterno(
+  archivo: string,
+  alPublicar: () => void
+): Promise<import('./respaldo-portable').GenerarRespaldoPortable> {
+  const activa = obtenerBase()
+  activa.autorizarRespaldos()
+  if (!configActual) throw new ErrorNegocio('El almacenamiento no está disponible.')
+  const [
+    { GenerarRespaldoPortable },
+    { ExportadorRespaldoPostgres },
+    { PaqueteRespaldoZip },
+    { AlmacenRespaldoLocal },
+    { dirname, basename }
+  ] = await Promise.all([
+    import('./respaldo-portable'),
+    import('./respaldo-postgres'),
+    import('./respaldo-paquete'),
+    import('./respaldo-storage'),
+    import('node:path')
+  ])
+  const binarios = await localizarPostgres(process.resourcesPath)
+  return new GenerarRespaldoPortable(
+    new ExportadorRespaldoPostgres(
+      new Respaldos(configActual, binarios, join(app.getPath('userData'), 'backups')),
+      activa.pool
+    ),
+    new PaqueteRespaldoZip(),
+    new AlmacenRespaldoLocal(dirname(archivo), join(app.getPath('userData'), 'backup-workspaces'), {
+      nombreArchivo: basename(archivo),
+      alPublicar
+    }),
+    async () => {
+      activa.autorizarRespaldos()
+    },
+    app.getVersion()
+  )
+}
+// La preparación validada se inyecta desde Main; jamás desde Renderer.
+export async function crearRestauradorInterno(
+  preparado?: RestoreWorkspace
+): Promise<RestaurarRespaldoSeguro> {
   if (!local || !base || !configActual)
     throw new ErrorNegocio(
       'Modo de PostgreSQL externo no soporta restauración automática de producto en esta versión.'
@@ -156,12 +215,13 @@ export async function crearRestauradorInterno(): Promise<RestaurarRespaldoSeguro
     }
   )
   const caso = new RestaurarRespaldoSeguro(
-    new WorkspaceRestorePostgres({
-      raiz: join(app.getPath('userData'), 'restore-workspaces'),
-      binarios,
-      cifrar: (s) => safeStorage.encryptString(s),
-      descifrar: (b) => safeStorage.decryptString(b)
-    }),
+    preparado ??
+      new WorkspaceRestorePostgres({
+        raiz: join(app.getPath('userData'), 'restore-workspaces'),
+        binarios,
+        cifrar: (s) => safeStorage.encryptString(s),
+        descifrar: (b) => safeStorage.decryptString(b)
+      }),
     destino,
     journal,
     new PromocionPostgres((fn) => motor.conAdministracionRestauracion(fn), journal),
@@ -180,11 +240,14 @@ export async function crearRestauradorInterno(): Promise<RestaurarRespaldoSeguro
         if (!base) await conectar(config)
       },
       salir: (seguro) => {
-        mantenimiento = !seguro
+        mantenimiento = reinicioRestore || !seguro
       }
     },
     (error) => {
       traducirError(error, { modulo: 'respaldos', operacion: 'recuperar_carga' })
+    },
+    () => {
+      if (preparado) bloquearHastaReinicioRestore()
     }
   )
   const ejecutar = caso.ejecutar.bind(caso)

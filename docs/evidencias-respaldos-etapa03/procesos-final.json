@@ -1,0 +1,13 @@
+{
+  "fecha": "2026-10-17T13:14:16.4680701-05:00",
+  "procesos_de_pruebas": [],
+  "consulta": "Win32_Process y Win32_Service, solo lectura",
+  "servicio_ajeno_excluido": {
+    "estado": "Running",
+    "nombre": "postgresql-x64-18",
+    "ruta": "\"C:\\Program Files\\PostgreSQL\\18\\bin\\pg_ctl.exe\" runservice -N \"postgresql-x64-18\" -D \"C:\\Program Files\\PostgreSQL\\18\\data\" -w",
+    "pid": 4212
+  },
+  "postgres_herramientas_fuera_del_servicio": [],
+  "propios_residuales": 0
+}

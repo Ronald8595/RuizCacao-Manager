@@ -1,4 +1,5 @@
 import type { ApiPersistencia } from '../shared/persistencia'
+import type { ApiRespaldos } from '../shared/respaldos'
 
 declare global {
   interface Window {
@@ -12,6 +13,7 @@ declare global {
         ) => void
       }
       datos: ApiPersistencia
+      respaldos: ApiRespaldos
       copiarTexto: (texto: string) => Promise<boolean>
       generarReportePDF: (
         html: string,

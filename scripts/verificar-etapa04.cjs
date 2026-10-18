@@ -9,6 +9,7 @@ const { consultarHistorialCompras, consultarHistorialVentas } = load(
 const { consultarHistorialStock } = load(root + '/src/main/database/historial-stock.ts')
 const { resumirPeriodo } = load(root + '/src/renderer/src/utils/reportes.ts')
 const { documentoReporte } = load(root + '/src/renderer/src/utils/reportePdf.ts')
+const { conProductos } = require('../tests/finanzas-oraculo.cjs')
 async function paginas(db, modulo, f, limite, esperadas) {
   let cursor = null,
     filas = [],
@@ -51,12 +52,13 @@ async function verificarEquivalencia(db, d, { completo = true } = {}) {
     const q = performance.now(),
       nuevo = await consultarListado(db, 'reportePeriodo', f),
       msNuevo = performance.now() - q
-    const { filas, ...totales } = viejo
+    const esperado = conProductos(d, viejo)
+    const { filas, ...totales } = esperado
     assert.deepEqual(nuevo.resumen, totales)
     assert.equal(nuevo.total, filas.length)
     await paginas(db, 'reportePeriodo', f, 50, filas)
     const exportado = await reporteCompleto(db, f, tipo),
-      htmlViejo = documentoReporte(viejo, tipo)
+      htmlViejo = documentoReporte(esperado, tipo)
     // Solo fecha/hora de emisión depende del reloj; el resto de HTML debe ser idéntico.
     const limpiar = (s) => s.replace(/Generado: [^<]*/g, 'Generado: FECHA')
     assert.equal(limpiar(exportado.html), limpiar(htmlViejo.html))

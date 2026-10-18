@@ -1,7 +1,8 @@
 import type { Cuenta, Gasto } from '../renderer/src/types'
 import type { ResumenFinanciero, FilaFinanciera } from '../renderer/src/utils/reportes'
 export const LIMITES_PAGINA = [10, 15, 25, 50] as const
-export type LimitePagina = (typeof LIMITES_PAGINA)[number]
+export const LIMITES_PAGINA_REPORTE = [...LIMITES_PAGINA, 100] as const
+export type LimitePagina = (typeof LIMITES_PAGINA_REPORTE)[number]
 export interface FiltroListado {
   desde?: string
   hasta?: string
@@ -19,7 +20,19 @@ export interface PaginaListado<T> {
 }
 export type FilaCombinada = Cuenta & { titular: string }
 export type FilaGasto = Gasto & { anulada: boolean }
-export type TotalesFinancieros = Omit<ResumenFinanciero, 'filas'>
+export const PRODUCTOS_REPORTE = ['Cacao en Baba', 'Cacao Seco', 'Maracuyá'] as const
+export const SIN_PRODUCTO_REPORTE = 'Sin producto de origen'
+export interface ImportesProducto {
+  ingresos: number
+  pagosCompras: number
+}
+export type DesgloseProductos = Record<
+  (typeof PRODUCTOS_REPORTE)[number] | typeof SIN_PRODUCTO_REPORTE,
+  ImportesProducto
+>
+export type TotalesFinancieros = Omit<ResumenFinanciero, 'filas'> & {
+  desgloseProductos: DesgloseProductos
+}
 export interface PaginaReporte extends PaginaListado<FilaFinanciera> {
   resumen: TotalesFinancieros
 }

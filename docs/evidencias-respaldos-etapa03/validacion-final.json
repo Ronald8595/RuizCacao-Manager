@@ -1,0 +1,187 @@
+{
+  "fecha": "2026-10-17",
+  "rama": "feature/respaldos-restauracion",
+  "etapa_03_completada": "SI",
+  "pagina_respaldos": "OK",
+  "solo_administrador": "SI",
+  "ipc_tipado": "OK",
+  "generar_respaldo": "OK",
+  "cargar_respaldo": "OK",
+  "validacion_previa": "OK",
+  "confirmacion_admin": "OK",
+  "progreso_fases": "OK",
+  "cancelar_backup": "OK",
+  "cancelar_restore": "OK",
+  "fase_critica_protegida": "OK",
+  "reinicio_post_restore": "OK",
+  "termina_en_login": "SI",
+  "login_con_password_original": "OK",
+  "renderer_responsive": "SI",
+  "strict_mode": "OK",
+  "accesibilidad": "OK",
+  "snapshot_usado": "NO",
+  "polling": "NO",
+  "timers_permanentes": "NO",
+  "alcance_ausencias": "Módulo Respaldos; arneses de prueba tienen instrumentación acotada.",
+  "consultas_comerciales_al_montar": 0,
+  "listeners_residuales": 0,
+  "procesos_propios_residuales": 0,
+  "consulta_procesos": "procesos-final.json",
+  "fecha_consulta_procesos": "2026-10-17T13:14:16-05:00",
+  "servicio_ajeno_preservado": "postgresql-x64-18 PID4212 y descendientes; anterior a las pruebas",
+  "pruebas": {
+    "typecheck": {
+      "codigo": 0,
+      "log": "typecheck-cierre.txt"
+    },
+    "lint": {
+      "codigo": 0,
+      "errores": 0,
+      "advertencias": 850,
+      "log": "lint-cierre.txt"
+    },
+    "db_test": {
+      "codigo": 0,
+      "sesion": 17924,
+      "estado": "finalizada",
+      "log": "db-test-cierre.txt",
+      "resultado": "db-test-cierre-resultado.json",
+      "raiz_fixture": "ruizcacao-tests-YPhZqP"
+    },
+    "respaldo_portable": {
+      "codigo": 0,
+      "casos": 22,
+      "log": "portable-cierre.txt",
+      "resultado": "portable-cierre-resultado.json",
+      "intento_sandbox": {
+        "codigo": 1,
+        "causa": "Sandbox Windows bloqueó rename de archivo temporal",
+        "log": "portable-cierre-sandbox.txt"
+      },
+      "repeticion": "Autorizada fuera del sandbox, sin cambios de código"
+    },
+    "respaldo_portabilidad": {
+      "codigo": 0,
+      "log": "portabilidad-cierre.txt",
+      "resultado": "portabilidad-cierre-resultado.json",
+      "evidencia": "portabilidad-independiente.json",
+      "raiz_fixture": "ruizcacao-portable-9gOTbI",
+      "casos": [
+        "pequeno",
+        "grande"
+      ],
+      "tablas_identicas_por_caso": 25
+    },
+    "contratos_ipc": {
+      "codigo": 0,
+      "log": "ipc-cierre.txt",
+      "adicionales": [
+        "limpieza única en cancelación/cierre concurrentes",
+        "reinicio único",
+        "revocación de permisos libera preparación",
+        "sesión revisada después de validar",
+        "mensajes seguros de daño"
+      ]
+    },
+    "git_diff_check": {
+      "codigo": 0,
+      "log": "diff-check.txt"
+    },
+    "restore_suite": {
+      "codigo": 0,
+      "comprobaciones": 32,
+      "fallos_inyectados": 16,
+      "evidencia": "restore-suite-cierre.json"
+    },
+    "startup": {
+      "codigo": 0,
+      "estados": 6,
+      "evidencia": "restore-startup-cierre.json"
+    }
+  },
+  "evidencia_previa_conservada": {
+    "ui": {
+      "codigo": 0,
+      "capturas": 39,
+      "viewports": [
+        "1440x900@100%",
+        "800x600@100%",
+        "1000x750@125%"
+      ],
+      "resultado": "visual/resultados.json",
+      "repetida": false
+    },
+    "producto": {
+      "codigo": 0,
+      "resultado": "producto.json",
+      "reinicio": "reinicio-producto.json",
+      "captura_login": "login-reinicio.png",
+      "repetida": false,
+      "limite": "Proceso nuevo real con callback observable del arnés; no instalador/app.relaunch empaquetado"
+    },
+    "rendimiento_ipc": {
+      "resultado": "rendimiento-ipc.json",
+      "repetido": false,
+      "max_evento_bytes": 94
+    },
+    "db_test_anterior": {
+      "log": "db-test.txt",
+      "estado": "Todas las suites hijas completadas; código shell anterior no recuperado. Sustituido por cierre observado código0."
+    }
+  },
+  "archivos_produccion_pruebas": [
+    "src/main/database/base.ts",
+    "src/main/database/conexion.ts",
+    "src/main/database/respaldo-paquete.ts",
+    "src/main/database/respaldo-storage.ts",
+    "src/main/database/restore-caso.ts",
+    "src/main/index.ts",
+    "src/main/respaldos-servicio.ts",
+    "src/main/respaldos-ipc.ts",
+    "src/preload/index.ts",
+    "src/preload/index.d.ts",
+    "src/preload/respaldos.ts",
+    "src/shared/respaldos.ts",
+    "src/renderer/src/App.tsx",
+    "src/renderer/src/components/Sidebar.tsx",
+    "src/renderer/src/data/menu.ts",
+    "src/renderer/src/types.ts",
+    "src/renderer/src/pages/Respaldos.tsx",
+    "tests/run.cjs",
+    "tests/respaldos-ipc.cjs",
+    "tests/respaldos-producto.cjs",
+    "scripts/probar-respaldos-ui.cjs",
+    "scripts/perfil-respaldos-ui.tsx",
+    "scripts/perfil-respaldos-login.tsx"
+  ],
+  "documentos": [
+    "docs/Informe_Respaldos_Etapa03_UI_IPC_v1.3.0.md",
+    "docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md"
+  ],
+  "evidencias": [
+    "docs/evidencias-respaldos-etapa03/",
+    "docs/evidencias-pgctl/regresion-1792197895719.json",
+    "docs/evidencias-pgctl/regresion-1792238392902.json"
+  ],
+  "artefacto_generado_eliminado": ".eslintcache por lint --no-cache; estado recibido conservado",
+  "fuentes": "fuentes-validadas.json: 23 archivos SHA-256, sin cambios posteriores a validación",
+  "restricciones": {
+    "base_comercial_usada": false,
+    "db_seed_performance": false,
+    "migracion_011": false,
+    "sql_001_010_modificado": false,
+    "build": false,
+    "commit": false,
+    "push": false,
+    "merge": false,
+    "tag": false,
+    "etapa04_iniciada": false
+  },
+  "riesgos_residuales": [
+    "Publicación requiere hardlinks; FAT/exFAT y sincronizadores reales pendientes de aceptación.",
+    "Windows limpio, otro SID/PC, instalador, app.relaunch empaquetado y cortes físicos pendientes de su etapa.",
+    "Diálogos nativos interceptados en integración automatizada; aceptación manual del selector del sistema pendiente.",
+    "Lint: 850 advertencias, 0 errores."
+  ],
+  "siguiente_paso_exacto": "Revisión humana del diff y evidencias; esperar autorización para Etapa04 Primera instalación y recuperación (Crear usuario nuevo / Cargar respaldo). No iniciar más trabajo en esta etapa."
+}

@@ -1,0 +1,12 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-desglose-XgbYBB",
+  "comprobaciones": [
+    "Pago inicial y abonos por fecha/producto; conversión baba-seco no reclasifica compras; totales históricos idénticos",
+    "Paginación SQL y PDF diario/semanal/mensual completos, con desglose y Producto; fila sin origen oculta si cero",
+    "Compras y ventas anuladas excluyen pago inicial y abonos sin alterar gastos",
+    "Cuenta manual conserva total y se identifica sin atribuir un producto arbitrario",
+    "Periodo vacío y categorías sin movimientos devuelven cero"
+  ],
+  "exito": true,
+  "motorCerrado": true
+}

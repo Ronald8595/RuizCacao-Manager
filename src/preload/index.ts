@@ -1,4 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import { apiRespaldos } from './respaldos'
 import type { ApiPersistencia, Respuesta } from '../shared/persistencia'
 const perfilActivo = process.argv.includes('--rcm-perfil-arranque')
 const marcaPerfil = (nombre: string, detalle?: Record<string, string | number | boolean>): void => {
@@ -71,6 +72,7 @@ const api = {
       }
     : {}),
   datos,
+  respaldos: apiRespaldos(ipcRenderer),
   copiarTexto: (texto: string): Promise<boolean> =>
     ipcRenderer.invoke('sistema:copiar-texto', texto).then(Boolean, () => false),
   generarReportePDF: async (html: string, nombreArchivo: string, onGenerado?: () => void) => {

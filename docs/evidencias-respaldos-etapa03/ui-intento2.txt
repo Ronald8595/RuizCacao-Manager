@@ -1,0 +1,8 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+false !== true
+
+    at main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\scripts\probar-respaldos-ui.cjs:131:14)

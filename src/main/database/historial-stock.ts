@@ -59,7 +59,10 @@ function posicion(value: unknown): value is Posicion {
     BigInt(p.orden) <= 9223372036854775807n
   )
 }
-export function validarFiltroStock(input: FiltroHistorialStock): Filtro {
+export function validarFiltroStock(
+  input: FiltroHistorialStock,
+  limitesPermitidos: readonly number[] = [10, 15, 25, 50]
+): Filtro {
   if (!input || typeof input !== 'object' || Array.isArray(input)) return fallo()
   if (
     Object.keys(input).some(
@@ -68,7 +71,7 @@ export function validarFiltroStock(input: FiltroHistorialStock): Filtro {
   )
     return fallo()
   const limite = input.limite ?? TAMANO_PAGINA_STOCK
-  if (![10, 15, 25, 50].includes(limite)) return fallo()
+  if (!limitesPermitidos.includes(limite)) return fallo()
   const desde = fecha(input.desde),
     hasta = fecha(input.hasta)
   if (desde && hasta && desde > hasta) return fallo()

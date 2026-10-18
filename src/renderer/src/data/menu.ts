@@ -6,6 +6,7 @@ import {
   TrendingDown,
   ClipboardList,
   Users,
+  Archive,
   type LucideIcon
 } from 'lucide-react'
 
@@ -33,5 +34,6 @@ export const menuItems: MenuItem[] = [
   { id: 'consultas', label: 'Consultas y Reportes', icon: ClipboardList },
   { id: 'empleados', label: 'Empleados', icon: Users },
   { id: 'clientes', label: 'Clientes y Proveedores', icon: Users },
-  { id: 'usuarios', label: 'Usuarios', icon: Users }
+  { id: 'usuarios', label: 'Usuarios', icon: Users },
+  { id: 'respaldos', label: 'Respaldos', icon: Archive }
 ]

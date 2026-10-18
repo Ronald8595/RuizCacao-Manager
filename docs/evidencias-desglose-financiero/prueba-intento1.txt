@@ -1,0 +1,6 @@
+OK Pago inicial y abonos por fecha/producto; conversión baba-seco no reclasifica compras; totales históricos idénticos
+OK Paginación SQL y PDF diario/semanal/mensual completos, con desglose y Producto; fila sin origen oculta si cero
+OK Compras y ventas anuladas excluyen pago inicial y abonos sin alterar gastos
+TypeError: Cannot read properties of null (reading 'id')
+    at main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\desglose-financiero.cjs:216:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)

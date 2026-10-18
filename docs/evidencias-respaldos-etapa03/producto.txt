@@ -1,0 +1,29 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+(electron) 'console-message' arguments are deprecated and will be removed. Please use Event<WebContentsConsoleMessageEventParams> object instead.
+OK producto operador rechazado por Main y administrador autorizado
+OK producto cancelar ambos diálogos no inicia herramientas
+Error occurred in handler for 'respaldos:exec': Error: No handler registered for 'respaldos:exec'
+    at Session.<anonymous> (node:electron/js2c/browser_init:2:123930)
+    at Session.emit (node:events:514:28)
+OK producto IPC real: canal desconocido, payload/ruta arbitraria y otro emisor rechazados
+OK producto backup pequeño publicado/verificado y nombre elegido
+OK producto backup grande mediante IPC real
+OK producto cancelación real export/hash, sin final parcial ni hijos
+OK producto producto/formato/schema futuro, archivo dañado y disco insuficiente conservan activa
+OK producto preparación privada inmutable, password incorrecta, restore grande, cancelación crítica rechazada y acceso bloqueado hasta reinicio
+
+[8196:1016/193241.533:ERROR:net\disk_cache\cache_util_win.cc:25] Unable to move the cache: Acceso denegado. (0x5)
+[8196:1016/193241.534:ERROR:net\disk_cache\cache_util_win.cc:25] Unable to move the cache: Acceso denegado. (0x5)
+[8196:1016/193241.534:ERROR:net\disk_cache\cache_util_win.cc:25] Unable to move the cache: Acceso denegado. (0x5)
+[8196:1016/193241.534:ERROR:net\disk_cache\disk_cache.cc:290] Unable to create cache
+[8196:1016/193241.534:ERROR:gpu\ipc\host\gpu_disk_cache.cc:737] Gpu Cache Creation failed: -2
+[8196:1016/193241.534:ERROR:net\disk_cache\disk_cache.cc:290] Unable to create cache
+[8196:1016/193241.534:ERROR:gpu\ipc\host\gpu_disk_cache.cc:737] Gpu Cache Creation failed: -2
+[8196:1016/193241.534:ERROR:net\disk_cache\disk_cache.cc:290] Unable to create cache
+[8196:1016/193241.534:ERROR:gpu\ipc\host\gpu_disk_cache.cc:737] Gpu Cache Creation failed: -2
+(electron) 'console-message' arguments are deprecated and will be removed. Please use Event<WebContentsConsoleMessageEventParams> object instead.
+7:32:45 p.m. [vite] (client) Re-optimizing dependencies because vite config has changed
+OK producto nuevo proceso: journal resuelto, UI Login real y contraseña original
+OK producto Continuar dispara cierre técnico y reapertura en proceso nuevo hasta Login

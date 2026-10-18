@@ -1,0 +1,5 @@
+{
+  "comando": "node tests/desglose-financiero.cjs",
+  "codigo": 0,
+  "finalizado": "2026-10-17T17:25:51.9192404-05:00"
+}

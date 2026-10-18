@@ -1,0 +1,137 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-uiipc-fjgGeD",
+  "pruebas": [
+    "operador rechazado por Main y administrador autorizado",
+    "cancelar ambos diálogos no inicia herramientas",
+    "IPC real: canal desconocido, payload/ruta arbitraria y otro emisor rechazados",
+    "backup pequeño publicado/verificado y nombre elegido",
+    "backup grande mediante IPC real",
+    "cancelación real export/hash, sin final parcial ni hijos",
+    "producto/formato/schema futuro, archivo dañado y disco insuficiente conservan activa",
+    "preparación privada inmutable, password incorrecta, restore grande, cancelación crítica rechazada y acceso bloqueado hasta reinicio",
+    "Continuar dispara cierre técnico y reapertura en proceso nuevo hasta Login"
+  ],
+  "perfiles": [
+    {
+      "nombre": "RuizCacao_2026-10-16_12-00",
+      "ms": 626.1442999999999,
+      "cpu": {
+        "user": 187000,
+        "system": 15000
+      },
+      "eventos": [
+        {
+          "operacionId": "36bb5885-46e1-4ebb-96d6-ea8fa35c1c60",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "36bb5885-46e1-4ebb-96d6-ea8fa35c1c60",
+          "fase": "exportando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "36bb5885-46e1-4ebb-96d6-ea8fa35c1c60",
+          "fase": "verificando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "36bb5885-46e1-4ebb-96d6-ea8fa35c1c60",
+          "fase": "guardando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "36bb5885-46e1-4ebb-96d6-ea8fa35c1c60",
+          "fase": "finalizando",
+          "cancelable": false
+        }
+      ],
+      "ipc_max_bytes": 94
+    },
+    {
+      "nombre": "RuizCacao_2026-10-16_12-01",
+      "ms": 1312.0412999999971,
+      "cpu": {
+        "user": 266000,
+        "system": 141000
+      },
+      "eventos": [
+        {
+          "operacionId": "116582d9-f84b-40a8-96cb-a2af1f3a059a",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "116582d9-f84b-40a8-96cb-a2af1f3a059a",
+          "fase": "exportando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "116582d9-f84b-40a8-96cb-a2af1f3a059a",
+          "fase": "verificando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "116582d9-f84b-40a8-96cb-a2af1f3a059a",
+          "fase": "guardando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "116582d9-f84b-40a8-96cb-a2af1f3a059a",
+          "fase": "finalizando",
+          "cancelable": false
+        }
+      ],
+      "ipc_max_bytes": 94
+    },
+    {
+      "nombre": "cancelado-export",
+      "ms": 199.21570000000065,
+      "cpu": {
+        "user": 15000,
+        "system": 16000
+      },
+      "eventos": [
+        {
+          "operacionId": "1e9700f2-a591-42a8-8e35-5d1898de4e76",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "1e9700f2-a591-42a8-8e35-5d1898de4e76",
+          "fase": "exportando",
+          "cancelable": true
+        }
+      ],
+      "ipc_max_bytes": 92
+    },
+    {
+      "nombre": "cancelado-hash",
+      "ms": 1114.4909000000043,
+      "cpu": {
+        "user": 16000,
+        "system": 0
+      },
+      "eventos": [
+        {
+          "operacionId": "1b8e1a51-0cb8-4337-be8d-0b885b4ad844",
+          "fase": "preparando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "1b8e1a51-0cb8-4337-be8d-0b885b4ad844",
+          "fase": "exportando",
+          "cancelable": true
+        },
+        {
+          "operacionId": "1b8e1a51-0cb8-4337-be8d-0b885b4ad844",
+          "fase": "verificando",
+          "cancelable": true
+        }
+      ],
+      "ipc_max_bytes": 93
+    }
+  ],
+  "exito": true,
+  "hijos": 0
+}

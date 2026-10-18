@@ -1,0 +1,9 @@
+{
+  "estado": {
+    "configurada": true,
+    "administradorExiste": true,
+    "autenticado": false
+  },
+  "login": true,
+  "procesoNuevo": 8196
+}

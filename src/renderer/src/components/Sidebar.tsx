@@ -13,7 +13,7 @@ interface SidebarProps {
 
 function Sidebar({ activePage, onNavigate, collapsed, onToggle }: SidebarProps): React.JSX.Element {
   const { usuarioActual } = useAppData()
-  const items = menuItems.filter((item) => item.id !== 'usuarios' || usuarioActual?.rol === 'administrador')
+  const items = menuItems.filter((item) => !['usuarios', 'respaldos'].includes(item.id) || usuarioActual?.rol === 'administrador')
   return (
     <aside
       className={[

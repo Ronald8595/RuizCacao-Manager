@@ -8,6 +8,7 @@ import { writeFile } from 'fs/promises'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import { iniciarPersistencia, cerrarPersistencia, obtenerBase } from './database/conexion'
 import { registrarPersistenciaIPC } from './database/ipc'
+import { registrarRespaldosIPC } from './respaldos-ipc'
 import icon from '../../resources/icon.png?asset'
 
 app.setName('RuizCacao Manager')
@@ -61,6 +62,13 @@ function createWindow(): void {
     })
   }
   registrarPersistenciaIPC(mainWindow)
+  const respaldos = registrarRespaldosIPC(mainWindow, async () => {
+    await cerrarPersistencia()
+    app.relaunch()
+    cierreAutorizado = true
+    mainWindow.destroy()
+    app.quit()
+  })
   mainWindow.on('close', async (event) => {
     if (cierreAutorizado) return
     event.preventDefault()
@@ -81,6 +89,7 @@ function createWindow(): void {
       return
     }
     try {
+      await respaldos.cerrar()
       await cerrarPersistencia()
       cierreAutorizado = true
       mainWindow.destroy()

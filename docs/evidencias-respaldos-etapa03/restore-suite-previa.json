@@ -1,0 +1,474 @@
+{
+  "fecha": "2026-10-17T00:34:51.712Z",
+  "pruebas": [
+    "modo externo o sin control privado rechazado antes de acceder a datos",
+    "inactivo no inicia herramientas ni operaciones",
+    "cancelación backup durante proceso, hash y empaquetado",
+    "históricos 1 a 9 migran sin sesiones ni efectos de jornada",
+    "rechazo futuro mantiene activa intacta",
+    "rechazo discordante mantiene activa intacta",
+    "rechazo objeto mantiene activa intacta",
+    "rechazo hueco mantiene activa intacta",
+    "schema10, datos, identidad nueva, sesiones, solicitudes y login",
+    "fallo preparando_restore conserva original recuperable",
+    "fallo restaurando_staging conserva original recuperable",
+    "fallo migrando_staging conserva original recuperable",
+    "fallo normalizando conserva original recuperable",
+    "fallo restaurando_candidata conserva original recuperable",
+    "fallo candidata_validada conserva original recuperable",
+    "fallo antes_mantenimiento conserva original recuperable",
+    "fallo antes_pre_restauracion conserva original recuperable",
+    "fallo despues_pre_restauracion conserva original recuperable",
+    "fallo antes_promocion conserva original recuperable",
+    "fallo pool_cerrado conserva original recuperable",
+    "fallo antes_renombrar_original conserva original recuperable",
+    "fallo original_renombrada conserva original recuperable",
+    "fallo candidata_promovida conserva original recuperable",
+    "fallo validacion_final conserva original recuperable",
+    "fallo validada conserva original recuperable",
+    "cancelación restore previa a promoción mantiene activa",
+    "confirmación rechazada y cierre cancelable no promueven",
+    "restore grande conserva todas las filas comerciales",
+    "pre_restauracion existe y es verificable",
+    "backup máximo uno, exclusión de promoción y cierre crítico",
+    "schema4→10 conserva contraseña y login principal",
+    "startup con journal confirmado conserva base y login"
+  ],
+  "perfiles": [
+    {
+      "nombre": "inactivo",
+      "total_ms": 1508.4223,
+      "cpu_main_ms": 0,
+      "cpu_main_porcentaje": 0,
+      "rss_antes": 143355904,
+      "rss_pico": 143421440,
+      "rss_despues": 143486976,
+      "fases": [],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "backup_pequeno",
+      "total_ms": 574.509,
+      "cpu_main_ms": 31,
+      "cpu_main_porcentaje": 5.395911987453634,
+      "rss_antes": 158363648,
+      "rss_pico": 158580736,
+      "rss_despues": 159182848,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 179.95700000000033
+        },
+        {
+          "fase": "exportando",
+          "ms": 370.0535
+        },
+        {
+          "fase": "hash",
+          "ms": 3.640799999999217
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 6.048500000000786
+        },
+        {
+          "fase": "verificando",
+          "ms": 4.571599999999307
+        },
+        {
+          "fase": "guardando",
+          "ms": 9.70890000000145
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "backup_grande",
+      "total_ms": 1046.969799999999,
+      "cpu_main_ms": 78,
+      "cpu_main_porcentaje": 7.450071625752727,
+      "rss_antes": 286326784,
+      "rss_pico": 298811392,
+      "rss_despues": 305205248,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 41.79869999999937
+        },
+        {
+          "fase": "exportando",
+          "ms": 952.8790000000008
+        },
+        {
+          "fase": "hash",
+          "ms": 6.909899999998743
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 15.047200000000885
+        },
+        {
+          "fase": "verificando",
+          "ms": 9.289499999998952
+        },
+        {
+          "fase": "guardando",
+          "ms": 20.83350000000064
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "cancelar_backup_exportando",
+      "total_ms": 43.465400000000955,
+      "cpu_main_ms": 16,
+      "cpu_main_porcentaje": 36.810888660865075,
+      "rss_antes": 305205248,
+      "rss_pico": 305283072,
+      "rss_despues": 305283072,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 35.33569999999963
+        },
+        {
+          "fase": "exportando",
+          "ms": 7.90230000000156
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "cancelar_backup_hash",
+      "total_ms": 823.7750000000015,
+      "cpu_main_ms": 15,
+      "cpu_main_porcentaje": 1.8208855573427176,
+      "rss_antes": 305283072,
+      "rss_pico": 305287168,
+      "rss_despues": 305410048,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 32.8775999999998
+        },
+        {
+          "fase": "exportando",
+          "ms": 787.995600000002
+        },
+        {
+          "fase": "hash",
+          "ms": 2.8218999999990046
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "cancelar_backup_empaquetando",
+      "total_ms": 830.3643999999986,
+      "cpu_main_ms": 16,
+      "cpu_main_porcentaje": 1.9268648800454389,
+      "rss_antes": 305410048,
+      "rss_pico": 305414144,
+      "rss_despues": 308666368,
+      "fases": [
+        {
+          "fase": "preparando",
+          "ms": 35.65989999999874
+        },
+        {
+          "fase": "exportando",
+          "ms": 784.0727000000006
+        },
+        {
+          "fase": "hash",
+          "ms": 7.467700000001059
+        },
+        {
+          "fase": "empaquetando",
+          "ms": 3.089399999997113
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "restore_pequeno",
+      "total_ms": 19087.090899999996,
+      "cpu_main_ms": 1172,
+      "cpu_main_porcentaje": 6.140275677106983,
+      "rss_antes": 100552704,
+      "rss_pico": 103575552,
+      "rss_despues": 103575552,
+      "fases": [
+        {
+          "fase": "preparando_restore",
+          "ms": 4.307400000005146
+        },
+        {
+          "fase": "validando_contenedor",
+          "ms": 9.307199999995646
+        },
+        {
+          "fase": "iniciando_aislamiento",
+          "ms": 10450.495500000005
+        },
+        {
+          "fase": "inspeccionando",
+          "ms": 685.9496999999974
+        },
+        {
+          "fase": "exportando",
+          "ms": 274.60139999999956
+        },
+        {
+          "fase": "hash",
+          "ms": 158.71950000000652
+        },
+        {
+          "fase": "restaurando_staging",
+          "ms": 553.5936999999976
+        },
+        {
+          "fase": "migrando_staging",
+          "ms": 32.86999999999534
+        },
+        {
+          "fase": "normalizando",
+          "ms": 125.3176999999996
+        },
+        {
+          "fase": "exportando",
+          "ms": 447.56780000000435
+        },
+        {
+          "fase": "hash",
+          "ms": 179.06209999999555
+        },
+        {
+          "fase": "preparando_candidata",
+          "ms": 446.7838000000047
+        },
+        {
+          "fase": "restaurando_candidata",
+          "ms": 628.5629999999946
+        },
+        {
+          "fase": "candidata_validada",
+          "ms": 7.234899999995832
+        },
+        {
+          "fase": "antes_mantenimiento",
+          "ms": 46.77040000000852
+        },
+        {
+          "fase": "pre_restauracion",
+          "ms": 64.48589999999967
+        },
+        {
+          "fase": "exportando",
+          "ms": 377.287599999996
+        },
+        {
+          "fase": "hash",
+          "ms": 38.154099999999744
+        },
+        {
+          "fase": "antes_promocion",
+          "ms": 4517.779699999999
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "restore_grande",
+      "total_ms": 24376.808099999966,
+      "cpu_main_ms": 1468,
+      "cpu_main_porcentaje": 6.022117391160831,
+      "rss_antes": 105402368,
+      "rss_pico": 109514752,
+      "rss_despues": 105218048,
+      "fases": [
+        {
+          "fase": "preparando_restore",
+          "ms": 11.460000000020955
+        },
+        {
+          "fase": "validando_contenedor",
+          "ms": 62.371699999959674
+        },
+        {
+          "fase": "iniciando_aislamiento",
+          "ms": 10816.816200000001
+        },
+        {
+          "fase": "inspeccionando",
+          "ms": 942.2636000000057
+        },
+        {
+          "fase": "exportando",
+          "ms": 418.32660000002943
+        },
+        {
+          "fase": "hash",
+          "ms": 145.46909999998752
+        },
+        {
+          "fase": "restaurando_staging",
+          "ms": 2412.5837000000174
+        },
+        {
+          "fase": "migrando_staging",
+          "ms": 62.54389999998966
+        },
+        {
+          "fase": "normalizando",
+          "ms": 149.6923999999999
+        },
+        {
+          "fase": "exportando",
+          "ms": 846.7565999999642
+        },
+        {
+          "fase": "hash",
+          "ms": 127.64670000004116
+        },
+        {
+          "fase": "preparando_candidata",
+          "ms": 334.45429999998305
+        },
+        {
+          "fase": "restaurando_candidata",
+          "ms": 2637.818900000013
+        },
+        {
+          "fase": "candidata_validada",
+          "ms": 7.358599999977741
+        },
+        {
+          "fase": "antes_mantenimiento",
+          "ms": 69.37940000003437
+        },
+        {
+          "fase": "pre_restauracion",
+          "ms": 79.55059999995865
+        },
+        {
+          "fase": "exportando",
+          "ms": 404.25800000003073
+        },
+        {
+          "fase": "hash",
+          "ms": 64.33699999999953
+        },
+        {
+          "fase": "antes_promocion",
+          "ms": 4742.50469999999
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "restore_historico4",
+      "total_ms": 20727.0012,
+      "cpu_main_ms": 1375,
+      "cpu_main_porcentaje": 6.633858833375279,
+      "rss_antes": 105406464,
+      "rss_pico": 111026176,
+      "rss_despues": 103837696,
+      "fases": [
+        {
+          "fase": "preparando_restore",
+          "ms": 6.417500000039581
+        },
+        {
+          "fase": "validando_contenedor",
+          "ms": 12.04839999997057
+        },
+        {
+          "fase": "iniciando_aislamiento",
+          "ms": 11384.515000000014
+        },
+        {
+          "fase": "inspeccionando",
+          "ms": 706.0994000000064
+        },
+        {
+          "fase": "exportando",
+          "ms": 268.35249999997905
+        },
+        {
+          "fase": "hash",
+          "ms": 128.81790000002366
+        },
+        {
+          "fase": "restaurando_staging",
+          "ms": 472.3061999999918
+        },
+        {
+          "fase": "migrando_staging",
+          "ms": 130.21179999999003
+        },
+        {
+          "fase": "normalizando",
+          "ms": 72.96100000001024
+        },
+        {
+          "fase": "exportando",
+          "ms": 317.7688999999664
+        },
+        {
+          "fase": "hash",
+          "ms": 110.73150000005262
+        },
+        {
+          "fase": "preparando_candidata",
+          "ms": 828.8452999999863
+        },
+        {
+          "fase": "restaurando_candidata",
+          "ms": 870.2640999999712
+        },
+        {
+          "fase": "candidata_validada",
+          "ms": 38.82800000003772
+        },
+        {
+          "fase": "antes_mantenimiento",
+          "ms": 61.14100000000326
+        },
+        {
+          "fase": "pre_restauracion",
+          "ms": 64.27879999997094
+        },
+        {
+          "fase": "exportando",
+          "ms": 862.8797999999952
+        },
+        {
+          "fase": "hash",
+          "ms": 211.6310999999987
+        },
+        {
+          "fase": "antes_promocion",
+          "ms": 4100.261999999988
+        }
+      ],
+      "hijos_residuales": 0
+    },
+    {
+      "nombre": "reposo_final",
+      "total_ms": 1501.0272000000114,
+      "cpu_main_ms": 16,
+      "cpu_main_porcentaje": 1.0659367132054554,
+      "rss_antes": 104312832,
+      "rss_pico": 104312832,
+      "rss_despues": 104312832,
+      "fases": [],
+      "hijos_residuales": 0
+    }
+  ],
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\ruizcacao-restore-tests-5U5eLf",
+  "mantenimiento_pequeno_ms": 1232.1508999999933,
+  "mantenimiento_grande_ms": 1155.296399999992,
+  "exito": true,
+  "hijos_residuales": 0
+}

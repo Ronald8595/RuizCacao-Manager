@@ -1,0 +1,106 @@
+ D .eslintcache
+ M docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md
+ M package.json
+ M src/main/database/base.ts
+ M src/main/database/conexion.ts
+ M src/main/database/respaldo-paquete.ts
+ M src/main/database/respaldo-storage.ts
+ M src/main/database/restore-caso.ts
+ M src/main/index.ts
+ M src/preload/index.d.ts
+ M src/preload/index.ts
+ M src/renderer/src/App.tsx
+ M src/renderer/src/components/Sidebar.tsx
+ M src/renderer/src/data/menu.ts
+ M src/renderer/src/types.ts
+ M tests/run.cjs
+?? docs/Informe_Respaldos_Etapa03_UI_IPC_v1.3.0.md
+?? docs/evidencias-pgctl/regresion-1792197895719.json
+?? docs/evidencias-pgctl/regresion-1792238392902.json
+?? docs/evidencias-respaldos-etapa03/archivos-final.txt
+?? docs/evidencias-respaldos-etapa03/db-test-cierre-resultado.json
+?? docs/evidencias-respaldos-etapa03/db-test-cierre.txt
+?? docs/evidencias-respaldos-etapa03/db-test.txt
+?? docs/evidencias-respaldos-etapa03/diff-check.txt
+?? docs/evidencias-respaldos-etapa03/fuentes-validadas.json
+?? docs/evidencias-respaldos-etapa03/ipc-cierre.txt
+?? docs/evidencias-respaldos-etapa03/lint-cierre.txt
+?? docs/evidencias-respaldos-etapa03/lint.txt
+?? docs/evidencias-respaldos-etapa03/login-reinicio.png
+?? docs/evidencias-respaldos-etapa03/portabilidad-cierre-resultado.json
+?? docs/evidencias-respaldos-etapa03/portabilidad-cierre.txt
+?? docs/evidencias-respaldos-etapa03/portabilidad-independiente.json
+?? docs/evidencias-respaldos-etapa03/portabilidad-previa.json
+?? docs/evidencias-respaldos-etapa03/portabilidad-suite-cierre.json
+?? docs/evidencias-respaldos-etapa03/portable-cierre-resultado.json
+?? docs/evidencias-respaldos-etapa03/portable-cierre-sandbox.txt
+?? docs/evidencias-respaldos-etapa03/portable-cierre.txt
+?? docs/evidencias-respaldos-etapa03/procesos-final.json
+?? docs/evidencias-respaldos-etapa03/producto-intento1.txt
+?? docs/evidencias-respaldos-etapa03/producto.json
+?? docs/evidencias-respaldos-etapa03/producto.txt
+?? docs/evidencias-respaldos-etapa03/reinicio-producto.json
+?? docs/evidencias-respaldos-etapa03/rendimiento-ipc.json
+?? docs/evidencias-respaldos-etapa03/rendimiento-ipc.txt
+?? docs/evidencias-respaldos-etapa03/restore-startup-cierre.json
+?? docs/evidencias-respaldos-etapa03/restore-startup-previo.json
+?? docs/evidencias-respaldos-etapa03/restore-suite-cierre.json
+?? docs/evidencias-respaldos-etapa03/restore-suite-previa.json
+?? docs/evidencias-respaldos-etapa03/typecheck-cierre.txt
+?? docs/evidencias-respaldos-etapa03/typecheck.txt
+?? docs/evidencias-respaldos-etapa03/ui-intento1.txt
+?? docs/evidencias-respaldos-etapa03/ui-intento2.txt
+?? docs/evidencias-respaldos-etapa03/ui-intento3.txt
+?? docs/evidencias-respaldos-etapa03/ui-intento4.txt
+?? docs/evidencias-respaldos-etapa03/ui.txt
+?? docs/evidencias-respaldos-etapa03/validacion-final.json
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-cancelado.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-carga-cancelable.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-carga-critica.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-confirmar.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-error.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-exito-backup.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-exito-restore.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-generando.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-pagina.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-password-incorrecta.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-password.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-publicacion.png
+?? docs/evidencias-respaldos-etapa03/visual/escritorio-validando.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-cancelado.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-carga-cancelable.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-carga-critica.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-confirmar.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-error.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-exito-backup.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-exito-restore.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-generando.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-pagina.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-password-incorrecta.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-password.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-publicacion.png
+?? docs/evidencias-respaldos-etapa03/visual/reducida-validando.png
+?? docs/evidencias-respaldos-etapa03/visual/resultados.json
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-cancelado.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-carga-cancelable.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-carga-critica.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-confirmar.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-error.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-exito-backup.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-exito-restore.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-generando.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-pagina.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-password-incorrecta.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-password.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-publicacion.png
+?? docs/evidencias-respaldos-etapa03/visual/zoom125-validando.png
+?? scripts/perfil-respaldos-login.tsx
+?? scripts/perfil-respaldos-ui.tsx
+?? scripts/probar-respaldos-ui.cjs
+?? src/main/respaldos-ipc.ts
+?? src/main/respaldos-servicio.ts
+?? src/preload/respaldos.ts
+?? src/renderer/src/pages/Respaldos.tsx
+?? src/shared/respaldos.ts
+?? tests/respaldos-ipc.cjs
+?? tests/respaldos-producto.cjs

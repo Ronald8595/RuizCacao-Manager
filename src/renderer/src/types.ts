@@ -11,8 +11,10 @@ export type Page =
   | 'clientes'
   | 'empleados'
   | 'usuarios'
+  | 'respaldos'
 
 export type PageProps = {
+  administrador?: boolean
   onNavigate?: (page: Page) => void
   // añade aquí las props compartidas por todas las páginas
 }

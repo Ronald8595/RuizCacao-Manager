@@ -10,6 +10,7 @@ import ReporteSemanal from '../components/reportes/ReporteSemanal'
 import ReporteMensual from '../components/reportes/ReporteMensual'
 import { useAppData } from '../store/AppDataContext'
 import { rangoDiaActual, rangoMesActual, rangoSemanaActual } from '../utils/reportes'
+import { LIMITES_PAGINA_REPORTE } from '../../../shared/listados'
 
 type TipoReporte = 'diario' | 'semanal' | 'mensual'
 
@@ -106,8 +107,12 @@ function Consultas(): React.JSX.Element {
     <section className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto [&>*]:shrink-0 p-4 sm:p-6 lg:p-7">
       <PageHeader greeting="Consultas y Reportes" subtitle="" />
 
-      <div className="mb-5 rounded-2xl border border-[#e2e7e2] bg-white p-4 sm:p-5">
-        <div className="mb-4 flex flex-wrap items-center gap-2">
+      <div
+        role="group"
+        aria-label="Filtros del reporte"
+        className="mb-3 flex flex-wrap items-center gap-x-4 gap-y-2 rounded-xl border border-[#e2e7e2] bg-[#f5f7f4] p-2.5"
+      >
+        <div className="flex items-center gap-1">
           {(
             [
               ['diario', 'Diario'],
@@ -118,23 +123,24 @@ function Consultas(): React.JSX.Element {
             <button
               key={tipo}
               type="button"
+              aria-pressed={tipoReporte === tipo}
               onClick={() => seleccionarTipo(tipo)}
               className={[
-                'flex items-center gap-2 rounded-xl px-3.5 py-2 text-[12px] font-semibold transition-colors',
+                'flex items-center gap-1.5 rounded-lg px-2.5 py-2 text-[12px] font-semibold transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#16834b]',
                 tipoReporte === tipo
-                  ? 'bg-[#e7f4eb] text-[#16834b]'
-                  : 'text-[#707972] hover:bg-[#f5f7f4]'
+                  ? 'bg-white text-[#16834b] shadow-sm'
+                  : 'text-[#59635c] hover:bg-white'
               ].join(' ')}
             >
-              <CalendarDays size={15} />
+              <CalendarDays size={14} aria-hidden="true" />
               {label}
             </button>
           ))}
         </div>
 
-        <div className="grid grid-cols-1 gap-3 md:grid-cols-[1fr_1fr_auto] md:items-end">
-          <label className="block">
-            <span className="mb-1.5 block text-[11px] font-semibold text-[#4a524c]">Desde</span>
+        <div className="grid min-w-0 flex-1 basis-72 grid-cols-2 gap-2 sm:flex-none sm:basis-auto">
+          <label className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+            <span className="text-[11px] font-semibold text-[#4a524c]">Desde</span>
             <input
               type="date"
               value={desde}
@@ -142,11 +148,11 @@ function Consultas(): React.JSX.Element {
                 setDesde(e.target.value)
                 setRangoAutomatico(false)
               }}
-              className="w-full rounded-xl border border-[#e1e5e1] px-3 py-2.5 text-[13px] outline-none focus:border-[#16834b]"
+              className="min-w-0 w-full rounded-lg border border-[#e1e5e1] bg-white px-2 py-1.5 text-[12px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#16834b] sm:w-36"
             />
           </label>
-          <label className="block">
-            <span className="mb-1.5 block text-[11px] font-semibold text-[#4a524c]">Hasta</span>
+          <label className="flex min-w-0 flex-col gap-1 sm:flex-row sm:items-center sm:gap-2">
+            <span className="text-[11px] font-semibold text-[#4a524c]">Hasta</span>
             <input
               type="date"
               value={hasta}
@@ -154,27 +160,24 @@ function Consultas(): React.JSX.Element {
                 setHasta(e.target.value)
                 setRangoAutomatico(false)
               }}
-              className="w-full rounded-xl border border-[#e1e5e1] px-3 py-2.5 text-[13px] outline-none focus:border-[#16834b]"
+              className="min-w-0 w-full rounded-lg border border-[#e1e5e1] bg-white px-2 py-1.5 text-[12px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#16834b] sm:w-36"
             />
           </label>
         </div>
-      </div>
-
-      <div className="mb-4">
         <button
           type="button"
           onClick={() => void generarPDF()}
           disabled={exportando || !resumen || historial.cargando}
-          className="rounded-xl bg-[#16834b] px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-40"
+          className="ml-auto shrink-0 rounded-lg border border-[#cbd6cd] bg-white px-3 py-2 text-[12px] font-semibold text-[#24643e] hover:bg-[#e7f4eb] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#16834b] disabled:opacity-40"
         >
           {exportando ? 'Generando…' : 'Generar PDF'}
         </button>
-        {errorPDF && (
-          <p role="alert" className="mt-3 text-sm text-[#9d3029]">
-            {errorPDF}
-          </p>
-        )}
       </div>
+      {errorPDF && (
+        <p role="alert" className="mb-3 text-sm text-[#9d3029]">
+          {errorPDF}
+        </p>
+      )}
       {historial.cargando ? (
         <p role="status">Cargando reporte…</p>
       ) : historial.error ? (
@@ -202,7 +205,7 @@ function Consultas(): React.JSX.Element {
           />
         </>
       )}
-      <Paginacion {...historial} />
+      <Paginacion {...historial} limites={LIMITES_PAGINA_REPORTE} />
     </section>
   )
 }

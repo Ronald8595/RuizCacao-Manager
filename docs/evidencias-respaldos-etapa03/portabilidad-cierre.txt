@@ -1,0 +1,5 @@
+OK portable A genera fixture pequeno: 83692 bytes
+OK portable A genera fixture grande: 3068714 bytes
+OK portable A → B pequeno: 25 tablas idénticas; login original y rol limitado
+OK portable A → B grande: 25 tablas idénticas; login original y rol limitado
+Evidencia portable: C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-portable-9gOTbI\respaldo-portabilidad.json

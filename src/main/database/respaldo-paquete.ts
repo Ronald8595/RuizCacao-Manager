@@ -25,12 +25,21 @@ const campos = [
   'database_dump_size',
   'database_dump_sha256'
 ]
-function invalido(): never {
-  throw new ErrorNegocio('El archivo no es un respaldo portable v1 válido de RuizCacao Manager.')
+function invalido(codigoRespaldo: 'invalido' | 'danado' = 'invalido'): never {
+  throw Object.assign(
+    new ErrorNegocio('El archivo no es un respaldo portable v1 válido de RuizCacao Manager.'),
+    { codigoRespaldo }
+  )
 }
 function validarManifest(valor: unknown, maxDump: number): ManifestPortable {
   if (!valor || typeof valor !== 'object' || Array.isArray(valor)) invalido()
   const m = valor as ManifestPortable
+  if (
+    m.product_id === PRODUCT_ID &&
+    Number.isSafeInteger(m.format_version) &&
+    Number(m.format_version) > 1
+  )
+    throw new ErrorNegocio('Este respaldo necesita una versión más reciente de RuizCacao Manager.')
   const entero = (n: number): boolean => Number.isSafeInteger(n) && n > 0
   if (
     Object.keys(m).length !== campos.length ||
@@ -169,12 +178,12 @@ export class PaqueteRespaldoZip implements BackupPackage {
         crcManifest = crc32(fragmento, crcManifest)
         partes.push(fragmento)
       }
-      if (crcManifest !== entradaManifest.crc32) invalido()
+      if (crcManifest !== entradaManifest.crc32) invalido('danado')
       const manifest = validarManifest(
         JSON.parse(Buffer.concat(partes).toString('utf8')),
         this.maxDump
       )
-      if (manifest.database_dump_size !== entradaDump.uncompressedSize) invalido()
+      if (manifest.database_dump_size !== entradaDump.uncompressedSize) invalido('danado')
       const hash = createHash('sha256')
       let bytes = 0
       let crcDump = 0
@@ -184,7 +193,7 @@ export class PaqueteRespaldoZip implements BackupPackage {
       if (signal) addAbortSignal(signal, streamDump)
       for await (const fragmento of streamDump) {
         bytes += fragmento.length
-        if (bytes > manifest.database_dump_size) invalido()
+        if (bytes > manifest.database_dump_size) invalido('danado')
         if (cabecera.length < 5)
           cabecera = Buffer.concat([cabecera, fragmento.subarray(0, 5 - cabecera.length)])
         hash.update(fragmento)
@@ -197,7 +206,7 @@ export class PaqueteRespaldoZip implements BackupPackage {
         cabecera.toString('ascii') !== 'PGDMP' ||
         hash.digest('hex') !== manifest.database_dump_sha256
       )
-        invalido()
+        invalido('danado')
       correcto = true
       return manifest
     } finally {

@@ -1,0 +1,12 @@
+OK portable autorización denegada no exporta ni crea workspace
+Error: EPERM: operation not permitted, rename 'C:\Users\LENOVO\AppData\Local\Packages\sandbox.{34ea4a16-79fd-4c81-a280-42eb3253112b}\AC\Temp\rcm-paquete-3wRQic\OneDrive Google Drive Dropbox\Espacios Ñandú 中文\.ruizcacao-wsScB1\publicacion.tmp' -> 'C:\Users\LENOVO\AppData\Local\Packages\sandbox.{34ea4a16-79fd-4c81-a280-42eb3253112b}\AC\Temp\rcm-paquete-3wRQic\OneDrive Google Drive Dropbox\Espacios Ñandú 中文\.ruizcacao-wsScB1\completo.tmp'
+    at async rename (node:internal/fs/promises:1510:10)
+    at async Object.publicar (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:49:17)
+    at async GenerarRespaldoPortable.ejecutar (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:59:29)
+    at async main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\respaldo-portable.cjs:92:23) {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'rename',
+  path: 'C:\\Users\\LENOVO\\AppData\\Local\\Packages\\sandbox.{34ea4a16-79fd-4c81-a280-42eb3253112b}\\AC\\Temp\\rcm-paquete-3wRQic\\OneDrive Google Drive Dropbox\\Espacios Ñandú 中文\\.ruizcacao-wsScB1\\publicacion.tmp',
+  dest: 'C:\\Users\\LENOVO\\AppData\\Local\\Packages\\sandbox.{34ea4a16-79fd-4c81-a280-42eb3253112b}\\AC\\Temp\\rcm-paquete-3wRQic\\OneDrive Google Drive Dropbox\\Espacios Ñandú 中文\\.ruizcacao-wsScB1\\completo.tmp'
+}

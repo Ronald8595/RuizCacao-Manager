@@ -1,4 +1,4 @@
-import type { Gasto, Venta, Compra, Cuenta, MovimientoCuenta } from '../types'
+import type { Gasto, Venta, Compra, Cuenta, MovimientoCuenta, Producto } from '../types'
 import { redondearImporte } from './comercio'
 export interface FilaFinanciera {
   id: string
@@ -6,6 +6,7 @@ export interface FilaFinanciera {
   orden: string
   tipo: 'Cobro de venta' | 'Pago de compra' | 'Gasto operativo'
   detalle: string
+  producto?: Producto | null
   monto: number
 }
 export interface ResumenFinanciero {
