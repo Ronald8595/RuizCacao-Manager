@@ -28,6 +28,8 @@ export function registrarPersistenciaIPC(ventana: BrowserWindow): void {
       obtenerBase().historialVentas(...args),
     historialStock: (...args: Parameters<ApiPersistencia['historialStock']>) =>
       obtenerBase().historialStock(...args),
+    stockPorFecha: (...args: Parameters<ApiPersistencia['stockPorFecha']>) =>
+      obtenerBase().stockPorFecha(...args),
     estado: estadoAcceso,
     anularOperacion: (...args: Parameters<ApiPersistencia['anularOperacion']>) =>
       obtenerBase().anularOperacion(...args),

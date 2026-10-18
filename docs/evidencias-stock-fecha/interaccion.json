@@ -1,0 +1,18 @@
+{
+  "resultado": "OK",
+  "consultas": 11,
+  "StrictMode": "Una solicitud inicial",
+  "casos": [
+    "sin consulta antes de abrir",
+    "3 productos",
+    "conversion en una fila",
+    "cursor siguiente/anterior",
+    "10/25/50/100",
+    "reinicio fecha/tamaño",
+    "respuesta obsoleta descartada",
+    "error y reintento",
+    "sin consultas desmontado"
+  ],
+  "capturas": 0,
+  "datosReales": 0
+}

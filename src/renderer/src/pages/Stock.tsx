@@ -1,7 +1,7 @@
 import Paginacion from '../components/Paginacion'
 import ContenedorTabla from '../components/ContenedorTabla'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
-import { useMemo, useState, type FormEvent } from 'react'
+import { lazy, Suspense, useMemo, useState, type FormEvent } from 'react'
 import { Package, Edit3, Search, X, ArrowRightLeft } from 'lucide-react'
 import PageHeader from '../components/PageHeader'
 import EmptyState from '../components/EmptyState'
@@ -13,6 +13,8 @@ import { rangoDiaActual } from '../utils/reportes'
 import { useFiltroDiaActual } from '../hooks/useFechaActual'
 import { useHistorialStock } from '../hooks/useHistorialStock'
 import type { MovimientoStock, Producto } from '../types'
+
+const StockPorFecha = lazy(() => import('./StockPorFecha'))
 
 function hoyISO(): string {
   return rangoDiaActual().desde
@@ -723,6 +725,51 @@ function StockInicialModal({ onCancelar }: { onCancelar: () => void }): React.JS
 }
 
 export default function Stock(): React.JSX.Element {
+  const [vista, setVista] = useState<'actual' | 'fecha'>('actual')
+  return (
+    <div className="flex min-h-0 flex-1 flex-col">
+      <nav aria-label="Vistas de Stock" className="flex shrink-0 gap-2 px-4 pt-4 sm:px-6 lg:px-7">
+        {(
+          [
+            ['actual', 'Stock actual'],
+            ['fecha', 'Stock por fecha']
+          ] as const
+        ).map(([valor, titulo]) => (
+          <button
+            key={valor}
+            type="button"
+            aria-pressed={vista === valor}
+            onClick={() => setVista(valor)}
+            className={
+              'rounded-lg px-4 py-2 text-sm font-semibold ' +
+              (vista === valor
+                ? 'bg-[#16834b] text-white'
+                : 'border border-[#dce4dc] bg-white text-[#3f4942]')
+            }
+          >
+            {titulo}
+          </button>
+        ))}
+      </nav>
+      <div className={vista === 'actual' ? 'flex min-h-0 flex-1 flex-col' : 'hidden'}>
+        <StockActual />
+      </div>
+      {vista === 'fecha' && (
+        <Suspense
+          fallback={
+            <p role="status" className="p-6">
+              Abriendo Stock por fecha…
+            </p>
+          }
+        >
+          <StockPorFecha />
+        </Suspense>
+      )}
+    </div>
+  )
+}
+
+function StockActual(): React.JSX.Element {
   const {
     stock,
     movimientosStock,

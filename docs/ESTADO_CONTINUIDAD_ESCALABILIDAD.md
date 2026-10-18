@@ -1,5 +1,29 @@
 # Estado de continuidad — Escalabilidad PostgreSQL
 
+## Stock por fecha implementado — 2026-10-17, 1.3.0
+
+Este bloque sustituye el estado «no implementar» de la auditoría inferior por la autorización posterior del usuario. Rama `feature/respaldos-restauracion`, checkpoint `6bc226fd7b8127c7ffee9a71081e0537965e585d` preservado. Informe: [Informe_Stock_Por_Fecha_v1.3.0.md](Informe_Stock_Por_Fecha_v1.3.0.md).
+
+Conciliación previa READ ONLY:25.450 movimientos, suma normalizada=existencias en Baba72.576,23/Seco76.459,65/Maracuyá76.450,00qq; diferencias0. Sin futuros, conversiones atípicas ni conversion_id/Salida - Procesamiento reales. Legado de dos filas cubierto con fixture aislado, sin certificar bases no examinadas. Histórico certificado bajo esta historia conciliada y fecha operativa, no antes de la carga inicial ni como instante real de registro universal.
+
+Endpoint dedicado `datos:stockPorFecha`, agregado SQL NUMERIC de tres productos y detalle keyset hora/orden/id en una transacción READ ONLY REPEATABLE READ. Conversión con dos efectos virtuales y una sola fila visible. COUNT sin cursor de avance; límite+1, bigint string/microsegundos preservados, techo común,10/25/50/100 inicial25. Nueva vista compacta dentro de Stock; componente actual conservado. Sin nuevo Snapshot, descarga completa, cálculo React, timers/polling/watchers ni trabajo al arrancar.
+
+Índice NO adoptado; migración011 NO, esquema10 y001–010 intactos. ABBA en copia25.450: mejora de bloques pero servicio~42ms→40ms, insuficiente beneficio global para añadir índice2,77MiB. Fuente/planes/medianas y conciliación en `docs/evidencias-stock-fecha/`. Typecheck0, lint0 (854 advertencias/0 errores), prueba SQL específica0 e interacción breve StrictMode0 (sin capturas ni datos reales). Suite general en curso, cierre pendiente de registrar. Cambios previos de `.eslintcache`/Novedades preservados por hash; sin build, commit/push/tag ni seed comercial.
+
+SIGUIENTE PASO EXACTO: completar/registrar suite general y diff-check; después aceptación manual del usuario (escritorio/reducida/125%, día conocido, conversión/anulación y paginación10/25/50/100), según la lista exacta del informe. No repetir perfiles ni iniciar publicación sin nuevos motivos/autorización.
+
+## Auditoría corta Stock por fecha — 2026-10-17, objetivo 1.3.0 oficial
+
+Auditoría COMPLETADA; implementación NO iniciada. Rama `feature/respaldos-restauracion`, HEAD `6bc226fd7b8127c7ffee9a71081e0537965e585d` (checkpoint preliminar conservado), paquete 1.3.0 y esquema de código 10. Inspección estática, sin conectar bases reales. Informe: [Informe_Auditoria_Stock_Por_Fecha_v1.3.0.md](Informe_Auditoria_Stock_Por_Fecha_v1.3.0.md).
+
+Reconstrucción SÍ para cantidades por fecha operativa bajo historia completa/conciliada; NO garantía de cualquier día físico previo al sistema ni de lo conocido en aquel instante. Conversión es una sola fila: entrada Seco/salida Baba, exige descomposición virtual SQL. Stock inicial fechado al cargar, sin fecha previa de adquisición. Anulaciones actuales compensan en su fecha de registro; legado v7 no inventa compensaciones. `fecha_hora_registro` contiene hora, pero timestampParaFecha combina fecha elegida y hora local sin offset; no siempre es instante real. Conciliación de datos existentes pendiente.
+
+Diseño propuesto: agregado NUMERIC SQL de tres productos, detalle SQL keyset desde primera página por fecha_hora_registro/orden/id, 10/25/50/100 (25 inicial), DTO compacto sin Snapshot global. Sin cálculos históricos React, timers/polling ni trabajo de arranque. Hook actual tiene debounce de 150 ms y límite inicial 15: futura vista necesita contrato específico, sin alterar Stock actual. Índices existentes producto/fecha y orden/id preservados. No se requieren campos nuevos; índice candidato fecha/fecha_hora_registro/orden/id pendiente de medición en copia. Migración011 solo si se adopta ese índice, no creada ni necesaria para corrección funcional.
+
+Se conservan modificaciones previas de `.eslintcache` y `NovedadesVersion.tsx`. Solo se escribe el informe y esta continuidad. Controles Git inicial/final y diff-check; sin seed, build, pruebas de aplicación, commit ni push. Este bloque es la continuidad más reciente para Stock; los cierres de Respaldos inferiores se mantienen como historial y no autorizan nuevas etapas.
+
+SIGUIENTE PASO EXACTO: revisar dictamen y autorizar etapa posterior; comenzar conciliando historia/existencias y patrones legados en solo lectura, luego medir consultas/índice en copia aislada para decidir 011 antes de implementar endpoint y vista. Detenerse tras esta auditoría documental.
+
 ## Último ajuste UX 1.2.0: Cuentas y Novedades — 2026-10-03
 
 Cuentas añade paginación visual sobre su listado filtrado en memoria, con selector 10/25/50/100 (inicial 25), total filtrado, página/total y Anterior/Siguiente. Paginacion compartido admite opciones tipadas por pantalla; los demás módulos conservan 10/15/25/50. No hay endpoint ni paginación SQL nueva. Se mantiene useFilasVisibles y sus espacios virtuales dentro de la página actual; las tarjetas financieras siguen calculándose sobre TODAS las cuentas vigentes.

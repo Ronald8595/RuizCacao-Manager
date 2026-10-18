@@ -22,10 +22,9 @@ export default function NovedadesVersion({
         Esta actualización trae ahora la capacidad de generar respaldos.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-5 text-sm">
-        <li>Ahora puedes generar tus respaldos manuales de tu información..</li>
-        <li>Recupera tus datos desde un respaldo cuando lo necesites.</li>
-        <li>Ahora puedes recuperar tu información en una nueva instalación de RuizCacao Manager.</li>
-        <li>Mejoras de seguridad y estabilidad durante los procesos de respaldo y recuperación.</li>
+        <li>Ahora puedes generar tus respaldos manuales de tu información.</li>
+        <li>El modulo de consultas y reportes ha sido rediseñado para mejorar la experiencia del usuario.</li>
+        <li>El modulo de stock ahora consta con un submodulo para visualizar los movimientos de inventario.</li>
       </ul>
       <button
         data-autofocus

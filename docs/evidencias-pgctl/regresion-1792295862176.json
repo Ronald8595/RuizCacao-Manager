@@ -1,0 +1,247 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-pgctl-regresion-kEziS4",
+  "casos": [
+    {
+      "nombre": "motor detenido, disponibilidad SQL y datos persistentes",
+      "ok": true,
+      "ms": 8674.3915
+    },
+    {
+      "nombre": "motor ya iniciado: conexión verificada sin lanzar pg_ctl",
+      "ok": true,
+      "ms": 330.1383999999998
+    },
+    {
+      "nombre": "cierre normal y reapertura: datos y credenciales conservados",
+      "ok": true,
+      "ms": 2479.2883999999995
+    },
+    {
+      "nombre": "puerto ocupado: rechazo, sin cambiar puerto ni credenciales",
+      "ok": true,
+      "ms": 1746.2667999999994
+    },
+    {
+      "nombre": "postgres no puede iniciar: biblioteca inexistente",
+      "ok": true,
+      "ms": 480.71869999999944
+    },
+    {
+      "nombre": "error real de pg_ctl y stderr conservado",
+      "ok": true,
+      "ms": 297.1301999999996
+    },
+    {
+      "nombre": "exit 0 sin servidor no es aceptado",
+      "ok": true,
+      "ms": 315.1872000000003
+    },
+    {
+      "nombre": "timeout real de proceso a 35000 ms, hijo terminado",
+      "ok": true,
+      "ms": 35309.2189
+    },
+    {
+      "nombre": "timeout legítimo pg_ctl -t30 durante recuperación bloqueada",
+      "ok": true,
+      "ms": 65315.850900000005
+    },
+    {
+      "nombre": "reapertura después de fallos y logs conservados",
+      "ok": true,
+      "ms": 1228.8040000000037
+    }
+  ],
+  "lanzamientos": [
+    {
+      "modo": "real",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 6.562199999998484
+        },
+        {
+          "evento": "exit",
+          "ms": 437.7542999999987,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 437.77549999999974,
+          "code": 0,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "real",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 2.4051999999992404
+        },
+        {
+          "evento": "exit",
+          "ms": 537.3590999999997,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 537.3813000000009,
+          "code": 0,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "real",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 5.667500000001382
+        },
+        {
+          "evento": "exit",
+          "ms": 429.8834000000006,
+          "code": 1,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 429.89770000000135,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "real",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 2.3778000000002066
+        },
+        {
+          "evento": "exit",
+          "ms": 202.17519999999968,
+          "code": 1,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 202.1875,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "error-pgctl",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 4.294499999999971
+        },
+        {
+          "evento": "exit",
+          "ms": 14.810999999999694,
+          "code": 1,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 14.824899999999616,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "exit-cero-sin-servidor",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 4.340300000001662
+        },
+        {
+          "evento": "exit",
+          "ms": 40.27570000000014,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 40.307300000000396,
+          "code": 0,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "timeout-proceso",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 4.803199999998469
+        },
+        {
+          "evento": "exit",
+          "ms": 35023.89109999999,
+          "signal": "SIGTERM"
+        },
+        {
+          "evento": "close",
+          "ms": 35023.932199999996,
+          "signal": "SIGTERM"
+        }
+      ]
+    },
+    {
+      "modo": "real",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 2.4239999999990687
+        },
+        {
+          "evento": "exit",
+          "ms": 33319.102199999994,
+          "code": 1,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 33319.120200000005,
+          "code": 1,
+          "signal": null
+        }
+      ]
+    },
+    {
+      "modo": "real",
+      "eventos": [
+        {
+          "evento": "spawn",
+          "ms": 2.4289999999891734
+        },
+        {
+          "evento": "exit",
+          "ms": 518.539499999999,
+          "code": 0,
+          "signal": null
+        },
+        {
+          "evento": "close",
+          "ms": 518.5539999999892,
+          "code": 0,
+          "signal": null
+        }
+      ]
+    }
+  ],
+  "postgresqlLogBytes": 5236,
+  "pgctlLogBytes": 678,
+  "completo": true
+}

@@ -1,0 +1,157 @@
+{
+  "fecha": "2026-10-18T03:25:03.430Z",
+  "modo": "READ ONLY REPEATABLE READ",
+  "origen": "desarrollo configurado; sin iniciar/login/comandos",
+  "version": 10,
+  "tipos": [
+    {
+      "tipo": "Conversión",
+      "producto": "Cacao Seco",
+      "cantidad": 4,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-09-22",
+      "ultima_fecha": "2026-09-25"
+    },
+    {
+      "tipo": "Entrada - Ajuste",
+      "producto": "Cacao en Baba",
+      "cantidad": 250,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 250,
+      "primera_fecha": "2026-01-01",
+      "ultima_fecha": "2026-08-29"
+    },
+    {
+      "tipo": "Entrada - Ajuste",
+      "producto": "Cacao Seco",
+      "cantidad": 2,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 2,
+      "primera_fecha": "2026-09-26",
+      "ultima_fecha": "2026-09-26"
+    },
+    {
+      "tipo": "Entrada - Compra",
+      "producto": "Cacao en Baba",
+      "cantidad": 3342,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 3342,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-01-01",
+      "ultima_fecha": "2026-09-25"
+    },
+    {
+      "tipo": "Entrada - Compra",
+      "producto": "Maracuyá",
+      "cantidad": 3333,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 3333,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-01-03",
+      "ultima_fecha": "2026-09-27"
+    },
+    {
+      "tipo": "Entrada - Compra Seco",
+      "producto": "Cacao Seco",
+      "cantidad": 3339,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 3339,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-01-02",
+      "ultima_fecha": "2026-09-26"
+    },
+    {
+      "tipo": "Salida - Ajuste",
+      "producto": "Cacao en Baba",
+      "cantidad": 169,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 168,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-01-01",
+      "ultima_fecha": "2026-09-26"
+    },
+    {
+      "tipo": "Salida - Ajuste",
+      "producto": "Cacao Seco",
+      "cantidad": 3,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 1,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-09-25",
+      "ultima_fecha": "2026-09-26"
+    },
+    {
+      "tipo": "Salida - Venta",
+      "producto": "Cacao en Baba",
+      "cantidad": 5000,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 5000,
+      "primera_fecha": "2026-01-01",
+      "ultima_fecha": "2026-09-25"
+    },
+    {
+      "tipo": "Salida - Venta",
+      "producto": "Cacao Seco",
+      "cantidad": 5007,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 5007,
+      "primera_fecha": "2026-01-02",
+      "ultima_fecha": "2026-09-26"
+    },
+    {
+      "tipo": "Salida - Venta",
+      "producto": "Maracuyá",
+      "cantidad": 5000,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 5000,
+      "primera_fecha": "2026-01-03",
+      "ultima_fecha": "2026-09-27"
+    },
+    {
+      "tipo": "Stock inicial",
+      "producto": "Cacao Seco",
+      "cantidad": 1,
+      "vinculados_conversion": 0,
+      "vinculados_compra": 0,
+      "vinculados_venta": 0,
+      "primera_fecha": "2026-09-25",
+      "ultima_fecha": "2026-09-25"
+    }
+  ],
+  "patronesLegacy": [],
+  "conciliacion": [
+    {
+      "producto": "Cacao en Baba",
+      "existencias": "72576.23",
+      "historia": "72576.23",
+      "diferencia": "0.00"
+    },
+    {
+      "producto": "Cacao Seco",
+      "existencias": "76459.65",
+      "historia": "76459.65",
+      "diferencia": "0.00"
+    },
+    {
+      "producto": "Maracuyá",
+      "existencias": "76450.00",
+      "historia": "76450.00",
+      "diferencia": "0.00"
+    }
+  ],
+  "temporal": {
+    "movimientos": 25450,
+    "futuros": 0,
+    "conversiones_atipicas": 0,
+    "fechas_distintas": 0
+  },
+  "huella": "678ebedf58db6ab987e21e34b452953f",
+  "resultado": "OK"
+}

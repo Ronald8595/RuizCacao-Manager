@@ -9,6 +9,8 @@ import type {
 } from '../../shared/historialOperaciones'
 import { ErrorNegocio } from '../../shared/errorNegocio'
 import { consultarHistorialStock } from './historial-stock'
+import { consultarStockFecha } from './stock-por-fecha'
+import type { FiltroStockFecha, PaginaStockFecha } from '../../shared/stockPorFecha'
 import type { FiltroHistorialStock, PaginaHistorialStock } from '../../shared/historialStock'
 import { MigracionesPostgres, VERSION_ESQUEMA } from './migration-runner'
 import {
@@ -706,6 +708,14 @@ export class BaseLocal {
     return this.transaccion((db) => {
       this.exigirSesion()
       return consultarHistorialStock(db, filtro)
+    }, true)
+  }
+
+  async stockPorFecha(filtro: FiltroStockFecha): Promise<PaginaStockFecha> {
+    this.exigirSesion()
+    return this.transaccion((db) => {
+      this.exigirSesion()
+      return consultarStockFecha(db, filtro)
     }, true)
   }
 

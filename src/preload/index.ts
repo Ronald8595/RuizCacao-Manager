@@ -39,6 +39,7 @@ const datos: ApiPersistencia = {
   historialCompras: (...args) => invocar('datos:historialCompras', ...args),
   historialVentas: (...args) => invocar('datos:historialVentas', ...args),
   historialStock: (...args) => invocar('datos:historialStock', ...args),
+  stockPorFecha: (...args) => invocar('datos:stockPorFecha', ...args),
   anularOperacion: (...args) => invocar('datos:anularOperacion', ...args),
   cambiarPassword: (...args) => invocar('datos:cambiarPassword', ...args),
   crearUsuario: (...args) => invocar('datos:crearUsuario', ...args),

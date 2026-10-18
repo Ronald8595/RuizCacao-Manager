@@ -157,6 +157,9 @@ export interface ApiPersistencia {
   historialVentas: (
     filtro: import('./historialOperaciones').FiltroHistorialOperaciones
   ) => Promise<Respuesta<import('./historialOperaciones').PaginaVentas>>
+  stockPorFecha: (
+    filtro: import('./stockPorFecha').FiltroStockFecha
+  ) => Promise<Respuesta<import('./stockPorFecha').PaginaStockFecha>>
   historialStock: (
     filtro: import('./historialStock').FiltroHistorialStock
   ) => Promise<Respuesta<import('./historialStock').PaginaHistorialStock>>
