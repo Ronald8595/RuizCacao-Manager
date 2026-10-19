@@ -1,0 +1,41 @@
+{
+  "fases": [
+    "preparando_restore",
+    "validando_contenedor",
+    "iniciando_aislamiento",
+    "inspeccionando",
+    "exportando",
+    "hash",
+    "restaurando_staging"
+  ],
+  "comparaciones": [
+    {
+      "version": 10,
+      "objetosActual": 701,
+      "objetosReferencia": 701,
+      "firmaActual": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "firmaReferencia": "6351a44ed1328ad57d63a5f1860d485e",
+      "diferencias": [
+        {
+          "schema": "ruizcacao",
+          "tipo": "view",
+          "nombre": "v_flujo_caja",
+          "estado": "different",
+          "huellaActual": "beb9328851ccb16725bfef492468a10ec7c903d4626cc9ebea4ddb524e45fd09",
+          "huellaEsperada": "792725b32b5b2fcf36e81f636167381f48a6d4f3e7b90dd54defc4e26d5a28ee"
+        }
+      ]
+    }
+  ],
+  "antes": {
+    "tamano": 3094716,
+    "sha256": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430"
+  },
+  "preparacion": "FAIL",
+  "codigo": "BACKUP_SCHEMA_MISMATCH",
+  "fase": "firma_catalogo",
+  "despues": {
+    "tamano": 3094716,
+    "sha256": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430"
+  }
+}

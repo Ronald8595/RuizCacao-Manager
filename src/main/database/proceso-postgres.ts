@@ -1,5 +1,17 @@
 import { spawn } from 'node:child_process'
 export const procesosPostgresActivos = new Set<number>()
+// Clasificar stderr sin conservar texto SQL, rutas ni datos del respaldo.
+export function categoriaErrorHerramienta(linea: string): string | undefined {
+  if (/permission denied|access is denied|permiso denegado|acceso denegado/i.test(linea))
+    return 'access_denied'
+  if (/no such file|cannot find|no se encuentra/i.test(linea)) return 'missing_file'
+  if (/connection.*(failed|refused)|could not connect|no se pudo conectar/i.test(linea))
+    return 'connection'
+  if (/unsupported version|invalid archive|input file.*(short|valid)|corrupt/i.test(linea))
+    return 'archive'
+  if (/could not execute query|ERROR:|error:/i.test(linea)) return 'sql'
+  return undefined
+}
 /** Cancela el hijo directo y espera close ANTES de resolver/rechazar y limpiar archivos. */
 export function procesoPostgres(
   binario: string,
@@ -18,6 +30,8 @@ export function procesoPostgres(
     let error: Error | undefined
     let tamano = 0
     const salida: Buffer[] = []
+    let lineaError = ''
+    let categoriaHerramienta: string | undefined
     const abortar = (): void => {
       error = Object.assign(new Error('Operación cancelada.'), { name: 'AbortError' })
       child.kill()
@@ -38,8 +52,15 @@ export function procesoPostgres(
         child.kill()
       } else salida.push(bytes)
     })
-    // Drenar stderr sin guardar argumentos, SQL, conexiones ni secretos en errores.
-    child.stderr.on('data', () => {})
+    // Buffer acotado; al cerrar solo se conserva una categoría de lista fija.
+    child.stderr.on('data', (bytes: Buffer) => {
+      for (const fragmento of bytes.toString('utf8').split(/(\n)/)) {
+        if (fragmento === '\n') {
+          categoriaHerramienta ??= categoriaErrorHerramienta(lineaError)
+          lineaError = ''
+        } else lineaError = (lineaError + fragmento).slice(0, 2048)
+      }
+    })
     child.once('error', (e) => {
       error = e
     })
@@ -47,11 +68,14 @@ export function procesoPostgres(
       clearTimeout(timeout)
       signal?.removeEventListener('abort', abortar)
       if (child.pid) procesosPostgresActivos.delete(child.pid)
+      categoriaHerramienta ??= categoriaErrorHerramienta(lineaError)
+      lineaError = ''
       if (error) reject(error)
       else if (code !== 0 || senal)
         reject(
           Object.assign(new Error('No se completó la herramienta PostgreSQL.'), {
-            code: code ?? 'SIGNAL'
+            code: code ?? 'SIGNAL',
+            categoriaHerramienta: categoriaHerramienta ?? 'other'
           })
         )
       else resolve(Buffer.concat(salida).toString('utf8'))

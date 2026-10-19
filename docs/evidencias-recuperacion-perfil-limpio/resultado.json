@@ -1,0 +1,21 @@
+{
+  "raiz": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-perfil-limpio-4GQwff",
+  "fases": [
+    {
+      "fase": "A",
+      "code": 0
+    },
+    {
+      "fase": "B",
+      "code": 0
+    },
+    {
+      "fase": "login",
+      "code": 0
+    }
+  ],
+  "perfilesWindowsReales": false,
+  "sha256": "3bc0b58726250dca0941ab2ec0ae03af7c7dd411957ee35d833685d531067db5",
+  "bytesIdenticos": true,
+  "exito": true
+}

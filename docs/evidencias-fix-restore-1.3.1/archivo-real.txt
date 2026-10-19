@@ -1,0 +1,14 @@
+
+fase: preparando_restore
+fase: validando_contenedor
+fase: iniciando_aislamiento
+fase: inspeccionando
+fase: exportando
+fase: hash
+fase: restaurando_staging
+{
+  "preparacion": "FAIL",
+  "codigo": "BACKUP_SCHEMA_MISMATCH",
+  "fase": "firma_catalogo",
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-diagnostico-real-ldoAmG"
+}

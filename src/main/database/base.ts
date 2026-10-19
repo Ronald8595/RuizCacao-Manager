@@ -212,6 +212,15 @@ export class BaseLocal {
       throw new ErrorNegocio('No tienes permisos para realizar esta acción.')
     return usuario.id
   }
+  async autorizarCargaRespaldo(): Promise<string> {
+    if (this.cerrando) throw new ErrorNegocio('El almacenamiento se está cerrando.')
+    if (!(await this.existeAdministrador())) return 'instalacion-sin-usuarios'
+    return this.autorizarRespaldos()
+  }
+  async confirmarCargaRespaldo(password: string): Promise<boolean> {
+    if ((await this.autorizarCargaRespaldo()) === 'instalacion-sin-usuarios') return password === ''
+    return this.confirmarAdministradorRespaldo(password)
+  }
   async confirmarAdministradorRespaldo(password: string): Promise<boolean> {
     const id = this.autorizarRespaldos()
     const usuario = this.exigirUsuario()

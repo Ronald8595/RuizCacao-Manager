@@ -1,0 +1,50 @@
+{
+  "fases": [
+    "preparando_restore",
+    "validando_contenedor",
+    "iniciando_aislamiento",
+    "inspeccionando",
+    "exportando",
+    "hash",
+    "restaurando_staging",
+    "migrando_staging",
+    "normalizando",
+    "exportando",
+    "hash"
+  ],
+  "comparaciones": [
+    {
+      "version": 10,
+      "objetosActual": 701,
+      "objetosReferencia": 701,
+      "firmaActual": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "firmaReferencia": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "diferencias": []
+    },
+    {
+      "version": 10,
+      "objetosActual": 701,
+      "objetosReferencia": 701,
+      "firmaActual": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "firmaReferencia": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "diferencias": []
+    },
+    {
+      "version": 10,
+      "objetosActual": 701,
+      "objetosReferencia": 701,
+      "firmaActual": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "firmaReferencia": "3cd6c8f1454a85057d39e8e1fbfed409",
+      "diferencias": []
+    }
+  ],
+  "antes": {
+    "tamano": 3094716,
+    "sha256": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430"
+  },
+  "preparacion": "PASS",
+  "despues": {
+    "tamano": 3094716,
+    "sha256": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430"
+  }
+}

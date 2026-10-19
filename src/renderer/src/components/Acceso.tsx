@@ -2,10 +2,11 @@ import logoGrupoRuiz from '../assets/brand/logo-grupo-ruiz.jpeg'
 import { marcaPerfil, despuesDePintar } from '../utils/perfilArranque'
 import { validarAcceso, type ErroresAcceso } from '../../../shared/validacionAcceso'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
-import { useEffect, useState, type FormEvent, type ReactNode } from 'react'
+import { lazy, Suspense, useEffect, useState, type FormEvent, type ReactNode } from 'react'
 import { Eye, EyeOff } from 'lucide-react'
 import { desenvolver } from '../store/AppDataContext'
 import type { EstadoAcceso, EstadoAplicacion } from '../../../shared/persistencia'
+const RespaldosIniciales = lazy(() => import('../pages/Respaldos'))
 async function consultarAcceso(): Promise<EstadoAcceso> {
   if (!window.api?.datos) throw new ErrorNegocio('Abre RuizCacao Manager desde su acceso directo.')
   return desenvolver(await window.api.datos.estado())
@@ -21,6 +22,7 @@ export default function Acceso({
   const [password, setPassword] = useState('')
   const [confirmar, setConfirmar] = useState('')
   const [recuperar, setRecuperar] = useState(false)
+  const [crearElegido, setCrearElegido] = useState(false)
   const [codigo, setCodigo] = useState('')
   const [solicitud, setSolicitud] = useState('')
   const [copiada, setCopiada] = useState(false)
@@ -131,11 +133,24 @@ export default function Acceso({
                 Reintentar conexión
               </button>
             </div>
+          ) : crear && !crearElegido ? (
+            <Suspense fallback={<p role="status">Preparando opciones…</p>}>
+              <RespaldosIniciales inicial onCrearUsuario={() => setCrearElegido(true)} />
+            </Suspense>
           ) : (
             <form noValidate onSubmit={enviar} className="mt-5 space-y-4">
               <h2 className="font-semibold">
                 {crear ? 'Crear usuario' : recuperar ? 'Recuperar acceso' : 'Iniciar sesión'}
               </h2>
+              {crear && (
+                <button
+                  type="button"
+                  className="text-sm text-[#16834b]"
+                  onClick={() => setCrearElegido(false)}
+                >
+                  Volver a las opciones iniciales
+                </button>
+              )}
               <label className="block text-sm">
                 Usuario
                 <input

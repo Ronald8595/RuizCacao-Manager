@@ -1,0 +1,18 @@
+
+ErrorNegocio: El almacenamiento no está disponible. Reintenta el acceso.
+    at Object.obtenerBase (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:70:15)
+    at main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\recuperacion-perfil-limpio-electron.cjs:28:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+AssertionError [ERR_ASSERTION]: Fase B
+
+1 !== 0
+
+    at main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\recuperacion-perfil-limpio.cjs:39:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

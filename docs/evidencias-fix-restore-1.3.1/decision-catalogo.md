@@ -1,0 +1,21 @@
+# Causa demostrada y decisión previa al cambio de validación — 2026-10-19
+
+`catalogo-corregido-antes.json` reproduce BACKUP_SCHEMA_MISMATCH con el archivo exacto e659…c474430, sin cambiar sus bytes. Se compararon 701 objetos en cada base. Solo difiere `ruizcacao.v_flujo_caja`; no faltan ni sobran objetos.
+
+El diagnóstico anterior es incorrecto respecto de las constraints. La columna nombre del UNION partía de pg_class.relname (tipo name). El identificador compuesto quedaba limitado a 63 bytes: FK y NOT NULL de solicitudes_recuperacion colisionaban y el Map sobreescribía una entrada. Forzar text en la primera rama conserva identidades completas. La enumeración con identidad única demuestra que las constraints son iguales. No se quitará ningún control ni constraint.
+
+La vista del archivo incluye Abono y Ajuste por devolución, con signo opuesto para devoluciones, conserva cuentas anuladas y solo incluye gastos manuales. Es la variante descrita en `Informe_Cambios_RuizCacao_Manager_v1.1.2_Anulaciones_y_Novedades.md`, sección 7, líneas 84–97. Las migraciones actuales y el dominio usan la variante posterior que solo incluye Abono y excluye cuentas anuladas. El historial Git no conserva una migración de transición entre ambas; la documentación histórica y el catálogo real demuestran la existencia de la variante previa, pero no permiten atribuir una fecha/commit de transición. No son vistas financieramente equivalentes y no se sustituirá una por otra en datos restaurados.
+
+Decisión: admitir para esquema 10 exactamente dos referencias completas de confianza. Primero se compara contra 001–010; únicamente ante discrepancia se construye en la referencia temporal la vista histórica mediante DDL constante del código. Solo si coincide la firma del catálogo COMPLETO se selecciona esa referencia, que acompaña staging, exportación normalizada, candidata y promoción. Cualquier diferencia adicional, o cualquier otra definición de vista, se rechaza. Nunca se ejecuta SQL tomado del respaldo para construir la referencia. La vista original restaurada permanece intacta y se comprobarán sus resultados antes/después. Las instalaciones actuales mantienen sus reglas y no hay trabajo nuevo al arrancar.
+
+No hace falta migración 011: no se normaliza el esquema ni se cambian tablas/vistas de instalaciones existentes. Se completa el conjunto de referencias históricas de restore. La conversión explícita name→text refuerza la identidad de objetos en la firma; no elimina metadatos.
+
+El arnés previo generaba origen y referencia con las mismas migraciones actuales, por eso nunca cubría la vista histórica. La regresión nueva debe incluir ambas variantes, la colisión de nombres, una FK ausente, una vista financiera alterada y un objeto inesperado. La suite general y el flujo Electron limpio se ejecutarán después.
+
+Referencia técnica de resolución de tipos UNION: https://www.postgresql.org/docs/17/typeconv-union-case.html. La evidencia específica de este catálogo proviene de PostgreSQL aislado local, no de inferencias sobre esa documentación.
+
+## Segundo diagnóstico comprobado antes de corregir rutas
+
+El nuevo arnés Electron con Ñ/espacios inicia el staging, pero falla con BACKUP_REFERENCE_FAILED/crear_referencia/ENOENT. No es el timeout BACKUP_STAGING_START_FAILED del intento anterior. Un motor mínimo aislado reproduce: SHOW data_directory llega con U+FFFD; textsend entrega byte 0xD1 para Ñ, pese a server_encoding/client_encoding UTF8. La ruta UTF8 decodificada no existe; la ruta ACP sí. Evidencia `ruta-unicode-antes.json`, código1. Binarios initdb/postgres de vendor y ProgramFiles tienen SHA256 idénticos; no se atribuye a versiones diferentes.
+
+Decisión: obtener bytes mediante textsend, decodificar UTF8 estricto primero, y únicamente ante secuencia inválida en Windows leer ACP del registro y usar ese decoder estricto. Páginas no soportadas o errores siguen fallando cerrados. Mantener realpath del directorio informado y del esperado, con igualdad exacta normalizada como antes. No ignorar ni sustituir el control de pertenencia. La lectura ACP se limita al restore y se memoriza; sin trabajo al arranque ni procesos permanentes. El timeout histórico no queda causalmente explicado por este ENOENT: documentar esa distinción y verificar el flujo limpio completo.

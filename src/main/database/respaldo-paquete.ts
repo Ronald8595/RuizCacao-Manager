@@ -6,7 +6,11 @@ import { crc32 } from 'node:zlib'
 import { pipeline, finished } from 'node:stream/promises'
 import { ZipFile as ZipWriter } from 'yazl'
 import { openPromise, type Entry } from 'yauzl'
-import { ErrorNegocio } from '../../shared/errorNegocio'
+import {
+  ErrorDiagnosticoRespaldo,
+  diagnosticarRespaldo,
+  type CodigoDiagnosticoRespaldo
+} from './respaldo-diagnostico'
 import { PRODUCT_ID, type BackupPackage, type ManifestPortable } from './respaldo-portable'
 
 const MAX_MANIFEST = 16384
@@ -25,47 +29,62 @@ const campos = [
   'database_dump_size',
   'database_dump_sha256'
 ]
-function invalido(codigoRespaldo: 'invalido' | 'danado' = 'invalido'): never {
-  throw Object.assign(
-    new ErrorNegocio('El archivo no es un respaldo portable v1 válido de RuizCacao Manager.'),
-    { codigoRespaldo }
-  )
+function invalido(
+  codigo: CodigoDiagnosticoRespaldo = 'BACKUP_INVALID_CONTAINER',
+  fase = 'contenedor'
+): never {
+  throw new ErrorDiagnosticoRespaldo(codigo, fase)
 }
 function validarManifest(valor: unknown, maxDump: number): ManifestPortable {
-  if (!valor || typeof valor !== 'object' || Array.isArray(valor)) invalido()
+  if (!valor || typeof valor !== 'object' || Array.isArray(valor))
+    invalido('BACKUP_INVALID_MANIFEST', 'manifiesto')
   const m = valor as ManifestPortable
-  if (
-    m.product_id === PRODUCT_ID &&
-    Number.isSafeInteger(m.format_version) &&
-    Number(m.format_version) > 1
-  )
-    throw new ErrorNegocio('Este respaldo necesita una versión más reciente de RuizCacao Manager.')
+  if (m.product_id !== PRODUCT_ID) invalido('BACKUP_PRODUCT_MISMATCH', 'producto')
+  if (m.format_version !== 1)
+    invalido(
+      Number.isSafeInteger(m.format_version) && Number(m.format_version) > 1
+        ? 'BACKUP_FORMAT_UNSUPPORTED'
+        : 'BACKUP_INVALID_MANIFEST',
+      'formato'
+    )
   const entero = (n: number): boolean => Number.isSafeInteger(n) && n > 0
-  if (
-    Object.keys(m).length !== campos.length ||
-    campos.some((c) => !Object.hasOwn(m, c)) ||
-    m.product_id !== PRODUCT_ID ||
-    m.format_version !== 1 ||
-    m.backup_type !== 'manual' ||
-    m.database_dump_filename !== 'database.dump' ||
-    typeof m.backup_id !== 'string' ||
-    !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(m.backup_id) ||
-    typeof m.created_at_utc !== 'string' ||
-    !/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(m.created_at_utc) ||
-    !Number.isFinite(Date.parse(m.created_at_utc)) ||
-    new Date(m.created_at_utc).toISOString() !== m.created_at_utc ||
-    typeof m.app_version !== 'string' ||
-    !/^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/.test(m.app_version) ||
-    !entero(m.schema_version) ||
-    !entero(m.postgres_server_major) ||
-    !entero(m.pg_dump_major) ||
-    m.pg_dump_major !== m.postgres_server_major ||
-    !entero(m.database_dump_size) ||
-    m.database_dump_size > maxDump ||
-    typeof m.database_dump_sha256 !== 'string' ||
-    !/^[a-f0-9]{64}$/.test(m.database_dump_sha256)
-  )
-    invalido()
+  const camposValidos: [string, boolean][] = [
+    [
+      'campos_manifiesto',
+      Object.keys(m).length === campos.length && campos.every((c) => Object.hasOwn(m, c))
+    ],
+    ['tipo_respaldo', m.backup_type === 'manual'],
+    ['nombre_dump', m.database_dump_filename === 'database.dump'],
+    [
+      'id_respaldo',
+      typeof m.backup_id === 'string' &&
+        /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(m.backup_id)
+    ],
+    [
+      'fecha_manifiesto',
+      typeof m.created_at_utc === 'string' &&
+        /^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d{3}Z$/.test(m.created_at_utc) &&
+        Number.isFinite(Date.parse(m.created_at_utc)) &&
+        new Date(m.created_at_utc).toISOString() === m.created_at_utc
+    ],
+    [
+      'version_app',
+      typeof m.app_version === 'string' && /^\d+\.\d+\.\d+(?:-[a-zA-Z0-9.-]+)?$/.test(m.app_version)
+    ],
+    ['esquema_manifiesto', entero(m.schema_version)],
+    [
+      'version_pg',
+      entero(m.postgres_server_major) &&
+        entero(m.pg_dump_major) &&
+        m.pg_dump_major === m.postgres_server_major
+    ],
+    ['tamano_manifiesto', entero(m.database_dump_size) && m.database_dump_size <= maxDump],
+    [
+      'sha_manifiesto',
+      typeof m.database_dump_sha256 === 'string' && /^[a-f0-9]{64}$/.test(m.database_dump_sha256)
+    ]
+  ]
+  for (const [fase, valido] of camposValidos) if (!valido) invalido('BACKUP_INVALID_MANIFEST', fase)
   return m
 }
 function validarEntrada(e: Entry, maxDump: number): void {
@@ -121,7 +140,7 @@ export class PaqueteRespaldoZip implements BackupPackage {
     }
   }
   async verificar(archivo: string, signal?: AbortSignal): Promise<ManifestPortable> {
-    return this.procesar(archivo, undefined, signal)
+    return this.procesarDiagnosticado(archivo, undefined, signal)
   }
   // Infraestructura para inspección/pruebas; no restaura SQL ni está expuesta en IPC.
   async extraerDump(
@@ -129,7 +148,25 @@ export class PaqueteRespaldoZip implements BackupPackage {
     destino: string,
     signal?: AbortSignal
   ): Promise<ManifestPortable> {
-    return this.procesar(archivo, destino, signal)
+    return this.procesarDiagnosticado(archivo, destino, signal)
+  }
+  private async procesarDiagnosticado(
+    archivo: string,
+    destino?: string,
+    signal?: AbortSignal
+  ): Promise<ManifestPortable> {
+    try {
+      return await this.procesar(archivo, destino, signal)
+    } catch (e) {
+      const io = /^(EACCES|EPERM|ENOENT|ENOSPC|EIO|EBUSY|ENAMETOOLONG)$/.test(
+        String((e as { code?: unknown })?.code)
+      )
+      throw diagnosticarRespaldo(
+        e,
+        io ? 'BACKUP_PRIVATE_PREPARATION_FAILED' : 'BACKUP_INVALID_CONTAINER',
+        destino ? 'extraccion' : 'contenedor'
+      )
+    }
   }
   private async procesar(
     archivo: string,
@@ -148,12 +185,12 @@ export class PaqueteRespaldoZip implements BackupPackage {
     let salida: Awaited<ReturnType<typeof open>> | undefined
     let correcto = false
     try {
-      if (zip.entryCount !== 2) invalido()
+      if (zip.entryCount !== 2) invalido('BACKUP_INVALID_CONTAINER', 'cantidad_entradas')
       const entradas = new Map<string, Entry>()
       for await (const e of zip.eachEntry()) {
         signal?.throwIfAborted()
         validarEntrada(e, this.maxDump)
-        if (entradas.has(e.fileName)) invalido()
+        if (entradas.has(e.fileName)) invalido('BACKUP_INVALID_CONTAINER', 'entrada_duplicada')
         // Rechazar también discrepancias en encabezados locales.
         const local = await zip.readLocalFileHeaderPromise(e)
         if (
@@ -161,12 +198,13 @@ export class PaqueteRespaldoZip implements BackupPackage {
           local.compressionMethod !== 0 ||
           local.generalPurposeBitFlag !== e.generalPurposeBitFlag
         )
-          invalido()
+          invalido('BACKUP_INVALID_CONTAINER', 'encabezado_local')
         entradas.set(e.fileName, e)
       }
       const entradaManifest = entradas.get('manifest.json'),
         entradaDump = entradas.get('database.dump')
-      if (!entradaManifest || !entradaDump) invalido()
+      if (!entradaManifest || !entradaDump)
+        invalido('BACKUP_INVALID_CONTAINER', 'entradas_requeridas')
       const partes: Buffer[] = []
       let leidos = 0
       let crcManifest = 0
@@ -174,16 +212,20 @@ export class PaqueteRespaldoZip implements BackupPackage {
       if (signal) addAbortSignal(signal, streamManifest)
       for await (const fragmento of streamManifest) {
         leidos += fragmento.length
-        if (leidos > MAX_MANIFEST) invalido()
+        if (leidos > MAX_MANIFEST) invalido('BACKUP_INVALID_MANIFEST', 'limite_manifiesto')
         crcManifest = crc32(fragmento, crcManifest)
         partes.push(fragmento)
       }
-      if (crcManifest !== entradaManifest.crc32) invalido('danado')
-      const manifest = validarManifest(
-        JSON.parse(Buffer.concat(partes).toString('utf8')),
-        this.maxDump
-      )
-      if (manifest.database_dump_size !== entradaDump.uncompressedSize) invalido('danado')
+      if (crcManifest !== entradaManifest.crc32) invalido('BACKUP_CRC_MISMATCH', 'crc_manifiesto')
+      let json: unknown
+      try {
+        json = JSON.parse(Buffer.concat(partes).toString('utf8'))
+      } catch {
+        invalido('BACKUP_INVALID_MANIFEST', 'json_manifiesto')
+      }
+      const manifest = validarManifest(json, this.maxDump)
+      if (manifest.database_dump_size !== entradaDump.uncompressedSize)
+        invalido('BACKUP_DUMP_INVALID', 'tamano_dump')
       const hash = createHash('sha256')
       let bytes = 0
       let crcDump = 0
@@ -193,20 +235,18 @@ export class PaqueteRespaldoZip implements BackupPackage {
       if (signal) addAbortSignal(signal, streamDump)
       for await (const fragmento of streamDump) {
         bytes += fragmento.length
-        if (bytes > manifest.database_dump_size) invalido('danado')
+        if (bytes > manifest.database_dump_size) invalido('BACKUP_DUMP_INVALID', 'tamano_dump')
         if (cabecera.length < 5)
           cabecera = Buffer.concat([cabecera, fragmento.subarray(0, 5 - cabecera.length)])
         hash.update(fragmento)
         crcDump = crc32(fragmento, crcDump)
         if (salida) await salida.writeFile(fragmento)
       }
-      if (
-        bytes !== manifest.database_dump_size ||
-        crcDump !== entradaDump.crc32 ||
-        cabecera.toString('ascii') !== 'PGDMP' ||
-        hash.digest('hex') !== manifest.database_dump_sha256
-      )
-        invalido('danado')
+      if (bytes !== manifest.database_dump_size) invalido('BACKUP_DUMP_INVALID', 'tamano_dump')
+      if (crcDump !== entradaDump.crc32) invalido('BACKUP_CRC_MISMATCH', 'crc_dump')
+      if (cabecera.toString('ascii') !== 'PGDMP') invalido('BACKUP_DUMP_INVALID', 'cabecera_dump')
+      if (hash.digest('hex') !== manifest.database_dump_sha256)
+        invalido('BACKUP_HASH_MISMATCH', 'hash_dump')
       correcto = true
       return manifest
     } finally {

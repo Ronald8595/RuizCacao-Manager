@@ -1,0 +1,68 @@
+{
+  "casos": [
+    {
+      "nombre": "referencia actual mantiene validación estricta",
+      "ok": true
+    },
+    {
+      "nombre": "fixture histórico reproduce el rechazo anterior",
+      "ok": true
+    },
+    {
+      "nombre": "firma conserva nombres largos completos y únicos",
+      "ok": true
+    },
+    {
+      "nombre": "histórico admitido con catálogo completo, vista intacta",
+      "ok": true
+    },
+    {
+      "nombre": "rechaza FK ausente y revierte referencia",
+      "ok": true
+    },
+    {
+      "nombre": "rechaza NOT NULL ausente y revierte referencia",
+      "ok": true
+    },
+    {
+      "nombre": "rechaza tabla extra y revierte referencia",
+      "ok": true
+    },
+    {
+      "nombre": "rechaza índice ausente y revierte referencia",
+      "ok": true
+    },
+    {
+      "nombre": "rechaza trigger ausente y revierte referencia",
+      "ok": true
+    },
+    {
+      "nombre": "rechaza vista incompatible y revierte referencia",
+      "ok": true
+    },
+    {
+      "nombre": "histórico no se acepta para otra versión",
+      "ok": true
+    },
+    {
+      "nombre": "vista histórica conserva pago y devolución opuestos",
+      "ok": true
+    },
+    {
+      "nombre": "fixture histórico: restore y promoción conservan tablas, usuarios y vistas",
+      "ok": true
+    },
+    {
+      "nombre": "login con contraseña original tras restore",
+      "ok": true
+    },
+    {
+      "nombre": "archivo real: restore y promoción conservan tablas, usuarios y vistas",
+      "ok": true
+    }
+  ],
+  "archivoReal": true,
+  "sha256Real": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430",
+  "exito": true,
+  "hijosHerramientas": 0
+}

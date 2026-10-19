@@ -1,0 +1,10 @@
+
+C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\src\main\database\base.ts
+  221:78  warning  Delete `⏎·····`  prettier/prettier
+
+C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\run.cjs
+  41:9  warning  Insert `··`  prettier/prettier
+
+✖ 2 problems (0 errors, 2 warnings)
+  0 errors and 2 warnings potentially fixable with the `--fix` option.
+

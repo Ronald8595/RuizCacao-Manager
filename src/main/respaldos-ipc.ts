@@ -1,3 +1,4 @@
+import { registrarFalloRespaldo } from './database/respaldo-diagnostico'
 import { dialog, ipcMain, type BrowserWindow } from 'electron'
 import { stat } from 'node:fs/promises'
 import {
@@ -40,7 +41,6 @@ export async function despacharRespaldo(
         !uuid(args[1]) ||
         args[2] !== true ||
         typeof args[3] !== 'string' ||
-        args[3].length < 1 ||
         args[3].length > 128)
     )
       throw new ErrorRespaldo('solicitud')
@@ -69,6 +69,7 @@ export async function despacharRespaldo(
     }
     return { ok: true, valor }
   } catch (e) {
+    if (!(e instanceof ErrorRespaldo)) registrarFalloRespaldo(e, canal)
     return { ok: false, ...errorRespaldo(e) }
   }
 }
@@ -77,9 +78,11 @@ export function registrarRespaldosIPC(
   reiniciar: () => Promise<void>
 ): ServicioRespaldos {
   const servicio = new ServicioRespaldos({
-    autorizar: () => {
+    autorizar: async (tipo) => {
       try {
-        return obtenerBase().autorizarRespaldos()
+        return tipo === 'cargar'
+          ? await obtenerBase().autorizarCargaRespaldo()
+          : obtenerBase().autorizarRespaldos()
       } catch {
         throw new ErrorRespaldo('permiso')
       }
@@ -87,7 +90,7 @@ export function registrarRespaldosIPC(
     credencial: async (password) => {
       let valido: boolean
       try {
-        valido = await obtenerBase().confirmarAdministradorRespaldo(password)
+        valido = await obtenerBase().confirmarCargaRespaldo(password)
       } catch {
         throw new ErrorRespaldo('autenticacion')
       }
@@ -128,9 +131,16 @@ export function registrarRespaldosIPC(
       const caso = await crearGeneradorInterno(ruta, () => ctx.fase?.('publicando'))
       return (await caso.ejecutar(ctx)).archivo
     },
-    cargar: async (p, ctx) => {
+    cargar: async (p, ctx, autorizacion) => {
+      const activa = obtenerBase()
+      if ((await activa.autorizarCargaRespaldo()) !== autorizacion)
+        throw new ErrorRespaldo('permiso')
       const caso = await crearRestauradorInterno({ preparar: async () => p })
-      await caso.ejecutar('', async () => true, ctx)
+      await caso.ejecutar(
+        '',
+        async () => (await activa.autorizarCargaRespaldo()) === autorizacion,
+        ctx
+      )
     },
     bloquearHastaReinicio: bloquearHastaReinicioRestore,
     reiniciar,

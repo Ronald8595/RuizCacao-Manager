@@ -1,0 +1,76 @@
+{
+  "fecha": "2026-10-19",
+  "version": "1.3.1",
+  "rama": "feature/respaldos-restauracion",
+  "head": "9db6073",
+  "estado": "Candidato validado automáticamente; certificación Windows externa pendiente",
+  "schemaMismatch": {
+    "resuelto": true,
+    "objetos": 701,
+    "diferenciaReal": "v_flujo_caja histórica",
+    "constraints": "Sin diferencias; diagnóstico previo rectificado"
+  },
+  "stagingStartFailed": {
+    "resueltoCausalmente": false,
+    "reproducidoActual": false,
+    "causaPrevia": "No concluyente por falta de código en log antiguo",
+    "stagingActual": "PASS"
+  },
+  "rutaACP": {
+    "reproducida": true,
+    "corregida": true,
+    "decoderEstricto": true,
+    "pertenenciaConservada": true
+  },
+  "resultados": {
+    "archivoReal": 0,
+    "perfilA": 0,
+    "perfilB": 0,
+    "loginOriginalFixture": 0,
+    "reabrir": 0,
+    "typecheck": 0,
+    "lint": 0,
+    "lintErrores": 0,
+    "lintAdvertencias": 863,
+    "dbTest": 0,
+    "respaldoPortable": 0,
+    "respaldoPortabilidad": 0,
+    "diffCheck": 0,
+    "procesosPostgresPropios": 0,
+    "procesosArnes": 0
+  },
+  "datosRestauradosIguales": true,
+  "hashOriginalConservado": true,
+  "usuariosYHashesPasswordIguales": true,
+  "loginArchivoComercial": "Pendiente de aceptación del usuario; no se solicitó su contraseña",
+  "sidDistinto": "NO DISPONIBLE",
+  "buildEjecutado": false,
+  "publicacionGit": false,
+  "migracionNueva": false,
+  "migraciones001a010Modificadas": false,
+  "validacionDebilitada": false,
+  "snapshotAumentado": false,
+  "timersPollingWatchersNuevos": false,
+  "trabajoArranqueNuevo": false,
+  "evidencias": [
+    "catalogo-corregido-antes.json",
+    "catalogo-corregido-despues.json",
+    "restore-catalogo.json",
+    "ruta-unicode-antes.json",
+    "ruta-unicode-despues.json",
+    "perfil-limpio-final/antes-ruta-acp.json",
+    "perfil-limpio-final/antes-ruta-espacio.json",
+    "perfil-limpio-final/resultado.json",
+    "perfil-limpio-final/eventos-respaldo.json",
+    "typecheck-final.json",
+    "lint-final.json",
+    "db-test-final.json",
+    "diff-check-final.json",
+    "procesos-final.json"
+  ],
+  "pendientes": [
+    "Instalador candidato y aceptación en otro SID/VM por usuario",
+    "Login original del archivo comercial por su propietario",
+    "Confirmar ausencia del fallo initdb histórico en entorno real"
+  ]
+}

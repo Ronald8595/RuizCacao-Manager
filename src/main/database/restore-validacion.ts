@@ -1,6 +1,6 @@
+import { ErrorDiagnosticoRespaldo, diagnosticarRespaldo } from './respaldo-diagnostico'
 import type { Pool } from 'pg'
 import { randomUUID } from 'node:crypto'
-import { ErrorNegocio } from '../../shared/errorNegocio'
 import { versionHistorial, VERSION_ESQUEMA } from './migration-runner'
 export interface RestoreValidator {
   comparar(pool: Pool, referencia: Pool, version: number): Promise<void>
@@ -11,7 +11,7 @@ export function clavesInventario(toc: string): Set<string> {
   for (const linea of toc.split(/\r?\n/)) {
     if (!linea || linea.startsWith(';')) continue
     const m = linea.match(/^\d+; \d+ \d+ (.+) \S+$/)
-    if (!m) throw new ErrorNegocio('Inventario de respaldo inválido.')
+    if (!m) throw new ErrorDiagnosticoRespaldo('BACKUP_INVENTORY_INVALID', 'leer_inventario')
     claves.add(m[1])
   }
   return claves
@@ -20,12 +20,12 @@ export function validarInventario(toc: string, esperado: string): void {
   const permitidos = clavesInventario(esperado)
   for (const clave of clavesInventario(toc))
     if (!permitidos.has(clave))
-      throw new ErrorNegocio('El respaldo contiene objetos SQL inesperados.')
+      throw new ErrorDiagnosticoRespaldo('BACKUP_INVENTORY_INVALID', 'comparar_inventario')
 }
 // Solo metadata del catálogo (cientos de filas), nunca filas comerciales en Node.
-export async function firmaEstructura(pool: Pool): Promise<string> {
+export async function firmaEstructura(pool: Pick<Pool, 'query'>): Promise<string> {
   const r = await pool.query(`WITH objetos AS (
-    SELECT 'rel' tipo,c.relname nombre,jsonb_build_array(c.relkind,c.relpersistence,c.relrowsecurity,c.relforcerowsecurity)::text definicion
+    SELECT 'rel' tipo,c.relname::text nombre,jsonb_build_array(c.relkind,c.relpersistence,c.relrowsecurity,c.relforcerowsecurity)::text definicion
     FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='ruizcacao'
     UNION ALL SELECT 'col',c.relname||'.'||a.attname,jsonb_build_array(format_type(a.atttypid,a.atttypmod),a.attnotnull,a.attidentity,a.attgenerated,pg_get_expr(d.adbin,d.adrelid))::text
     FROM pg_attribute a JOIN pg_class c ON c.oid=a.attrelid JOIN pg_namespace n ON n.oid=c.relnamespace LEFT JOIN pg_attrdef d ON d.adrelid=c.oid AND d.adnum=a.attnum WHERE n.nspname='ruizcacao' AND a.attnum>0 AND NOT a.attisdropped AND c.relkind IN('r','v')
@@ -40,10 +40,16 @@ export async function firmaEstructura(pool: Pool): Promise<string> {
 }
 export class ValidadorRestorePostgres implements RestoreValidator {
   async comparar(pool: Pool, referencia: Pool, version: number): Promise<void> {
-    if ((await versionHistorial(pool)) !== version)
-      throw new ErrorNegocio('El esquema restaurado no coincide con el manifiesto.')
+    let historial: number
+    try {
+      historial = await versionHistorial(pool)
+    } catch (e) {
+      throw diagnosticarRespaldo(e, 'BACKUP_SCHEMA_HISTORY_MISMATCH', 'historial_esquema')
+    }
+    if (historial !== version)
+      throw new ErrorDiagnosticoRespaldo('BACKUP_SCHEMA_HISTORY_MISMATCH', 'historial_esquema')
     if ((await firmaEstructura(pool)) !== (await firmaEstructura(referencia)))
-      throw new ErrorNegocio('La estructura del respaldo no corresponde a RuizCacao.')
+      throw new ErrorDiagnosticoRespaldo('BACKUP_SCHEMA_MISMATCH', 'firma_catalogo')
     const ajenos = (
       await pool.query(
         "SELECT count(*)::int n FROM pg_namespace WHERE nspname NOT LIKE 'pg_%' AND nspname NOT IN ('information_schema','public','ruizcacao')"
@@ -54,25 +60,26 @@ export class ValidadorRestorePostgres implements RestoreValidator {
         "SELECT count(*)::int n FROM pg_class c JOIN pg_namespace n ON n.oid=c.relnamespace WHERE n.nspname='public'"
       )
     ).rows[0].n
-    if (ajenos || publicos) throw new ErrorNegocio('El respaldo contiene objetos ajenos.')
+    if (ajenos || publicos)
+      throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'objetos_ajenos')
     if (version !== VERSION_ESQUEMA) return
     const tablas = (
       await pool.query("SELECT count(*)::int n FROM pg_tables WHERE schemaname='ruizcacao'")
     ).rows[0].n
-    if (tablas !== 25) throw new ErrorNegocio('Faltan tablas de RuizCacao.')
+    if (tablas !== 25) throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'cantidad_tablas')
     const usuarios = (
       await pool.query(`SELECT count(*) FILTER (WHERE principal AND activo)::int principales,
       count(*) FILTER (WHERE password_hash !~ '^[a-f0-9]{32}:[a-f0-9]{128}$')::int invalidos FROM ruizcacao.usuarios`)
     ).rows[0]
     if (usuarios.principales !== 1 || usuarios.invalidos)
-      throw new ErrorNegocio('El respaldo no contiene un acceso principal válido.')
+      throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'usuarios')
     if (
       (await pool.query('SELECT count(*)::int n FROM ruizcacao.administrador WHERE id=1')).rows[0]
         .n !== 1 ||
       (await pool.query('SELECT count(*)::int n FROM ruizcacao.instalacion WHERE id=1')).rows[0]
         .n !== 1
     )
-      throw new ErrorNegocio('Falta la identidad técnica del respaldo.')
+      throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'identidad')
     if (
       Number(
         (
@@ -82,7 +89,7 @@ export class ValidadorRestorePostgres implements RestoreValidator {
         ).rows[0].n
       )
     )
-      throw new ErrorNegocio('La identidad del administrador es inconsistente.')
+      throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'administrador')
     // Consultas comerciales acotadas; no reconstruir ni recalcular estados/saldos.
     await pool.query('SELECT id,saldo FROM ruizcacao.v_saldos LIMIT 1')
     await pool.query('SELECT id,monto FROM ruizcacao.v_flujo_caja LIMIT 1')
@@ -97,7 +104,7 @@ export class ValidadorRestorePostgres implements RestoreValidator {
     for (const s of secuencias) {
       for (const v of Object.values(s))
         if (typeof v !== 'string' || !/^[a-z_]+$/.test(v))
-          throw new ErrorNegocio('Secuencia inesperada.')
+          throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'nombre_secuencia')
       const valor = BigInt(
         (await pool.query('SELECT last_value::text v FROM ruizcacao.' + s.secuencia)).rows[0].v
       )
@@ -108,7 +115,7 @@ export class ValidadorRestorePostgres implements RestoreValidator {
           )
         ).rows[0].v
       )
-      if (valor < max) throw new ErrorNegocio('Una secuencia del respaldo está retrasada.')
+      if (valor < max) throw new ErrorDiagnosticoRespaldo('BACKUP_DATA_INVALID', 'valor_secuencia')
     }
   }
   async normalizar(pool: Pool): Promise<string> {

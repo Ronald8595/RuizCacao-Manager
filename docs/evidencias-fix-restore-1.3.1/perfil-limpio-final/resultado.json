@@ -1,0 +1,21 @@
+{
+  "fases": [
+    {
+      "fase": "B",
+      "code": 0
+    },
+    {
+      "fase": "login",
+      "code": 0
+    },
+    {
+      "fase": "reabrir",
+      "code": 0
+    }
+  ],
+  "perfilesWindowsReales": false,
+  "sha256": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+  "bytesIdenticos": true,
+  "reutilizaArchivoA": true,
+  "exito": true
+}

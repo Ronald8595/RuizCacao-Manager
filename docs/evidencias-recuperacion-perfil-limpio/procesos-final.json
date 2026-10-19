@@ -1,0 +1,67 @@
+{
+  "fecha": "2026-10-18T18:53:03.6875045Z",
+  "propiosResiduales": 0,
+  "procesosPropios": [],
+  "postgresPreexistente": [
+    {
+      "ProcessId": 4212,
+      "ParentProcessId": 1324,
+      "Name": "pg_ctl.exe"
+    },
+    {
+      "ProcessId": 6020,
+      "ParentProcessId": 4212,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6148,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6200,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6240,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6260,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6316,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6372,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6700,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6712,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6744,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 5544,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    }
+  ]
+}

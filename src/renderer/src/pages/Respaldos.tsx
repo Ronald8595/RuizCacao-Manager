@@ -30,7 +30,11 @@ function valor<T>(r: RespuestaRespaldo<T>): T {
   return r.valor
 }
 
-export default function Respaldos({ administrador = false }: PageProps): React.JSX.Element {
+export default function Respaldos({
+  administrador = false,
+  inicial = false,
+  onCrearUsuario
+}: PageProps & { inicial?: boolean; onCrearUsuario?: () => void }): React.JSX.Element {
   const [vista, setVista] = useState<Vista>('ninguna')
   const [tipo, setTipo] = useState<TipoRespaldo>('generar')
   const [ocupado, setOcupado] = useState(false)
@@ -195,7 +199,7 @@ export default function Respaldos({ administrador = false }: PageProps): React.J
     }
   }
   async function cargar(): Promise<void> {
-    if (enviando.current || !resumen || !actual.current || !password) return
+    if (enviando.current || !resumen || !actual.current || (!inicial && !password)) return
     enviando.current = true
     setError('')
     const clave = password
@@ -260,12 +264,28 @@ export default function Respaldos({ administrador = false }: PageProps): React.J
               ? 'Cargando respaldo'
               : 'Verificando respaldo'
   return (
-    <section className="min-h-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-7">
-      <PageHeader
-        greeting="Respaldos"
-        subtitle="Protege la información de RuizCacao Manager guardando una copia en un lugar seguro."
-      />
-      {!administrador ? (
+    <section className={inicial ? 'mt-5' : 'min-h-0 flex-1 overflow-y-auto p-4 sm:p-6 lg:p-7'}>
+      {!inicial && (
+        <PageHeader
+          greeting="Respaldos"
+          subtitle="Protege la información de RuizCacao Manager guardando una copia en un lugar seguro."
+        />
+      )}
+      {inicial ? (
+        <div className="grid gap-3">
+          <button type="button" className={primario} disabled={ocupado} onClick={onCrearUsuario}>
+            Crear usuario nuevo
+          </button>
+          <button
+            type="button"
+            className={secundario}
+            disabled={ocupado}
+            onClick={() => void iniciar('cargar')}
+          >
+            Cargar respaldo
+          </button>
+        </div>
+      ) : !administrador ? (
         <p className="mt-6 text-sm">Solo el administrador puede gestionar respaldos.</p>
       ) : (
         <>
@@ -434,6 +454,10 @@ export default function Respaldos({ administrador = false }: PageProps): React.J
                   className={primario}
                   disabled={cancelando}
                   onClick={() => {
+                    if (inicial) {
+                      void cargar()
+                      return
+                    }
                     setPassword('')
                     setVista('password')
                   }}

@@ -1,0 +1,3 @@
+{"fecha":"2026-10-18T23:48:54.916Z","evento":"copia_privada","bytesOrigen":80348,"bytesCopia":80348,"sha256Origen":"4d2940d04ec4d86125f322cfd1190b435940ffbc33ba7662fb0683d9171c8c41","sha256Copia":"4d2940d04ec4d86125f322cfd1190b435940ffbc33ba7662fb0683d9171c8c41","iguales":true}
+{"fecha":"2026-10-18T23:50:02.635Z","evento":"fallo","codigo":"BACKUP_CLEANUP_FAILED","fase":"limpiar_workspace","sistema":"EBUSY"}
+{"fecha":"2026-10-18T23:50:02.644Z","evento":"fallo","codigo":"BACKUP_STAGING_START_FAILED","fase":"iniciar_staging"}

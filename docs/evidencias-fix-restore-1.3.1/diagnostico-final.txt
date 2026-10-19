@@ -1,0 +1,1 @@
+PASS diagnóstico: códigos/fases, ZIP/manifiesto/CRC/hash/PGDMP, copia idéntica y alterada, Unicode/userData, catálogo, cancelación y log sin secretos; sin motor iniciado

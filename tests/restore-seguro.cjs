@@ -385,14 +385,14 @@ async function main() {
       await check('rechazo ' + nombre + ' mantiene activa intacta', async () => {
         const antes = await firmas(b.pool)
         const motivo = {
-          futuro: /versión más reciente/,
-          discordante: /objetos SQL inesperados|manifiesto/,
-          objeto: /objetos SQL inesperados/,
-          hueco: /historial.*inconsistente/
+          futuro: ['BACKUP_FORMAT_UNSUPPORTED'],
+          discordante: ['BACKUP_INVENTORY_INVALID', 'BACKUP_SCHEMA_HISTORY_MISMATCH'],
+          objeto: ['BACKUP_INVENTORY_INVALID'],
+          hueco: ['BACKUP_SCHEMA_HISTORY_MISMATCH']
         }[nombre]
         await assert.rejects(
           servicio().ejecutar(archivo, async () => true),
-          motivo
+          (error) => motivo.includes(error.codigoTecnico)
         )
         assert.deepEqual(await firmas(b.pool), antes)
         assert.equal(inMantenimiento, false)

@@ -6,6 +6,26 @@ let carpetaLogs: string | undefined
 export function configurarLogs(carpeta: string): void {
   carpetaLogs = carpeta
 }
+// Solo recibe objetos construidos por el diagnóstico de respaldos con campos permitidos.
+export function registrarEventoRespaldo(evento: object): void {
+  if (!carpetaLogs) return
+  try {
+    mkdirSync(carpetaLogs, { recursive: true })
+    const archivo = join(carpetaLogs, 'respaldos.jsonl')
+    let bytes = 0
+    try {
+      bytes = statSync(archivo).size
+    } catch {
+      /* Primer evento. */
+    }
+    if (bytes > 2_000_000) renameSync(archivo, archivo + '.anterior')
+    appendFileSync(archivo, JSON.stringify({ fecha: new Date().toISOString(), ...evento }) + '\n', {
+      mode: 0o600
+    })
+  } catch {
+    /* Un fallo de log no sustituye el fallo original ni expone secretos. */
+  }
+}
 export interface ContextoError {
   modulo: string
   operacion: string
@@ -17,6 +37,8 @@ export function detalleSeguro(error: unknown, contexto: ContextoError, referenci
     constraint?: unknown
     column?: unknown
     stack?: unknown
+    signal?: unknown
+    killed?: unknown
   }
   const identificador = (v: unknown): string | undefined =>
     typeof v === 'string' && /^[a-zA-Z0-9_]{1,100}$/.test(v) ? v : undefined
@@ -39,6 +61,9 @@ export function detalleSeguro(error: unknown, contexto: ContextoError, referenci
       typeof e?.code === 'number' && Number.isSafeInteger(e.code) ? e.code : identificador(e?.code),
     restriccion: identificador(e?.constraint),
     columna: identificador(e?.column),
+    senal:
+      typeof e?.signal === 'string' && /^SIG[A-Z]{2,10}$/.test(e.signal) ? e.signal : undefined,
+    terminado: typeof e?.killed === 'boolean' ? e.killed : undefined,
     stack
   }
 }

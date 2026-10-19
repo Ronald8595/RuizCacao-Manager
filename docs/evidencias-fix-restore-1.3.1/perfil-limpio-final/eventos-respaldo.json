@@ -1,0 +1,42 @@
+[
+  {
+    "fecha": "2026-10-19T16:15:19.522Z",
+    "evento": "copia_privada",
+    "bytesOrigen": 85263,
+    "bytesCopia": 85263,
+    "sha256Origen": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+    "sha256Copia": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+    "iguales": true
+  },
+  {
+    "fecha": "2026-10-19T16:15:34.396Z",
+    "evento": "fallo",
+    "codigo": "BACKUP_REFERENCE_FAILED",
+    "fase": "crear_referencia",
+    "sistema": "ENOENT"
+  },
+  {
+    "fecha": "2026-10-19T16:20:23.416Z",
+    "evento": "copia_privada",
+    "bytesOrigen": 85263,
+    "bytesCopia": 85263,
+    "sha256Origen": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+    "sha256Copia": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+    "iguales": true
+  },
+  {
+    "fecha": "2026-10-19T16:20:37.124Z",
+    "evento": "fallo",
+    "codigo": "BACKUP_UNCLASSIFIED",
+    "fase": "cargarRespaldo"
+  },
+  {
+    "fecha": "2026-10-19T16:21:39.034Z",
+    "evento": "copia_privada",
+    "bytesOrigen": 85263,
+    "bytesCopia": 85263,
+    "sha256Origen": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+    "sha256Copia": "6736942eb5cfc279c3d4357b1e16b24c23360fe449ea03e19026014c1a278c51",
+    "iguales": true
+  }
+]

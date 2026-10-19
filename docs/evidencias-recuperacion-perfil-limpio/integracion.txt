@@ -1,0 +1,12 @@
+
+OK A: .back 1.3.0 generado por IPC y contenedor verificado
+
+OK UI: Crear usuario nuevo
+OK UI: Nueva contraseña
+OK UI: Crear usuario nuevo
+OK UI: Antes de realizar el cambio
+OK UI: Respaldo cargado correctamente
+OK B: dos acciones, restore sin usuario previo ni contraseña técnica A, reinicio solicitado
+
+OK UI: Iniciar sesión
+OK proceso nuevo: Login, contraseña original, datos de A y permisos posteriores conservados

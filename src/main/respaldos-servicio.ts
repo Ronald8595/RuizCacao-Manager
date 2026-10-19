@@ -1,3 +1,4 @@
+import { ErrorDiagnosticoRespaldo, diagnosticarRespaldo } from './database/respaldo-diagnostico'
 import { randomUUID } from 'node:crypto'
 import { basename } from 'node:path'
 import type { ContextoOperacion } from './database/operacion-respaldo'
@@ -55,13 +56,13 @@ export function errorRespaldo(error: unknown): { codigo: string; error: string }
   return { codigo, error: mensajesRespaldo[codigo] ?? mensajesRespaldo.general }
 }
 export interface PuertosRespaldos {
-  autorizar(): string
+  autorizar(tipo: TipoRespaldo): string | Promise<string>
   credencial(password: string): Promise<void>
   seleccionar(tipo: TipoRespaldo): Promise<string | null>
   tamano(ruta: string): Promise<number>
   preparar(ruta: string, ctx: ContextoOperacion): Promise<RestorePreparado>
   generar(ruta: string, ctx: ContextoOperacion): Promise<string>
-  cargar(p: RestorePreparado, ctx: ContextoOperacion): Promise<void>
+  cargar(p: RestorePreparado, ctx: ContextoOperacion, autorizacion: string): Promise<void>
   bloquearHastaReinicio(): void
   reiniciar(): Promise<void>
   progreso(p: ProgresoRespaldo): void
@@ -87,23 +88,25 @@ export class ServicioRespaldos {
   private operacion?: Operacion
   private cerrado = false
   constructor(private readonly puertos: PuertosRespaldos) {}
-  private obtener(id: string, autorizar = true): Operacion {
+  private async obtener(id: string, autorizar = true): Promise<Operacion> {
     const o = this.operacion
     if (!o || o.id !== id) throw new ErrorRespaldo('solicitud')
-    if (autorizar && this.puertos.autorizar() !== o.usuario) throw new ErrorRespaldo('permiso')
+    if (autorizar && (await this.puertos.autorizar(o.tipo)) !== o.usuario)
+      throw new ErrorRespaldo('permiso')
+    if (this.operacion !== o) throw new ErrorRespaldo('solicitud')
     return o
   }
   private async autorizarInicio(id: string): Promise<Operacion> {
-    const o = this.obtener(id, false)
+    const o = await this.obtener(id, false)
     try {
-      return this.obtener(id)
+      return await this.obtener(id)
     } catch (e) {
       if (o.estado === 'seleccionado' || o.estado === 'listo') await this.liberar(o)
       throw e
     }
   }
   async seleccionar(tipo: TipoRespaldo): Promise<SeleccionRespaldo | null> {
-    const usuario = this.puertos.autorizar()
+    const usuario = await this.puertos.autorizar(tipo)
     if (this.cerrado || this.operacion) throw new ErrorRespaldo('ocupado')
     const o: Operacion = {
       id: randomUUID(),
@@ -122,8 +125,9 @@ export class ServicioRespaldos {
         this.operacion = undefined
         return null
       }
-      if (this.puertos.autorizar() !== usuario) throw new ErrorRespaldo('permiso')
-      if (!ruta.toLowerCase().endsWith('.back')) throw new ErrorRespaldo('invalido')
+      if ((await this.puertos.autorizar(tipo)) !== usuario) throw new ErrorRespaldo('permiso')
+      if (!ruta.toLowerCase().endsWith('.back'))
+        throw new ErrorDiagnosticoRespaldo('BACKUP_INVALID_EXTENSION', 'seleccion')
       o.ruta = ruta
       o.nombre = basename(ruta)
       o.estado = 'seleccionado'
@@ -193,7 +197,7 @@ export class ServicioRespaldos {
   }
   async generar(id: string): Promise<ResultadoRespaldo> {
     await this.autorizarInicio(id)
-    const o = this.obtener(id)
+    const o = await this.obtener(id)
     if (o.tipo !== 'generar' || o.estado !== 'seleccionado') throw new ErrorRespaldo('solicitud')
     return this.ejecutar(o, async () => {
       try {
@@ -209,14 +213,19 @@ export class ServicioRespaldos {
   }
   async validar(id: string): Promise<ResumenRespaldo | { estado: 'cancelado' }> {
     await this.autorizarInicio(id)
-    const o = this.obtener(id)
+    const o = await this.obtener(id)
     if (o.tipo !== 'cargar' || o.estado !== 'seleccionado') throw new ErrorRespaldo('solicitud')
     return this.ejecutar(o, async () => {
       try {
-        const bytes = await this.puertos.tamano(o.ruta)
+        let bytes: number
+        try {
+          bytes = await this.puertos.tamano(o.ruta)
+        } catch (e) {
+          throw diagnosticarRespaldo(e, 'BACKUP_PRIVATE_PREPARATION_FAILED', 'leer_seleccion')
+        }
         o.preparado = await this.puertos.preparar(o.ruta, this.contexto(o))
         o.abort.signal.throwIfAborted()
-        this.obtener(id)
+        await this.obtener(id)
         o.preparacionId = randomUUID()
         o.estado = 'listo'
         return {
@@ -236,14 +245,14 @@ export class ServicioRespaldos {
   }
   async cargar(id: string, preparacionId: string, password: string): Promise<ResultadoRespaldo> {
     await this.autorizarInicio(id)
-    const o = this.obtener(id)
+    const o = await this.obtener(id)
     if (o.estado !== 'listo' || !o.preparado || o.preparacionId !== preparacionId)
       throw new ErrorRespaldo('solicitud')
     o.estado = 'autorizando'
     const tarea = (async (): Promise<ResultadoRespaldo> => {
       try {
         await this.puertos.credencial(password)
-        this.obtener(id)
+        await this.obtener(id)
         o.abort.signal.throwIfAborted()
       } catch (e) {
         if (o.abort.signal.aborted) {
@@ -257,7 +266,7 @@ export class ServicioRespaldos {
       }
       o.estado = 'trabajando'
       try {
-        await this.puertos.cargar(o.preparado!, this.contexto(o))
+        await this.puertos.cargar(o.preparado!, this.contexto(o), o.usuario)
         o.preparado = undefined // El caso seguro ya completó su finally de limpieza.
         this.puertos.bloquearHastaReinicio()
         o.estado = 'reinicio'
@@ -273,7 +282,7 @@ export class ServicioRespaldos {
     return tarea
   }
   async cancelar(id: string): Promise<boolean> {
-    const o = this.obtener(id, false)
+    const o = await this.obtener(id, false)
     if (!o.cancelable) return false
     o.abort.abort()
     if (['trabajando', 'autorizando'].includes(o.estado)) await o.tarea?.catch(() => {})
@@ -281,7 +290,7 @@ export class ServicioRespaldos {
     return true
   }
   async reiniciar(id: string): Promise<void> {
-    const o = this.obtener(id, false)
+    const o = await this.obtener(id, false)
     if (o.estado !== 'reinicio') throw new ErrorRespaldo('solicitud')
     o.reinicio ??= Promise.resolve()
       .then(() => this.puertos.reiniciar())

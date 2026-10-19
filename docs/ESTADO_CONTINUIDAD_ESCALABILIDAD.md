@@ -1,5 +1,33 @@
 # Estado de continuidad — Escalabilidad PostgreSQL
 
+## Continuación vigente 1.3.1 — 2026-10-19
+
+Este bloque sustituye el diagnóstico anterior; no reiniciar Etapa03 ni repetir pruebas ya aprobadas. BACKUP_SCHEMA_MISMATCH del archivo exacto e659…c474430 corregido: comparación701 objetos demuestra una única diferencia real, v_flujo_caja histórica de devoluciones. Las dos supuestas diferencias de constraints eran identidades truncadas por tipo name y colisiones del Map; FK/NOT NULL coinciden. Firma ahora usa text. Referencia histórica completa de confianza solo para esquema10, sin ignorar objetos ni cambiar la vista restaurada. No011 ni cambios SQL001–010. Evidencias antiguas preservadas y rectificadas; ver [informe actualizado](Informe_Fix_Restore_Perfil_Windows_v1.3.1.md).
+
+Regresión real antes1 esperado/después0; promoción real0 con todas las tablas/vistas/usuarios preservados y SHA intacto. Regresión15 casos: esquemas incompatibles siguen rechazados, pagos/devoluciones históricos conservados y contraseña original del fixture válida. Corrección adicional reproducible: data_directory Windows contiene bytes ACP pese a UTF8; leer bytes+decoder estricto elimina ENOENT en pertenencia/espacio manteniendo realpath. Unicode y directorio ajeno rechazado0. No nuevo trabajo de arranque/Snapshot/polling/timers/watchers.
+
+Electron real A0; B/Login/reabrir0/0/0 tras corregir rutas. A.back ya generado se reutilizó, SHA6736…78c51; transferencia exclusiva .back, credenciales técnicas independientes, B sin usuarios/compras/ventas/cuentas. Formulario Login original y huellas comerciales/saldos iguales. Mismo SID: NO certifica otra cuenta Windows ni instalador. Sin VM/otro SID disponible y sin build final por instrucción actual.
+
+BACKUP_STAGING_START_FAILED anterior NO reproducido. Sus logs carecen de código suficiente: duración compatible con timeout60s no prueba causa. No atribuirlo al defecto ACP posterior al arranque ni afirmar solución causal. Arranques/staging actuales pasan. Conservar intento anterior para diagnóstico si reaparece.
+
+Typecheck final0; lint final0, 0 errores/863 advertencias; db:test completo0 (sesión80127 TERMINADA), incluidos rollback, recuperación de arranque, portable22 casos y portabilidad pequeño/grande. Salida docs/evidencias-fix-restore-1.3.1/db-test-final.txt/json. Consulta Windows final: cero PostgreSQL propios y cero arneses residuales; servicio ajeno postgresql-x64-18 preservado. Diff-check0. No hay pruebas activas. Versiones package/lock1.3.1; sin cambios de dependencias. No commit/push/tag/release/build/seed comercial.
+
+SIGUIENTE PASO EXACTO: detener el trabajo automático y entregar evidencia. El usuario debe ejecutar preflight/build del informe, probar candidato1.3.1 en otro SID/VM con backup real y nuevo, SHA, restore/reinicio/Login original/datos y reapertura. Certificar también que no reaparece el initdb histórico. No repetir las pruebas ya aprobadas ni declarar 1.3.1 oficialmente cerrada antes de esa aceptación.
+
+Detalle del árbol final: .eslintcache fue eliminado automáticamente por ESLint al ejecutar el --no-cache solicitado; no se restauró desde Git ni se descartaron cambios fuente. La suite añadió docs/evidencias-pgctl/regresion-1792443911372.json. Temporal Vite previo conservado.
+
+## Restore entre cuentas Windows — diagnóstico 1.3.1, 2026-10-18
+
+Bloque histórico superado y rectificado por la continuación vigente del 19 de octubre. Se conserva para trazabilidad del diagnóstico inicial, no como lista actual de pendientes. El usuario confirmó que un .back NUEVO de una build nueva falla entre cuentas Windows distintas. Onboarding sin usuarios ya corregido y conservado; no reiniciar Etapa03 ni modificar Stock/Reportes.
+
+**Bug reproducido con el archivo exacto: SÍ; corrección: NO aplicada.** `RuizCacao_2026-10-19_01-11.back`, SHA256 `e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430`, pasa validaciones de contenedor/integridad y falla en `firma_catalogo`. Diff seguro: dos constraints de `solicitudes_recuperacion` y vista `v_flujo_caja`; fingerprints/semántica en evidencia. Falta clasificar drift como histórico legítimo o incompatible. El arnés con dos userData bajo el mismo SID no certifica otra cuenta ni una instalación empaquetada. Informe de esta continuación: [Informe_Fix_Restore_Perfil_Windows_v1.3.1.md](Informe_Fix_Restore_Perfil_Windows_v1.3.1.md).
+
+Implementados códigos técnicos por validación (extensión, contenedor, manifiesto, producto/formato, CRC/hash/PGDMP, copia, staging, herramientas, historial/catálogo/datos), comparación streaming tamaño/SHA antes y después de copia y al terminar preparación, log seguro userData/logs/respaldos.jsonl y clasificación acotada de stderr sin SQL/rutas/secretos. Mensaje IPC amigable. Fallo de limpieza separado de causa primaria. Sin relajación de validaciones, formato nuevo, migraciones, Snapshot, polling/timers/watchers ni trabajo al arranque. SQL001–010, staging/candidata/pre_restauracion/journal/rollback intactos.
+
+Cierre de diagnóstico: reproducción exacta completada con PostgreSQL temporal aislado; no hay prueba activa. No se modificó ni debilitó la validación. El mismatch de vista afecta semántica de caja, por lo que no se acepta automáticamente. Evidencia: `docs/evidencias-fix-restore-1.3.1/continuacion-2026-10-19.md` y `archivo-real.json`. No ejecutar db:test general hasta corregir y añadir la regresión exacta. No ejecutar db:test general hasta encontrar/corregir la causa real. No build, commit, push, tag ni seed.
+
+SIGUIENTE PASO EXACTO: terminar pruebas activas y documentar sus códigos/procesos; clasificar las diferencias por origen histórico y semántica financiera, resolver la forma versionada de normalizarlas si son legítimas, y añadir regresión que rechace drift incompatible. La certificación final la hace el usuario en dos cuentas Windows distintas con nuevo respaldo, SHA idéntico, sin AppData/secretos origen, restore/reinicio/Login/contraseña/datos originales. No declarar resuelto por pasar el arnés local.
+
 ## Stock por fecha implementado — 2026-10-17, 1.3.0
 
 Este bloque sustituye el estado «no implementar» de la auditoría inferior por la autorización posterior del usuario. Rama `feature/respaldos-restauracion`, checkpoint `6bc226fd7b8127c7ffee9a71081e0537965e585d` preservado. Informe: [Informe_Stock_Por_Fecha_v1.3.0.md](Informe_Stock_Por_Fecha_v1.3.0.md).

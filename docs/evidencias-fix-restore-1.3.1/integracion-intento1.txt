@@ -1,0 +1,23 @@
+
+OK A: .back 1.3.0 generado por IPC y contenedor verificado
+
+6:46:32 p.m. [vite] (client) Re-optimizing dependencies because vite config has changed
+OK UI: Crear usuario nuevo
+OK UI: Nueva contraseña
+OK UI: Crear usuario nuevo
+Error: Espera agotada: Antes de realizar el cambio; DOM: Grupo RuizRuizCacao ManagerCrear usuario nuevoCargar respaldoNo se pudo cargar el respaldoLa información actual se conserva. No se pudo completar la operación. Intenta nuevamente o contacta con soporte.Aceptar
+    at esperar (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\recuperacion-perfil-limpio-electron.cjs:145:13)
+    at async main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\recuperacion-perfil-limpio-electron.cjs:164:7)
+AssertionError [ERR_ASSERTION]: Fase B
+
+1 !== 0
+
+    at main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\recuperacion-perfil-limpio.cjs:38:14)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: 1,
+  expected: 0,
+  operator: 'strictEqual',
+  diff: 'simple'
+}

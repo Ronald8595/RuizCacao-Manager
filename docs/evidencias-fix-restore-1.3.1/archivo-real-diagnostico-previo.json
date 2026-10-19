@@ -1,0 +1,41 @@
+{
+  "respaldo": {
+    "archivo": "RuizCacao_2026-10-19_01-11.back",
+    "bytes": 3094716,
+    "sha256": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430",
+    "hash_verificado_antes_y_despues": true,
+    "rechazo_reportado_dos_veces_en_otro_perfil_windows": "BACKUP_SCHEMA_MISMATCH",
+    "reproduccion_aislada": "BACKUP_SCHEMA_MISMATCH / firma_catalogo"
+  },
+  "diferencias": [
+    {
+      "tipo": "constraint",
+      "schema": "ruizcacao",
+      "nombre": "solicitudes_recuperacion.solicitudes_recuperacion_administrador",
+      "estado": "different",
+      "actual": {"clase": "foreign_key", "columnas": ["administrador_id"], "referencia": "ruizcacao.administrador", "columnasReferencia": ["id"], "validada": true, "sha256": "9986880693a27fe032d3445582568fc58fa86df33db08ce465ebe381e67ac52c"},
+      "referencia": {"clase": "not_null", "columna": "administrador_id", "validada": true, "sha256": "abffb7dbb1a1693570373157ec5e4204612499f0a5a8d098290cfb47a7450ee2"}
+    },
+    {
+      "tipo": "constraint",
+      "schema": "ruizcacao",
+      "nombre": "solicitudes_recuperacion.solicitudes_recuperacion_installation_",
+      "estado": "different",
+      "actual": {"clase": "foreign_key", "columnas": ["installation_id"], "referencia": "ruizcacao.instalacion", "columnasReferencia": ["installation_id"], "validada": true, "sha256": "540b001d2637437cd6f087b6bff1301d951cdb29b22601340f64adca69aedf1c"},
+      "referencia": {"clase": "not_null", "columna": "installation_id", "validada": true, "sha256": "ed4ff194c110d6779073cec80a88c27504b7c0d82402e59f7b862ab8c981d767"}
+    },
+    {
+      "tipo": "view",
+      "schema": "ruizcacao",
+      "nombre": "v_flujo_caja",
+      "estado": "different",
+      "actual": {"abono": true, "ajusteDevolucion": true, "excluyeCuentasAnuladas": false, "invierteSignoAjuste": true, "signoCompraNegativo": true, "sha256": "beb9328851ccb16725bfef492468a10ec7c903d4626cc9ebea4ddb524e45fd09"},
+      "referencia": {"abono": true, "ajusteDevolucion": false, "excluyeCuentasAnuladas": true, "invierteSignoAjuste": false, "signoCompraNegativo": true, "sha256": "792725b32b5b2fcf36e81f636167381f48a6d4f3e7b90dd54defc4e26d5a28ee"}
+    }
+  ],
+  "causa": "La firma estricta compara constraints y v_flujo_caja con la referencia generada por migraciones 001-010. El backup real contiene diferencias estructurales y funcionales, no una diferencia demostrada como representación no semántica.",
+  "correccion": "NO APLICADA. Mantener rechazo hasta resolver si estas diferencias representan un estado histórico legítimo que requiere normalización versionada o drift incompatible.",
+  "validacion_debilitada": false,
+  "migracion_011": "NO CREADA; requiere decisión tras revisar el origen de la vista/constraints y su semántica de caja.",
+  "base_comercial": "NO USADA"
+}

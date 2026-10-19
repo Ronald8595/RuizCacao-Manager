@@ -1,0 +1,1 @@
+OK contratos restore: rol sin privilegios elevados, modo privado, nombres y journal estricto; cero SQL en rechazo de modo

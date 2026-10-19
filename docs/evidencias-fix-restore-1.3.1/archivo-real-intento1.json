@@ -1,0 +1,20 @@
+{
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-diagnostico-real-eGyi8C",
+  "fases": [
+    "preparando_restore",
+    "validando_contenedor",
+    "iniciando_aislamiento",
+    "inspeccionando"
+  ],
+  "antes": {
+    "tamano": 3094609,
+    "sha256": "07074668f3f18cd5d3d6981427a7bd79fbe4a18616834a02448a3a4b5358f135"
+  },
+  "preparacion": "FAIL",
+  "codigo": "BACKUP_REFERENCE_FAILED",
+  "fase": "crear_referencia",
+  "despues": {
+    "tamano": 3094609,
+    "sha256": "07074668f3f18cd5d3d6981427a7bd79fbe4a18616834a02448a3a4b5358f135"
+  }
+}

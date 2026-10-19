@@ -1,0 +1,23 @@
+OK portable autorización denegada no exporta ni crea workspace
+OK portable archivo único Unicode/espacios, manifest v1, hash/tamaño y TOC exactos
+OK portable extracción a nombre fijo y SHA por streaming
+OK portable colisiones concurrentes nunca sobrescriben
+OK portable fallo antes de publicar no deja .back ni temporales propios
+OK portable fallo secundario conserva archivo válido y devuelve advertencia
+OK portable fallo de publicación limpia operación sin tocar respaldos previos
+OK portable corrupción de metadatos con JSON aún válido rechazada por CRC
+OK portable hash de 64 MiB sin readFile del dump
+OK portable truncado y extensión falsa rechazados
+OK portable manifest inválido: product
+OK portable manifest inválido: version
+OK portable manifest inválido: hash
+OK portable manifest inválido: tamano
+OK portable manifest inválido: esquema
+OK portable manifest inválido: secreto
+OK portable manifest inválido: fecha
+OK portable JSON inválido rechazado
+OK portable entrada adicional/ejecutable y nombre duplicado rechazados
+OK portable rutas internas absolutas, traversal y duplicado de dos entradas rechazados
+OK portable symlink y permiso ejecutable rechazados incluso con nombre permitido
+OK portable límite de tamaño y extracción inválida no destruyen destino existente
+Pruebas del contenedor portable completas: 22

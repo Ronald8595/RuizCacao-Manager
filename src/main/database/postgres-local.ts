@@ -328,7 +328,8 @@ export class PostgresLocal {
   async conAdministracionRestauracion<T>(trabajo: (db: Client) => Promise<T>): Promise<T> {
     if (!this.iniciado) throw new ErrorNegocio('El motor local no está preparado.')
     return this.administrador(async (db) => {
-      const actual = await realpath((await db.query('SHOW data_directory')).rows[0].data_directory)
+      const { leerDirectorioPostgres } = await import('./postgres-ruta')
+      const actual = await realpath(await leerDirectorioPostgres(db))
       if (actual.toLowerCase() !== (await realpath(this.ruta('data'))).toLowerCase())
         throw new ErrorNegocio('El almacenamiento no pertenece a esta instalación.')
       return trabajo(db)

@@ -1,0 +1,41 @@
+{
+  "respaldo": {
+    "archivo": "RuizCacao_2026-10-19_01-11.back",
+    "bytes": 3094716,
+    "sha256": "e659724d7a0c8af95b42e849a171bc33259548fc5f28fb5503121f381c474430",
+    "hash_verificado_antes_y_despues": true
+  },
+  "rectificacion": {
+    "diagnostico_previo": "archivo-real-diagnostico-previo.json",
+    "constraints": "FK y NOT NULL coinciden; diferencias anteriores falsas por truncamiento name a63 bytes y colisión de identidades en Map",
+    "objetos": 701,
+    "diferencias_reales": [
+      "view: v_flujo_caja"
+    ],
+    "origen": "Variante histórica documentada en informe1.1.2 sección7; no consta commit de transición"
+  },
+  "correccion": "Referencia histórica completa confiable para esquema10. Todos los objetos deben coincidir. Vista restaurada intacta; sin normalizar su semántica financiera.",
+  "pruebas": {
+    "antes": {
+      "codigo": 1,
+      "evidencia": "catalogo-corregido-antes.json",
+      "resultado": "BACKUP_SCHEMA_MISMATCH"
+    },
+    "staging_despues": {
+      "codigo": 0,
+      "evidencia": "catalogo-corregido-despues.json"
+    },
+    "promocion_real": {
+      "codigo": 0,
+      "evidencia": "restore-catalogo.json",
+      "tablas_y_vistas_iguales": true,
+      "usuarios_y_password_hash_iguales": true,
+      "login_comercial": "No ejecutado: no se solicitó contraseña; Login original de fixture PASS"
+    }
+  },
+  "validacion_debilitada": false,
+  "migracion_011": false,
+  "base_comercial_original_usada": false,
+  "sid_distinto": "NO DISPONIBLE",
+  "release_certificada": false
+}

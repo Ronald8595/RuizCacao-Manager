@@ -38,7 +38,11 @@ async function main() {
       : [
           'stock-por-fecha.cjs',
           'respaldos-ipc.cjs',
+          'respaldos-inicial-permisos.cjs',
+          'respaldo-diagnostico.cjs',
           'restore-contratos.cjs',
+          'restore-catalogo.cjs',
+          'postgres-ruta-windows.cjs',
           'restore-seguro.cjs',
           'restore-startup.cjs',
           'respaldo-portable.cjs',

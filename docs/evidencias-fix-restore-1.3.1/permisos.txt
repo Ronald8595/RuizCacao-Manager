@@ -1,0 +1,1 @@
+OK recuperación inicial: sin creación automática, solo carga, confirmación obligatoria y revocación si aparece un usuario.

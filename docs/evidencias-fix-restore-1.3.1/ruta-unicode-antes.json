@@ -1,0 +1,15 @@
+{
+  "encoding": [
+    "UTF8",
+    "UTF8"
+  ],
+  "longitud": 65,
+  "caracteresNoAscii": [
+    65533
+  ],
+  "bytesNoAscii": [
+    209
+  ],
+  "rutaExiste": false,
+  "rutaLatin1Existe": true
+}

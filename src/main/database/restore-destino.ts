@@ -7,6 +7,7 @@ import type { RestoreTarget } from './restore-caso'
 import type { EstadoJournal } from './restore-journal'
 import { faseOperacion, type ContextoOperacion } from './operacion-respaldo'
 import { ErrorNegocio } from '../../shared/errorNegocio'
+import { leerDirectorioPostgres } from './postgres-ruta'
 export class DestinoRestorePostgres implements RestoreTarget {
   constructor(
     private readonly local: PostgresLocal,
@@ -36,7 +37,7 @@ export class DestinoRestorePostgres implements RestoreTarget {
     let oid = 0
     try {
       const j = await this.local.conAdministracionRestauracion(async (db) => {
-        const data = (await db.query('SHOW data_directory')).rows[0].data_directory
+        const data = await leerDirectorioPostgres(db)
         const bytesActiva = Number(
           (await db.query("SELECT pg_database_size('ruizcacao_manager')::text n")).rows[0].n
         )

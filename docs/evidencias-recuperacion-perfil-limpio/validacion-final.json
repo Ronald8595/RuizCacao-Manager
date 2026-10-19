@@ -1,0 +1,48 @@
+{
+  "fecha": "2026-10-18",
+  "rama": "feature/respaldos-restauracion",
+  "onboarding_corregido": true,
+  "rechazo_original_corregido": false,
+  "bloqueo_pendiente": "Falta el .back rechazado y su copia para identificar la validación exacta; pendientes dos perfiles Windows reales.",
+  "codigos": {
+    "typecheck": 0,
+    "lint_no_cache": 0,
+    "respaldos_ipc": 0,
+    "respaldos_inicial_permisos": 0,
+    "respaldo_portable": 0,
+    "recuperacion_perfil_limpio": 0,
+    "git_diff_check": 0
+  },
+  "lint": {
+    "errores": 0,
+    "advertencias": 855
+  },
+  "fixture": {
+    "raiz": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-perfil-limpio-4GQwff",
+    "fases": [
+      {
+        "fase": "A",
+        "code": 0
+      },
+      {
+        "fase": "B",
+        "code": 0
+      },
+      {
+        "fase": "login",
+        "code": 0
+      }
+    ],
+    "perfilesWindowsReales": false,
+    "sha256": "3bc0b58726250dca0941ab2ec0ae03af7c7dd411957ee35d833685d531067db5",
+    "bytesIdenticos": true,
+    "exito": true
+  },
+  "procesos_propios_residuales": 0,
+  "snapshot_nuevo": false,
+  "polling_timers_producto_nuevos": false,
+  "restauracion_termina_login": true,
+  "password_original": "OK",
+  "windows_sids_distintos_probados": false,
+  "build_commit_push_tag": false
+}
