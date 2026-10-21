@@ -1,0 +1,754 @@
+{
+  "estado": "PASS",
+  "resultados": [
+    {
+      "desde": "2026-10-17",
+      "hasta": "2026-10-17",
+      "tipo": "diario",
+      "resumen": {
+        "desde": "2026-10-17",
+        "hasta": "2026-10-17",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 200
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 0,
+        "totalComprasPagadas": 200,
+        "totalGastosManuales": 7,
+        "totalGastos": 207,
+        "saldoPeriodo": -207
+      },
+      "total": 3,
+      "filas": [
+        {
+          "id": "pago_3f7b072e-4fb9-476a-85ff-d428ef76f3fe",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Abono inicial de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Abono inicial de compra"
+        },
+        {
+          "id": "pago_23c32605-6ff4-4326-bb35-350bd196c46b",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao Seco · Pago total de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "gasto_3a9f40cb-b033-4b7a-9fd9-1ad06071ae68",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-21T00:24:25.641Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Transporte · Gasto retroactivo",
+          "producto": null,
+          "trazabilidad": "Registrado: 20/10/2026 19:24:25 (Guayaquil)",
+          "monto": -7
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "desde": "2026-10-19",
+      "hasta": "2026-10-19",
+      "tipo": "diario",
+      "resumen": {
+        "desde": "2026-10-19",
+        "hasta": "2026-10-19",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Cacao Seco": {
+            "ingresos": 120,
+            "pagosCompras": 400
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 10,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 130,
+        "totalComprasPagadas": 400,
+        "totalGastosManuales": 0,
+        "totalGastos": 400,
+        "saldoPeriodo": -270
+      },
+      "total": 6,
+      "filas": [
+        {
+          "id": "abono_ce5c9e18-328d-4d51-b3a3-4fceee0b0557",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de cuenta manual",
+          "detalle": "Cuenta manual de cliente · Cuota de prueba",
+          "producto": null,
+          "trazabilidad": "Fecha de cuenta: 17/10/2026",
+          "monto": 10,
+          "concepto": "Cobro de cuenta manual"
+        },
+        {
+          "id": "abono_01d107a7-4ed3-4b75-a5bd-1a0670e2af52",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Cobro total de venta",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 20,
+          "concepto": "Cobro total de venta"
+        },
+        {
+          "id": "abono_74eca756-2ff1-46a2-ab07-7860aae79ea0",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Abono inicial de venta",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 17/10/2026",
+          "monto": 100,
+          "concepto": "Abono inicial de venta"
+        },
+        {
+          "id": "pago_0b21079b-b376-4ac7-a2be-c39ba949e457",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao Seco · Pago total de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 19/10/2026",
+          "monto": -50,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "abono_556881f3-52ad-4f51-b7ba-5e9969f78e13",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "pago_b0f72f85-fbb9-463a-8cd3-965f058a2182",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao Seco · Abono inicial de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -150,
+          "concepto": "Abono inicial de compra"
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "desde": "2026-10-20",
+      "hasta": "2026-10-20",
+      "tipo": "diario",
+      "resumen": {
+        "desde": "2026-10-20",
+        "hasta": "2026-10-20",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Cacao Seco": {
+            "ingresos": 300,
+            "pagosCompras": 200
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 300,
+        "totalComprasPagadas": 200,
+        "totalGastosManuales": 3,
+        "totalGastos": 203,
+        "saldoPeriodo": 97
+      },
+      "total": 3,
+      "filas": [
+        {
+          "id": "abono_22e57544-1020-4a04-805d-2c208aaacf49",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 17/10/2026",
+          "monto": 300,
+          "concepto": "Liquidación de venta"
+        },
+        {
+          "id": "abono_7c421588-2f03-4126-84b4-6da4d8520654",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "gasto_6ac022d6-d05d-4889-a841-a6bc5bdf7141",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.651Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Otros · Gasto actual",
+          "producto": null,
+          "trazabilidad": "",
+          "monto": -3
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "desde": "2026-10-12",
+      "hasta": "2026-10-18",
+      "tipo": "semanal",
+      "resumen": {
+        "desde": "2026-10-12",
+        "hasta": "2026-10-18",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 200
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 0,
+        "totalComprasPagadas": 200,
+        "totalGastosManuales": 7,
+        "totalGastos": 207,
+        "saldoPeriodo": -207
+      },
+      "total": 3,
+      "filas": [
+        {
+          "id": "pago_3f7b072e-4fb9-476a-85ff-d428ef76f3fe",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Abono inicial de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Abono inicial de compra"
+        },
+        {
+          "id": "pago_23c32605-6ff4-4326-bb35-350bd196c46b",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao Seco · Pago total de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "gasto_3a9f40cb-b033-4b7a-9fd9-1ad06071ae68",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-21T00:24:25.641Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Transporte · Gasto retroactivo",
+          "producto": null,
+          "trazabilidad": "Registrado: 20/10/2026 19:24:25 (Guayaquil)",
+          "monto": -7
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "desde": "2026-10-19",
+      "hasta": "2026-10-25",
+      "tipo": "semanal",
+      "resumen": {
+        "desde": "2026-10-19",
+        "hasta": "2026-10-25",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Cacao Seco": {
+            "ingresos": 420,
+            "pagosCompras": 600
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 10,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 430,
+        "totalComprasPagadas": 600,
+        "totalGastosManuales": 3,
+        "totalGastos": 603,
+        "saldoPeriodo": -173
+      },
+      "total": 9,
+      "filas": [
+        {
+          "id": "abono_ce5c9e18-328d-4d51-b3a3-4fceee0b0557",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de cuenta manual",
+          "detalle": "Cuenta manual de cliente · Cuota de prueba",
+          "producto": null,
+          "trazabilidad": "Fecha de cuenta: 17/10/2026",
+          "monto": 10,
+          "concepto": "Cobro de cuenta manual"
+        },
+        {
+          "id": "abono_01d107a7-4ed3-4b75-a5bd-1a0670e2af52",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Cobro total de venta",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 20,
+          "concepto": "Cobro total de venta"
+        },
+        {
+          "id": "abono_74eca756-2ff1-46a2-ab07-7860aae79ea0",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Abono inicial de venta",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 17/10/2026",
+          "monto": 100,
+          "concepto": "Abono inicial de venta"
+        },
+        {
+          "id": "pago_0b21079b-b376-4ac7-a2be-c39ba949e457",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao Seco · Pago total de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 19/10/2026",
+          "monto": -50,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "abono_556881f3-52ad-4f51-b7ba-5e9969f78e13",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "pago_b0f72f85-fbb9-463a-8cd3-965f058a2182",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao Seco · Abono inicial de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -150,
+          "concepto": "Abono inicial de compra"
+        },
+        {
+          "id": "abono_22e57544-1020-4a04-805d-2c208aaacf49",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 17/10/2026",
+          "monto": 300,
+          "concepto": "Liquidación de venta"
+        },
+        {
+          "id": "abono_7c421588-2f03-4126-84b4-6da4d8520654",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "gasto_6ac022d6-d05d-4889-a841-a6bc5bdf7141",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.651Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Otros · Gasto actual",
+          "producto": null,
+          "trazabilidad": "",
+          "monto": -3
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "desde": "2026-10-01",
+      "hasta": "2026-10-31",
+      "tipo": "mensual",
+      "resumen": {
+        "desde": "2026-10-01",
+        "hasta": "2026-10-31",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Cacao Seco": {
+            "ingresos": 420,
+            "pagosCompras": 800
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 10,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 430,
+        "totalComprasPagadas": 800,
+        "totalGastosManuales": 10,
+        "totalGastos": 810,
+        "saldoPeriodo": -380
+      },
+      "total": 12,
+      "filas": [
+        {
+          "id": "pago_3f7b072e-4fb9-476a-85ff-d428ef76f3fe",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Abono inicial de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Abono inicial de compra"
+        },
+        {
+          "id": "pago_23c32605-6ff4-4326-bb35-350bd196c46b",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao Seco · Pago total de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "gasto_3a9f40cb-b033-4b7a-9fd9-1ad06071ae68",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-21T00:24:25.641Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Transporte · Gasto retroactivo",
+          "producto": null,
+          "trazabilidad": "Registrado: 20/10/2026 19:24:25 (Guayaquil)",
+          "monto": -7
+        },
+        {
+          "id": "abono_ce5c9e18-328d-4d51-b3a3-4fceee0b0557",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de cuenta manual",
+          "detalle": "Cuenta manual de cliente · Cuota de prueba",
+          "producto": null,
+          "trazabilidad": "Fecha de cuenta: 17/10/2026",
+          "monto": 10,
+          "concepto": "Cobro de cuenta manual"
+        },
+        {
+          "id": "abono_01d107a7-4ed3-4b75-a5bd-1a0670e2af52",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Cobro total de venta",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 20,
+          "concepto": "Cobro total de venta"
+        },
+        {
+          "id": "abono_74eca756-2ff1-46a2-ab07-7860aae79ea0",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Abono inicial de venta",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 17/10/2026",
+          "monto": 100,
+          "concepto": "Abono inicial de venta"
+        },
+        {
+          "id": "pago_0b21079b-b376-4ac7-a2be-c39ba949e457",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao Seco · Pago total de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 19/10/2026",
+          "monto": -50,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "abono_556881f3-52ad-4f51-b7ba-5e9969f78e13",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "pago_b0f72f85-fbb9-463a-8cd3-965f058a2182",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao Seco · Abono inicial de compra",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -150,
+          "concepto": "Abono inicial de compra"
+        },
+        {
+          "id": "abono_22e57544-1020-4a04-805d-2c208aaacf49",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de venta: 17/10/2026",
+          "monto": 300,
+          "concepto": "Liquidación de venta"
+        },
+        {
+          "id": "abono_7c421588-2f03-4126-84b4-6da4d8520654",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 4 · Cacao Seco · Cuota de prueba",
+          "producto": "Cacao Seco",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "gasto_6ac022d6-d05d-4889-a841-a6bc5bdf7141",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:25.651Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Otros · Gasto actual",
+          "producto": null,
+          "trazabilidad": "",
+          "monto": -3
+        }
+      ],
+      "siguiente": null
+    }
+  ],
+  "compras": [
+    {
+      "compra_id": "compra_54a1f0da-370a-4d0d-8896-848ba2983252",
+      "fecha_compra": "2026-10-17",
+      "total": "100.00",
+      "estado": "cerrado",
+      "saldo": "0.00",
+      "movimiento_id": "pago_23c32605-6ff4-4326-bb35-350bd196c46b",
+      "fecha_efectiva": "2026-10-17",
+      "monto": "100.00"
+    },
+    {
+      "compra_id": "compra_da9c6acd-20b6-427a-8109-df267af52aa6",
+      "fecha_compra": "2026-10-17",
+      "total": "162.12",
+      "estado": "parcial",
+      "saldo": "12.12",
+      "movimiento_id": "pago_b0f72f85-fbb9-463a-8cd3-965f058a2182",
+      "fecha_efectiva": "2026-10-19",
+      "monto": "150.00"
+    },
+    {
+      "compra_id": "compra_ad8c2390-0f87-4d17-9e78-3c6a65e30fb6",
+      "fecha_compra": "2026-10-17",
+      "total": "300.00",
+      "estado": "pendiente",
+      "saldo": "300.00",
+      "movimiento_id": null,
+      "fecha_efectiva": null,
+      "monto": null
+    },
+    {
+      "compra_id": "compra_60afc52e-fa95-4aee-9525-87a92e54c5b6",
+      "fecha_compra": "2026-10-17",
+      "total": "500.00",
+      "estado": "cerrado",
+      "saldo": "0.00",
+      "movimiento_id": "pago_3f7b072e-4fb9-476a-85ff-d428ef76f3fe",
+      "fecha_efectiva": "2026-10-17",
+      "monto": "100.00"
+    },
+    {
+      "compra_id": "compra_60afc52e-fa95-4aee-9525-87a92e54c5b6",
+      "fecha_compra": "2026-10-17",
+      "total": "500.00",
+      "estado": "cerrado",
+      "saldo": "0.00",
+      "movimiento_id": "abono_556881f3-52ad-4f51-b7ba-5e9969f78e13",
+      "fecha_efectiva": "2026-10-19",
+      "monto": "200.00"
+    },
+    {
+      "compra_id": "compra_60afc52e-fa95-4aee-9525-87a92e54c5b6",
+      "fecha_compra": "2026-10-17",
+      "total": "500.00",
+      "estado": "cerrado",
+      "saldo": "0.00",
+      "movimiento_id": "abono_7c421588-2f03-4126-84b4-6da4d8520654",
+      "fecha_efectiva": "2026-10-20",
+      "monto": "200.00"
+    },
+    {
+      "compra_id": "compra_246e068d-5ef1-4d81-86a0-4d7bf803058c",
+      "fecha_compra": "2026-10-19",
+      "total": "50.00",
+      "estado": "cerrado",
+      "saldo": "0.00",
+      "movimiento_id": "pago_0b21079b-b376-4ac7-a2be-c39ba949e457",
+      "fecha_efectiva": "2026-10-19",
+      "monto": "50.00"
+    }
+  ],
+  "auditoria": [
+    {
+      "comando": "crearProveedor",
+      "creado_en": "2026-10-21T00:24:25.364Z"
+    },
+    {
+      "comando": "crearCliente",
+      "creado_en": "2026-10-21T00:24:25.379Z"
+    },
+    {
+      "comando": "registrarCompra",
+      "creado_en": "2026-10-21T00:24:25.409Z"
+    },
+    {
+      "comando": "registrarCompra",
+      "creado_en": "2026-10-21T00:24:25.422Z"
+    },
+    {
+      "comando": "registrarCompra",
+      "creado_en": "2026-10-21T00:24:25.437Z"
+    },
+    {
+      "comando": "registrarCompra",
+      "creado_en": "2026-10-21T00:24:25.450Z"
+    },
+    {
+      "comando": "registrarAbono",
+      "creado_en": "2026-10-21T00:24:25.469Z"
+    },
+    {
+      "comando": "registrarAbono",
+      "creado_en": "2026-10-21T00:24:25.487Z"
+    },
+    {
+      "comando": "registrarCompra",
+      "creado_en": "2026-10-21T00:24:25.539Z"
+    },
+    {
+      "comando": "registrarVenta",
+      "creado_en": "2026-10-21T00:24:25.560Z"
+    },
+    {
+      "comando": "registrarAbono",
+      "creado_en": "2026-10-21T00:24:25.579Z"
+    },
+    {
+      "comando": "registrarVenta",
+      "creado_en": "2026-10-21T00:24:25.590Z"
+    },
+    {
+      "comando": "crearCuentaManual",
+      "creado_en": "2026-10-21T00:24:25.602Z"
+    },
+    {
+      "comando": "registrarAbono",
+      "creado_en": "2026-10-21T00:24:25.618Z"
+    },
+    {
+      "comando": "registrarAbono",
+      "creado_en": "2026-10-21T00:24:25.628Z"
+    },
+    {
+      "comando": "crearGastoManual",
+      "creado_en": "2026-10-21T00:24:25.637Z"
+    },
+    {
+      "comando": "crearGastoManual",
+      "creado_en": "2026-10-21T00:24:25.648Z"
+    }
+  ],
+  "nota": "Inserción PostgreSQL real en el día de ejecución; no se falsifica 19/10 como hora real."
+}

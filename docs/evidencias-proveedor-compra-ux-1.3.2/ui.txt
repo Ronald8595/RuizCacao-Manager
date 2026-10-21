@@ -1,0 +1,2 @@
+
+PASS proveedor UX: guardando inmediato, doble envío/Enter bloqueados, éxito visible tras cierre, autoselección, error conserva campos y reintento idempotente

@@ -1,0 +1,147 @@
+{
+  "estado": "PASS",
+  "movimientosAntesAnular": [
+    {
+      "movimiento_id": "pago_151bbeee-40f8-47fa-befd-c796f3393cb1",
+      "cuenta_id": "cta_b61ccdc9-631c-4bd6-a9cb-45ecd2f1ff38",
+      "compra_id": "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "numero_compra": 1,
+      "fecha_compra": "2026-10-19",
+      "producto": "Cacao Seco",
+      "cantidad_qq": "1.00",
+      "total_compra": "100.00",
+      "fecha_pago": "2026-10-19",
+      "tipo": "Abono",
+      "monto": "20.00",
+      "monto_pagado": "100.00",
+      "monto_total": "100.00",
+      "estado": "cerrado"
+    },
+    {
+      "movimiento_id": "abono_69b3d28b-4005-42de-811b-11588e71cce5",
+      "cuenta_id": "cta_b61ccdc9-631c-4bd6-a9cb-45ecd2f1ff38",
+      "compra_id": "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "numero_compra": 1,
+      "fecha_compra": "2026-10-19",
+      "producto": "Cacao Seco",
+      "cantidad_qq": "1.00",
+      "total_compra": "100.00",
+      "fecha_pago": "2026-10-19",
+      "tipo": "Abono",
+      "monto": "30.00",
+      "monto_pagado": "100.00",
+      "monto_total": "100.00",
+      "estado": "cerrado"
+    },
+    {
+      "movimiento_id": "abono_a13d2ef6-4450-463e-81e2-dbcceddd05a1",
+      "cuenta_id": "cta_b61ccdc9-631c-4bd6-a9cb-45ecd2f1ff38",
+      "compra_id": "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "numero_compra": 1,
+      "fecha_compra": "2026-10-19",
+      "producto": "Cacao Seco",
+      "cantidad_qq": "1.00",
+      "total_compra": "100.00",
+      "fecha_pago": "2026-10-19",
+      "tipo": "Abono",
+      "monto": "50.00",
+      "monto_pagado": "100.00",
+      "monto_total": "100.00",
+      "estado": "cerrado"
+    }
+  ],
+  "movimientosDespues": [
+    {
+      "movimiento_id": "pago_151bbeee-40f8-47fa-befd-c796f3393cb1",
+      "cuenta_id": "cta_b61ccdc9-631c-4bd6-a9cb-45ecd2f1ff38",
+      "compra_id": "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "numero_compra": 1,
+      "fecha_compra": "2026-10-19",
+      "producto": "Cacao Seco",
+      "cantidad_qq": "1.00",
+      "total_compra": "100.00",
+      "fecha_pago": "2026-10-19",
+      "tipo": "Abono",
+      "monto": "20.00",
+      "monto_pagado": "100.00",
+      "monto_total": "100.00",
+      "estado": "anulado"
+    },
+    {
+      "movimiento_id": "abono_69b3d28b-4005-42de-811b-11588e71cce5",
+      "cuenta_id": "cta_b61ccdc9-631c-4bd6-a9cb-45ecd2f1ff38",
+      "compra_id": "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "numero_compra": 1,
+      "fecha_compra": "2026-10-19",
+      "producto": "Cacao Seco",
+      "cantidad_qq": "1.00",
+      "total_compra": "100.00",
+      "fecha_pago": "2026-10-19",
+      "tipo": "Abono",
+      "monto": "30.00",
+      "monto_pagado": "100.00",
+      "monto_total": "100.00",
+      "estado": "anulado"
+    },
+    {
+      "movimiento_id": "abono_a13d2ef6-4450-463e-81e2-dbcceddd05a1",
+      "cuenta_id": "cta_b61ccdc9-631c-4bd6-a9cb-45ecd2f1ff38",
+      "compra_id": "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "numero_compra": 1,
+      "fecha_compra": "2026-10-19",
+      "producto": "Cacao Seco",
+      "cantidad_qq": "1.00",
+      "total_compra": "100.00",
+      "fecha_pago": "2026-10-19",
+      "tipo": "Abono",
+      "monto": "50.00",
+      "monto_pagado": "100.00",
+      "monto_total": "100.00",
+      "estado": "anulado"
+    },
+    {
+      "movimiento_id": "abono_19f512e7-eb68-4647-aba5-77e12b88a8c9",
+      "cuenta_id": "cta_0c1e5d2f-b566-4c18-a02d-3cc80dafa984",
+      "compra_id": null,
+      "numero_compra": null,
+      "fecha_compra": null,
+      "producto": null,
+      "cantidad_qq": null,
+      "total_compra": null,
+      "fecha_pago": "2026-10-19",
+      "tipo": "Ajuste por devolución",
+      "monto": "2.00",
+      "monto_pagado": "2.00",
+      "monto_total": "10.00",
+      "estado": "parcial"
+    }
+  ],
+  "numeroDiarioRepetido": {
+    "numero": 1,
+    "ids": [
+      "compra_0fed47be-87e9-4ce0-912e-58242d0646b3",
+      "compra_ca28a739-4799-4363-b52e-be123997311a"
+    ]
+  },
+  "devolucion": {
+    "cuenta": {
+      "id": "cta_0c1e5d2f-b566-4c18-a02d-3cc80dafa984",
+      "origen": "manual",
+      "categoria": "venta",
+      "clienteId": "cli_4c74eb20-c59d-40de-95f1-635133804541",
+      "montoTotal": 10,
+      "montoPagado": 2,
+      "fecha": "2026-10-19",
+      "fechaHoraRegistro": "2026-10-19T12:59:45.000Z",
+      "fechaUltimoMovimiento": "2026-10-19T12:59:45.000Z",
+      "estado": "parcial",
+      "observacion": "Fixture B",
+      "usuarioId": "8ef7bfa8-dfe8-4b6d-8e47-637c54af2ec9",
+      "usuarioNombre": "Fixture",
+      "ventaId": null,
+      "numeroFactura": null
+    },
+    "efectoCajaReporte": 0,
+    "politica": "Ajuste de cuenta manual; no Abono efectivo. Compra solo admite Abono."
+  }
+}

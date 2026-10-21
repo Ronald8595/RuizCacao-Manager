@@ -1,3 +1,4 @@
+import { conceptosCuenta, observacionPago } from '../../../shared/conceptoPago'
 import ModalAccesible from './ModalAccesible'
 import { useAppData, saldoDeCuenta } from '../store/AppDataContext'
 import { formatoMoneda, formatoFecha } from '../utils/reportes'
@@ -15,6 +16,7 @@ export default function DetalleCuenta({
   const operacion = compra
     ? compras.find((c) => c.id === cuenta.compraId)
     : ventas.find((v) => v.id === cuenta.ventaId)
+  const conceptos = conceptosCuenta(cuenta, operacion, movimientosCuenta)
   const nombre = compra
     ? cuenta.proveedorNombre
     : clientes.find((c) => c.id === cuenta.clienteId)?.nombreRazonSocial
@@ -63,14 +65,14 @@ export default function DetalleCuenta({
       </p>
       <p className="mb-3 text-sm">
         Total: ${formatoMoneda(cuenta.montoTotal)} · Aplicado a la cuenta: $
-        {formatoMoneda(cuenta.montoPagado)} · Saldo: ${formatoMoneda(saldoDeCuenta(cuenta))}
+        {formatoMoneda(cuenta.montoPagado)} · Saldo actual: ${formatoMoneda(saldoDeCuenta(cuenta))}
       </p>
       <div className="overflow-x-auto">
         <table className="w-full text-left text-[12px]">
           <thead>
             <tr>
               {[
-                'Fecha',
+                'Fecha efectiva',
                 'Movimiento',
                 'Monto',
                 'Método',
@@ -87,7 +89,7 @@ export default function DetalleCuenta({
             {movimientos.map((m) => (
               <tr key={m.id} className="border-t border-[#eef1ee]">
                 <td className="p-2">{formatoFecha(m.fecha)}</td>
-                <td className="p-2">{m.tipo}</td>
+                <td className="p-2">{conceptos.get(m.id) ?? m.tipo}</td>
                 <td className="p-2">${formatoMoneda(m.monto)}</td>
                 <td className="p-2">
                   {m.metodoPago}
@@ -100,7 +102,7 @@ export default function DetalleCuenta({
                 </td>
                 <td className="p-2">{m.usuarioNombre ?? 'Sistema anterior'}</td>
                 <td className="p-2">
-                  {m.observacion}
+                  {observacionPago(m.observacion, conceptos.get(m.id) ?? m.tipo)}
                   {m.comprobante && ' · ' + m.comprobante}
                 </td>
               </tr>

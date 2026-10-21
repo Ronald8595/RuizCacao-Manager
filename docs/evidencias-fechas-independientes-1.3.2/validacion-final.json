@@ -1,0 +1,5 @@
+{
+  "estado": "PASS histórico; cierre ampliado vigente en pagos efectuados",
+  "cierre_vigente": "../evidencias-pagos-efectuados-1.3.2/validacion-final.json",
+  "nota": "Formularios y reloj previos validados. SQL/etiquetas/PDF ampliados: usar evidencias vigentes. No se repitieron las suites completas anteriores."
+}

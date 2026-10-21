@@ -1,0 +1,88 @@
+{
+  "propios": [],
+  "nota": "Consulta Windows de solo lectura. App dev del usuario y servicio PostgreSQL ajeno no se detuvieron.",
+  "fecha": "2026-10-20T19:35:14.7471852-05:00",
+  "procesos_preexistentes_conservados": [
+    {
+      "ProcessId": 4212,
+      "ParentProcessId": 1324,
+      "Name": "pg_ctl.exe"
+    },
+    {
+      "ProcessId": 6020,
+      "ParentProcessId": 4212,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6148,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6200,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6240,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6260,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6316,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6372,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6700,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6712,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 6744,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 1344,
+      "ParentProcessId": 26536,
+      "Name": "electron.exe"
+    },
+    {
+      "ProcessId": 5276,
+      "ParentProcessId": 1344,
+      "Name": "electron.exe"
+    },
+    {
+      "ProcessId": 23564,
+      "ParentProcessId": 1344,
+      "Name": "electron.exe"
+    },
+    {
+      "ProcessId": 7372,
+      "ParentProcessId": 6020,
+      "Name": "postgres.exe"
+    },
+    {
+      "ProcessId": 21852,
+      "ParentProcessId": 1344,
+      "Name": "electron.exe"
+    }
+  ],
+  "procesos_propios_residuales": 0
+}

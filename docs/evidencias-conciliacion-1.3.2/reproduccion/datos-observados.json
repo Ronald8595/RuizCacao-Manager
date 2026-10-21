@@ -1,0 +1,693 @@
+{
+  "fuentes": [
+    "01_compras_pagina1_superior.jpg",
+    "02_compras_pagina1_inferior.jpg",
+    "03_compras_pagina2.jpg",
+    "04_reporte_diario.jpg",
+    "05_detalle_tramo_superior.png",
+    "06_detalle_tramo_intermedio.png",
+    "07_detalle_tramo_inferior.png",
+    "08_video_original.mp4"
+  ],
+  "observadas": [
+    {
+      "observado": {
+        "numero": 1,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.67,
+        "total": 40.7
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.67,
+        "precioCompraQq": 60.74626865671642,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 40.7,
+        "metodoPago": "Efectivo",
+        "id": "compra_e8805324-23ec-4798-9d92-9ef54e3f1afe",
+        "numeroCompra": 1,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 40.7,
+        "montoImpuesto": 0,
+        "totalCompra": 40.7,
+        "montoPagadoInicial": 40.7,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 2,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.43,
+        "total": 26.66
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.43,
+        "precioCompraQq": 62,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 26.66,
+        "metodoPago": "Efectivo",
+        "id": "compra_73cf15b8-acb8-42a1-a084-89f27dfb2ed0",
+        "numeroCompra": 2,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 26.66,
+        "montoImpuesto": 0,
+        "totalCompra": 26.66,
+        "montoPagadoInicial": 26.66,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 3,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1.38,
+        "total": 84
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1.38,
+        "precioCompraQq": 60.86956521739131,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 84,
+        "metodoPago": "Efectivo",
+        "id": "compra_e012b0ad-4b9c-4e19-bcd7-d123f8f3b7ae",
+        "numeroCompra": 3,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 84,
+        "montoImpuesto": 0,
+        "totalCompra": 84,
+        "montoPagadoInicial": 84,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 4,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 3.96,
+        "total": 71
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 3.96,
+        "precioCompraQq": 17.92929292929293,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 71,
+        "metodoPago": "Efectivo",
+        "id": "compra_e135cc81-a9a8-4f29-9767-c94579e9ba29",
+        "numeroCompra": 4,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 71,
+        "montoImpuesto": 0,
+        "totalCompra": 71,
+        "montoPagadoInicial": 71,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 5,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.45,
+        "total": 27.78
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.45,
+        "precioCompraQq": 61.733333333333334,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 27.78,
+        "metodoPago": "Efectivo",
+        "id": "compra_bc733b84-9f4f-4614-9214-bcdf465fd0fb",
+        "numeroCompra": 5,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 27.78,
+        "montoImpuesto": 0,
+        "totalCompra": 27.78,
+        "montoPagadoInicial": 27.78,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 6,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1.9,
+        "total": 117.29
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1.9,
+        "precioCompraQq": 61.731578947368426,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 117.29,
+        "metodoPago": "Efectivo",
+        "id": "compra_91736b6a-6c96-4d42-8618-f32b6d95bcbf",
+        "numeroCompra": 6,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 117.29,
+        "montoImpuesto": 0,
+        "totalCompra": 117.29,
+        "montoPagadoInicial": 117.29,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 7,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.53,
+        "total": 33
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.53,
+        "precioCompraQq": 62.264150943396224,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 33,
+        "metodoPago": "Efectivo",
+        "id": "compra_c021e456-5b40-44d1-ac71-e70db194943a",
+        "numeroCompra": 7,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 33,
+        "montoImpuesto": 0,
+        "totalCompra": 33,
+        "montoPagadoInicial": 33,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 8,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1.08,
+        "total": 68.04
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1.08,
+        "precioCompraQq": 63,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 68.04,
+        "metodoPago": "Efectivo",
+        "id": "compra_8f9683c0-9f9c-4c1e-b4b5-bc1fc7c6562a",
+        "numeroCompra": 8,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 68.04,
+        "montoImpuesto": 0,
+        "totalCompra": 68.04,
+        "montoPagadoInicial": 68.04,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 9,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.29,
+        "total": 23.2
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.29,
+        "precioCompraQq": 80,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 23.2,
+        "metodoPago": "Efectivo",
+        "id": "compra_d0b5b5d9-0cd5-4d5c-ad00-79b8a74bf190",
+        "numeroCompra": 9,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 23.2,
+        "montoImpuesto": 0,
+        "totalCompra": 23.2,
+        "montoPagadoInicial": 23.2,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 10,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.6,
+        "total": 41.58
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.6,
+        "precioCompraQq": 69.3,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 41.58,
+        "metodoPago": "Efectivo",
+        "id": "compra_7d862f48-0fbf-4bd3-bfd7-4346e858c218",
+        "numeroCompra": 10,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 41.58,
+        "montoImpuesto": 0,
+        "totalCompra": 41.58,
+        "montoPagadoInicial": 41.58,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 11,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.32,
+        "total": 20
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.32,
+        "precioCompraQq": 62.5,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 20,
+        "metodoPago": "Efectivo",
+        "id": "compra_b197b87c-4ecd-4875-83e1-569b4fc80261",
+        "numeroCompra": 11,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 20,
+        "montoImpuesto": 0,
+        "totalCompra": 20,
+        "montoPagadoInicial": 20,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 12,
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.44,
+        "total": 27
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 0.44,
+        "precioCompraQq": 61.36363636363637,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 27,
+        "metodoPago": "Efectivo",
+        "id": "compra_ff95f48a-b5e0-42fb-89ed-bfe563dc6bbd",
+        "numeroCompra": 12,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 27,
+        "montoImpuesto": 0,
+        "totalCompra": 27,
+        "montoPagadoInicial": 27,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 13,
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.24,
+        "total": 51
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.24,
+        "precioCompraQq": 212.5,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 51,
+        "metodoPago": "Efectivo",
+        "id": "compra_4751e725-671e-429b-961f-1f7c48792db9",
+        "numeroCompra": 13,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 51,
+        "montoImpuesto": 0,
+        "totalCompra": 51,
+        "montoPagadoInicial": 51,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 14,
+        "producto": "Cacao Seco",
+        "cantidadQq": 7.05,
+        "total": 1519.98
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 7.05,
+        "precioCompraQq": 215.6,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 1519.98,
+        "metodoPago": "Efectivo",
+        "id": "compra_ccde7822-4939-4c6c-9195-99583e1c472b",
+        "numeroCompra": 14,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 1519.98,
+        "montoImpuesto": 0,
+        "totalCompra": 1519.98,
+        "montoPagadoInicial": 1519.98,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 15,
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.84,
+        "total": 180.6
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.84,
+        "precioCompraQq": 215,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 180.6,
+        "metodoPago": "Efectivo",
+        "id": "compra_52fb854d-e41a-46cb-b5ca-b67cf1797f3c",
+        "numeroCompra": 15,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 180.6,
+        "montoImpuesto": 0,
+        "totalCompra": 180.6,
+        "montoPagadoInicial": 180.6,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 16,
+        "producto": "Cacao Seco",
+        "cantidadQq": 2.74,
+        "total": 522.57
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 2.74,
+        "precioCompraQq": 190.7189781021898,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 522.57,
+        "metodoPago": "Efectivo",
+        "id": "compra_21e90974-079a-4c2c-9ff8-55f08191bfba",
+        "numeroCompra": 16,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 522.57,
+        "montoImpuesto": 0,
+        "totalCompra": 522.57,
+        "montoPagadoInicial": 522.57,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 17,
+        "producto": "Cacao Seco",
+        "cantidadQq": 2.74,
+        "total": 589
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 2.74,
+        "precioCompraQq": 214.96350364963502,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 589,
+        "metodoPago": "Efectivo",
+        "id": "compra_70e8b2b1-0ffc-4649-bf46-61bc47289242",
+        "numeroCompra": 17,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 589,
+        "montoImpuesto": 0,
+        "totalCompra": 589,
+        "montoPagadoInicial": 589,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 18,
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.58,
+        "total": 122
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.58,
+        "precioCompraQq": 210.34482758620692,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 122,
+        "metodoPago": "Efectivo",
+        "id": "compra_e8e1d52a-6740-4f11-958e-38c8dd2386b6",
+        "numeroCompra": 18,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 122,
+        "montoImpuesto": 0,
+        "totalCompra": 122,
+        "montoPagadoInicial": 122,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 19,
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.3,
+        "total": 21
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.3,
+        "precioCompraQq": 70,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 21,
+        "metodoPago": "Efectivo",
+        "id": "compra_d24eb5df-4ce4-4816-a786-f9ad365fc284",
+        "numeroCompra": 19,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 21,
+        "montoImpuesto": 0,
+        "totalCompra": 21,
+        "montoPagadoInicial": 21,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "observado": {
+        "numero": 20,
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.52,
+        "total": 109
+      },
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-19",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 0.52,
+        "precioCompraQq": 209.6153846153846,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 109,
+        "metodoPago": "Efectivo",
+        "id": "compra_77211931-6728-4f05-b9b8-2c29764656e2",
+        "numeroCompra": 20,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-19T07:58:37",
+        "subtotal": 109,
+        "montoImpuesto": 0,
+        "totalCompra": 109,
+        "montoPagadoInicial": 109,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    }
+  ],
+  "hipotesis": [
+    {
+      "etiquetaObservada": "Compra N. 38",
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-18",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 1,
+        "precioCompraQq": 600,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 0,
+        "metodoPago": "Efectivo",
+        "id": "compra_9f99cb1a-07e1-4fae-858b-c5b202fa0767",
+        "numeroCompra": 1,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-18T07:58:37",
+        "subtotal": 600,
+        "montoImpuesto": 0,
+        "totalCompra": 600,
+        "montoPagadoInicial": 0,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "etiquetaObservada": "Compra N. 39",
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-18",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao en Baba",
+        "cantidadQq": 1,
+        "precioCompraQq": 171.36,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 0,
+        "metodoPago": "Efectivo",
+        "id": "compra_075918a7-1b7b-45f4-b2a6-6e5986a7d9fb",
+        "numeroCompra": 2,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-18T07:58:37",
+        "subtotal": 171.36,
+        "montoImpuesto": 0,
+        "totalCompra": 171.36,
+        "montoPagadoInicial": 0,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "etiquetaObservada": "Compra N. 20",
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-18",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 1,
+        "precioCompraQq": 1500,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 0,
+        "metodoPago": "Efectivo",
+        "id": "compra_98011925-2c24-498c-b406-ca3b5f3bde6e",
+        "numeroCompra": 3,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-18T07:58:37",
+        "subtotal": 1500,
+        "montoImpuesto": 0,
+        "totalCompra": 1500,
+        "montoPagadoInicial": 0,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    },
+    {
+      "etiquetaObservada": "Compra N. 18",
+      "compraFixture": {
+        "estado": "vigente",
+        "fecha": "2026-10-18",
+        "proveedorId": "prov_cb4d2ff5-1551-440b-aadf-113dc3278071",
+        "producto": "Cacao Seco",
+        "cantidadQq": 1,
+        "precioCompraQq": 1000,
+        "impuestoPorcentaje": 0,
+        "montoPagado": 0,
+        "metodoPago": "Efectivo",
+        "id": "compra_d64af0a5-2152-485d-8255-79d93ada5807",
+        "numeroCompra": 4,
+        "proveedorNombre": "GALO RUIZ",
+        "fechaHoraRegistro": "2026-10-18T07:58:37",
+        "subtotal": 1000,
+        "montoImpuesto": 0,
+        "totalCompra": 1000,
+        "montoPagadoInicial": 0,
+        "usuarioId": "8e662138-eaaa-4e82-9cb9-1c49c6181408",
+        "usuarioNombre": "Fixture"
+      }
+    }
+  ],
+  "advertencia": "IDs exclusivos del fixture. No son los IDs del cliente. Precios unitarios=total/qq e impuesto 0 son auxiliares sintéticos; no se observaron en las capturas. Las cuatro compras anteriores, sus fechas, cantidades, números diarios y vínculos son hipotéticos. Las etiquetas observadas NO se presentan como números reales de esas compras inventadas."
+}

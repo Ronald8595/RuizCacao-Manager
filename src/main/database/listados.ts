@@ -11,6 +11,8 @@ import {
 } from '../../shared/listados'
 import { documentoReporte } from '../../renderer/src/utils/reportePdf'
 import type { FilaFinanciera } from '../../renderer/src/utils/reportes'
+import { conceptoPago, observacionPago } from '../../shared/conceptoPago'
+import { trazabilidadFinanciera } from '../../shared/trazabilidadFinanciera'
 
 type DB = Pick<PoolClient, 'query'>
 type Modulo = keyof Listados
@@ -40,7 +42,9 @@ function validar(modulo: Modulo, input: FiltroListado): Filtro {
       ? ['busqueda', 'tipo', 'estado']
       : modulo === 'listadoGastos'
         ? ['categoria', 'tipo']
-        : []
+        : modulo === 'reportePeriodo'
+          ? ['categoria']
+          : []
   if (
     !input ||
     typeof input !== 'object' ||
@@ -65,6 +69,7 @@ function validar(modulo: Modulo, input: FiltroListado): Filtro {
   if (!['todos', 'pendiente', 'parcial', 'cerrado', 'anulado'].includes(estado)) return fallo()
   if (typeof categoria !== 'string' || categoria.length > 100 || categoria.includes('\0'))
     return fallo()
+  if (modulo === 'reportePeriodo' && !['Todas', 'pagos'].includes(categoria)) return fallo()
   const f = {
     desde: base.desde,
     hasta: base.hasta,
@@ -201,7 +206,7 @@ const instante = (alias: string): string =>
   `to_char(${alias}.fecha_hora_registro AT TIME ZONE 'UTC','YYYY-MM-DD"T"HH24:MI:SS.MS"Z"')`
 // La misma fuente alimenta agregado, COUNT, detalle y exportación completa.
 export function fuenteFinanciera(
-  f: { desde: string; hasta: string },
+  f: { desde: string; hasta: string; categoria?: string },
   cortes: string[]
 ): { sql: string; params: unknown[] } {
   const params: unknown[] = [],
@@ -215,21 +220,84 @@ export function fuenteFinanciera(
       f.hasta ? `${a}.fecha<=${p(f.hasta)}::date` : 'true'
     ].join(' AND ')
   const movimientos = `SELECT m.id,m.fecha::text fecha,${instante('m')} instante,0 fuente,m.orden registro,
-    CASE WHEN c.categoria='compra' THEN 'Pago de compra' ELSE 'Cobro de venta' END tipo,
+    CASE WHEN c.categoria='compra' THEN 'Pago de compra' WHEN c.origen='manual' THEN 'Cobro de cuenta manual' ELSE 'Cobro de venta' END tipo,
     CASE WHEN c.categoria='compra' THEN b.producto ELSE v.producto END producto,
+    CASE WHEN c.origen='manual' THEN 'manual' WHEN c.categoria='compra' THEN 'compra' ELSE 'venta' END origen,
+    CASE WHEN c.origen='manual' THEN c.fecha WHEN c.categoria='compra' THEN b.fecha ELSE v.fecha_venta END::text fecha_origen,
     (CASE WHEN c.categoria='compra' THEN 'Compra N.º '||coalesce(c.numero_compra::text,'undefined') WHEN c.numero_factura IS NOT NULL AND c.numero_factura<>0 THEN 'Venta N.º '||c.numero_factura::text ELSE 'Cuenta manual de cliente' END)||
     CASE WHEN c.categoria='compra' AND b.id IS NOT NULL THEN ' · '||b.producto WHEN c.categoria<>'compra' AND v.id IS NOT NULL THEN ' · '||v.producto ELSE '' END||' · '||m.observacion detalle,
     CASE WHEN c.categoria='compra' THEN -m.monto ELSE m.monto END monto
     FROM ruizcacao.movimientos_cuenta m JOIN ruizcacao.cuentas c ON c.id=m.cuenta_id
     LEFT JOIN ruizcacao.compras b ON c.categoria='compra' AND b.id=c.compra_id
     LEFT JOIN ruizcacao.ventas v ON c.categoria<>'compra' AND v.id=c.venta_id
-    WHERE m.tipo='Abono' AND c.estado<>'anulado' AND m.orden<=${p(cortes[0])}::bigint AND ${rango('m')}`
+    WHERE m.tipo='Abono' ${f.categoria === 'pagos' ? "AND c.categoria='compra'" : ''} AND c.estado<>'anulado' AND m.orden<=${p(cortes[0])}::bigint AND ${rango('m')}`
   const gastos = `SELECT g.id,g.fecha::text fecha,${instante('g')} instante,1 fuente,g.orden registro,'Gasto operativo' tipo,NULL::text producto,
+    'gasto'::text origen,NULL::text fecha_origen,
     g.categoria||' · '||CASE WHEN coalesce(g.empleado_nombre,'')<>'' THEN g.empleado_nombre||' · ' ELSE '' END||coalesce(nullif(g.observacion,''),'Sin observación') detalle,-g.monto monto
     FROM ruizcacao.gastos g WHERE g.tipo='manual' AND g.orden<=${p(cortes[1])}::bigint AND ${rango('g')}`
   return { sql: `WITH financiero AS (${movimientos} UNION ALL ${gastos})`, params }
 }
 const ordenFinanciero = 'fecha ASC,instante ASC,fuente ASC,registro DESC,id DESC'
+// Se enriquece SOLO la página (o el PDF solicitado). Agregados y cursores no dependen
+// de etiquetas. El historial se reconstruye en SQL por orden de inserción, no de pago.
+async function presentarMovimientos(db: DB, filas: FilaFinanciera[]): Promise<FilaFinanciera[]> {
+  const ids = filas.filter((f) => f.tipo !== 'Gasto operativo').map((f) => f.id)
+  if (!ids.length) return filas
+  const { rows } = await db.query(
+    `WITH cuentas_pagina AS (
+    SELECT DISTINCT cuenta_id FROM ruizcacao.movimientos_cuenta WHERE id=ANY($1::text[])
+  ), historial AS (
+    SELECT m.*, coalesce(sum(m.monto) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING),0) anterior,
+      sum(m.monto) OVER(PARTITION BY m.cuenta_id) aplicado,
+      first_value(m.id) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primero,
+      first_value(m.monto) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primer_monto,
+      first_value(m.tipo) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primer_tipo
+    FROM ruizcacao.movimientos_cuenta m JOIN cuentas_pagina p ON p.cuenta_id=m.cuenta_id
+  ) SELECT h.*,c.categoria,c.origen,c.monto_total,c.monto_aplicado,
+    coalesce(b.id,v.id) operacion_id,
+    CASE WHEN c.categoria='compra' THEN b.monto_pagado_inicial ELSE v.monto_recibido END inicial
+    FROM historial h JOIN ruizcacao.cuentas c ON c.id=h.cuenta_id
+    LEFT JOIN ruizcacao.compras b ON b.id=c.compra_id
+    LEFT JOIN ruizcacao.ventas v ON v.id=c.venta_id
+    WHERE h.id=ANY($1::text[])`,
+    [ids]
+  )
+  const etiquetas = new Map(
+    rows.map((r) => {
+      const inicial = Number(r.inicial)
+      return [
+        r.id,
+        {
+          observacion: String(r.observacion),
+          concepto: conceptoPago({
+            categoria: r.categoria,
+            manual: r.origen === 'manual',
+            fiable:
+              Boolean(r.operacion_id) &&
+              Number(r.aplicado) === Number(r.monto_aplicado) &&
+              (inicial === 0 || (r.primer_tipo === 'Abono' && Number(r.primer_monto) === inicial)),
+            inicial: r.id === r.primero && inicial > 0,
+            monto: Number(r.monto),
+            saldoAnterior: Number(r.monto_total) - Number(r.anterior)
+          })
+        }
+      ]
+    })
+  )
+  return filas.map((f) => {
+    const e = etiquetas.get(f.id)
+    if (!e) return f
+    const observacion = observacionPago(e.observacion, e.concepto)
+    return {
+      ...f,
+      concepto: e.concepto,
+      detalle:
+        observacion === e.observacion
+          ? f.detalle
+          : f.detalle.slice(0, -e.observacion.length) + observacion
+    }
+  })
+}
 function filaFinanciera(r: Record<string, unknown>): FilaFinanciera {
   return {
     id: String(r.id),
@@ -238,6 +306,12 @@ function filaFinanciera(r: Record<string, unknown>): FilaFinanciera {
     tipo: r.tipo as FilaFinanciera['tipo'],
     detalle: String(r.detalle),
     producto: (r.producto ?? null) as FilaFinanciera['producto'],
+    trazabilidad: trazabilidadFinanciera(
+      r.origen as Parameters<typeof trazabilidadFinanciera>[0],
+      String(r.fecha),
+      r.fecha_origen as string | null,
+      r.origen === 'gasto' ? String(r.instante) : null
+    ),
     monto: Number(r.monto)
   }
 }
@@ -396,14 +470,14 @@ export async function consultarListado<M extends Modulo>(
   const rows = (
     await db.query(
       fuente.sql +
-        ` SELECT id,fecha,instante,fuente,registro,tipo,producto,detalle,monto FROM financiero${where} ORDER BY ${ordenFinanciero} LIMIT ${p(f.limite + 1)}`,
+        ` SELECT id,fecha,instante,fuente,registro,tipo,producto,origen,fecha_origen,detalle,monto FROM financiero${where} ORDER BY ${ordenFinanciero} LIMIT ${p(f.limite + 1)}`,
       params
     )
   ).rows
   return {
     resumen,
     total: Number(agregado.total),
-    filas: rows.slice(0, f.limite).map(filaFinanciera),
+    filas: await presentarMovimientos(db, rows.slice(0, f.limite).map(filaFinanciera)),
     siguiente: siguiente(f, limites, rows, true)
   } as Listados[M]
 }
@@ -419,14 +493,15 @@ export async function reporteCompleto(
   const rows = (
     await db.query(
       fuente.sql +
-        ` SELECT id,fecha,instante,tipo,producto,detalle,monto FROM financiero ORDER BY ${ordenFinanciero}`,
+        ` SELECT id,fecha,instante,tipo,producto,origen,fecha_origen,detalle,monto FROM financiero ORDER BY ${ordenFinanciero}`,
       fuente.params
     )
   ).rows
   return documentoReporte(
-    { ...pagina.resumen, filas: rows.map(filaFinanciera) } as Parameters<
-      typeof documentoReporte
-    >[0],
+    {
+      ...pagina.resumen,
+      filas: await presentarMovimientos(db, rows.map(filaFinanciera))
+    } as Parameters<typeof documentoReporte>[0],
     tipo
   )
 }

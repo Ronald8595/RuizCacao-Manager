@@ -32,6 +32,7 @@ const campos: Partial<Record<Comando, string[]>> = {
   actualizarGastoManual: gasto,
   registrarCompra: [
     'fecha',
+    'fechaPagoInicial',
     'proveedorId',
     'producto',
     'cantidadQq',
@@ -46,6 +47,7 @@ const campos: Partial<Record<Comando, string[]>> = {
   ],
   registrarVenta: [
     'fechaVenta',
+    'fechaCobroInicial',
     'clienteId',
     'producto',
     'pesoBruto',
@@ -140,7 +142,7 @@ export function validarArgumentos(comando: Comando, args: unknown[]): unknown[] 
     throw new ErrorNegocio('El nombre / razón social del proveedor es obligatorio.')
   if (comando.includes('Proveedor') && texto('ciRuc') && !/^\d{10}$|^\d{13}$/.test(texto('ciRuc')))
     throw new ErrorNegocio('La CI/RUC del proveedor debe tener 10 o 13 dígitos cuando se ingresa.')
-  for (const campo of ['fecha', 'fechaVenta'])
+  for (const campo of ['fecha', 'fechaVenta', 'fechaPagoInicial', 'fechaCobroInicial'])
     if (campo in limpio) {
       const valor = String(limpio[campo])
       if (

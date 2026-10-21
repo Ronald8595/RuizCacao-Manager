@@ -1,0 +1,81 @@
+{
+  "estado": "PASS",
+  "capturasIPC": [
+    {
+      "comando": "registrarCompra",
+      "args": [
+        {
+          "fecha": "2026-10-17",
+          "fechaPagoInicial": "2026-10-19",
+          "proveedorId": "p-fixture",
+          "producto": "Cacao en Baba",
+          "cantidadQq": 1,
+          "precioCompraQq": 162.12,
+          "impuestoPorcentaje": 0,
+          "montoPagado": 162.12,
+          "metodoPago": "Efectivo",
+          "observacion": "",
+          "comprobante": ""
+        }
+      ]
+    },
+    {
+      "comando": "registrarVenta",
+      "args": [
+        {
+          "fechaVenta": "2026-10-17",
+          "fechaCobroInicial": "2026-10-19",
+          "clienteId": "c-fixture",
+          "producto": "Cacao en Baba",
+          "pesoBruto": 1,
+          "precioUnitario": 200,
+          "impuestoPorcentaje": 0,
+          "metodoPago": "Efectivo",
+          "montoRecibido": 200
+        }
+      ]
+    },
+    {
+      "comando": "abono-ui",
+      "args": [
+        {
+          "fecha": "2026-10-19",
+          "monto": 200,
+          "metodoPago": "Efectivo",
+          "tipo": "Abono",
+          "observacion": "Cuota"
+        }
+      ]
+    },
+    {
+      "comando": "manual-ui",
+      "args": [
+        {
+          "clienteId": "c-fixture",
+          "tipo": "Saldo a favor",
+          "fecha": "2026-10-17",
+          "monto": 50,
+          "observacion": "Deuda anterior"
+        }
+      ]
+    }
+  ],
+  "renders": [
+    {
+      "tipo": "diario",
+      "texto": "Grupo Ruiz · RuizCacao Manager\n\nReporte diario\n\n19/10/2026 — 19/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$130,00\n\nInversión por compras\n\n$400,00\n\nGastos operativos\n\n$0,00\n\nResultado del período\n\n$-270,00\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$0,00\t$0,00\nCacao Seco\t$120,00\t$400,00\nMaracuyá\t$0,00\t$0,00\nSin producto de origen\t$10,00\t$0,00\nTotal\tTotal ingresos por ventas$130,00\tTotal invertido por compras$400,00\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n19/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Pago inicial registrado en la ventaAbono · Fecha de venta: 19/10/2026\t$20,00\t—\n19/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Pago inicial registrado en la ventaAbono · Fecha de venta: 17/10/2026\t$100,00\t—\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · Pago inicial de compra N.º 1 del díaAbono · Fecha de compra: 19/10/2026\t—\t$50,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · Cuota de pruebaAbono · Fecha de compra: 17/10/2026\t—\t$200,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 2 · Cacao Seco · Pago inicial de compra N.º 2 del díaAbono · Fecha de compra: 17/10/2026\t—\t$150,00\n19/10/2026\tCobro de cuenta manual\t—\tCuenta manual de cliente · Cuota de pruebaAbono · Fecha de cuenta: 17/10/2026\t$10,00\t—",
+      "filas": 6
+    },
+    {
+      "tipo": "semanal",
+      "texto": "Grupo Ruiz · RuizCacao Manager\n\nReporte semanal\n\n19/10/2026 — 25/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$430,00\n\nInversión por compras\n\n$600,00\n\nGastos operativos\n\n$3,00\n\nResultado del período\n\n$-173,00\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$0,00\t$0,00\nCacao Seco\t$420,00\t$600,00\nMaracuyá\t$0,00\t$0,00\nSin producto de origen\t$10,00\t$0,00\nTotal\tTotal ingresos por ventas$430,00\tTotal invertido por compras$600,00\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n19/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Pago inicial registrado en la ventaAbono · Fecha de venta: 19/10/2026\t$20,00\t—\n19/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Pago inicial registrado en la ventaAbono · Fecha de venta: 17/10/2026\t$100,00\t—\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · Pago inicial de compra N.º 1 del díaAbono · Fecha de compra: 19/10/2026\t—\t$50,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · Cuota de pruebaAbono · Fecha de compra: 17/10/2026\t—\t$200,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 2 · Cacao Seco · Pago inicial de compra N.º 2 del díaAbono · Fecha de compra: 17/10/2026\t—\t$150,00\n19/10/2026\tCobro de cuenta manual\t—\tCuenta manual de cliente · Cuota de pruebaAbono · Fecha de cuenta: 17/10/2026\t$10,00\t—\n20/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Cuota de pruebaAbono · Fecha de venta: 17/10/2026\t$300,00\t—\n20/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · Cuota de pruebaAbono · Fecha de compra: 17/10/2026\t—\t$200,00\n20/10/2026\tGasto operativo\t—\tOtros · Gasto actual\t—\t$3,00",
+      "filas": 9
+    },
+    {
+      "tipo": "mensual",
+      "texto": "Grupo Ruiz · RuizCacao Manager\n\nReporte mensual\n\n01/10/2026 — 31/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$430,00\n\nInversión por compras\n\n$800,00\n\nGastos operativos\n\n$10,00\n\nResultado del período\n\n$-380,00\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$0,00\t$0,00\nCacao Seco\t$420,00\t$800,00\nMaracuyá\t$0,00\t$0,00\nSin producto de origen\t$10,00\t$0,00\nTotal\tTotal ingresos por ventas$430,00\tTotal invertido por compras$800,00\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n17/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · Pago inicial de compra N.º 4 del díaAbono · Fecha de compra: 17/10/2026\t—\t$100,00\n17/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · Pago inicial de compra N.º 1 del díaAbono · Fecha de compra: 17/10/2026\t—\t$100,00\n17/10/2026\tGasto operativo\t—\tTransporte · Gasto retroactivoRegistrado: 20/10/2026 14:08:18 (Guayaquil)\t—\t$7,00\n19/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Pago inicial registrado en la ventaAbono · Fecha de venta: 19/10/2026\t$20,00\t—\n19/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Pago inicial registrado en la ventaAbono · Fecha de venta: 17/10/2026\t$100,00\t—\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · Pago inicial de compra N.º 1 del díaAbono · Fecha de compra: 19/10/2026\t—\t$50,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · Cuota de pruebaAbono · Fecha de compra: 17/10/2026\t—\t$200,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 2 · Cacao Seco · Pago inicial de compra N.º 2 del díaAbono · Fecha de compra: 17/10/2026\t—\t$150,00\n19/10/2026\tCobro de cuenta manual\t—\tCuenta manual de cliente · Cuota de pruebaAbono · Fecha de cuenta: 17/10/2026\t$10,00\t—\n20/10/2026\tCobro de venta\tCacao Seco\tVenta N.º 1 · Cacao Seco · Cuota de pruebaAbono · Fecha de venta: 17/10/2026\t$300,00\t—\n20/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · Cuota de pruebaAbono · Fecha de compra: 17/10/2026\t—\t$200,00\n20/10/2026\tGasto operativo\t—\tOtros · Gasto actual\t—\t$3,00",
+      "filas": 12
+    }
+  ],
+  "alcance": "Formularios/contexto reales, transporte de mutaciones capturado. DTO de reportes obtenido de PostgreSQL real."
+}

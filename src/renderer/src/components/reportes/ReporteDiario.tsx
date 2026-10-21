@@ -141,9 +141,16 @@ export function ReporteMovimientos({
             {filas.map((f) => (
               <tr key={f.id} className="border-b border-[#eef1ee]">
                 <td className="p-2">{formatoFecha(f.fecha)}</td>
-                <td className="p-2">{f.tipo}</td>
+                <td className="p-2">{f.concepto ?? f.tipo}</td>
                 <td className="p-2">{f.producto ?? '—'}</td>
-                <td className="p-2">{f.detalle}</td>
+                <td className="p-2">
+                  {f.detalle}
+                  {f.trazabilidad && (
+                    <span className="mt-1 block text-[11px] leading-relaxed text-[#59635c]">
+                      {f.trazabilidad}
+                    </span>
+                  )}
+                </td>
                 <td className="p-2">{f.monto > 0 ? '$' + formatoMoneda(f.monto) : '—'}</td>
                 <td className="p-2">{f.monto < 0 ? '$' + formatoMoneda(-f.monto) : '—'}</td>
               </tr>

@@ -1,0 +1,41 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> electron-app@1.3.2 db:test
+> node tests/run.cjs --fechas-independientes
+
+PASS fechas independientes: escenarios, cuotas, ventas/manuales, SQL anterior=nuevo, keyset/PDF, reinicio, anulaciones y Guayaquil
+OK fechas de compra/venta pendientes, parciales y saldadas; manual y abonos posteriores conservan origen.
+OK reportes: límites 10/15/25/50/100, LIMIT n+1, cursor keyset, última página y validación aislada.
+OK 6 escenarios de dominio: pendiente/parcial/completo, compra/venta, fechas históricas, anulaciones sin devolución financiera, stock, cuentas y prohibición de repetir.
+OK v3 firma alterada y otra instalación rechazadas sin bloquear login
+OK v3 nueva solicitud invalida anterior
+OK v3 firma válida cambia contraseña y no se reutiliza
+OK v3 reinicio no permite reutilizar autorización
+OK v3 request_id y propósito alterados se rechazan aun con firma válida
+OK v3 cerrar jornada conserva cuentas y publica resumen
+OK v3 cierre equivalente no duplica respaldo ni aviso de cuentas pendientes
+OK v3 cerrar sesión no modifica cuentas
+OK v3 cierre normal y estados de lectura persisten
+OK v3 AutoRecover no altera cuentas y genera aviso
+OK v3 abono posterior continúa desde el saldo anterior
+OK v3 dump íntegro y pg_restore --list
+OK v3 alteración SHA-256 detectada
+OK v3 retención conserva 14 automáticos y el manual
+OK v3 cierre solo manual conserva jornada sin intentar respaldo automático
+OK v3 SQLSTATE y TypeError se traducen sin filtrar secretos
+OK v3 PDF reutiliza totales del mismo resumen para todos los formatos y rango manual
+OK v3 jornada de ayer sigue activa; gasto respeta fecha efectiva elegida
+OK v3 cancelar guardado PDF no escribe ningún archivo
+OK v3 cliente editado y compra pagada conservan relaciones y efectivo
+OK v3 pago completo y adelanto de empleado aceptan montos manuales
+OK v3 múltiples abonos saldan cuenta y mantienen consecutivo oficial único
+OK v3 reportes y HTML diario semanal mensual excluyen pendientes y evitan doble egreso
+OK v3 constraint revierte compra cuenta gasto e inventario completos
+24 pruebas v3 satisfactorias
+Suite PostgreSQL completa. Artefactos de prueba: C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-tests-7dSENK
+npm notice
+npm notice New major version of npm available! 11.19.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

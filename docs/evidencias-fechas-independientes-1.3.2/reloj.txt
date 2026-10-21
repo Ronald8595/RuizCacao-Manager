@@ -1,0 +1,1 @@
+PASS reloj de prueba 19/10: compra17 pagada17/19/pendiente; cuotas17/19/20; futuro bloqueado antes del20

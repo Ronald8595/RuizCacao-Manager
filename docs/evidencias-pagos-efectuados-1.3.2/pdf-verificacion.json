@@ -1,0 +1,26 @@
+[
+  {
+    "archivo": "caso-150.pdf",
+    "paginas": 1,
+    "filas": 3,
+    "estado": "PASS"
+  },
+  {
+    "archivo": "diario.pdf",
+    "paginas": 2,
+    "filas": 7,
+    "estado": "PASS"
+  },
+  {
+    "archivo": "mensual.pdf",
+    "paginas": 2,
+    "filas": 13,
+    "estado": "PASS"
+  },
+  {
+    "archivo": "semanal.pdf",
+    "paginas": 2,
+    "filas": 12,
+    "estado": "PASS"
+  }
+]

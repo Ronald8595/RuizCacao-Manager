@@ -1,0 +1,175 @@
+{
+  "estado": "PASS",
+  "compra": {
+    "estado": "vigente",
+    "fecha": "2026-10-19",
+    "proveedorId": "prov_f9a96049-4016-4048-91d6-6d781a24003e",
+    "producto": "Cacao en Baba",
+    "cantidadQq": 1,
+    "precioCompraQq": 162.12,
+    "impuestoPorcentaje": 0,
+    "montoPagado": 0,
+    "metodoPago": "Efectivo",
+    "id": "compra_6d872266-1a55-4cac-82d7-594c6bfaf223",
+    "numeroCompra": 1,
+    "proveedorNombre": "Proveedor pagos",
+    "fechaHoraRegistro": "2026-10-19T19:24:21",
+    "subtotal": 162.12,
+    "montoImpuesto": 0,
+    "totalCompra": 162.12,
+    "montoPagadoInicial": 0,
+    "usuarioId": "32632ded-e580-4907-9624-32ee3e008b3c",
+    "usuarioNombre": "Pagos"
+  },
+  "cuenta": {
+    "id": "cta_74b9ec5a-0169-4999-80f4-0400604721a6",
+    "origen": "compra",
+    "categoria": "compra",
+    "compraId": "compra_6d872266-1a55-4cac-82d7-594c6bfaf223",
+    "numeroCompra": 1,
+    "proveedorId": "prov_f9a96049-4016-4048-91d6-6d781a24003e",
+    "proveedorNombre": "Proveedor pagos",
+    "montoTotal": 162.12,
+    "montoPagado": 150,
+    "fecha": "2026-10-19",
+    "fechaHoraRegistro": "2026-10-20T00:24:21.000Z",
+    "fechaUltimoMovimiento": "2026-10-21T00:24:21.000Z",
+    "estado": "parcial",
+    "usuarioId": "32632ded-e580-4907-9624-32ee3e008b3c",
+    "usuarioNombre": "Pagos",
+    "clienteId": "",
+    "ventaId": null,
+    "numeroFactura": null
+  },
+  "pagos": {
+    "resumen": {
+      "desde": "2026-10-20",
+      "hasta": "2026-10-20",
+      "desgloseProductos": {
+        "Cacao en Baba": {
+          "ingresos": 0,
+          "pagosCompras": 651.22
+        },
+        "Cacao Seco": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        },
+        "Maracuyá": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        },
+        "Sin producto de origen": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        }
+      },
+      "totalIngresos": 0,
+      "totalComprasPagadas": 651.22,
+      "totalGastosManuales": 20,
+      "totalGastos": 671.22,
+      "saldoPeriodo": -671.22
+    },
+    "total": 3,
+    "filas": [
+      {
+        "id": "pago_8001e810-acdc-4355-9cb1-b27f81a326d0",
+        "fecha": "2026-10-20",
+        "orden": "2026-10-21T00:24:21.000Z",
+        "tipo": "Pago de compra",
+        "detalle": "Compra N.º 1 · Cacao en Baba · Pago total de compra",
+        "producto": "Cacao en Baba",
+        "trazabilidad": "Fecha de compra: 20/10/2026",
+        "monto": -501.22,
+        "concepto": "Pago total de compra"
+      },
+      {
+        "id": "abono_21c80a6d-1945-4f2a-8693-d04c0a6ac8bf",
+        "fecha": "2026-10-20",
+        "orden": "2026-10-21T00:24:21.000Z",
+        "tipo": "Pago de compra",
+        "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+        "producto": "Cacao en Baba",
+        "trazabilidad": "Fecha de compra: 19/10/2026",
+        "monto": -150,
+        "concepto": "Abono a compra"
+      },
+      {
+        "id": "gasto_306be03e-328a-479e-960c-c5c6560194c9",
+        "fecha": "2026-10-20",
+        "orden": "2026-10-21T00:24:21.472Z",
+        "tipo": "Gasto operativo",
+        "detalle": "Otros · Gasto operativo de prueba",
+        "producto": null,
+        "trazabilidad": "",
+        "monto": -20
+      }
+    ],
+    "siguiente": null
+  },
+  "lista19": {
+    "filas": [
+      {
+        "id": "gasto_896f74a0-8352-4839-9f44-99a0945f2645",
+        "fecha": "2026-10-19",
+        "fechaHoraRegistro": "2026-10-20T00:24:21.000Z",
+        "categoria": "Inversión en materia prima",
+        "concepto": "Compra de 1 qq de Cacao en Baba a $162.12/qq",
+        "monto": 162.12,
+        "observacion": "Compra registrada en Compra/Venta. Movimiento mov_15f99632-9ed1-4656-aedd-3ca53a7a10bd.",
+        "tipo": "automatico",
+        "referenciaStockId": "mov_15f99632-9ed1-4656-aedd-3ca53a7a10bd",
+        "compra_id": "compra_6d872266-1a55-4cac-82d7-594c6bfaf223",
+        "proveedor_id": "prov_f9a96049-4016-4048-91d6-6d781a24003e",
+        "proveedor_nombre": "Proveedor pagos",
+        "estado_pago_proveedor": "abono",
+        "monto_abono": 150,
+        "saldo_pendiente_proveedor": 12.12,
+        "usuarioId": "32632ded-e580-4907-9624-32ee3e008b3c",
+        "usuarioNombre": "Pagos",
+        "anulada": false
+      }
+    ],
+    "total": 1,
+    "siguiente": null
+  },
+  "lista20": {
+    "filas": [
+      {
+        "id": "gasto_306be03e-328a-479e-960c-c5c6560194c9",
+        "fecha": "2026-10-20",
+        "fechaHoraRegistro": "2026-10-21T00:24:21.472Z",
+        "categoria": "Otros",
+        "concepto": "Gasto operativo de prueba",
+        "monto": 20,
+        "observacion": "Gasto operativo de prueba",
+        "tipo": "manual",
+        "usuarioId": "32632ded-e580-4907-9624-32ee3e008b3c",
+        "usuarioNombre": "Pagos",
+        "referenciaStockId": null,
+        "anulada": false
+      },
+      {
+        "id": "gasto_0d85acdc-b6d7-43f4-a5ff-877831a738d0",
+        "fecha": "2026-10-20",
+        "fechaHoraRegistro": "2026-10-21T00:24:21.000Z",
+        "categoria": "Inversión en materia prima",
+        "concepto": "Compra de 1 qq de Cacao en Baba a $501.22/qq",
+        "monto": 501.22,
+        "observacion": "Compra registrada en Compra/Venta. Movimiento mov_749d42d1-2af4-42ca-90fe-76df3ecd1095.",
+        "tipo": "automatico",
+        "referenciaStockId": "mov_749d42d1-2af4-42ca-90fe-76df3ecd1095",
+        "compra_id": "compra_0f520ad8-17bd-4cee-9a3d-467d1f16a918",
+        "proveedor_id": "prov_f9a96049-4016-4048-91d6-6d781a24003e",
+        "proveedor_nombre": "Proveedor pagos",
+        "estado_pago_proveedor": "completo",
+        "monto_abono": 501.22,
+        "saldo_pendiente_proveedor": 0,
+        "usuarioId": "32632ded-e580-4907-9624-32ee3e008b3c",
+        "usuarioNombre": "Pagos",
+        "anulada": false
+      }
+    ],
+    "total": 2,
+    "siguiente": null
+  }
+}

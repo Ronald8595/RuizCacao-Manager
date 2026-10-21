@@ -1,5 +1,7 @@
 import { ErrorNegocio } from '../../../shared/errorNegocio'
+import { errorFechaGasto, hoyGasto } from '../../../shared/fechaGasto'
 import { useState, type FormEvent } from 'react'
+import PagosEfectuados from '../components/PagosEfectuados'
 import Paginacion from '../components/Paginacion'
 import ContenedorTabla from '../components/ContenedorTabla'
 import { useListadoGastos, useResumenGastos } from '../hooks/useListados'
@@ -39,11 +41,11 @@ import type { CategoriaGasto, Gasto, GastoFormData, TipoGasto } from '../types'
 // sí tiene CRUD completo: se crea, edita y elimina desde aquí.
 // ============================================================
 
-type Vista = 'lista' | 'resumen'
+type Vista = 'lista' | 'resumen' | 'pagos'
 type PeriodoResumen = 'diario' | 'semanal' | 'mensual' | 'rango'
 
 function hoyISO(): string {
-  return new Date().toISOString().slice(0, 10)
+  return hoyGasto()
 }
 
 function num(valor: string): number {
@@ -101,7 +103,8 @@ type Errores = Partial<
 
 function validar(form: GastoFormData): Errores {
   const errores: Errores = {}
-  if (!form.fecha) errores.fecha = 'La fecha es obligatoria.'
+  const errorFecha = errorFechaGasto(form.fecha)
+  if (errorFecha) errores.fecha = errorFecha
   if (form.categoria === 'Mano de obra' && !form.empleado_id)
     errores.empleado_id = 'Selecciona un trabajador de la lista.'
   if (!(form.monto > 0)) errores.monto = 'El monto debe ser mayor a 0.'
@@ -192,9 +195,19 @@ function GastoFormModal({
               type="date"
               required
               value={form.fecha}
-              disabled
-              className={`${inputClass(false)} disabled:cursor-not-allowed disabled:bg-[#f5f7f4] disabled:text-[#5b635e]`}
+              min="0001-01-01"
+              max={hoyGasto()}
+              disabled={Boolean(gastoEditando)}
+              onChange={(e) => actualizar('fecha', e.target.value)}
+              aria-describedby="gasto-fecha-ayuda"
+              aria-invalid={Boolean(errores.fecha)}
+              className={`${inputClass(Boolean(errores.fecha))} disabled:cursor-not-allowed disabled:bg-[#f5f7f4] disabled:text-[#5b635e]`}
             />
+            <span id="gasto-fecha-ayuda" className="mt-1 block text-[11px] text-[#5b635e]">
+              {gastoEditando
+                ? 'La fecha original se conserva.'
+                : 'Fecha en que se pagó. La hora de registro se conserva por separado.'}
+            </span>
           </FormField>
           <FormField label="Categoría" obligatorio>
             <select
@@ -446,7 +459,7 @@ function Gastos(): React.JSX.Element {
       />
 
       {/* ===== TABS ===== */}
-      <div className="mb-5 flex items-center gap-2 border-b border-[#eef1ee]">
+      <div className="mb-5 flex flex-wrap items-center gap-2 border-b border-[#eef1ee]">
         <button
           type="button"
           onClick={() => setVista('lista')}
@@ -473,9 +486,24 @@ function Gastos(): React.JSX.Element {
           <BarChart3 size={15} />
           Resumen
         </button>
+        <button
+          type="button"
+          aria-pressed={vista === 'pagos'}
+          onClick={() => setVista('pagos')}
+          className={`border-b-2 px-3 py-2.5 text-[13px] font-semibold ${vista === 'pagos' ? 'border-[#16834b] text-[#16834b]' : 'border-transparent text-[#8a938d]'}`}
+        >
+          Pagos efectuados
+        </button>
       </div>
 
-      {!hayGastos ? (
+      {vista === 'pagos' ? (
+        <PagosEfectuados
+          desde={filtroDesde}
+          hasta={filtroHasta}
+          setDesde={setFiltroDesde}
+          setHasta={setFiltroHasta}
+        />
+      ) : !hayGastos ? (
         <EmptyState
           icon={TrendingDown}
           title="Todavía no hay gastos registrados"

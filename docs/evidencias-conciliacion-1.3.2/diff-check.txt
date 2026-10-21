@@ -1,0 +1,7 @@
+warning: in the working copy of 'docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/pages/Gastos.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/shared/dominio.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/run.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/v3.cjs', LF will be replaced by CRLF the next time Git touches it

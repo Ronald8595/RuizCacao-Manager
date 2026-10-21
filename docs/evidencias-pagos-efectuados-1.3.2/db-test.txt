@@ -1,0 +1,50 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> electron-app@1.3.2 db:test
+> node tests/run.cjs --pagos-efectuados
+
+PASS pagos: 150 del 20/10; saldo 12.12; 501.22 sin duplicar; gastos 20; etiquetas; SQL/keyset/PDF/totales equivalentes; reinicio; anulaciones e historial ambiguo
+PASS fechas independientes: escenarios, cuotas, ventas/manuales, SQL anterior=nuevo, keyset/PDF, reinicio, anulaciones y Guayaquil
+OK fechas de compra/venta pendientes, parciales y saldadas; manual y abonos posteriores conservan origen.
+AssertionError [ERR_ASSERTION]: The input did not match the regular expression /ORDER BY fecha ASC,instante ASC,fuente ASC,registro DESC,id DESC LIMIT \$\d+$/. Input:
+
+'WITH cuentas_pagina AS (\n' +
+  '    SELECT DISTINCT cuenta_id FROM ruizcacao.movimientos_cuenta WHERE id=ANY($1::text[])\n' +
+  '  ), historial AS (\n' +
+  '    SELECT m.*, coalesce(sum(m.monto) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING),0) anterior,\n' +
+  '      sum(m.monto) OVER(PARTITION BY m.cuenta_id) aplicado,\n' +
+  '      first_value(m.id) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primero,\n' +
+  '      first_value(m.monto) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primer_monto,\n' +
+  '      first_value(m.tipo) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primer_tipo\n' +
+  '    FROM ruizcacao.movimientos_cuenta m JOIN cuentas_pagina p ON p.cuenta_id=m.cuenta_id\n' +
+  '  ) SELECT h.*,c.categoria,c.origen,c.monto_total,c.monto_aplicado,\n' +
+  '    coalesce(b.id,v.id) operacion_id,\n' +
+  "    CASE WHEN c.categoria='compra' THEN b.monto_pagado_inicial ELSE v.monto_recibido END inicial\n" +
+  '    FROM historial h JOIN ruizcacao.cuentas c ON c.id=h.cuenta_id\n' +
+  '    LEFT JOIN ruizcacao.compras b ON b.id=c.compra_id\n' +
+  '    LEFT JOIN ruizcacao.ventas v ON v.id=c.venta_id\n' +
+  '    WHERE h.id=ANY($1::text[])'
+
+    at Object.query (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\reporte-paginacion-validacion.cjs:20:14)
+    at presentarMovimientos (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:204:31)
+    at consultarListado (eval at load (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\loader.cjs:26:3), <anonymous>:379:22)
+    at async main (C:\Users\LENOVO\Documents\VS_Proyects\RuizCacao Manager\electron-app\tests\reporte-paginacion-validacion.cjs:42:20) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: 'WITH cuentas_pagina AS (\n' +
+    '    SELECT DISTINCT cuenta_id FROM ruizcacao.movimientos_cuenta WHERE id=ANY($1::text[])\n' +
+    '  ), historial AS (\n' +
+    '    SELECT m.*, coalesce(sum(m.monto) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden ROWS BETWEEN UNBOUNDED PRECEDING AND 1 PRECEDING),0) anterior,\n' +
+    '      sum(m.monto) OVER(PARTITION BY m.cuenta_id) aplicado,\n' +
+    '      first_value(m.id) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primero,\n' +
+    '      first_value(m.monto) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primer_monto,\n' +
+    '      first_value(m.tipo) OVER(PARTITION BY m.cuenta_id ORDER BY m.orden) primer_tipo\n' +
+    '    FROM ruizcacao.movimientos_cuenta m JOIN cuentas_pagina p ON p.cuenta_id=m.cuenta_id\n' +
+    '  ) SELECT h.*,c.categoria,c.origen,c.monto_total,c.monto_aplicado,\n' +
+    '...',
+  expected: /ORDER BY fecha ASC,instante ASC,fuente ASC,registro DESC,id DESC LIMIT \$\d+$/,
+  operator: 'match',
+  diff: 'simple'
+}
+reporte-paginacion-validacion.cjs falló.

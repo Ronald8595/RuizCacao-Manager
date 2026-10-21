@@ -33,54 +33,92 @@ async function main() {
     }
     const archivo = join(carpeta, 'conexion-test.json')
     await fs.writeFile(archivo, JSON.stringify(config), { mode: 0o600 })
-    const suites = process.argv.includes('--solo-stock-fecha')
-      ? ['stock-por-fecha.cjs']
-      : [
-          'stock-por-fecha.cjs',
-          'respaldos-ipc.cjs',
-          'respaldos-inicial-permisos.cjs',
-          'respaldo-diagnostico.cjs',
-          'restore-contratos.cjs',
-          'restore-catalogo.cjs',
-          'postgres-ruta-windows.cjs',
-          'restore-seguro.cjs',
-          'restore-startup.cjs',
-          'respaldo-portable.cjs',
-          'respaldo-portabilidad.cjs',
-          'postgres-prerrequisito.cjs',
-          'pgctl-arranque.cjs',
-          'notificaciones.cjs',
-          'listados.cjs',
-          'lectura-dominio.cjs',
+    const suites = process.argv.includes('--pagos-efectuados')
+      ? [
+          'pagos-efectuados.cjs',
+          'fechas-independientes.cjs',
           'cuentas-fecha.cjs',
-          'guardar-indices.cjs',
-          'migracion-v9.cjs',
-          'seed-rendimiento.cjs',
-          'paginacion-operaciones.cjs',
-          'migracion-v8.cjs',
-          'paginacion-stock-validacion.cjs',
           'reporte-paginacion-validacion.cjs',
-          'paginacion-stock.cjs',
-          'benchmark-dataset.cjs',
-          'proyeccion-entidades.cjs',
-          'novedades.cjs',
           'anulaciones-dominio.cjs',
-          'anulaciones-v7.cjs',
-          'integration.cjs',
-          'migracion.cjs',
-          'migracion-v2.cjs',
-          'migracion-v3.cjs',
-          'migracion-v5.cjs',
-          'migracion-v6.cjs',
-          'v3.cjs',
-          'rc.cjs',
-          'postgres-local.cjs'
+          'v3.cjs'
         ]
-    for (const suite of suites)
+      : process.argv.includes('--solo-fechas-independientes')
+        ? ['fechas-independientes.cjs']
+        : process.argv.includes('--fechas-independientes')
+          ? [
+              'fechas-independientes.cjs',
+              'cuentas-fecha.cjs',
+              'reporte-paginacion-validacion.cjs',
+              'anulaciones-dominio.cjs',
+              'v3.cjs'
+            ]
+          : process.argv.includes('--reproduccion-cliente') ||
+              process.argv.includes('--reproduccion-solo-b')
+            ? ['reproduccion-cliente.cjs']
+            : process.argv.includes('--solo-conciliacion')
+              ? ['gastos-fecha-dominio.cjs', 'conciliacion-gastos.cjs']
+              : process.argv.includes('--solo-stock-fecha')
+                ? ['stock-por-fecha.cjs']
+                : [
+                    'stock-por-fecha.cjs',
+                    'gastos-fecha-dominio.cjs',
+                    'conciliacion-gastos.cjs',
+                    'respaldos-ipc.cjs',
+                    'respaldos-inicial-permisos.cjs',
+                    'respaldo-diagnostico.cjs',
+                    'restore-contratos.cjs',
+                    'restore-catalogo.cjs',
+                    'postgres-ruta-windows.cjs',
+                    'restore-seguro.cjs',
+                    'restore-startup.cjs',
+                    'respaldo-portable.cjs',
+                    'respaldo-portabilidad.cjs',
+                    'postgres-prerrequisito.cjs',
+                    'pgctl-arranque.cjs',
+                    'notificaciones.cjs',
+                    'listados.cjs',
+                    'lectura-dominio.cjs',
+                    'cuentas-fecha.cjs',
+                    'guardar-indices.cjs',
+                    'migracion-v9.cjs',
+                    'seed-rendimiento.cjs',
+                    'paginacion-operaciones.cjs',
+                    'migracion-v8.cjs',
+                    'paginacion-stock-validacion.cjs',
+                    'reporte-paginacion-validacion.cjs',
+                    'paginacion-stock.cjs',
+                    'benchmark-dataset.cjs',
+                    'proyeccion-entidades.cjs',
+                    'novedades.cjs',
+                    'anulaciones-dominio.cjs',
+                    'anulaciones-v7.cjs',
+                    'integration.cjs',
+                    'migracion.cjs',
+                    'migracion-v2.cjs',
+                    'migracion-v3.cjs',
+                    'migracion-v5.cjs',
+                    'migracion-v6.cjs',
+                    'v3.cjs',
+                    'rc.cjs',
+                    'postgres-local.cjs'
+                  ]
+    // Continuación explícita tras un fallo; no presenta el tramo como suite completa.
+    const desde = process.argv.find((arg) => arg.startsWith('--desde-suite='))?.split('=')[1]
+    const inicio = desde === undefined ? 0 : suites.indexOf(desde)
+    if (inicio < 0) throw Error('Suite de continuación desconocida.')
+    if (desde) console.log('Continuación parcial PostgreSQL: ' + suites.slice(inicio).join(', '))
+    for (const suite of suites.slice(inicio))
       await new Promise((resolve, reject) => {
         const child = spawn(
           process.execPath,
-          [join(__dirname, suite), suite === 'postgres-local.cjs' ? carpeta : archivo],
+          [
+            join(__dirname, suite),
+            suite === 'postgres-local.cjs' ? carpeta : archivo,
+            ...(suite === 'reproduccion-cliente.cjs' &&
+            process.argv.includes('--reproduccion-solo-b')
+              ? ['--solo-b']
+              : [])
+          ],
           {
             windowsHide: true,
             stdio: 'inherit',
@@ -91,7 +129,11 @@ async function main() {
         child.on('exit', (code) => (code === 0 ? resolve() : reject(Error(suite + ' falló.'))))
       })
     await fs.unlink(archivo)
-    console.log('Suite PostgreSQL completa. Artefactos de prueba: ' + carpeta)
+    console.log(
+      (desde ? 'Continuación PostgreSQL terminada.' : 'Suite PostgreSQL completa.') +
+        ' Artefactos de prueba: ' +
+        carpeta
+    )
   } finally {
     await fs.unlink(join(carpeta, 'conexion-test.json')).catch(() => {})
     await local.detener()

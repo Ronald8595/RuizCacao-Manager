@@ -1,0 +1,264 @@
+{
+  "estado": "PASS",
+  "pid": 23824,
+  "fase": "crear",
+  "perfil": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-repro-ui-WwftzU",
+  "login": "PASS",
+  "fechaManual": "2026-10-19",
+  "registros": [
+    {
+      "id": "gasto_e3d0b7ea-496e-42b8-bc70-977a48832a29",
+      "fecha": "2026-10-19",
+      "fecha_hora_registro": "2026-10-20T12:58:39.623Z",
+      "monto": "10.00",
+      "categoria": "Transporte",
+      "observacion": "Fixture UI 10"
+    },
+    {
+      "id": "gasto_24ef64c8-2c59-44e8-a517-b51aa70f9398",
+      "fecha": "2026-10-19",
+      "fecha_hora_registro": "2026-10-20T12:58:39.817Z",
+      "monto": "20.00",
+      "categoria": "Otros",
+      "observacion": "Fixture UI 20"
+    },
+    {
+      "id": "gasto_5b679995-bcd9-4898-a215-5ce43716f62f",
+      "fecha": "2026-10-19",
+      "fecha_hora_registro": "2026-10-20T12:58:39.704Z",
+      "monto": "60.00",
+      "categoria": "Transporte",
+      "observacion": "Fixture UI 60"
+    },
+    {
+      "id": "gasto_0af6bc97-e8fb-4af9-bbeb-2e5378179858",
+      "fecha": "2026-10-19",
+      "fecha_hora_registro": "2026-10-20T12:58:39.747Z",
+      "monto": "100.00",
+      "categoria": "Otros",
+      "observacion": "Fixture UI 100"
+    }
+  ],
+  "pdfs": [
+    {
+      "nombre": "Reporte_Diario_2026-10-19",
+      "filePath": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\docs\\evidencias-conciliacion-1.3.2\\reproduccion\\pdf-crear-1.pdf",
+      "bytes": 94812,
+      "filas": 28
+    },
+    {
+      "nombre": "Reporte_Semanal_2026-10-19_a_2026-10-25",
+      "filePath": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\docs\\evidencias-conciliacion-1.3.2\\reproduccion\\pdf-crear-2.pdf",
+      "bytes": 95307,
+      "filas": 28
+    },
+    {
+      "nombre": "Reporte_Mensual_2026-10-01_a_2026-10-31",
+      "filePath": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\docs\\evidencias-conciliacion-1.3.2\\reproduccion\\pdf-crear-3.pdf",
+      "bytes": 95354,
+      "filas": 28
+    }
+  ],
+  "solicitudes": [
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "ejecutar",
+      "args": [
+        "crearGastoManual",
+        [
+          {
+            "fecha": "2026-10-19",
+            "categoria": "Transporte",
+            "concepto": "",
+            "monto": 10,
+            "observacion": "Fixture UI 10",
+            "tipo_pago": "pago"
+          }
+        ]
+      ]
+    },
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "ejecutar",
+      "args": [
+        "crearGastoManual",
+        [
+          {
+            "fecha": "2026-10-19",
+            "categoria": "Transporte",
+            "concepto": "",
+            "monto": 60,
+            "observacion": "Fixture UI 60",
+            "tipo_pago": "pago"
+          }
+        ]
+      ]
+    },
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "ejecutar",
+      "args": [
+        "crearGastoManual",
+        [
+          {
+            "fecha": "2026-10-19",
+            "categoria": "Otros",
+            "concepto": "",
+            "monto": 100,
+            "observacion": "Fixture UI 100",
+            "tipo_pago": "pago"
+          }
+        ]
+      ]
+    },
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "ejecutar",
+      "args": [
+        "crearGastoManual",
+        [
+          {
+            "fecha": "2026-10-19",
+            "categoria": "Otros",
+            "concepto": "",
+            "monto": 20,
+            "observacion": "Fixture UI 20",
+            "tipo_pago": "pago"
+          }
+        ]
+      ]
+    },
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "listadoGastos",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-19",
+          "categoria": "Todas",
+          "tipo": "manual",
+          "limite": 15,
+          "cursor": null
+        }
+      ]
+    },
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "historialCompras",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-19",
+          "busqueda": "",
+          "limite": 15,
+          "cursor": null
+        }
+      ]
+    },
+    {
+      "metodo": "historialCompras",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-19",
+          "busqueda": "",
+          "limite": 25,
+          "cursor": null
+        }
+      ]
+    },
+    {
+      "metodo": "listarNotificaciones",
+      "args": []
+    },
+    {
+      "metodo": "reportePeriodo",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-19",
+          "limite": 15,
+          "cursor": null
+        }
+      ]
+    },
+    {
+      "metodo": "documentoReporte",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-19"
+        },
+        "diario"
+      ]
+    },
+    {
+      "metodo": "reportePeriodo",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-25",
+          "limite": 15,
+          "cursor": null
+        }
+      ]
+    },
+    {
+      "metodo": "documentoReporte",
+      "args": [
+        {
+          "desde": "2026-10-19",
+          "hasta": "2026-10-25"
+        },
+        "semanal"
+      ]
+    },
+    {
+      "metodo": "reportePeriodo",
+      "args": [
+        {
+          "desde": "2026-10-01",
+          "hasta": "2026-10-31",
+          "limite": 15,
+          "cursor": null
+        }
+      ]
+    },
+    {
+      "metodo": "documentoReporte",
+      "args": [
+        {
+          "desde": "2026-10-01",
+          "hasta": "2026-10-31"
+        },
+        "mensual"
+      ]
+    }
+  ],
+  "textos": {
+    "gastos": "martes, 20 de octubre de 2026\n\nGastos\n\nPagos de compras y gastos operativos registrados manualmente.\n\nNuevo gasto\nLista de gastosResumen\nTodas las categorías\nInversión en materia prima\nTransporte\nMano de obra\nInsumos\nServicios\nOtros\nCompras y gastos operativos\nSólo compras\nSólo gastos operativos\na\nFecha\tCategoría\tDetalle\tTotal\tPagado\tPendiente\tTipo\tUsuario\tAcciones\n2026-10-19\tOtros\tFixture UI 20\t$20,00\t$20,00\t—\tOperativo\tFixture\t\n\n2026-10-19\tOtros\tFixture UI 100\t$100,00\t$100,00\t—\tOperativo\tFixture\t\n\n2026-10-19\tTransporte\tFixture UI 60\t$60,00\t$60,00\t—\tOperativo\tFixture\t\n\n2026-10-19\tTransporte\tFixture UI 10\t$10,00\t$10,00\t—\tOperativo\tFixture\t\nMostrar\n10\n15\n25\n50\nde 4 registros\nAnteriorPágina 1 de 1Siguiente",
+    "compras": "martes, 20 de octubre de 2026\n\nCompras\n\nCompra de productos y cuentas por pagar a proveedores.\n\nNueva compra\na\nCompra\tFecha\tProveedor\tProducto\tCantidad\tTotal\tPagado\tPor pagar\tEstado\tUsuario\tAcciones\nN.º 20 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t0.52 qq\t$109,00\t$109,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 19 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t0.3 qq\t$21,00\t$21,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 18 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t0.58 qq\t$122,00\t$122,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 17 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t2.74 qq\t$589,00\t$589,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 16 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t2.74 qq\t$522,57\t$522,57\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 15 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t0.84 qq\t$180,60\t$180,60\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 14 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t7.05 qq\t$1.519,98\t$1.519,98\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 13 del día\t2026-10-19\tGALO RUIZ\tCacao Seco\t0.24 qq\t$51,00\t$51,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 12 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.44 qq\t$27,00\t$27,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 11 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.32 qq\t$20,00\t$20,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 10 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.6 qq\t$41,58\t$41,58\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 9 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.29 qq\t$23,20\t$23,20\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 8 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t1.08 qq\t$68,04\t$68,04\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 7 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.53 qq\t$33,00\t$33,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 6 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t1.9 qq\t$117,29\t$117,29\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 5 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.45 qq\t$27,78\t$27,78\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 4 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t3.96 qq\t$71,00\t$71,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 3 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t1.38 qq\t$84,00\t$84,00\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 2 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.43 qq\t$26,66\t$26,66\t$0,00\tPagado\tFixture\t\nVer\n\nN.º 1 del día\t2026-10-19\tGALO RUIZ\tCacao en Baba\t0.67 qq\t$40,70\t$40,70\t$0,00\tPagado\tFixture\t\nVer\nMostrar\n10\n15\n25\n50\nde 20 registros\nAnteriorPágina 1 de 1Siguiente",
+    "Diario": "martes, 20 de octubre de 2026\n\nConsultas y Reportes\n\nDiarioSemanalMensual\nDesdeHasta\nGenerar PDF\n\nGrupo Ruiz · RuizCacao Manager\n\nReporte diario\n\n19/10/2026 — 19/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$0,00\n\nInversión por compras\n\n$6.966,76\n\nGastos operativos\n\n$190,00\n\nResultado del período\n\n$-7.156,76\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$0,00\t$751,61\nCacao Seco\t$0,00\t$6.215,15\nMaracuyá\t$0,00\t$0,00\nTotal\tTotal ingresos por ventas$0,00\tTotal invertido por compras$6.966,76\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$1.000,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 3 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$1.500,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · HIPÓTESIS: pago de compra anterior\t—\t$171,36\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$600,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 20 · Cacao Seco · Pago inicial de compra N.º 20 del día\t—\t$109,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 19 · Cacao Seco · Pago inicial de compra N.º 19 del día\t—\t$21,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 18 · Cacao Seco · Pago inicial de compra N.º 18 del día\t—\t$122,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 17 · Cacao Seco · Pago inicial de compra N.º 17 del día\t—\t$589,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 16 · Cacao Seco · Pago inicial de compra N.º 16 del día\t—\t$522,57\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 15 · Cacao Seco · Pago inicial de compra N.º 15 del día\t—\t$180,60\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 14 · Cacao Seco · Pago inicial de compra N.º 14 del día\t—\t$1.519,98\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 13 · Cacao Seco · Pago inicial de compra N.º 13 del día\t—\t$51,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 12 · Cacao en Baba · Pago inicial de compra N.º 12 del día\t—\t$27,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 11 · Cacao en Baba · Pago inicial de compra N.º 11 del día\t—\t$20,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 10 · Cacao en Baba · Pago inicial de compra N.º 10 del día\t—\t$41,58\nMostrar\n10\n15\n25\n50\n100\nde 28 registros\nAnteriorPágina 1 de 2Siguiente",
+    "Semanal": "martes, 20 de octubre de 2026\n\nConsultas y Reportes\n\nDiarioSemanalMensual\nDesdeHasta\nGenerar PDF\n\nGrupo Ruiz · RuizCacao Manager\n\nReporte semanal\n\n19/10/2026 — 25/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$0,00\n\nInversión por compras\n\n$6.966,76\n\nGastos operativos\n\n$190,00\n\nResultado del período\n\n$-7.156,76\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$0,00\t$751,61\nCacao Seco\t$0,00\t$6.215,15\nMaracuyá\t$0,00\t$0,00\nTotal\tTotal ingresos por ventas$0,00\tTotal invertido por compras$6.966,76\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$1.000,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 3 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$1.500,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · HIPÓTESIS: pago de compra anterior\t—\t$171,36\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$600,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 20 · Cacao Seco · Pago inicial de compra N.º 20 del día\t—\t$109,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 19 · Cacao Seco · Pago inicial de compra N.º 19 del día\t—\t$21,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 18 · Cacao Seco · Pago inicial de compra N.º 18 del día\t—\t$122,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 17 · Cacao Seco · Pago inicial de compra N.º 17 del día\t—\t$589,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 16 · Cacao Seco · Pago inicial de compra N.º 16 del día\t—\t$522,57\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 15 · Cacao Seco · Pago inicial de compra N.º 15 del día\t—\t$180,60\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 14 · Cacao Seco · Pago inicial de compra N.º 14 del día\t—\t$1.519,98\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 13 · Cacao Seco · Pago inicial de compra N.º 13 del día\t—\t$51,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 12 · Cacao en Baba · Pago inicial de compra N.º 12 del día\t—\t$27,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 11 · Cacao en Baba · Pago inicial de compra N.º 11 del día\t—\t$20,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 10 · Cacao en Baba · Pago inicial de compra N.º 10 del día\t—\t$41,58\nMostrar\n10\n15\n25\n50\n100\nde 28 registros\nAnteriorPágina 1 de 2Siguiente",
+    "Mensual": "martes, 20 de octubre de 2026\n\nConsultas y Reportes\n\nDiarioSemanalMensual\nDesdeHasta\nGenerar PDF\n\nGrupo Ruiz · RuizCacao Manager\n\nReporte mensual\n\n01/10/2026 — 31/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$0,00\n\nInversión por compras\n\n$6.966,76\n\nGastos operativos\n\n$190,00\n\nResultado del período\n\n$-7.156,76\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$0,00\t$751,61\nCacao Seco\t$0,00\t$6.215,15\nMaracuyá\t$0,00\t$0,00\nTotal\tTotal ingresos por ventas$0,00\tTotal invertido por compras$6.966,76\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 4 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$1.000,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 3 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$1.500,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · HIPÓTESIS: pago de compra anterior\t—\t$171,36\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 1 · Cacao Seco · HIPÓTESIS: pago de compra anterior\t—\t$600,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 20 · Cacao Seco · Pago inicial de compra N.º 20 del día\t—\t$109,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 19 · Cacao Seco · Pago inicial de compra N.º 19 del día\t—\t$21,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 18 · Cacao Seco · Pago inicial de compra N.º 18 del día\t—\t$122,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 17 · Cacao Seco · Pago inicial de compra N.º 17 del día\t—\t$589,00\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 16 · Cacao Seco · Pago inicial de compra N.º 16 del día\t—\t$522,57\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 15 · Cacao Seco · Pago inicial de compra N.º 15 del día\t—\t$180,60\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 14 · Cacao Seco · Pago inicial de compra N.º 14 del día\t—\t$1.519,98\n19/10/2026\tPago de compra\tCacao Seco\tCompra N.º 13 · Cacao Seco · Pago inicial de compra N.º 13 del día\t—\t$51,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 12 · Cacao en Baba · Pago inicial de compra N.º 12 del día\t—\t$27,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 11 · Cacao en Baba · Pago inicial de compra N.º 11 del día\t—\t$20,00\n19/10/2026\tPago de compra\tCacao en Baba\tCompra N.º 10 · Cacao en Baba · Pago inicial de compra N.º 10 del día\t—\t$41,58\nMostrar\n10\n15\n25\n50\n100\nde 28 registros\nAnteriorPágina 1 de 2Siguiente"
+  },
+  "limite": "Páginas y contexto reales; IPC de prueba hacia BaseLocal. No instalador ni shell completo."
+}

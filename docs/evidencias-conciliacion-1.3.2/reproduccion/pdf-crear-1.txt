@@ -1,0 +1,119 @@
+Grupo Ruiz
+ExporCacao · RuizCacao Manager
+RUC: 1717299893001
+Buena fe, FUMISA KM 32 via santo domingo frente al comedor marely
+Reporte Diario
+Desde: 2026-10-19 · Hasta: 2026-10-19
+Generado: 20/10/2026, 7:58:40 a. m.
+Ingresos por ventas
+$0.00
+Inversión por compras
+$6,966.76
+Gastos operativos
+$190.00
+Resultado del período
+$-7,156.76
+Desglose por producto
+Producto Ingresos por venta Inversión por compra
+Cacao en Baba $0.00 $751.61
+Cacao Seco $0.00 $6,215.15
+Maracuyá $0.00 $0.00
+Total Total ingresos por ventas
+$0.00
+Total inversión por compras
+$6,966.76
+Fecha Tipo Producto Detalle Cobrado Pagado
+2026-10-19 Pago de compraCacao Seco Compra N.º 4 · Cacao Seco ·
+HIPÓTESIS: pago de compra
+anterior
+— $1,000.00
+2026-10-19 Pago de compraCacao Seco Compra N.º 3 · Cacao Seco ·
+HIPÓTESIS: pago de compra
+anterior
+— $1,500.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 2 · Cacao en Baba ·
+HIPÓTESIS: pago de compra
+anterior
+— $171.36
+2026-10-19 Pago de compraCacao Seco Compra N.º 1 · Cacao Seco ·
+HIPÓTESIS: pago de compra
+anterior
+— $600.00
+2026-10-19 Pago de compraCacao Seco Compra N.º 20 · Cacao Seco ·
+Pago inicial de compra N.º 20 del
+día
+— $109.00
+2026-10-19 Pago de compraCacao Seco Compra N.º 19 · Cacao Seco ·
+Pago inicial de compra N.º 19 del
+día
+— $21.00
+2026-10-19 Pago de compraCacao Seco Compra N.º 18 · Cacao Seco ·
+Pago inicial de compra N.º 18 del
+día
+— $122.00
+2026-10-19 Pago de compraCacao Seco Compra N.º 17 · Cacao Seco ·
+Pago inicial de compra N.º 17 del
+día
+— $589.00
+2026-10-19 Pago de compraCacao Seco Compra N.º 16 · Cacao Seco ·
+Pago inicial de compra N.º 16 del
+día
+— $522.57
+2026-10-19 Pago de compraCacao Seco Compra N.º 15 · Cacao Seco ·
+Pago inicial de compra N.º 15 del
+día
+— $180.60
+Fecha Tipo Producto Detalle Cobrado Pagado
+2026-10-19 Pago de compraCacao Seco Compra N.º 14 · Cacao Seco ·
+Pago inicial de compra N.º 14 del
+día
+— $1,519.98
+2026-10-19 Pago de compraCacao Seco Compra N.º 13 · Cacao Seco ·
+Pago inicial de compra N.º 13 del
+día
+— $51.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 12 · Cacao en Baba ·
+Pago inicial de compra N.º 12 del
+día
+— $27.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 11 · Cacao en Baba ·
+Pago inicial de compra N.º 11 del
+día
+— $20.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 10 · Cacao en Baba ·
+Pago inicial de compra N.º 10 del
+día
+— $41.58
+2026-10-19 Pago de compraCacao en Baba Compra N.º 9 · Cacao en Baba ·
+Pago inicial de compra N.º 9 del día
+— $23.20
+2026-10-19 Pago de compraCacao en Baba Compra N.º 8 · Cacao en Baba ·
+Pago inicial de compra N.º 8 del día
+— $68.04
+2026-10-19 Pago de compraCacao en Baba Compra N.º 7 · Cacao en Baba ·
+Pago inicial de compra N.º 7 del día
+— $33.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 6 · Cacao en Baba ·
+Pago inicial de compra N.º 6 del día
+— $117.29
+2026-10-19 Pago de compraCacao en Baba Compra N.º 5 · Cacao en Baba ·
+Pago inicial de compra N.º 5 del día
+— $27.78
+2026-10-19 Pago de compraCacao en Baba Compra N.º 4 · Cacao en Baba ·
+Pago inicial de compra N.º 4 del día
+— $71.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 3 · Cacao en Baba ·
+Pago inicial de compra N.º 3 del día
+— $84.00
+2026-10-19 Pago de compraCacao en Baba Compra N.º 2 · Cacao en Baba ·
+Pago inicial de compra N.º 2 del día
+— $26.66
+2026-10-19 Pago de compraCacao en Baba Compra N.º 1 · Cacao en Baba ·
+Pago inicial de compra N.º 1 del día
+— $40.70
+2026-10-19 Gasto operativo — Transporte · Fixture UI 10 — $10.00
+2026-10-19 Gasto operativo — Transporte · Fixture UI 60 — $60.00
+2026-10-19 Gasto operativo — Otros · Fixture UI 100 — $100.00
+2026-10-19 Gasto operativo — Otros · Fixture UI 20 — $20.00
+En este modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que
+sean abonados. El resultado del período corresponde al flujo de caja, no a la utilidad contable.

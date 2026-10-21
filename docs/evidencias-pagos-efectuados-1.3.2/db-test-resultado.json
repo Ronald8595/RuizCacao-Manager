@@ -1,0 +1,4 @@
+{
+  "codigo": 1,
+  "comando": "npm run db:test -- --pagos-efectuados"
+}

@@ -1,0 +1,4 @@
+
+PASS UI real: fecha editable al crear, valor enviado intacto, fecha futura bloqueada, fecha histórica protegida, StrictMode y desmontaje
+[9380:1019/205338.635:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:490] GPU state invalid after WaitForGetOffsetInRange.
+[9380:1019/205338.635:ERROR:gpu\ipc\client\command_buffer_proxy_impl.cc:490] GPU state invalid after WaitForGetOffsetInRange.

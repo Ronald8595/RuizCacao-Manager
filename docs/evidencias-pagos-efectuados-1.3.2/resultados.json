@@ -1,0 +1,463 @@
+{
+  "estado": "PASS",
+  "resultados": [
+    {
+      "tipo": "diario",
+      "desde": "2026-10-20",
+      "hasta": "2026-10-20",
+      "resumen": {
+        "desde": "2026-10-20",
+        "hasta": "2026-10-20",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 150,
+            "pagosCompras": 881.22
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 10,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 160,
+        "totalComprasPagadas": 881.22,
+        "totalGastosManuales": 20,
+        "totalGastos": 901.22,
+        "saldoPeriodo": -741.22
+      },
+      "total": 7,
+      "filas": [
+        {
+          "id": "abono_b59c0149-ed90-461f-b188-bc6190f9e74f",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Cobro de cuenta manual",
+          "detalle": "Cuenta manual de cliente · Cuenta sin operación",
+          "producto": null,
+          "trazabilidad": "Fecha de cuenta: 17/10/2026",
+          "monto": 10,
+          "concepto": "Cobro de cuenta manual"
+        },
+        {
+          "id": "abono_652282a1-bee8-4970-a4b8-ba479ed74c6c",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -30,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "abono_d3a33cec-877e-4e0f-b397-fb4a751823d3",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 150,
+          "concepto": "Liquidación de venta"
+        },
+        {
+          "id": "abono_28ac3010-9410-46f1-a5eb-321f54d15ce2",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "pago_8001e810-acdc-4355-9cb1-b27f81a326d0",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Pago total de compra",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 20/10/2026",
+          "monto": -501.22,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "abono_21c80a6d-1945-4f2a-8693-d04c0a6ac8bf",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 19/10/2026",
+          "monto": -150,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "gasto_306be03e-328a-479e-960c-c5c6560194c9",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.472Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Otros · Gasto operativo de prueba",
+          "producto": null,
+          "trazabilidad": "",
+          "monto": -20
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "tipo": "semanal",
+      "desde": "2026-10-19",
+      "hasta": "2026-10-25",
+      "resumen": {
+        "desde": "2026-10-19",
+        "hasta": "2026-10-25",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 340,
+            "pagosCompras": 1151.22
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 10,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 350,
+        "totalComprasPagadas": 1151.22,
+        "totalGastosManuales": 20,
+        "totalGastos": 1171.22,
+        "saldoPeriodo": -821.22
+      },
+      "total": 12,
+      "filas": [
+        {
+          "id": "abono_1b8dfee9-cbf3-449b-8698-cd15c8478845",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -70,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "abono_a6a108ff-20a5-43e2-8faf-36c7ed4a9cab",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 50,
+          "concepto": "Abono a venta"
+        },
+        {
+          "id": "abono_ebec06d5-69ff-4d5c-a8ef-884512cb2f82",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Abono inicial de venta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 100,
+          "concepto": "Abono inicial de venta"
+        },
+        {
+          "id": "abono_808c2814-5a6b-4b42-99b9-960a77a180e1",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao en Baba · Cobro total de venta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 40,
+          "concepto": "Cobro total de venta"
+        },
+        {
+          "id": "abono_383a6a3e-4fe3-40d5-80f0-d606273237bf",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "abono_b59c0149-ed90-461f-b188-bc6190f9e74f",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Cobro de cuenta manual",
+          "detalle": "Cuenta manual de cliente · Cuenta sin operación",
+          "producto": null,
+          "trazabilidad": "Fecha de cuenta: 17/10/2026",
+          "monto": 10,
+          "concepto": "Cobro de cuenta manual"
+        },
+        {
+          "id": "abono_652282a1-bee8-4970-a4b8-ba479ed74c6c",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -30,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "abono_d3a33cec-877e-4e0f-b397-fb4a751823d3",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 150,
+          "concepto": "Liquidación de venta"
+        },
+        {
+          "id": "abono_28ac3010-9410-46f1-a5eb-321f54d15ce2",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "pago_8001e810-acdc-4355-9cb1-b27f81a326d0",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Pago total de compra",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 20/10/2026",
+          "monto": -501.22,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "abono_21c80a6d-1945-4f2a-8693-d04c0a6ac8bf",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 19/10/2026",
+          "monto": -150,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "gasto_306be03e-328a-479e-960c-c5c6560194c9",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.472Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Otros · Gasto operativo de prueba",
+          "producto": null,
+          "trazabilidad": "",
+          "monto": -20
+        }
+      ],
+      "siguiente": null
+    },
+    {
+      "tipo": "mensual",
+      "desde": "2026-10-01",
+      "hasta": "2026-10-31",
+      "resumen": {
+        "desde": "2026-10-01",
+        "hasta": "2026-10-31",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 340,
+            "pagosCompras": 1251.22
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 10,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 350,
+        "totalComprasPagadas": 1251.22,
+        "totalGastosManuales": 20,
+        "totalGastos": 1271.22,
+        "saldoPeriodo": -921.22
+      },
+      "total": 13,
+      "filas": [
+        {
+          "id": "pago_d65db977-8202-4a27-b1c7-dc224fb7b5cc",
+          "fecha": "2026-10-17",
+          "orden": "2026-10-18T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Abono inicial de compra",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -100,
+          "concepto": "Abono inicial de compra"
+        },
+        {
+          "id": "abono_1b8dfee9-cbf3-449b-8698-cd15c8478845",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -70,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "abono_a6a108ff-20a5-43e2-8faf-36c7ed4a9cab",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 50,
+          "concepto": "Abono a venta"
+        },
+        {
+          "id": "abono_ebec06d5-69ff-4d5c-a8ef-884512cb2f82",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Abono inicial de venta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 100,
+          "concepto": "Abono inicial de venta"
+        },
+        {
+          "id": "abono_808c2814-5a6b-4b42-99b9-960a77a180e1",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 1 · Cacao en Baba · Cobro total de venta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 40,
+          "concepto": "Cobro total de venta"
+        },
+        {
+          "id": "abono_383a6a3e-4fe3-40d5-80f0-d606273237bf",
+          "fecha": "2026-10-19",
+          "orden": "2026-10-20T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "abono_b59c0149-ed90-461f-b188-bc6190f9e74f",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Cobro de cuenta manual",
+          "detalle": "Cuenta manual de cliente · Cuenta sin operación",
+          "producto": null,
+          "trazabilidad": "Fecha de cuenta: 17/10/2026",
+          "monto": 10,
+          "concepto": "Cobro de cuenta manual"
+        },
+        {
+          "id": "abono_652282a1-bee8-4970-a4b8-ba479ed74c6c",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -30,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "abono_d3a33cec-877e-4e0f-b397-fb4a751823d3",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Cobro de venta",
+          "detalle": "Venta N.º 2 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de venta: 19/10/2026",
+          "monto": 150,
+          "concepto": "Liquidación de venta"
+        },
+        {
+          "id": "abono_28ac3010-9410-46f1-a5eb-321f54d15ce2",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 17/10/2026",
+          "monto": -200,
+          "concepto": "Liquidación de compra"
+        },
+        {
+          "id": "pago_8001e810-acdc-4355-9cb1-b27f81a326d0",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Pago total de compra",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 20/10/2026",
+          "monto": -501.22,
+          "concepto": "Pago total de compra"
+        },
+        {
+          "id": "abono_21c80a6d-1945-4f2a-8693-d04c0a6ac8bf",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.000Z",
+          "tipo": "Pago de compra",
+          "detalle": "Compra N.º 1 · Cacao en Baba · Nota del usuario intacta",
+          "producto": "Cacao en Baba",
+          "trazabilidad": "Fecha de compra: 19/10/2026",
+          "monto": -150,
+          "concepto": "Abono a compra"
+        },
+        {
+          "id": "gasto_306be03e-328a-479e-960c-c5c6560194c9",
+          "fecha": "2026-10-20",
+          "orden": "2026-10-21T00:24:21.472Z",
+          "tipo": "Gasto operativo",
+          "detalle": "Otros · Gasto operativo de prueba",
+          "producto": null,
+          "trazabilidad": "",
+          "monto": -20
+        }
+      ],
+      "siguiente": null
+    }
+  ],
+  "nota": "Fixtures sintéticos; no son datos del cliente."
+}

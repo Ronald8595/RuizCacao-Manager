@@ -13,6 +13,14 @@ async function main() {
   let ultimaPagina = false
   const db = {
     query: async (sql, params = []) => {
+      if (sql.startsWith('WITH cuentas_pagina AS')) {
+        assert.ok(
+          Array.isArray(params[0]) && params[0].length <= 100,
+          'Clasificación limitada a IDs de la página'
+        )
+        assert.doesNotMatch(sql, /\bOFFSET\b/i)
+        return { rows: [] }
+      }
       consultas.push({ sql, params })
       assert.doesNotMatch(sql, /\bOFFSET\b/i)
       if (sql.startsWith('SELECT (SELECT coalesce(max')) return { rows: [{ a: '300', b: '300' }] }

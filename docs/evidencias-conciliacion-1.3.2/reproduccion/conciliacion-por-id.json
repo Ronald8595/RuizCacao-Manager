@@ -1,0 +1,318 @@
+{
+  "alcance": "Solo fixture, IDs NO originales",
+  "filas": [
+    {
+      "compraId": "compra_e8805324-23ec-4798-9d92-9ef54e3f1afe",
+      "fecha": "2026-10-19",
+      "numeroDiario": 1,
+      "cantidadQq": 0.67,
+      "total": 40.7,
+      "movimientos": [
+        "pago_c424acdd-5e2c-490f-a21b-8c895ab3e1ca"
+      ],
+      "pagado": 40.7,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_73cf15b8-acb8-42a1-a084-89f27dfb2ed0",
+      "fecha": "2026-10-19",
+      "numeroDiario": 2,
+      "cantidadQq": 0.43,
+      "total": 26.66,
+      "movimientos": [
+        "pago_c4cdab25-37db-4f65-b88e-f2d064ba8f17"
+      ],
+      "pagado": 26.66,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_e012b0ad-4b9c-4e19-bcd7-d123f8f3b7ae",
+      "fecha": "2026-10-19",
+      "numeroDiario": 3,
+      "cantidadQq": 1.38,
+      "total": 84,
+      "movimientos": [
+        "pago_96507150-9f1f-494b-b759-a08d2d8b2cc2"
+      ],
+      "pagado": 84,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_e135cc81-a9a8-4f29-9767-c94579e9ba29",
+      "fecha": "2026-10-19",
+      "numeroDiario": 4,
+      "cantidadQq": 3.96,
+      "total": 71,
+      "movimientos": [
+        "pago_c5acfceb-b905-4fe8-946a-9ff650e93a91"
+      ],
+      "pagado": 71,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_bc733b84-9f4f-4614-9214-bcdf465fd0fb",
+      "fecha": "2026-10-19",
+      "numeroDiario": 5,
+      "cantidadQq": 0.45,
+      "total": 27.78,
+      "movimientos": [
+        "pago_3585569c-4c88-43c6-9c72-8592f72e6de6"
+      ],
+      "pagado": 27.78,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_91736b6a-6c96-4d42-8618-f32b6d95bcbf",
+      "fecha": "2026-10-19",
+      "numeroDiario": 6,
+      "cantidadQq": 1.9,
+      "total": 117.29,
+      "movimientos": [
+        "pago_a6f3b29b-5c85-4132-a964-bc4133271712"
+      ],
+      "pagado": 117.29,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_c021e456-5b40-44d1-ac71-e70db194943a",
+      "fecha": "2026-10-19",
+      "numeroDiario": 7,
+      "cantidadQq": 0.53,
+      "total": 33,
+      "movimientos": [
+        "pago_35fb41c2-dbc8-45be-8a74-e7dcd4689e59"
+      ],
+      "pagado": 33,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_8f9683c0-9f9c-4c1e-b4b5-bc1fc7c6562a",
+      "fecha": "2026-10-19",
+      "numeroDiario": 8,
+      "cantidadQq": 1.08,
+      "total": 68.04,
+      "movimientos": [
+        "pago_9545b8c4-4dd6-42b6-b29f-390fdfd9a1db"
+      ],
+      "pagado": 68.04,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_d0b5b5d9-0cd5-4d5c-ad00-79b8a74bf190",
+      "fecha": "2026-10-19",
+      "numeroDiario": 9,
+      "cantidadQq": 0.29,
+      "total": 23.2,
+      "movimientos": [
+        "pago_9171d9d4-cb71-4acd-9b58-1d3b4ea2f690"
+      ],
+      "pagado": 23.2,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_7d862f48-0fbf-4bd3-bfd7-4346e858c218",
+      "fecha": "2026-10-19",
+      "numeroDiario": 10,
+      "cantidadQq": 0.6,
+      "total": 41.58,
+      "movimientos": [
+        "pago_479c88c9-093f-41b6-bc73-858b894e195a"
+      ],
+      "pagado": 41.58,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_b197b87c-4ecd-4875-83e1-569b4fc80261",
+      "fecha": "2026-10-19",
+      "numeroDiario": 11,
+      "cantidadQq": 0.32,
+      "total": 20,
+      "movimientos": [
+        "pago_9906f67b-e623-4987-9bc8-71c5fde19ed1"
+      ],
+      "pagado": 20,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_ff95f48a-b5e0-42fb-89ed-bfe563dc6bbd",
+      "fecha": "2026-10-19",
+      "numeroDiario": 12,
+      "cantidadQq": 0.44,
+      "total": 27,
+      "movimientos": [
+        "pago_89eca487-e177-4c98-8457-8b12ed3db1d2"
+      ],
+      "pagado": 27,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_4751e725-671e-429b-961f-1f7c48792db9",
+      "fecha": "2026-10-19",
+      "numeroDiario": 13,
+      "cantidadQq": 0.24,
+      "total": 51,
+      "movimientos": [
+        "pago_86e6072d-f15f-47a1-badb-6d25b1159553"
+      ],
+      "pagado": 51,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_ccde7822-4939-4c6c-9195-99583e1c472b",
+      "fecha": "2026-10-19",
+      "numeroDiario": 14,
+      "cantidadQq": 7.05,
+      "total": 1519.98,
+      "movimientos": [
+        "pago_80c73349-4876-4790-8870-ce6c085da3a8"
+      ],
+      "pagado": 1519.98,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_52fb854d-e41a-46cb-b5ca-b67cf1797f3c",
+      "fecha": "2026-10-19",
+      "numeroDiario": 15,
+      "cantidadQq": 0.84,
+      "total": 180.6,
+      "movimientos": [
+        "pago_7a01e255-476c-4f7a-9d0e-0a702dc8d846"
+      ],
+      "pagado": 180.6,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_21e90974-079a-4c2c-9ff8-55f08191bfba",
+      "fecha": "2026-10-19",
+      "numeroDiario": 16,
+      "cantidadQq": 2.74,
+      "total": 522.57,
+      "movimientos": [
+        "pago_ee0ff709-55d8-4adf-a891-7220f858d294"
+      ],
+      "pagado": 522.57,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_70e8b2b1-0ffc-4649-bf46-61bc47289242",
+      "fecha": "2026-10-19",
+      "numeroDiario": 17,
+      "cantidadQq": 2.74,
+      "total": 589,
+      "movimientos": [
+        "pago_9bbe50b0-df4c-4de2-b407-60e64bc7068c"
+      ],
+      "pagado": 589,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_e8e1d52a-6740-4f11-958e-38c8dd2386b6",
+      "fecha": "2026-10-19",
+      "numeroDiario": 18,
+      "cantidadQq": 0.58,
+      "total": 122,
+      "movimientos": [
+        "pago_25154559-088c-4a4b-9e79-57ec1294d8f6"
+      ],
+      "pagado": 122,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_d24eb5df-4ce4-4816-a786-f9ad365fc284",
+      "fecha": "2026-10-19",
+      "numeroDiario": 19,
+      "cantidadQq": 0.3,
+      "total": 21,
+      "movimientos": [
+        "pago_b13dc1e4-b54e-48cd-8a38-68feff8df9d2"
+      ],
+      "pagado": 21,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_77211931-6728-4f05-b9b8-2c29764656e2",
+      "fecha": "2026-10-19",
+      "numeroDiario": 20,
+      "cantidadQq": 0.52,
+      "total": 109,
+      "movimientos": [
+        "pago_d50ff26d-3a5d-48a9-9891-f4b38d0a8138"
+      ],
+      "pagado": 109,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_9f99cb1a-07e1-4fae-858b-c5b202fa0767",
+      "fecha": "2026-10-18",
+      "numeroDiario": 1,
+      "cantidadQq": 1,
+      "total": 600,
+      "movimientos": [
+        "abono_02d9b7ee-e38e-42c7-8544-b26d07ea507a"
+      ],
+      "pagado": 600,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_075918a7-1b7b-45f4-b2a6-6e5986a7d9fb",
+      "fecha": "2026-10-18",
+      "numeroDiario": 2,
+      "cantidadQq": 1,
+      "total": 171.36,
+      "movimientos": [
+        "abono_ef9be2e3-9c8e-45ba-a8ef-6ac38a54ef95"
+      ],
+      "pagado": 171.36,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_98011925-2c24-498c-b406-ca3b5f3bde6e",
+      "fecha": "2026-10-18",
+      "numeroDiario": 3,
+      "cantidadQq": 1,
+      "total": 1500,
+      "movimientos": [
+        "abono_9f40f50a-8aba-4511-9b74-56ef32ffbe17"
+      ],
+      "pagado": 1500,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    },
+    {
+      "compraId": "compra_d64af0a5-2152-485d-8255-79d93ada5807",
+      "fecha": "2026-10-18",
+      "numeroDiario": 4,
+      "cantidadQq": 1,
+      "total": 1000,
+      "movimientos": [
+        "abono_59985cac-b808-4db3-be84-da33a7018991"
+      ],
+      "pagado": 1000,
+      "saldo": 0,
+      "diferenciaCentavos": 0
+    }
+  ],
+  "diferencias": 0
+}

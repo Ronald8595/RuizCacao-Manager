@@ -1,0 +1,5 @@
+{
+  "nota": "PDF ya validado y conservado",
+  "comando": "node tests/pagos-efectuados-ui.cjs --sin-pdf",
+  "codigo": 0
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "gasto_e3d0b7ea-496e-42b8-bc70-977a48832a29",
+    "fecha": "2026-10-19",
+    "fecha_hora_registro": "2026-10-20T12:58:39.623Z",
+    "monto": "10.00",
+    "categoria": "Transporte",
+    "observacion": "Fixture UI 10"
+  },
+  {
+    "id": "gasto_24ef64c8-2c59-44e8-a517-b51aa70f9398",
+    "fecha": "2026-10-19",
+    "fecha_hora_registro": "2026-10-20T12:58:39.817Z",
+    "monto": "20.00",
+    "categoria": "Otros",
+    "observacion": "Fixture UI 20"
+  },
+  {
+    "id": "gasto_5b679995-bcd9-4898-a215-5ce43716f62f",
+    "fecha": "2026-10-19",
+    "fecha_hora_registro": "2026-10-20T12:58:39.704Z",
+    "monto": "60.00",
+    "categoria": "Transporte",
+    "observacion": "Fixture UI 60"
+  },
+  {
+    "id": "gasto_0af6bc97-e8fb-4af9-bbeb-2e5378179858",
+    "fecha": "2026-10-19",
+    "fecha_hora_registro": "2026-10-20T12:58:39.747Z",
+    "monto": "100.00",
+    "categoria": "Otros",
+    "observacion": "Fixture UI 100"
+  }
+]

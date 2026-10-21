@@ -22,9 +22,13 @@ export default function NovedadesVersion({
         Esta actualización trae ahora la capacidad de generar respaldos.
       </p>
       <ul className="my-4 list-disc space-y-2 pl-5 text-sm">
-        <li>Ahora puedes generar tus respaldos manuales de tu información.</li>
-        <li>El modulo de consultas y reportes ha sido rediseñado para mejorar la experiencia del usuario.</li>
-        <li>El modulo de stock ahora consta con un submodulo para visualizar los movimientos de inventario.</li>
+        <li>Bug de carga de respaldos resuelto, ahora puedes generar tus respaldos y cargarlos.</li>
+        <li>Ahora puedes registrar operaciones de días anteriores y establecer por separado la fecha en que se realizó cada pago o cobro.</li>
+        <li>Cada movimiento se refleja en su fecha efectiva, manteniendo la fecha original de la compra o venta.</li>
+        <li>Reportes más claros. Consulta la fecha de origen de los pagos y cobros, con la misma información en los reportes y archivos PDF.</li>
+        <li>Nueva sección «Pagos efectuados». Desde Gastos puedes consultar los pagos a proveedores y gastos operativos según la fecha en que se realizaron, sin duplicar importes.</li>
+        <li>Descripciones más precisas. Se distinguen pagos totales, cobros totales, abonos iniciales y liquidaciones.</li>
+        <li> Ahora Puedes registrar gastos operativos con su fecha correspondiente, aunque los ingreses posteriormente.</li>
       </ul>
       <button
         data-autofocus

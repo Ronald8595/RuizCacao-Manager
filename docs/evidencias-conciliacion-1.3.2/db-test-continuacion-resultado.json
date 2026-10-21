@@ -1,0 +1,10 @@
+{
+  "suites": [
+    "v3.cjs",
+    "rc.cjs",
+    "postgres-local.cjs"
+  ],
+  "comando": "npm run db:test -- --desde-suite=v3.cjs",
+  "terminado": "2026-10-20T02:20:13.3688075Z",
+  "codigo": 0
+}

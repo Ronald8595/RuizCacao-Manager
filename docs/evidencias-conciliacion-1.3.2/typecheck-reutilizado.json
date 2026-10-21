@@ -1,0 +1,21 @@
+{
+  "codigo": 0,
+  "motivo": "Fuentes de producción idénticas a las validadas; cambios nuevos solo CJS de prueba y documentación.",
+  "fuentes": [
+    {
+      "archivo": "src/renderer/src/pages/Gastos.tsx",
+      "sha256": "1591b5163504416af7f6ebdefeb3c56d05a396b03e98a3c8f78192ea350f4331",
+      "sinCambios": true
+    },
+    {
+      "archivo": "src/shared/dominio.ts",
+      "sha256": "dba9e4d79aa0466b50334a72bd6ecacebdbbe8bf93d89480364d99a465303d4c",
+      "sinCambios": true
+    },
+    {
+      "archivo": "src/shared/fechaGasto.ts",
+      "sha256": "64e42e36b74b43ef2fa42afd53ad644ddbaf766276f2e88d8c21aefd03f30939",
+      "sinCambios": true
+    }
+  ]
+}

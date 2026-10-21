@@ -1,0 +1,98 @@
+[
+  {
+    "ProcessId": 4212,
+    "ParentProcessId": 1324,
+    "Name": "pg_ctl.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6020,
+    "ParentProcessId": 4212,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6148,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6200,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6240,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6260,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6316,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6372,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6700,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6712,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 6744,
+    "ParentProcessId": 6020,
+    "Name": "postgres.exe",
+    "CommandLine": null
+  },
+  {
+    "ProcessId": 3876,
+    "ParentProcessId": 19876,
+    "Name": "node.exe",
+    "CommandLine": "\"C:\\Users\\LENOVO\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\" C:\\Users\\LENOVO\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node_modules\\@oai\\cua-repl\\bin\\cua-repl.mjs"
+  },
+  {
+    "ProcessId": 18932,
+    "ParentProcessId": 6196,
+    "Name": "node.exe",
+    "CommandLine": "\"C:\\Users\\LENOVO\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\"  ./server.mjs "
+  },
+  {
+    "ProcessId": 10028,
+    "ParentProcessId": 24960,
+    "Name": "node.exe",
+    "CommandLine": "\"C:\\Users\\LENOVO\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\78fb63cda1a9e2b2\\bin\\node.exe\"  ./server.mjs"
+  },
+  {
+    "ProcessId": 19984,
+    "ParentProcessId": 27360,
+    "Name": "node.exe",
+    "CommandLine": "\"C:\\Program Files\\nodejs\\node.exe\" \"C:\\Program Files\\nodejs/node_modules/npm/bin/npm-cli.js\" run lint -- --no-cache"
+  },
+  {
+    "ProcessId": 25684,
+    "ParentProcessId": 21472,
+    "Name": "node.exe",
+    "CommandLine": "\"node\"   \"C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\electron-app\\node_modules\\.bin\\\\..\\eslint\\bin\\eslint.js\" --cache . --no-cache"
+  }
+]

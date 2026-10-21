@@ -1,0 +1,85 @@
+{
+  "version": "1.3.2",
+  "fecha": "2026-10-20T13:05:01.889Z",
+  "estado": "PRUEBAS_CERRADAS_ACEPTACION_MANUAL_PENDIENTE",
+  "fechaManualCorregida": true,
+  "persistenciaProcesoNuevo": "PASS",
+  "horaRegistroReal": true,
+  "conciliacionFixture": "PASS",
+  "conciliacionCliente": "NO_CONFIRMADO",
+  "motivoCliente": "Sin registros originales; no se solicitan respaldos ni credenciales. Hipótesis aisladas no certifican movimientos reales.",
+  "dobleContabilizacionFixture": false,
+  "reportesSqlPdf": "PASS",
+  "typecheck": 0,
+  "lint": {
+    "codigo": 0,
+    "errores": 0,
+    "advertencias": 863,
+    "evidencia": "lint-cierre-resultado.json"
+  },
+  "ui": {
+    "codigo": 0,
+    "archivo": "ui.txt"
+  },
+  "pruebaFocalizada": {
+    "codigo": 0,
+    "carpeta": "ruizcacao-tests-xjS4XC"
+  },
+  "dbTest": {
+    "estado": "PASS_POR_TRAMOS",
+    "primerRecorrido": 1,
+    "continuacion": 0,
+    "evidencia": [
+      "db-test-resultado.json",
+      "db-test-continuacion-resultado.json"
+    ],
+    "reproduccion": {
+      "intento1": 1,
+      "intento2": 1,
+      "motivoIntento2": "A/C PASS; regex de sobrepago incorrecta en arnés, rechazo real correcto",
+      "continuacionSoloB": 0,
+      "evidencia": [
+        "reproduccion-resultado.json",
+        "reproduccion-b-resultado.json"
+      ]
+    }
+  },
+  "baseComercialAccedida": false,
+  "backups131Modificados": false,
+  "migracion011": false,
+  "build": false,
+  "publicacion": false,
+  "escenarios": {
+    "A": "PASS",
+    "B": "PASS",
+    "C": "PASS"
+  },
+  "datosVisiblesReproducidos": true,
+  "cambiosFinancierosNuevos": false,
+  "typecheckReutilizado": "typecheck-reutilizado.json",
+  "pdf": {
+    "estado": "PASS",
+    "archivos": 6,
+    "paginasCadaUno": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "diarioInspeccionado": true,
+    "evidencia": "reproduccion/pdf-verificacion.json"
+  },
+  "resultadoFixture": {
+    "comprasDelDia": 3695.4,
+    "pagos": 6966.76,
+    "gastos": 190,
+    "ingresos": 0,
+    "saldo": -7156.76,
+    "diferenciasPorId": 0
+  },
+  "procesosPropiosResiduales": 0,
+  "procesosEvidencia": "procesos-reproduccion.json",
+  "aceptacionInstalador": "PENDIENTE",
+  "siguientePaso": "Revisión y aceptación manual en perfil de prueba; no publicar ni construir sin autorización.",
+  "diffCheck": {
+    "codigo": 0,
+    "evidencia": "diff-check-resultado.json"
+  }
+}

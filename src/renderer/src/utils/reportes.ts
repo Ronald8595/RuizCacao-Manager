@@ -1,11 +1,15 @@
 import type { Gasto, Venta, Compra, Cuenta, MovimientoCuenta, Producto } from '../types'
 import { redondearImporte } from './comercio'
+import { conceptosCuenta, observacionPago } from '../../../shared/conceptoPago'
+import { trazabilidadFinanciera } from '../../../shared/trazabilidadFinanciera'
 export interface FilaFinanciera {
   id: string
   fecha: string
   orden: string
-  tipo: 'Cobro de venta' | 'Pago de compra' | 'Gasto operativo'
+  tipo: 'Cobro de venta' | 'Cobro de cuenta manual' | 'Pago de compra' | 'Gasto operativo'
   detalle: string
+  concepto?: string
+  trazabilidad?: string
   producto?: Producto | null
   monto: number
 }
@@ -54,6 +58,7 @@ export function resumirPeriodo(
       const operacion = compra
         ? compras.find((c) => c.id === cuenta.compraId)
         : ventas.find((v) => v.id === cuenta.ventaId)
+      const concepto = conceptosCuenta(cuenta, operacion, movimientos).get(m.id)
       const referencia = compra
         ? 'Compra N.º ' + cuenta.numeroCompra
         : cuenta.numeroFactura
@@ -63,8 +68,28 @@ export function resumirPeriodo(
         id: m.id,
         fecha: m.fecha,
         orden: m.fechaHoraRegistro,
-        tipo: compra ? 'Pago de compra' : 'Cobro de venta',
-        detalle: referencia + (operacion ? ' · ' + operacion.producto : '') + ' · ' + m.observacion,
+        tipo: compra
+          ? 'Pago de compra'
+          : cuenta.origen === 'manual'
+            ? 'Cobro de cuenta manual'
+            : 'Cobro de venta',
+        concepto,
+        detalle:
+          referencia +
+          (operacion ? ' · ' + operacion.producto : '') +
+          ' · ' +
+          observacionPago(m.observacion, concepto ?? m.tipo),
+        trazabilidad: trazabilidadFinanciera(
+          cuenta.origen === 'manual' ? 'manual' : compra ? 'compra' : 'venta',
+          m.fecha,
+          cuenta.origen === 'manual'
+            ? cuenta.fecha
+            : operacion
+              ? 'fecha' in operacion
+                ? operacion.fecha
+                : operacion.fechaVenta
+              : null
+        ),
         monto: compra ? -m.monto : m.monto
       }
     })
@@ -76,6 +101,7 @@ export function resumirPeriodo(
         fecha: g.fecha,
         orden: g.fechaHoraRegistro,
         tipo: 'Gasto operativo',
+        trazabilidad: trazabilidadFinanciera('gasto', g.fecha, null, g.fechaHoraRegistro),
         detalle:
           g.categoria +
           ' · ' +

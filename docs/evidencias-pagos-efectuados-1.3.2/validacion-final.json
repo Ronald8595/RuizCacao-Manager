@@ -1,0 +1,137 @@
+{
+  "version": "1.3.2",
+  "estado": "PASS - preparado para revisión y aceptación manual",
+  "fecha": "2026-10-21T00:36:14.103Z",
+  "typecheck": {
+    "codigo": 0
+  },
+  "lint": {
+    "codigo": 0,
+    "errores": 0,
+    "advertencias": 863
+  },
+  "diff_check": {
+    "codigo": 0
+  },
+  "ui": {
+    "nota": "PDF ya validado y conservado",
+    "comando": "node tests/pagos-efectuados-ui.cjs --sin-pdf",
+    "codigo": 0
+  },
+  "conceptos": {
+    "codigo": 0
+  },
+  "db_test": {
+    "estado": "PASS por tramos, sin repetir suites aprobadas",
+    "ejecucion_intermedia": {
+      "codigo": 1,
+      "comando": "npm run db:test -- --pagos-efectuados"
+    },
+    "continuacion": {
+      "comando": "npm run db:test -- --pagos-efectuados --desde-suite=reporte-paginacion-validacion.cjs",
+      "codigo": 0
+    },
+    "suites": [
+      "pagos-efectuados PASS",
+      "fechas-independientes PASS",
+      "cuentas-fecha PASS",
+      "reporte-paginacion-validacion PASS",
+      "anulaciones-dominio PASS",
+      "v3: 24 PASS"
+    ],
+    "nota": "Los códigos1 intermedios fueron expectativas/mocks del test; se conservan logs. Continuación final0."
+  },
+  "reinicio": {
+    "codigo": 0,
+    "salida": "PASS nuevo proceso: datos, fechas, importes, etiquetas y saldos idénticos\n"
+  },
+  "pdf": [
+    {
+      "archivo": "caso-150.pdf",
+      "paginas": 1,
+      "filas": 3,
+      "estado": "PASS"
+    },
+    {
+      "archivo": "diario.pdf",
+      "paginas": 2,
+      "filas": 7,
+      "estado": "PASS"
+    },
+    {
+      "archivo": "mensual.pdf",
+      "paginas": 2,
+      "filas": 13,
+      "estado": "PASS"
+    },
+    {
+      "archivo": "semanal.pdf",
+      "paginas": 2,
+      "filas": 12,
+      "estado": "PASS"
+    }
+  ],
+  "procesos_propios_residuales": 0,
+  "caso_150": {
+    "compra": "2026-10-19",
+    "efectivo": "2026-10-20",
+    "importe": 150,
+    "saldo": 12.12,
+    "inversion": 651.22,
+    "operativos": 20
+  },
+  "totales_equivalentes": true,
+  "doble_contabilizacion": false,
+  "snapshot_modificado": false,
+  "migraciones_nuevas": false,
+  "timers_polling_nuevos": false,
+  "base_comercial_accedida": false,
+  "build": false,
+  "commit": false,
+  "push": false,
+  "limites": [
+    "Fixtures sintéticos, no respaldo de cliente",
+    "UI real con transporte simulado; aceptación del shell e instalador pendiente",
+    "No benchmark nuevo; clasificación SQL acotada a cuentas de página solicitada",
+    "Historial no verificable no se clasifica por conjetura",
+    "Origen real de 3271.36 NO CONFIRMADO"
+  ],
+  "siguiente": "Revisar diff y ejecutar los cinco pasos de aceptación del informe en perfil/base de prueba, antes de autorizar build o publicación.",
+  "estado_git": " D .eslintcache\n M docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md\n M package-lock.json\n M package.json\n M src/main/database/listados.ts\n M src/main/database/validacion.ts\n M src/renderer/src/components/DetalleCuenta.tsx\n M src/renderer/src/components/reportes/ReporteDiario.tsx\n M src/renderer/src/pages/Compras.tsx\n M src/renderer/src/pages/Cuentas.tsx\n M src/renderer/src/pages/Gastos.tsx\n M src/renderer/src/pages/Ventas.tsx\n M src/renderer/src/types.ts\n M src/renderer/src/utils/reportePdf.ts\n M src/renderer/src/utils/reportes.ts\n M src/shared/dominio.ts\n M tests/reporte-paginacion-validacion.cjs\n M tests/run.cjs\n M tests/v3.cjs\n?? docs/Informe_Parche_Conciliacion_Gastos_v1.3.2.md\n?? docs/Informe_Trazabilidad_Financiera_v1.3.2.md\n?? docs/evidencias-conciliacion-1.3.2/\n?? docs/evidencias-fechas-independientes-1.3.2/\n?? docs/evidencias-pagos-efectuados-1.3.2/\n?? docs/evidencias-pgctl/regresion-1792461904024.json\n?? docs/informe_descuadre_ruizcacao_2026-10-19.md\n?? src/renderer/src/components/PagosEfectuados.tsx\n?? src/renderer/src/components/ResumenFechasOperacion.tsx\n?? src/shared/conceptoPago.ts\n?? src/shared/fechaGasto.ts\n?? src/shared/fechasOperaciones.ts\n?? src/shared/trazabilidadFinanciera.ts\n?? tests/conceptos-pagos.cjs\n?? tests/conciliacion-gastos.cjs\n?? tests/conciliar-respaldo.cjs\n?? tests/fechas-independientes-reloj.cjs\n?? tests/fechas-independientes-ui.cjs\n?? tests/fechas-independientes.cjs\n?? tests/gastos-fecha-dominio.cjs\n?? tests/gastos-fecha-ui.cjs\n?? tests/pagos-efectuados-ui.cjs\n?? tests/pagos-efectuados.cjs\n?? tests/reproduccion-cliente-ui.cjs\n?? tests/reproduccion-cliente.cjs\n?? tests/revisar-evidencia-video.cjs\n",
+  "sha256_fuentes": {
+    "src/renderer/src/components/PagosEfectuados.tsx": "31c995a848e393d190cf46fe50742ecba0fc1889bc1a45664e85a647d83a1fbc",
+    "src/renderer/src/components/ResumenFechasOperacion.tsx": "4d4333ebcb0c413920dceb1e8b3d5b14fc3ac0d81320121c7b2062eb8ca17fa4",
+    "src/shared/conceptoPago.ts": "de1b3e6129933211a361d95ba08321771ff50351e6fff288e3f9a16a4245a8fc",
+    "src/shared/fechaGasto.ts": "64e42e36b74b43ef2fa42afd53ad644ddbaf766276f2e88d8c21aefd03f30939",
+    "src/shared/fechasOperaciones.ts": "43017929b246307b71f170d4231b32f5cc8eeb256f3c7c0c5fdc395d775a6b61",
+    "src/shared/trazabilidadFinanciera.ts": "51050dd5b7dce0cbaa0714fffa3ec1f7955f45ce68c6a70c75e30ccb4f099b6f",
+    "tests/conceptos-pagos.cjs": "5a46b748f561f59ee607f8190a927cbce43dc989ec50c9be9a28b3f32818b403",
+    "tests/conciliacion-gastos.cjs": "2f0be627e245888f7434cdb6abad6450e11642fa333d551a3fc5cc9b946640d5",
+    "tests/conciliar-respaldo.cjs": "856aeab8338cc4eb3381455446a3f5c6135fa28ade76f42420ce96436c84a125",
+    "tests/fechas-independientes-reloj.cjs": "1b13fad76bb2781e8270d6d768dc67138b47ec5c2383ccab3ae3424c675934b4",
+    "tests/fechas-independientes-ui.cjs": "1e6c45fc94d234c6e4e18fb36bc093ca61b37e5d06eb176bec3b38d199fefb4f",
+    "tests/fechas-independientes.cjs": "5fd45f5a6177b61528b32ea2697a1fc829a1ce12af8146f690ec30c83abab479",
+    "tests/gastos-fecha-dominio.cjs": "28fcfb773275b5e032132506d689b4f3f7c64fcb658135c751b9b41bc2e3d28c",
+    "tests/gastos-fecha-ui.cjs": "4fbb67a1039464aa2b3ec6ab57d98d4a18496f6411effc81ad164b790261fde1",
+    "tests/pagos-efectuados-ui.cjs": "e80b4ebdf5b234fdcee0629af695eb769e2bbe8da32fe8ed6ef34e68e324d1fd",
+    "tests/pagos-efectuados.cjs": "f5891cc74a401e9aa93e26d9bd6045a862cc82aacf90dcefd8aa364b727327f1",
+    "tests/reproduccion-cliente-ui.cjs": "5932b7c29e2ee0036de8c7a5f9f5d0684f7e08d75f5e3e49547d6380e0a68d67",
+    "tests/reproduccion-cliente.cjs": "d4d4531188263ac1ac97502d7d856a145b0e9349f0b89a6cf25ba2456d409b63",
+    "tests/revisar-evidencia-video.cjs": "2b0a4f12c5b58a54072624d0f579c313558a403115eaad6be520b8b3265d6869",
+    "src/main/database/listados.ts": "d0357027c6c927ee3d64d7c8d4bfe89c17b6bc42f22ad5d530fc317cba53f886",
+    "src/main/database/validacion.ts": "fc0da8f6b38ab7da073f5a1dd099a1b1578728b0528c3c445c176deae30860ed",
+    "src/renderer/src/components/DetalleCuenta.tsx": "7c77e30e24e94779daa8c69fd3d7cdd46d50d08164efaa51648b10cb8c34ac91",
+    "src/renderer/src/components/reportes/ReporteDiario.tsx": "338e9556b5ec140047ccf0875a57b51b7d6b6f28bdf8e405f7cb0fe56b1e7a2e",
+    "src/renderer/src/pages/Compras.tsx": "571cec47657aebbe941206ca792941ac87bdbdbc4f159cc3b210c685fd8cf16c",
+    "src/renderer/src/pages/Cuentas.tsx": "c12adee73ce307f8d6232e798cd2c7a122a1b16f05dafc39c3b7db6bd01d2dd6",
+    "src/renderer/src/pages/Gastos.tsx": "3a890a19af3a243b147343fc57d82191e81dd25da4f01a1a01fd6d0cff13419d",
+    "src/renderer/src/pages/Ventas.tsx": "48afe68504e348bb0221b840703cced64a54aea018994f56420316b487fffc2e",
+    "src/renderer/src/types.ts": "00cf7b49fcbeca13e8fa1dbe39bb15c0db014a2136c23393ee0dc40046095bc6",
+    "src/renderer/src/utils/reportePdf.ts": "5c7b75b087391c9246cd27fb77c8e711f96acf398b7fdf5b68a40a7bace97468",
+    "src/renderer/src/utils/reportes.ts": "1a188b30e04e697117b884b47ff2987144af241fd2f2a99bb7cc527f5fb1bd65",
+    "src/shared/dominio.ts": "eb7dadecabe65e78c1807971ac14de6df31b24f2bf86908a34cf15e017ad012b",
+    "tests/reporte-paginacion-validacion.cjs": "5d743aba0e46ab00dc00369a6d0eddc4e3b485e03b3313f83cac29ad952a6e03",
+    "tests/run.cjs": "fe272aa812a1a3d5f1d28d756350077aa27c58caf09749dcc7988036a1e786a2",
+    "tests/v3.cjs": "5262f054cc8eed358e5419a6d4939a3b2fcc4b7c0b259eb9996bb2a3ef51fa68"
+  }
+}

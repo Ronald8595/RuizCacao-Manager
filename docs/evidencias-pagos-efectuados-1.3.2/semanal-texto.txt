@@ -1,0 +1,88 @@
+Grupo Ruiz
+ExporCacao · RuizCacao Manager
+RUC: 1717299893001
+Buena fe, FUMISA KM 32 via santo domingo frente al comedor marely
+Reporte Semanal
+Desde: 2026-10-19 · Hasta: 2026-10-25
+Generado: 20/10/2026, 7:24:21 p. m.
+Ingresos por ventas
+$350.00
+Inversión por compras
+$1,151.22
+Gastos operativos
+$20.00
+Resultado del período
+$-821.22
+Desglose por producto
+Producto Ingresos por venta Inversión por compra
+Cacao en Baba $340.00 $1,151.22
+Cacao Seco $0.00 $0.00
+Maracuyá $0.00 $0.00
+Sin producto de origen $10.00 $0.00
+Total Total ingresos por ventas
+$350.00
+Total inversión por compras
+$1,151.22
+Fecha Tipo Producto Detalle Cobrado Pagado
+2026-10-19 Liquidación de
+compra
+Cacao en Baba Compra N.º 2 · Cacao en Baba ·
+Nota del usuario intacta
+Fecha de compra: 17/10/2026
+— $70.00
+2026-10-19 Abono a venta Cacao en Baba Venta N.º 2 · Cacao en Baba · Nota
+del usuario intacta
+Fecha de venta: 19/10/2026
+$50.00 —
+2026-10-19 Abono inicial de
+venta
+Cacao en Baba Venta N.º 2 · Cacao en Baba ·
+Abono inicial de venta
+Fecha de venta: 19/10/2026
+$100.00 —
+2026-10-19 Cobro total de
+venta
+Cacao en Baba Venta N.º 1 · Cacao en Baba ·
+Cobro total de venta
+Fecha de venta: 19/10/2026
+$40.00 —
+2026-10-19 Abono a compraCacao en Baba Compra N.º 1 · Cacao en Baba ·
+Nota del usuario intacta
+Fecha de compra: 17/10/2026
+— $200.00
+2026-10-20 Cobro de cuenta
+manual
+— Cuenta manual de cliente · Cuenta
+sin operación
+Fecha de cuenta: 17/10/2026
+$10.00 —
+Fecha Tipo Producto Detalle Cobrado Pagado
+2026-10-20 Abono a compraCacao en Baba Compra N.º 2 · Cacao en Baba ·
+Nota del usuario intacta
+Fecha de compra: 17/10/2026
+— $30.00
+2026-10-20 Liquidación de
+venta
+Cacao en Baba Venta N.º 2 · Cacao en Baba · Nota
+del usuario intacta
+Fecha de venta: 19/10/2026
+$150.00 —
+2026-10-20 Liquidación de
+compra
+Cacao en Baba Compra N.º 1 · Cacao en Baba ·
+Nota del usuario intacta
+Fecha de compra: 17/10/2026
+— $200.00
+2026-10-20 Pago total de
+compra
+Cacao en Baba Compra N.º 1 · Cacao en Baba ·
+Pago total de compra
+Fecha de compra: 20/10/2026
+— $501.22
+2026-10-20 Abono a compraCacao en Baba Compra N.º 1 · Cacao en Baba ·
+Nota del usuario intacta
+Fecha de compra: 19/10/2026
+— $150.00
+2026-10-20 Gasto operativo — Otros · Gasto operativo de prueba — $20.00
+En este modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que
+sean abonados. El resultado del período corresponde al flujo de caja, no a la utilidad contable.

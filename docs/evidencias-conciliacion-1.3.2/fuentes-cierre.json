@@ -1,0 +1,50 @@
+[
+  {
+    "archivo": "src/renderer/src/pages/Gastos.tsx",
+    "sha256": "1591b5163504416af7f6ebdefeb3c56d05a396b03e98a3c8f78192ea350f4331"
+  },
+  {
+    "archivo": "src/shared/dominio.ts",
+    "sha256": "dba9e4d79aa0466b50334a72bd6ecacebdbbe8bf93d89480364d99a465303d4c"
+  },
+  {
+    "archivo": "src/shared/fechaGasto.ts",
+    "sha256": "64e42e36b74b43ef2fa42afd53ad644ddbaf766276f2e88d8c21aefd03f30939"
+  },
+  {
+    "archivo": "tests/gastos-fecha-dominio.cjs",
+    "sha256": "28fcfb773275b5e032132506d689b4f3f7c64fcb658135c751b9b41bc2e3d28c"
+  },
+  {
+    "archivo": "tests/conciliacion-gastos.cjs",
+    "sha256": "2f0be627e245888f7434cdb6abad6450e11642fa333d551a3fc5cc9b946640d5"
+  },
+  {
+    "archivo": "tests/gastos-fecha-ui.cjs",
+    "sha256": "4fbb67a1039464aa2b3ec6ab57d98d4a18496f6411effc81ad164b790261fde1"
+  },
+  {
+    "archivo": "tests/conciliar-respaldo.cjs",
+    "sha256": "856aeab8338cc4eb3381455446a3f5c6135fa28ade76f42420ce96436c84a125"
+  },
+  {
+    "archivo": "tests/revisar-evidencia-video.cjs",
+    "sha256": "2b0a4f12c5b58a54072624d0f579c313558a403115eaad6be520b8b3265d6869"
+  },
+  {
+    "archivo": "tests/run.cjs",
+    "sha256": "3bbd79435ca1a683232419f10240495e5fd754f0144be8966ba5e25a231260e3"
+  },
+  {
+    "archivo": "tests/v3.cjs",
+    "sha256": "5262f054cc8eed358e5419a6d4939a3b2fcc4b7c0b259eb9996bb2a3ef51fa68"
+  },
+  {
+    "archivo": "tests/reproduccion-cliente.cjs",
+    "sha256": "d4d4531188263ac1ac97502d7d856a145b0e9349f0b89a6cf25ba2456d409b63"
+  },
+  {
+    "archivo": "tests/reproduccion-cliente-ui.cjs",
+    "sha256": "5932b7c29e2ee0036de8c7a5f9f5d0684f7e08d75f5e3e49547d6380e0a68d67"
+  }
+]

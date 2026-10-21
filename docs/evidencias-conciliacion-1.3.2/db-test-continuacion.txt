@@ -1,0 +1,49 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> electron-app@1.3.2 db:test
+> node tests/run.cjs --desde-suite=v3.cjs
+
+Continuación parcial PostgreSQL: v3.cjs, rc.cjs, postgres-local.cjs
+OK v3 firma alterada y otra instalación rechazadas sin bloquear login
+OK v3 nueva solicitud invalida anterior
+OK v3 firma válida cambia contraseña y no se reutiliza
+OK v3 reinicio no permite reutilizar autorización
+OK v3 request_id y propósito alterados se rechazan aun con firma válida
+OK v3 cerrar jornada conserva cuentas y publica resumen
+OK v3 cierre equivalente no duplica respaldo ni aviso de cuentas pendientes
+OK v3 cerrar sesión no modifica cuentas
+OK v3 cierre normal y estados de lectura persisten
+OK v3 AutoRecover no altera cuentas y genera aviso
+OK v3 abono posterior continúa desde el saldo anterior
+OK v3 dump íntegro y pg_restore --list
+OK v3 alteración SHA-256 detectada
+OK v3 retención conserva 14 automáticos y el manual
+OK v3 cierre solo manual conserva jornada sin intentar respaldo automático
+OK v3 SQLSTATE y TypeError se traducen sin filtrar secretos
+OK v3 PDF reutiliza totales del mismo resumen para todos los formatos y rango manual
+OK v3 jornada de ayer sigue activa; gasto respeta fecha efectiva elegida
+OK v3 cancelar guardado PDF no escribe ningún archivo
+OK v3 cliente editado y compra pagada conservan relaciones y efectivo
+OK v3 pago completo y adelanto de empleado aceptan montos manuales
+OK v3 múltiples abonos saldan cuenta y mantienen consecutivo oficial único
+OK v3 reportes y HTML diario semanal mensual excluyen pendientes y evitan doble egreso
+OK v3 constraint revierte compra cuenta gasto e inventario completos
+24 pruebas v3 satisfactorias
+OK RC validaciones por campo de usuario contraseña y confirmación
+OK RC multiusuario conserva principal y permite operadores independientes
+OK RC recuperación deshabilitada sin pública de producción
+OK RC AutoRecover deja interrupción sin cierre normal y bloquea operaciones
+OK RC salir y reiniciar no convierten interrupción pendiente en cierre normal
+OK RC jornada interrumpida de hoy se recupera solo con contraseña
+OK RC crear editar y desactivar contrapartes y trabajador sin sueldo fijo
+OK RC compra confirmada rechaza edición y anula con devolución conservando historial
+OK RC varios abonos de proveedor saldan exactamente su cuenta
+OK RC umbral opcional persistido y aviso únicamente al cruzarlo
+OK RC cierre sin contraseña bloquea compras y ventas y conserva cuentas
+OK RC operador puede reabrir y deja autor en operaciones nuevas
+OK RC dataset QA usa servicios reales, conserva stock y no duplica al repetir
+OK RC cambio autenticado valida contraseña actual, audita y persiste al reiniciar
+14 pruebas RC satisfactorias
+OK: arranque automático, SCRAM, rol sin superusuario, credenciales cifradas, exportación pgAdmin y reinicio con datos conservados.
+Continuación PostgreSQL terminada. Artefactos de prueba: C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-tests-Mc9HWT

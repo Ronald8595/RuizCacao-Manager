@@ -1,0 +1,38 @@
+Grupo Ruiz
+ExporCacao · RuizCacao Manager
+RUC: 1717299893001
+Buena fe, FUMISA KM 32 via santo domingo frente al comedor marely
+Reporte Diario
+Desde: 2026-10-20 · Hasta: 2026-10-20
+Generado: 20/10/2026, 7:24:21 p. m.
+Ingresos por ventas
+$0.00
+Inversión por compras
+$651.22
+Gastos operativos
+$20.00
+Resultado del período
+$-671.22
+Desglose por producto
+Producto Ingresos por venta Inversión por compra
+Cacao en Baba $0.00 $651.22
+Cacao Seco $0.00 $0.00
+Maracuyá $0.00 $0.00
+Total Total ingresos por ventas
+$0.00
+Total inversión por compras
+$651.22
+Fecha Tipo Producto Detalle Cobrado Pagado
+2026-10-20 Pago total de
+compra
+Cacao en Baba Compra N.º 1 · Cacao en Baba ·
+Pago total de compra
+Fecha de compra: 20/10/2026
+— $501.22
+2026-10-20 Abono a compraCacao en Baba Compra N.º 1 · Cacao en Baba ·
+Nota del usuario intacta
+Fecha de compra: 19/10/2026
+— $150.00
+2026-10-20 Gasto operativo — Otros · Gasto operativo de prueba — $20.00
+En este modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que
+sean abonados. El resultado del período corresponde al flujo de caja, no a la utilidad contable.

@@ -310,7 +310,7 @@ async function main() {
       const vacio = documentoReporte({ ...r, filas: [] }, 'diario')
       assert.ok(vacio.html.includes('No hay movimientos efectivos'))
     })
-    await test('jornada de ayer continúa activa tras medianoche y conserva fecha comercial', async () => {
+    await test('jornada de ayer sigue activa; gasto respeta fecha efectiva elegida', async () => {
       const ayer = (await db.pool.query('SELECT ($1::date-1)::text fecha', [hoy()])).rows[0].fecha
       await db.pool.query(
         "INSERT INTO ruizcacao.jornadas(fecha,estado,apertura) VALUES($1,'activa',now()-interval '1 day')",
@@ -324,7 +324,8 @@ async function main() {
         monto: 7,
         observacion: 'Gasto en jornada anterior'
       })
-      assert.equal((await db.cargar()).datos.gastos.find((g) => g.tipo === 'manual').fecha, ayer)
+      assert.equal((await db.cargar()).datos.gastos.find((g) => g.tipo === 'manual').fecha, hoy())
+      assert.equal((await db.cargar()).datos.jornada.fecha, ayer)
       await db.jornada('cerrar', otra)
       assert.equal(
         (await db.pool.query('SELECT estado FROM ruizcacao.jornadas WHERE fecha=$1', [ayer]))
@@ -465,11 +466,13 @@ async function main() {
         )
       assert.equal(r.totalIngresos, 120)
       assert.equal(r.totalComprasPagadas, 30)
-      assert.equal(r.totalGastosManuales, 20)
-      assert.equal(r.saldoPeriodo, 70)
+      // Los $7 registrados con fecha de hoy durante la jornada de ayer
+      // pertenecen ahora al día elegido, además de $12 + $8 de mano de obra.
+      assert.equal(r.totalGastosManuales, 27)
+      assert.equal(r.saldoPeriodo, 63)
       for (const tipo of ['diario', 'semanal', 'mensual']) {
         const html = documentoReporte(r, tipo).html
-        for (const importe of ['$120.00', '$30.00', '$20.00', '$70.00'])
+        for (const importe of ['$120.00', '$30.00', '$27.00', '$63.00'])
           assert.ok(html.includes(importe))
       }
     })

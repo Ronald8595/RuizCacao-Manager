@@ -1,4 +1,6 @@
 import { ErrorNegocio } from './errorNegocio'
+import { errorFechaGasto } from './fechaGasto'
+import { errorFechaOperacion, errorFechaMovimiento } from './fechasOperaciones'
 import { prepararEmpleado, prepararGastoEmpleado } from '../renderer/src/utils/empleados'
 import {
   validarCompra,
@@ -63,6 +65,7 @@ export const CATEGORIAS_GASTO_MANUAL: CategoriaGasto[] = CATEGORIAS_GASTO.filter
 )
 
 export interface NuevaVentaInput {
+  fechaCobroInicial?: string
   fechaVenta: string
   clienteId: string
   producto: Producto
@@ -646,18 +649,16 @@ export function crearDominio(initial: Snapshot): {
       throw new ErrorNegocio('Debe iniciar una jornada para registrar gastos operativos.')
     }
 
-    const fechaOperativa = jornadaHoy.fecha
-    const datos = prepararGastoEmpleado(
-      { ...data, fecha: fechaOperativa },
-      empleadosActuales.current
-    )
+    const errorFecha = errorFechaGasto(data.fecha)
+    if (errorFecha) throw new ErrorNegocio(errorFecha)
+    const datos = prepararGastoEmpleado(data, empleadosActuales.current)
     const nuevo: Gasto = {
       id: generarId('gasto'),
       tipo: 'manual',
       referenciaStockId: null,
       fechaHoraRegistro: new Date().toISOString(),
       ...datos,
-      fecha: fechaOperativa,
+      fecha: data.fecha,
       monto: redondear(datos.monto)
     }
     setGastos((prev) => [nuevo, ...prev])
@@ -691,6 +692,12 @@ export function crearDominio(initial: Snapshot): {
   function registrarCompra(input: CompraInput): Compra {
     if (jornadaHoy.estado !== 'activa')
       throw new ErrorNegocio('Inicia o reabre una jornada antes de registrar una compra.')
+    const { fechaPagoInicial, ...datosCompra } = input
+    const fechaPago = fechaPagoInicial ?? input.fecha
+    const errorFecha =
+      errorFechaOperacion(input.fecha) ||
+      (input.montoPagado > 0 ? errorFechaMovimiento(fechaPago, input.fecha) : undefined)
+    if (errorFecha) throw new ErrorNegocio(errorFecha)
     const proveedor = proveedores.find((p) => p.id === input.proveedorId && p.estado)
     if (!proveedor) throw new ErrorNegocio('Selecciona un proveedor activo.')
     const { subtotal, montoImpuesto } = validarCompra(input)
@@ -706,7 +713,7 @@ export function crearDominio(initial: Snapshot): {
         .reduce((maximo, c) => Math.max(maximo, c.numeroCompra), 0) + 1
     const compra: Compra = {
       estado: 'vigente',
-      ...input,
+      ...datosCompra,
       id: generarId('compra'),
       numeroCompra,
       proveedorNombre: proveedor.nombre,
@@ -734,7 +741,7 @@ export function crearDominio(initial: Snapshot): {
       estado: calcularEstadoCuenta(total, pagado),
       fecha: input.fecha,
       fechaHoraRegistro,
-      fechaUltimoMovimiento: fechaHoraRegistro,
+      fechaUltimoMovimiento: pagado > 0 ? timestampParaFecha(fechaPago) : fechaHoraRegistro,
       observacion: compra.observacion,
       comprobante: compra.comprobante
     }
@@ -790,14 +797,14 @@ export function crearDominio(initial: Snapshot): {
         categoria: 'compra',
         clienteId: '',
         proveedorId: proveedor.id,
-        fecha: input.fecha,
-        fechaHoraRegistro,
+        fecha: fechaPago,
+        fechaHoraRegistro: timestampParaFecha(fechaPago),
         tipo: 'Abono',
         monto: pagado,
         metodoPago: input.metodoPago,
         montoEfectivo: input.montoEfectivo,
         montoTransferencia: input.montoTransferencia,
-        observacion: 'Pago inicial de compra N.º ' + compra.numeroCompra + ' del día',
+        observacion: pagado === total ? 'Pago total de compra' : 'Abono inicial de compra',
         comprobante: compra.comprobante
       }
       setMovimientosCuenta((prev) => [pago, ...prev])
@@ -966,6 +973,12 @@ export function crearDominio(initial: Snapshot): {
    * ejecutarse dentro de una transacción PostgreSQL.
    */
   function registrarVenta(input: NuevaVentaInput): Venta {
+    const { fechaCobroInicial, ...datosVenta } = input
+    const fechaCobro = fechaCobroInicial ?? input.fechaVenta
+    const errorFecha =
+      errorFechaOperacion(input.fechaVenta) ||
+      (input.montoRecibido > 0 ? errorFechaMovimiento(fechaCobro, input.fechaVenta) : undefined)
+    if (errorFecha) throw new ErrorNegocio(errorFecha)
     // Defensa adicional: la UI de Ventas ya deshabilita "Nueva venta" (y no
     // debería llegar a llamar esta función) cuando la jornada no está
     // activa, pero se valida también acá para que el registro de una venta
@@ -1031,7 +1044,7 @@ export function crearDominio(initial: Snapshot): {
 
     const venta: Venta = {
       estado: 'vigente',
-      ...input,
+      ...datosVenta,
       id: generarId('venta'),
       fechaHoraRegistro: timestampParaFecha(input.fechaVenta),
       numeroFactura,
@@ -1094,7 +1107,8 @@ export function crearDominio(initial: Snapshot): {
       montoPagado: redondear(Math.min(input.montoRecibido, totalVenta)),
       fecha: venta.fechaVenta,
       fechaHoraRegistro: timestampCuenta,
-      fechaUltimoMovimiento: timestampCuenta,
+      fechaUltimoMovimiento:
+        input.montoRecibido > 0 ? timestampParaFecha(fechaCobro) : timestampCuenta,
       estado: calcularEstadoCuenta(totalVenta, input.montoRecibido),
       observacion: `Generada automáticamente por la venta (N.º ${numeroFactura} del día)`,
       comprobante: String(numeroComprobante).padStart(6, '0')
@@ -1110,14 +1124,17 @@ export function crearDominio(initial: Snapshot): {
         cuentaId: cuenta.id,
         categoria: 'venta',
         clienteId: venta.clienteId,
-        fecha: venta.fechaVenta,
-        fechaHoraRegistro: timestampCuenta,
+        fecha: fechaCobro,
+        fechaHoraRegistro: timestampParaFecha(fechaCobro),
         tipo: 'Abono',
         monto: cuenta.montoPagado,
         metodoPago: input.metodoPago,
         montoEfectivo: input.montoEfectivo,
         montoTransferencia: input.montoTransferencia,
-        observacion: 'Pago inicial registrado en la venta',
+        observacion:
+          cuenta.montoPagado === cuenta.montoTotal
+            ? 'Cobro total de venta'
+            : 'Abono inicial de venta',
         comprobante: String(numeroComprobante).padStart(6, '0')
       }
       setMovimientosCuenta((prev) => [pagoInicial, ...prev])
@@ -1163,12 +1180,8 @@ export function crearDominio(initial: Snapshot): {
     if (!cuenta || cuenta.estado === 'anulado')
       throw new ErrorNegocio('Esta cuenta no admite pagos.')
 
-    if (
-      !/^\d{4}-\d{2}-\d{2}$/.test(input.fecha) ||
-      input.fecha < cuenta.fecha ||
-      input.fecha > fechaHoy()
-    )
-      throw new ErrorNegocio('La fecha del pago debe estar entre la fecha de la operación y hoy.')
+    const errorFecha = errorFechaMovimiento(input.fecha, cuenta.fecha)
+    if (errorFecha) throw new ErrorNegocio(errorFecha)
     if (cuenta.categoria === 'compra' && input.tipo !== 'Abono')
       throw new ErrorNegocio('Las compras admiten pagos a proveedores.')
     if (!Number.isFinite(input.monto) || redondear(input.monto) <= 0)
@@ -1272,6 +1285,8 @@ export function crearDominio(initial: Snapshot): {
    * explique: sin contexto escrito, en dos meses nadie sabría de dónde salió.
    */
   function crearCuentaManual(input: CuentaManualInput): void {
+    const errorFecha = errorFechaOperacion(input.fecha)
+    if (errorFecha) throw new ErrorNegocio(errorFecha)
     const esSaldoAFavor = input.tipo === 'Saldo a favor'
     const monto = redondear(input.monto)
     const timestamp = timestampParaFecha(input.fecha)

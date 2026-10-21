@@ -12,9 +12,15 @@ import ModalAccesible from '../components/ModalAccesible'
 import ProveedorCompraModal from '../components/ProveedorCompraModal'
 import { FormField, inputClass } from '../components/FormField'
 import { useAppData, PRODUCTOS, saldoDeCuenta } from '../store/AppDataContext'
-import { useNotificacion } from '../store/NotificacionContext'
+import { NotificacionProvider, useNotificacion } from '../store/NotificacionContext'
 import { calcularImportes } from '../utils/comercio'
-import { formatoMoneda, rangoDiaActual } from '../utils/reportes'
+import { formatoMoneda } from '../utils/reportes'
+import {
+  hoyOperacion,
+  errorFechaOperacion,
+  errorFechaMovimiento
+} from '../../../shared/fechasOperaciones'
+import ResumenFechasOperacion from '../components/ResumenFechasOperacion'
 import { useFiltroDiaActual } from '../hooks/useFechaActual'
 import type { Compra, CompraInput, MetodoPago, Producto, Proveedor } from '../types'
 
@@ -38,7 +44,8 @@ function CompraModal({
   const [proveedorComboAbierto, setProveedorComboAbierto] = useState(false)
   const [impuestoComboAbierto, setImpuestoComboAbierto] = useState(false)
   const [crearProveedor, setCrearProveedor] = useState(false)
-  const [fecha, setFecha] = useState(rangoDiaActual().desde)
+  const [fecha, setFecha] = useState(hoyOperacion)
+  const [fechaPago, setFechaPago] = useState(hoyOperacion)
   const [producto, setProducto] = useState<Producto>('Cacao en Baba')
   const [cantidad, setCantidad] = useState('')
   const [precio, setPrecio] = useState('')
@@ -73,10 +80,14 @@ function CompraModal({
     if (estadoJornada !== 'activa')
       return setError('No se puede realizar compra hasta iniciar o reabrir la jornada.')
     if (!proveedorId) return setError('Selecciona un proveedor registrado.')
+    const errorFecha =
+      errorFechaOperacion(fecha) || (pago > 0 ? errorFechaMovimiento(fechaPago, fecha) : undefined)
+    if (errorFecha) return setError(errorFecha)
     if (estadoPago === 'abono' && (!Number.isFinite(pago) || pago <= 0 || pago >= total))
       return setError('El abono debe ser mayor a cero y menor al total.')
     setPendienteConfirmacion({
       fecha,
+      fechaPagoInicial: pago > 0 ? fechaPago : undefined,
       proveedorId,
       producto,
       cantidadQq: Number(cantidad),
@@ -112,6 +123,37 @@ function CompraModal({
         Nueva compra
       </h2>
       <form onSubmit={guardar} className="space-y-4">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <FormField label="Fecha de compra" obligatorio>
+            <input
+              type="date"
+              required
+              min="0001-01-01"
+              max={hoyOperacion()}
+              aria-label="Fecha de compra"
+              value={fecha}
+              onChange={(e) => setFecha(e.target.value)}
+              className={inputClass(false)}
+            />
+          </FormField>
+
+          <FormField
+            label="Fecha efectiva del pago inicial"
+            obligatorio={estadoPago !== 'pendiente'}
+          >
+            <input
+              type="date"
+              aria-label="Fecha efectiva del pago inicial"
+              min={fecha}
+              max={hoyOperacion()}
+              value={fechaPago}
+              onChange={(e) => setFechaPago(e.target.value)}
+              disabled={estadoPago === 'pendiente'}
+              required={estadoPago !== 'pendiente'}
+              className={inputClass(false)}
+            />
+          </FormField>
+        </div>
         <div className="grid gap-4 sm:grid-cols-2">
           <FormField label="Proveedor" obligatorio>
             <div
@@ -205,16 +247,6 @@ function CompraModal({
                 </div>
               )}
             </div>
-          </FormField>
-          <FormField label="Fecha de compra" obligatorio>
-            <input
-              type="date"
-              required
-              max={rangoDiaActual().desde}
-              value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
-              className={inputClass(false)}
-            />
           </FormField>
         </div>
         <div className="flex flex-wrap items-center justify-between gap-2 text-[12px]">
@@ -418,6 +450,11 @@ function CompraModal({
         <p className="text-[13px] font-semibold">
           Saldo por pagar: ${formatoMoneda(Math.max(0, total - (pago || 0)))}
         </p>
+        <ResumenFechasOperacion
+          tipo="compra"
+          operacion={fecha}
+          movimiento={pago > 0 ? fechaPago : undefined}
+        />
         <FormField label="Comprobante">
           <input
             maxLength={40}
@@ -457,16 +494,20 @@ function CompraModal({
           </button>
         </div>
       </form>
-      {crearProveedor && (
-        <ProveedorCompraModal
-          onCancelar={() => setCrearProveedor(false)}
-          onCreado={(p) => {
-            setProveedorId(p.id)
-            setBusqueda(etiquetaProveedor(p))
-            setCrearProveedor(false)
-          }}
-        />
-      )}
+      {/* Permanece en el diálogo de compra al cerrar el proveedor; la capa nativa
+          del diálogo no tapa la notificación de éxito. */}
+      <NotificacionProvider>
+        {crearProveedor && (
+          <ProveedorCompraModal
+            onCancelar={() => setCrearProveedor(false)}
+            onCreado={(p) => {
+              setProveedorId(p.id)
+              setBusqueda(etiquetaProveedor(p))
+              setCrearProveedor(false)
+            }}
+          />
+        )}
+      </NotificacionProvider>
       {pendienteConfirmacion && (
         <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/35 p-4">
           <div className="w-full max-w-[460px] rounded-2xl bg-white p-6 shadow-xl">
@@ -481,6 +522,11 @@ function CompraModal({
                 </p>
               </div>
             </div>
+            <ResumenFechasOperacion
+              tipo="compra"
+              operacion={pendienteConfirmacion.fecha}
+              movimiento={pendienteConfirmacion.fechaPagoInicial}
+            />
             <div className="mb-5 rounded-xl bg-[#f5f7f4] p-3 text-[13px] text-[#4a524c]">
               <p>
                 <strong>Proveedor:</strong> {proveedor?.nombre ?? '—'}

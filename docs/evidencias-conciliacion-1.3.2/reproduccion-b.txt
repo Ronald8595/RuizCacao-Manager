@@ -1,0 +1,8 @@
+npm warn Unknown project config "electron_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn Unknown project config "electron_builder_binaries_mirror". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> electron-app@1.3.2 db:test
+> node tests/run.cjs --reproduccion-solo-b
+
+PASS B: inicial/abonos una vez, cerrado rechaza sobrepago, números repetidos, anulación, devolución
+Suite PostgreSQL completa. Artefactos de prueba: C:\Users\LENOVO\AppData\Local\Temp\ruizcacao-tests-gRMR8J

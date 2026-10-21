@@ -1,0 +1,16 @@
+{
+  "estado": "PASS",
+  "guardando": true,
+  "botonDeshabilitado": true,
+  "enviosExito": 1,
+  "exitoVisibleTrasCerrar": true,
+  "autoseleccion": true,
+  "errorConservaTodosLosCampos": true,
+  "reintento": true,
+  "comandos": [
+    "crearProveedor",
+    "crearProveedor",
+    "crearProveedor"
+  ],
+  "alcance": "CompraModal, ProveedorCompraModal y contextos reales; IPC diferido simulado, sin persistencia real."
+}

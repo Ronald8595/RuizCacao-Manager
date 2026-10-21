@@ -167,6 +167,7 @@ export interface Compra extends RegistroAutor, EstadoOperacion {
 
 export interface CompraInput {
   fecha: string
+  fechaPagoInicial?: string
   proveedorId: string
   producto: Producto
   cantidadQq: number

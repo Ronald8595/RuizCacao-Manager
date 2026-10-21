@@ -1,0 +1,69 @@
+{
+  "estado": "PASS",
+  "consultas": [
+    {
+      "desde": "2026-10-20",
+      "hasta": "2026-10-20",
+      "categoria": "pagos",
+      "limite": 15,
+      "cursor": null
+    },
+    {
+      "desde": "2026-10-20",
+      "hasta": "2026-10-20",
+      "categoria": "pagos",
+      "limite": 100,
+      "cursor": null
+    },
+    {
+      "desde": "2026-10-19",
+      "hasta": "2026-10-20",
+      "categoria": "pagos",
+      "limite": 100,
+      "cursor": null
+    },
+    {
+      "desde": "2026-10-20",
+      "hasta": "2026-10-20",
+      "categoria": "pagos",
+      "limite": 100,
+      "cursor": null
+    }
+  ],
+  "renders": [
+    {
+      "tipo": "diario",
+      "texto": "GRUPO RUIZ · RUIZCACAO MANAGER\n\nReporte diario\n\n20/10/2026 — 20/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$160,00\n\nInversión por compras\n\n$881,22\n\nGastos operativos\n\n$20,00\n\nResultado del período\n\n$-741,22\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$150,00\t$881,22\nCacao Seco\t$0,00\t$0,00\nMaracuyá\t$0,00\t$0,00\nSin producto de origen\t$10,00\t$0,00\nTotal\t\nTotal ingresos por ventas\n$160,00\t\nTotal invertido por compras\n$881,22\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n20/10/2026\tCobro de cuenta manual\t—\tCuenta manual de cliente · Cuenta sin operación\nFecha de cuenta: 17/10/2026\n\t$10,00\t—\n20/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$30,00\n20/10/2026\tLiquidación de venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de venta: 19/10/2026\n\t$150,00\t—\n20/10/2026\tLiquidación de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$200,00\n20/10/2026\tPago total de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Pago total de compra\nFecha de compra: 20/10/2026\n\t—\t$501,22\n20/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 19/10/2026\n\t—\t$150,00\n20/10/2026\tGasto operativo\t—\tOtros · Gasto operativo de prueba\t—\t$20,00",
+      "filas": 7
+    },
+    {
+      "tipo": "semanal",
+      "texto": "GRUPO RUIZ · RUIZCACAO MANAGER\n\nReporte semanal\n\n19/10/2026 — 25/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$350,00\n\nInversión por compras\n\n$1.151,22\n\nGastos operativos\n\n$20,00\n\nResultado del período\n\n$-821,22\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$340,00\t$1.151,22\nCacao Seco\t$0,00\t$0,00\nMaracuyá\t$0,00\t$0,00\nSin producto de origen\t$10,00\t$0,00\nTotal\t\nTotal ingresos por ventas\n$350,00\t\nTotal invertido por compras\n$1.151,22\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n19/10/2026\tLiquidación de compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$70,00\n19/10/2026\tAbono a venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de venta: 19/10/2026\n\t$50,00\t—\n19/10/2026\tAbono inicial de venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Abono inicial de venta\nFecha de venta: 19/10/2026\n\t$100,00\t—\n19/10/2026\tCobro total de venta\tCacao en Baba\tVenta N.º 1 · Cacao en Baba · Cobro total de venta\nFecha de venta: 19/10/2026\n\t$40,00\t—\n19/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$200,00\n20/10/2026\tCobro de cuenta manual\t—\tCuenta manual de cliente · Cuenta sin operación\nFecha de cuenta: 17/10/2026\n\t$10,00\t—\n20/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$30,00\n20/10/2026\tLiquidación de venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de venta: 19/10/2026\n\t$150,00\t—\n20/10/2026\tLiquidación de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$200,00\n20/10/2026\tPago total de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Pago total de compra\nFecha de compra: 20/10/2026\n\t—\t$501,22\n20/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 19/10/2026\n\t—\t$150,00\n20/10/2026\tGasto operativo\t—\tOtros · Gasto operativo de prueba\t—\t$20,00",
+      "filas": 12
+    },
+    {
+      "tipo": "mensual",
+      "texto": "GRUPO RUIZ · RUIZCACAO MANAGER\n\nReporte mensual\n\n01/10/2026 — 31/10/2026\n\nEste modulo solo se muestran valores efectivamente cobrados o pagados dentro del período seleccionado. Los pendientes no se suman hasta que sean abonados.\n\nIngresos por ventas\n\n$350,00\n\nInversión por compras\n\n$1.251,22\n\nGastos operativos\n\n$20,00\n\nResultado del período\n\n$-921,22\n\nDesglose por producto\nProducto\tIngresos por venta\tInversión por compra\nCacao en Baba\t$340,00\t$1.251,22\nCacao Seco\t$0,00\t$0,00\nMaracuyá\t$0,00\t$0,00\nSin producto de origen\t$10,00\t$0,00\nTotal\t\nTotal ingresos por ventas\n$350,00\t\nTotal invertido por compras\n$1.251,22\nFecha\tTipo\tProducto\tDetalle\tCobrado\tPagado\n17/10/2026\tAbono inicial de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Abono inicial de compra\nFecha de compra: 17/10/2026\n\t—\t$100,00\n19/10/2026\tLiquidación de compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$70,00\n19/10/2026\tAbono a venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de venta: 19/10/2026\n\t$50,00\t—\n19/10/2026\tAbono inicial de venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Abono inicial de venta\nFecha de venta: 19/10/2026\n\t$100,00\t—\n19/10/2026\tCobro total de venta\tCacao en Baba\tVenta N.º 1 · Cacao en Baba · Cobro total de venta\nFecha de venta: 19/10/2026\n\t$40,00\t—\n19/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$200,00\n20/10/2026\tCobro de cuenta manual\t—\tCuenta manual de cliente · Cuenta sin operación\nFecha de cuenta: 17/10/2026\n\t$10,00\t—\n20/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$30,00\n20/10/2026\tLiquidación de venta\tCacao en Baba\tVenta N.º 2 · Cacao en Baba · Nota del usuario intacta\nFecha de venta: 19/10/2026\n\t$150,00\t—\n20/10/2026\tLiquidación de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 17/10/2026\n\t—\t$200,00\n20/10/2026\tPago total de compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Pago total de compra\nFecha de compra: 20/10/2026\n\t—\t$501,22\n20/10/2026\tAbono a compra\tCacao en Baba\tCompra N.º 1 · Cacao en Baba · Nota del usuario intacta\nFecha de compra: 19/10/2026\n\t—\t$150,00\n20/10/2026\tGasto operativo\t—\tOtros · Gasto operativo de prueba\t—\t$20,00",
+      "filas": 13
+    }
+  ],
+  "pdfs": [
+    {
+      "archivo": "caso-150.pdf",
+      "bytes": 91849
+    },
+    {
+      "archivo": "diario.pdf",
+      "bytes": 93432
+    },
+    {
+      "archivo": "mensual.pdf",
+      "bytes": 94837
+    },
+    {
+      "archivo": "semanal.pdf",
+      "bytes": 94839
+    }
+  ],
+  "alcance": "Componentes reales, CSS real, DTO de PostgreSQL aislado; transporte de consulta simulado. Una captura a 125%."
+}

@@ -1,0 +1,44 @@
+[
+  {
+    "archivo": "pdf-crear-1.pdf",
+    "paginas": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "totales": "PASS"
+  },
+  {
+    "archivo": "pdf-crear-2.pdf",
+    "paginas": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "totales": "PASS"
+  },
+  {
+    "archivo": "pdf-crear-3.pdf",
+    "paginas": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "totales": "PASS"
+  },
+  {
+    "archivo": "pdf-reabrir-1.pdf",
+    "paginas": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "totales": "PASS"
+  },
+  {
+    "archivo": "pdf-reabrir-2.pdf",
+    "paginas": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "totales": "PASS"
+  },
+  {
+    "archivo": "pdf-reabrir-3.pdf",
+    "paginas": 2,
+    "pagos": 24,
+    "gastos": 4,
+    "totales": "PASS"
+  }
+]

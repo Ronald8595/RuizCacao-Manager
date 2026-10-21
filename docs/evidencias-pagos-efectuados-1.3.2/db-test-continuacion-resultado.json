@@ -1,0 +1,4 @@
+{
+  "comando": "npm run db:test -- --pagos-efectuados --desde-suite=reporte-paginacion-validacion.cjs",
+  "codigo": 0
+}

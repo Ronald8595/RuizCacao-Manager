@@ -1,0 +1,2 @@
+
+PASS UI: Pagos efectuados, fechas/100 reinician cursor, 150/501.22/20, sin consulta de pagos en vista original/inactiva; etiquetas y PDF completo

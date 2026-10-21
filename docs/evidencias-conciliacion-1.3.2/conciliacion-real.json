@@ -1,0 +1,151 @@
+{
+  "archivo": "C:\\Users\\LENOVO\\Documents\\VS_Proyects\\RuizCacao Manager\\backups\\RuizCacao_2026-10-19_22-37.back",
+  "fecha": "2026-10-19",
+  "carpeta": "C:\\Users\\LENOVO\\AppData\\Local\\Temp\\rcm-conciliacion-ykq1gh",
+  "consultas": {
+    "cobertura": {
+      "sql": "SELECT 'compras' tabla,count(*)::int n,min(fecha)::text desde,max(fecha)::text hasta FROM ruizcacao.compras\n      UNION ALL SELECT 'movimientos',count(*)::int,min(fecha)::text,max(fecha)::text FROM ruizcacao.movimientos_cuenta\n      UNION ALL SELECT 'gastos',count(*)::int,min(fecha)::text,max(fecha)::text FROM ruizcacao.gastos",
+      "params": [],
+      "rows": [
+        {
+          "tabla": "compras",
+          "n": 10014,
+          "desde": "2026-01-01",
+          "hasta": "2026-09-27"
+        },
+        {
+          "tabla": "gastos",
+          "n": 13019,
+          "desde": "2026-01-01",
+          "hasta": "2026-09-27"
+        },
+        {
+          "tabla": "movimientos",
+          "n": 16695,
+          "desde": "2026-01-02",
+          "hasta": "2026-09-27"
+        }
+      ]
+    },
+    "comprasDia": {
+      "sql": "SELECT b.id,b.numero_compra,b.fecha::text,b.producto,b.total,b.monto_pagado_inicial,b.estado,\n      c.id cuenta_id,c.monto_total,c.monto_aplicado,c.monto_total-c.monto_aplicado saldo_actual\n      FROM ruizcacao.compras b LEFT JOIN ruizcacao.cuentas c ON c.compra_id=b.id WHERE b.fecha=$1::date ORDER BY b.numero_compra,b.id",
+      "params": [
+        "2026-10-19"
+      ],
+      "rows": []
+    },
+    "movimientosDia": {
+      "sql": "WITH historial AS (\n      SELECT m.*,sum(CASE WHEN tipo IN ('Abono','Ajuste por devolución') THEN monto ELSE 0 END)\n      OVER(PARTITION BY cuenta_id ORDER BY fecha,fecha_hora_registro,orden,id ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) acumulado\n      FROM ruizcacao.movimientos_cuenta m)\n      SELECT m.id movimiento_id,m.cuenta_id,b.id compra_id,b.numero_compra,b.fecha::text fecha_compra,b.producto,b.total,\n      b.monto_pagado_inicial,b.estado estado_compra,c.estado estado_cuenta,m.tipo,m.fecha::text fecha_pago,\n      m.fecha_hora_registro,m.monto,m.observacion,\n      c.monto_total-(m.acumulado-CASE WHEN m.tipo IN ('Abono','Ajuste por devolución') THEN m.monto ELSE 0 END) saldo_antes,\n      c.monto_total-m.acumulado saldo_despues,\n      (m.tipo='Abono' AND c.estado<>'anulado') incluido_reporte\n      FROM historial m JOIN ruizcacao.cuentas c ON c.id=m.cuenta_id LEFT JOIN ruizcacao.compras b ON b.id=c.compra_id\n      WHERE m.fecha=$1::date AND c.categoria='compra' ORDER BY m.fecha_hora_registro,m.orden,m.id",
+      "params": [
+        "2026-10-19"
+      ],
+      "rows": []
+    },
+    "gastosDia": {
+      "sql": "SELECT id,fecha::text,fecha_hora_registro,categoria,concepto,monto,observacion,tipo FROM ruizcacao.gastos WHERE fecha=$1::date ORDER BY orden,id",
+      "params": [
+        "2026-10-19"
+      ],
+      "rows": []
+    },
+    "vista": {
+      "sql": "SELECT pg_get_viewdef('ruizcacao.v_flujo_caja'::regclass,true) definicion",
+      "params": [],
+      "rows": [
+        {
+          "definicion": " SELECT m.id,\n    m.fecha,\n    c.categoria,\n    (\n        CASE\n            WHEN c.categoria = 'compra'::text THEN '-1'::integer\n            ELSE 1\n        END *\n        CASE\n            WHEN m.tipo = 'Ajuste por devolución'::text THEN '-1'::integer\n            ELSE 1\n        END)::numeric * m.monto AS monto\n   FROM ruizcacao.movimientos_cuenta m\n     JOIN ruizcacao.cuentas c ON c.id = m.cuenta_id\n  WHERE m.tipo = ANY (ARRAY['Abono'::text, 'Ajuste por devolución'::text])\nUNION ALL\n SELECT gastos.id,\n    gastos.fecha,\n    'gasto_operativo'::text AS categoria,\n    - gastos.monto AS monto\n   FROM ruizcacao.gastos\n  WHERE gastos.tipo = 'manual'::text;"
+        }
+      ]
+    },
+    "vistaDia": {
+      "sql": "SELECT id,fecha::text,categoria,monto FROM ruizcacao.v_flujo_caja WHERE fecha=$1::date ORDER BY id",
+      "params": [
+        "2026-10-19"
+      ],
+      "rows": []
+    },
+    "duplicadosJoin": {
+      "sql": "WITH financiero AS (SELECT m.id,m.fecha::text fecha,to_char(m.fecha_hora_registro AT TIME ZONE 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') instante,0 fuente,m.orden registro,\n    CASE WHEN c.categoria='compra' THEN 'Pago de compra' ELSE 'Cobro de venta' END tipo,\n    CASE WHEN c.categoria='compra' THEN b.producto ELSE v.producto END producto,\n    (CASE WHEN c.categoria='compra' THEN 'Compra N.º '||coalesce(c.numero_compra::text,'undefined') WHEN c.numero_factura IS NOT NULL AND c.numero_factura<>0 THEN 'Venta N.º '||c.numero_factura::text ELSE 'Cuenta manual de cliente' END)||\n    CASE WHEN c.categoria='compra' AND b.id IS NOT NULL THEN ' · '||b.producto WHEN c.categoria<>'compra' AND v.id IS NOT NULL THEN ' · '||v.producto ELSE '' END||' · '||m.observacion detalle,\n    CASE WHEN c.categoria='compra' THEN -m.monto ELSE m.monto END monto\n    FROM ruizcacao.movimientos_cuenta m JOIN ruizcacao.cuentas c ON c.id=m.cuenta_id\n    LEFT JOIN ruizcacao.compras b ON c.categoria='compra' AND b.id=c.compra_id\n    LEFT JOIN ruizcacao.ventas v ON c.categoria<>'compra' AND v.id=c.venta_id\n    WHERE m.tipo='Abono' AND c.estado<>'anulado' AND m.orden<=$1::bigint AND m.fecha>=$2::date AND m.fecha<=$3::date UNION ALL SELECT g.id,g.fecha::text fecha,to_char(g.fecha_hora_registro AT TIME ZONE 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.MS\"Z\"') instante,1 fuente,g.orden registro,'Gasto operativo' tipo,NULL::text producto,\n    g.categoria||' · '||CASE WHEN coalesce(g.empleado_nombre,'')<>'' THEN g.empleado_nombre||' · ' ELSE '' END||coalesce(nullif(g.observacion,''),'Sin observación') detalle,-g.monto monto\n    FROM ruizcacao.gastos g WHERE g.tipo='manual' AND g.orden<=$4::bigint AND g.fecha>=$5::date AND g.fecha<=$6::date) SELECT id,count(*)::int n FROM financiero GROUP BY id HAVING count(*)>1",
+      "params": [
+        "16695",
+        "2026-10-19",
+        "2026-10-19",
+        "13026",
+        "2026-10-19",
+        "2026-10-19"
+      ],
+      "rows": []
+    }
+  },
+  "antes": {
+    "tamano": 3094778,
+    "sha256": "2abb16f38a3aa34158fbf16776672cd1e5905d39479ad0c3f2b694ade35ed5b9"
+  },
+  "manifest": {
+    "product_id": "com.gruporuiz.ruizcacao-manager",
+    "format_version": 1,
+    "backup_id": "54d089e0-7072-45d6-9fd2-be5715f64531",
+    "created_at_utc": "2026-10-19T22:37:56.847Z",
+    "app_version": "1.3.2",
+    "schema_version": 10,
+    "postgres_server_major": 18,
+    "pg_dump_major": 18,
+    "backup_type": "manual",
+    "database_dump_filename": "database.dump",
+    "database_dump_size": 3094036,
+    "database_dump_sha256": "0d92f11f2c2e712d91dc33e5af36fad5c5fc8bfd877f6ec56a356c03b67ed7bd"
+  },
+  "readOnly": "on",
+  "reporte": {
+    "resumen": {
+      "desde": "2026-10-19",
+      "hasta": "2026-10-19",
+      "desgloseProductos": {
+        "Cacao en Baba": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        },
+        "Cacao Seco": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        },
+        "Maracuyá": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        },
+        "Sin producto de origen": {
+          "ingresos": 0,
+          "pagosCompras": 0
+        }
+      },
+      "totalIngresos": 0,
+      "totalComprasPagadas": 0,
+      "totalGastosManuales": 0,
+      "totalGastos": 0,
+      "saldoPeriodo": 0
+    },
+    "total": 0,
+    "filas": [],
+    "siguiente": null
+  },
+  "pdf": {
+    "diario": {
+      "nombre": "Reporte_Diario_2026-10-19",
+      "filas": -1
+    },
+    "semanal": {
+      "nombre": "Reporte_Semanal_2026-10-19",
+      "filas": -1
+    },
+    "mensual": {
+      "nombre": "Reporte_Mensual_2026-10-19",
+      "filas": -1
+    }
+  },
+  "resultado": "PASS",
+  "motorDetenido": true,
+  "despues": {
+    "tamano": 3094778,
+    "sha256": "2abb16f38a3aa34158fbf16776672cd1e5905d39479ad0c3f2b694ade35ed5b9"
+  }
+}

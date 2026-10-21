@@ -1,0 +1,17 @@
+warning: in the working copy of 'docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/listados.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/main/database/validacion.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/components/DetalleCuenta.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/components/reportes/ReporteDiario.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/pages/Compras.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/pages/Cuentas.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/pages/Gastos.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/pages/Ventas.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/types.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/utils/reportePdf.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/renderer/src/utils/reportes.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'src/shared/dominio.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/run.cjs', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tests/v3.cjs', LF will be replaced by CRLF the next time Git touches it

@@ -1,0 +1,58 @@
+{
+  "estado": "PASS",
+  "version": "1.3.2",
+  "fecha": "2026-10-21T11:05:29.059Z",
+  "alcance": "Exclusivamente UX de proveedor desde nueva compra",
+  "pruebas": {
+    "ui": 0,
+    "typecheck": 0,
+    "lint": 0,
+    "diff-check": 0
+  },
+  "lint": {
+    "errores": 0,
+    "advertencias": 876
+  },
+  "ux": {
+    "estado": "PASS",
+    "guardando": true,
+    "botonDeshabilitado": true,
+    "enviosExito": 1,
+    "exitoVisibleTrasCerrar": true,
+    "autoseleccion": true,
+    "errorConservaTodosLosCampos": true,
+    "reintento": true,
+    "comandos": [
+      "crearProveedor",
+      "crearProveedor",
+      "crearProveedor"
+    ],
+    "alcance": "CompraModal, ProveedorCompraModal y contextos reales; IPC diferido simulado, sin persistencia real."
+  },
+  "archivos": [
+    "src/renderer/src/components/ProveedorCompraModal.tsx",
+    "src/renderer/src/pages/Compras.tsx",
+    "tests/proveedor-compra-ux.cjs",
+    "docs/Informe_Trazabilidad_Financiera_v1.3.2.md",
+    "docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md"
+  ],
+  "sha256": {
+    "src/renderer/src/components/ProveedorCompraModal.tsx": "1e4a597d54efb50c94e5c47918495faf43bc587a7075fd46cad3cdd42792be3e",
+    "src/renderer/src/pages/Compras.tsx": "80f95dca847b1ef7b19ce7ca76c7fd4fa90f86c7d446675901a5f564c92a2c07",
+    "tests/proveedor-compra-ux.cjs": "0789f0889098c53775597f93fbe0c3568ac40ab862045535865d447b048074d9",
+    "docs/Informe_Trazabilidad_Financiera_v1.3.2.md": "e877bb61a2fca2c95eb328b59de90bd7e6108e3c05d0864b6fd98a4cb0929375",
+    "docs/ESTADO_CONTINUIDAD_ESCALABILIDAD.md": "755dabe5d5af2da9a1ae2596bc73905b9e98fb7b9c3312861b2bd6ae19c47543"
+  },
+  "persistenciaModificada": false,
+  "ipcModificado": false,
+  "snapshotModificado": false,
+  "optimizacionLatencia": "Solo anotada para1.3.5; no implementada",
+  "pendientes": [
+    "Aceptación manual en perfil de prueba",
+    "Revisión de pendientes globales para candidata1.3.2"
+  ],
+  "build": false,
+  "commit": false,
+  "push": false,
+  "release": false
+}

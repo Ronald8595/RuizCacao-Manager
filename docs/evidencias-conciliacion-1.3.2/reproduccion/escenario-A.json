@@ -1,0 +1,120 @@
+{
+  "estado": "PASS",
+  "compras": 3695.4,
+  "resultados": [
+    {
+      "tipo": "diario",
+      "resumen": {
+        "desde": "2026-10-19",
+        "hasta": "2026-10-19",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 751.61
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 6215.15
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 0,
+        "totalComprasPagadas": 6966.76,
+        "totalGastosManuales": 190,
+        "totalGastos": 7156.76,
+        "saldoPeriodo": -7156.76
+      },
+      "filas": 28,
+      "limites": [
+        10,
+        15,
+        25,
+        50,
+        100
+      ]
+    },
+    {
+      "tipo": "semanal",
+      "resumen": {
+        "desde": "2026-10-19",
+        "hasta": "2026-10-25",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 751.61
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 6215.15
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 0,
+        "totalComprasPagadas": 6966.76,
+        "totalGastosManuales": 190,
+        "totalGastos": 7156.76,
+        "saldoPeriodo": -7156.76
+      },
+      "filas": 28,
+      "limites": [
+        10,
+        15,
+        25,
+        50,
+        100
+      ]
+    },
+    {
+      "tipo": "mensual",
+      "resumen": {
+        "desde": "2026-10-01",
+        "hasta": "2026-10-31",
+        "desgloseProductos": {
+          "Cacao en Baba": {
+            "ingresos": 0,
+            "pagosCompras": 751.61
+          },
+          "Cacao Seco": {
+            "ingresos": 0,
+            "pagosCompras": 6215.15
+          },
+          "Maracuyá": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          },
+          "Sin producto de origen": {
+            "ingresos": 0,
+            "pagosCompras": 0
+          }
+        },
+        "totalIngresos": 0,
+        "totalComprasPagadas": 6966.76,
+        "totalGastosManuales": 190,
+        "totalGastos": 7156.76,
+        "saldoPeriodo": -7156.76
+      },
+      "filas": 28,
+      "limites": [
+        10,
+        15,
+        25,
+        50,
+        100
+      ]
+    }
+  ]
+}

@@ -22,7 +22,12 @@ import { FormField, inputClass } from '../components/FormField'
 import { useAppData, PRODUCTOS } from '../store/AppDataContext'
 import { useNotificacion } from '../store/NotificacionContext'
 import { calcularImportes, validarPago } from '../utils/comercio'
-import { rangoDiaActual } from '../utils/reportes'
+import {
+  hoyOperacion,
+  errorFechaOperacion,
+  errorFechaMovimiento
+} from '../../../shared/fechasOperaciones'
+import ResumenFechasOperacion from '../components/ResumenFechasOperacion'
 import { useFiltroDiaActual } from '../hooks/useFechaActual'
 import type { ClienteFormData, MetodoPago, Producto, Venta } from '../types'
 import { construirComprobanteHtml, formatearNumeroComprobante } from '../utils/comprobantePdf'
@@ -31,6 +36,8 @@ const METODOS_PAGO: MetodoPago[] = ['Efectivo', 'Transferencia', 'Pago Mixto']
 const IMPUESTOS_SUGERIDOS = [1, 1.75, 2, 2.5, 3] as const
 
 interface FormularioVenta {
+  fechaVenta: string
+  fechaCobro: string
   clienteId: string
   producto: Producto
   pesoBruto: string
@@ -46,6 +53,8 @@ interface FormularioVenta {
 }
 
 const FORM_VACIO: FormularioVenta = {
+  fechaVenta: hoyOperacion(),
+  fechaCobro: hoyOperacion(),
   clienteId: '',
   producto: 'Cacao en Baba',
   pesoBruto: '',
@@ -80,7 +89,10 @@ function nombreSeguroArchivo(valor: string): string {
 }
 
 type Errores = Partial<
-  Record<'clienteId' | 'pesoBruto' | 'precioUnitario' | 'impuesto' | 'abono' | 'pagoMixto', string>
+  Record<
+    'clienteId' | 'pesoBruto' | 'precioUnitario' | 'impuesto' | 'abono' | 'pagoMixto' | 'fecha',
+    string
+  >
 >
 
 function Ventas(): React.JSX.Element {
@@ -96,8 +108,7 @@ function Ventas(): React.JSX.Element {
     proximoNumeroFactura,
     proximoNumeroComprobante,
     registrarVenta,
-    estadoJornada,
-    fechaJornadaActiva
+    estadoJornada
   } = useAppData()
   const { notificar } = useNotificacion()
   const [modalAbierto, setModalAbierto] = useState(false)
@@ -157,6 +168,10 @@ function Ventas(): React.JSX.Element {
 
   function validar(): Errores {
     const nuevosErrores: Errores = {}
+    const errorFecha =
+      errorFechaOperacion(form.fechaVenta) ||
+      (montoRecibido > 0 ? errorFechaMovimiento(form.fechaCobro, form.fechaVenta) : undefined)
+    if (errorFecha) nuevosErrores.fecha = errorFecha
     if (!form.clienteId) nuevosErrores.clienteId = 'Selecciona un cliente activo.'
     if (pesoBruto <= 0) nuevosErrores.pesoBruto = 'El peso bruto debe ser mayor a 0.'
     if (precioUnitario <= 0) nuevosErrores.precioUnitario = 'El precio unitario debe ser mayor a 0.'
@@ -188,7 +203,7 @@ function Ventas(): React.JSX.Element {
   }
 
   function abrirNuevaVenta(): void {
-    setForm(FORM_VACIO)
+    setForm({ ...FORM_VACIO, fechaVenta: hoyOperacion(), fechaCobro: hoyOperacion() })
     setClienteBusqueda('')
     setClienteComboAbierto(false)
     setImpuestoComboAbierto(false)
@@ -247,7 +262,8 @@ function Ventas(): React.JSX.Element {
     // vista previa, el estado de la jornada se vuelve a comprobar al guardar.
     try {
       const venta = await registrarVenta({
-        fechaVenta: fechaJornadaActiva ?? rangoDiaActual().desde,
+        fechaVenta: form.fechaVenta,
+        fechaCobroInicial: montoRecibido > 0 ? form.fechaCobro : undefined,
         clienteId: form.clienteId,
         producto: form.producto,
         pesoBruto,
@@ -561,6 +577,37 @@ function Ventas(): React.JSX.Element {
             </div>
 
             <div className="space-y-6">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <FormField label="Fecha de venta" error={errores.fecha} obligatorio>
+                  <input
+                    type="date"
+                    aria-label="Fecha de venta"
+                    min="0001-01-01"
+                    max={hoyOperacion()}
+                    value={form.fechaVenta}
+                    onChange={(e) => actualizar('fechaVenta', e.target.value)}
+                    className={inputClass(Boolean(errores.fecha))}
+                  />
+                </FormField>
+                  <FormField label="Fecha efectiva del cobro inicial" obligatorio={form.estadoPago !== 'pendiente'}>
+                    <input
+                      type="date"
+                      aria-label="Fecha efectiva del cobro inicial"
+                      min={form.fechaVenta}
+                      max={hoyOperacion()}
+                      value={form.fechaCobro}
+                      onChange={(e) => actualizar('fechaCobro', e.target.value)}
+                      disabled={form.estadoPago === 'pendiente'}
+                      required={form.estadoPago !== 'pendiente'}
+                      className={inputClass(false)}
+                    />
+                  </FormField>
+              </div>
+              <ResumenFechasOperacion
+                tipo="venta"
+                operacion={form.fechaVenta}
+                movimiento={montoRecibido > 0 ? form.fechaCobro : undefined}
+              />
               {/* ===== BLOQUE 1: DATOS DE LA VENTA ===== */}
               <div>
                 <h3 className="mb-3 text-[12px] font-bold uppercase tracking-wide text-[#8a938d]">
@@ -1033,6 +1080,11 @@ function Ventas(): React.JSX.Element {
                 </h2>
               </div>
             </div>
+            <ResumenFechasOperacion
+              tipo="venta"
+              operacion={form.fechaVenta}
+              movimiento={montoRecibido > 0 ? form.fechaCobro : undefined}
+            />
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-xl bg-[#f7f8f8] p-3 sm:col-span-2">

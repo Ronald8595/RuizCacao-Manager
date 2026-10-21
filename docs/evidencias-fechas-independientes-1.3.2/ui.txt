@@ -1,0 +1,2 @@
+
+PASS UI: fechas predeterminadas/independientes, confirmaciones, IPC capturado y reporte SQL/PDF

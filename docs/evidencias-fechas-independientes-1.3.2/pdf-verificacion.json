@@ -1,0 +1,44 @@
+[
+  {
+    "archivo": "diario-2026-10-17.pdf",
+    "paginas": 1,
+    "filas": 3,
+    "fechas_importes": "PASS",
+    "ids_expuestos": false
+  },
+  {
+    "archivo": "diario-2026-10-19.pdf",
+    "paginas": 1,
+    "filas": 6,
+    "fechas_importes": "PASS",
+    "ids_expuestos": false
+  },
+  {
+    "archivo": "diario-2026-10-20.pdf",
+    "paginas": 1,
+    "filas": 3,
+    "fechas_importes": "PASS",
+    "ids_expuestos": false
+  },
+  {
+    "archivo": "semanal-2026-10-12.pdf",
+    "paginas": 1,
+    "filas": 3,
+    "fechas_importes": "PASS",
+    "ids_expuestos": false
+  },
+  {
+    "archivo": "semanal-2026-10-19.pdf",
+    "paginas": 2,
+    "filas": 9,
+    "fechas_importes": "PASS",
+    "ids_expuestos": false
+  },
+  {
+    "archivo": "mensual-2026-10-01.pdf",
+    "paginas": 2,
+    "filas": 12,
+    "fechas_importes": "PASS",
+    "ids_expuestos": false
+  }
+]

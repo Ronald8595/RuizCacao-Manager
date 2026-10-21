@@ -1,3 +1,4 @@
+import { conceptosCuenta, observacionPago } from '../../../shared/conceptoPago'
 import { useFilasVisibles } from '../hooks/useFilasVisibles'
 import { indexarPrimero } from '../utils/indices'
 import { ErrorNegocio } from '../../../shared/errorNegocio'
@@ -10,7 +11,12 @@ import EmptyState from '../components/EmptyState'
 import { FormField, inputClass } from '../components/FormField'
 import { useNotificacion } from '../store/NotificacionContext'
 import { useAppData, saldoDeCuenta, tipoSaldoDeCuenta } from '../store/AppDataContext'
-import { formatoMoneda, formatoFecha, rangoDiaActual } from '../utils/reportes'
+import { formatoMoneda, formatoFecha } from '../utils/reportes'
+import {
+  hoyOperacion,
+  errorFechaMovimiento,
+  errorFechaOperacion
+} from '../../../shared/fechasOperaciones'
 import { construirComprobantePagoHtml, formatearNumeroComprobante } from '../utils/comprobantePdf'
 import type { Cuenta, EstadoCuenta, MetodoPago, TipoMovimientoCuenta } from '../types'
 
@@ -35,7 +41,7 @@ const LIMITES_CUENTAS = [10, 25, 50, 100] as const
 type LimiteCuentas = (typeof LIMITES_CUENTAS)[number]
 
 function hoyISO(): string {
-  return rangoDiaActual().desde
+  return hoyOperacion()
 }
 
 function num(valor: string): number {
@@ -96,6 +102,7 @@ function AbonoModal({
   onCancelar
 }: AbonoModalProps): React.JSX.Element {
   const [fecha, setFecha] = useState(hoyISO())
+  const [fechaConfirmada, setFechaConfirmada] = useState<string | null>(null)
   const [monto, setMonto] = useState('')
   const [metodoPago, setMetodoPago] = useState<MetodoPago>('Efectivo')
   const [montoEfectivo, setMontoEfectivo] = useState('')
@@ -127,6 +134,10 @@ function AbonoModal({
     try {
       e.preventDefault()
       setError(null)
+      const errorFecha = errorFechaMovimiento(fecha, cuenta.fecha)
+      if (errorFecha) return setError(errorFecha)
+      if (fecha < hoyISO() && fechaConfirmada !== fecha)
+        return setError('Confirma la fecha retroactiva antes de guardar.')
 
       if (montoNum <= 0) {
         setError('El monto debe ser mayor a 0.')
@@ -199,8 +210,14 @@ function AbonoModal({
               <input
                 type="date"
                 max={hoyISO()}
+                min={cuenta.fecha}
+                required
+                aria-label="Fecha efectiva del movimiento"
                 value={fecha}
-                onChange={(e) => setFecha(e.target.value)}
+                onChange={(e) => {
+                  setFecha(e.target.value)
+                  setFechaConfirmada(null)
+                }}
                 className={inputClass(false)}
               />
             </FormField>
@@ -362,6 +379,19 @@ function AbonoModal({
           {error && (
             <p className="rounded-xl bg-[#fdf1f0] px-3 py-2 text-[12px] text-[#dc5c52]">{error}</p>
           )}
+          <p className="text-[12px]">
+            Fecha de origen: {formatoFecha(cuenta.fecha)} · Fecha efectiva: {formatoFecha(fecha)}
+          </p>
+          {fecha < hoyISO() && (
+            <label className="flex items-start gap-2 text-[12px] text-[#8a641b]">
+              <input
+                type="checkbox"
+                checked={fechaConfirmada === fecha}
+                onChange={(e) => setFechaConfirmada(e.target.checked ? fecha : null)}
+              />
+              Confirmo registrar este movimiento con fecha retroactiva {formatoFecha(fecha)}.
+            </label>
+          )}
 
           <div className="flex items-center justify-end gap-3 border-t border-[#eef1ee] pt-4">
             <button
@@ -409,6 +439,7 @@ function CuentaManualModal({
   const [clienteId, setClienteId] = useState(clientes[0]?.id ?? '')
   const [tipo, setTipo] = useState<'Saldo a favor' | 'Deuda manual'>('Saldo a favor')
   const [fecha, setFecha] = useState(hoyISO())
+  const [fechaConfirmada, setFechaConfirmada] = useState<string | null>(null)
   const [monto, setMonto] = useState('')
   const [observacion, setObservacion] = useState('')
   const [comprobante, setComprobante] = useState('')
@@ -418,6 +449,10 @@ function CuentaManualModal({
     try {
       e.preventDefault()
       setError(null)
+      const errorFecha = errorFechaOperacion(fecha)
+      if (errorFecha) return setError(errorFecha)
+      if (fecha < hoyISO() && fechaConfirmada !== fecha)
+        return setError('Confirma la fecha retroactiva antes de crear la cuenta.')
       if (!clienteId) {
         setError('Selecciona un cliente.')
         return
@@ -504,9 +539,14 @@ function CuentaManualModal({
           <FormField label="Fecha" obligatorio>
             <input
               type="date"
+              required
+              min="0001-01-01"
               max={hoyISO()}
               value={fecha}
-              onChange={(e) => setFecha(e.target.value)}
+              onChange={(e) => {
+                setFecha(e.target.value)
+                setFechaConfirmada(null)
+              }}
               className={inputClass(false)}
             />
           </FormField>
@@ -533,6 +573,17 @@ function CuentaManualModal({
             />
           </FormField>
 
+          {fecha < hoyISO() && (
+            <label className="flex items-start gap-2 text-[12px] text-[#8a641b]">
+              <input
+                type="checkbox"
+                checked={fechaConfirmada === fecha}
+                onChange={(e) => setFechaConfirmada(e.target.checked ? fecha : null)}
+              />
+              Confirmo crear la cuenta con fecha retroactiva {formatoFecha(fecha)}. Esto no registra
+              un cobro.
+            </label>
+          )}
           {error && (
             <p className="rounded-xl bg-[#fdf1f0] px-3 py-2 text-[12px] text-[#dc5c52]">{error}</p>
           )}
@@ -695,9 +746,19 @@ function Cuentas(): React.JSX.Element {
   const detalle = useMemo(() => {
     if (!clienteDetalle) return null
     const suyas = cuentas.filter((c) => c.clienteId === clienteDetalle && c.estado !== 'anulado')
+    const conceptos = new Map(
+      suyas.flatMap((c) => [
+        ...conceptosCuenta(
+          c,
+          ventas.find((v) => v.id === c.ventaId),
+          movimientosCuenta
+        )
+      ])
+    )
     const totalComprado = suyas.reduce((t, c) => t + c.montoTotal, 0)
     const totalPagado = suyas.reduce((t, c) => t + c.montoPagado, 0)
     return {
+      conceptos,
       cuentas: suyas,
       abiertas: suyas.filter((c) => c.estado === 'pendiente' || c.estado === 'parcial'),
       abonos: movimientosCuenta.filter((m) => m.clienteId === clienteDetalle),
@@ -705,7 +766,7 @@ function Cuentas(): React.JSX.Element {
       totalPagado: Math.round(totalPagado * 100) / 100,
       saldoAcumulado: Math.round((totalComprado - totalPagado) * 100) / 100
     }
-  }, [clienteDetalle, cuentas, movimientosCuenta])
+  }, [clienteDetalle, cuentas, movimientosCuenta, ventas])
 
   const comprobantesCuentaAbono = useMemo<OpcionComprobante[]>(() => {
     if (!cuentaAbono || cuentaAbono.categoria !== 'venta') return []
@@ -914,7 +975,7 @@ function Cuentas(): React.JSX.Element {
           <table className="w-full min-w-[720px] text-left text-[13px]">
             <thead>
               <tr className="border-b border-[#e2e7e2] bg-[#fafbfa] text-[11px] font-bold uppercase tracking-wide text-[#8a938d]">
-                <th className="px-4 py-3">Fecha y hora</th>
+                <th className="px-4 py-3">Fecha efectiva</th>
                 <th className="px-4 py-3">Tipo</th>
                 <th className="px-4 py-3">Monto</th>
                 <th className="px-4 py-3">Método</th>
@@ -933,15 +994,17 @@ function Cuentas(): React.JSX.Element {
               ) : (
                 detalle.abonos.map((m) => (
                   <tr key={m.id} className="border-b border-[#eef1ee] last:border-0">
+                    <td className="px-4 py-3 text-[#5b635e]">{formatoFecha(m.fecha)}</td>
                     <td className="px-4 py-3 text-[#5b635e]">
-                      {formatoFecha(m.fecha)} · {m.fechaHoraRegistro.slice(11, 16)}
+                      {detalle.conceptos.get(m.id) ?? m.tipo}
                     </td>
-                    <td className="px-4 py-3 text-[#5b635e]">{m.tipo}</td>
                     <td className="px-4 py-3 font-semibold text-[#16834b]">
                       ${formatoMoneda(m.monto)}
                     </td>
                     <td className="px-4 py-3 text-[#5b635e]">{m.metodoPago}</td>
-                    <td className="px-4 py-3 text-[#8a938d]">{m.observacion}</td>
+                    <td className="px-4 py-3 text-[#8a938d]">
+                      {observacionPago(m.observacion, detalle.conceptos.get(m.id) ?? m.tipo)}
+                    </td>
                     <td className="px-4 py-3 text-[#5b635e]">
                       {m.usuarioNombre ?? 'Sistema anterior'}
                     </td>

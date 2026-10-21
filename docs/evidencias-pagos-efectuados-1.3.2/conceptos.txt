@@ -1,0 +1,1 @@
+PASS conceptos: sobrepago permitido en venta liquida deuda; cobro con saldo a favor no se llama abono parcial; reglas e importes intactos
